@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+    <style>
+        body {
+            background: #f8f9fa;
+        }
+
+        .cart-item {
+            border-radius: 12px;
+            border: 1px solid #e5e5e5;
+            padding: 20px;
+            background: #fff;
+        }
+
+        .cart-img {
+            width: 100%;
+            height: 160px;
+            background: #e2e2e2;
+            border-radius: 10px;
+        }
+
+        .product-name {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .product-price {
+            font-weight: 700;
+            font-size: 17px;
+            margin-bottom: 5px;
+        }
+
+        .cart-summary {
+            background: #fff;
+            border-radius: 12px;
+            border: 1px solid #e5e5e5;
+            padding: 25px;
+        }
+
+        .summary-title {
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .btn-checkout {
+            border-radius: 10px;
+            font-weight: 600;
+            padding: 12px;
+            margin-top: 10px;
+        }
+
+        .remove-link {
+            text-decoration: none;
+            font-weight: 500;
+            color: #dc3545;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container py-5">
+
+        <h2 class="fw-bold mb-4 text-center">My Cart</h2>
+
+        <div class="row g-4">
+
+            <!-- Left: Cart Items -->
+            <div class="col-lg-8">
+
+                <!-- Item 1 -->
+                <div class="cart-item mb-4">
+                    <div class="row align-items-center">
+
+                        <div class="col-md-3">
+                            <div class="cart-img"></div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <p class="product-name mb-1">Classic Casual Shirt</p>
+                            <p class="product-price mb-2">₹1,499</p>
+
+                            <a href="#" class="remove-link">Remove</a>
+                        </div>
+
+                        <div class="col-md-3">
+                            <label class="form-label mb-1">Quantity</label>
+                            
+                            <!-- UPDATED QUANTITY INPUT -->
+                            <input type="number" class="form-control" min="1" max="10" value="1">
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="cart-item mb-4">
+                    <div class="row align-items-center">
+
+                        <div class="col-md-3">
+                            <div class="cart-img"></div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <p class="product-name mb-1">Premium Hoodie</p>
+                            <p class="product-price mb-2">₹1,999</p>
+
+                            <a href="#" class="remove-link">Remove</a>
+                        </div>
+
+                        <div class="col-md-3">
+                            <label class="form-label mb-1">Quantity</label>
+
+                            <!-- UPDATED QUANTITY INPUT -->
+                            <input type="number" class="form-control" min="1" max="10" value="1">
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Right: Summary -->
+            <div class="col-lg-4">
+
+                <div class="cart-summary">
+                    <h4 class="summary-title mb-3">Order Summary</h4>
+
+                    <div class="d-flex justify-content-between">
+                        <p class="mb-1">Subtotal</p>
+                        <p class="mb-1 fw-bold">₹3,498</p>
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <p class="mb-1">Delivery Fee</p>
+                        <p class="mb-1 fw-bold">₹80</p>
+                    </div>
+
+                    <hr>
+
+                    <div class="d-flex justify-content-between">
+                        <p class="mb-1 fw-bold fs-5">Total</p>
+                        <p class="mb-1 fw-bold fs-5">₹3,578</p>
+                    </div>
+
+                    <a href="{% url 'checkout'%}" class="btn btn-dark w-100 btn-checkout">
+    Proceed to Checkout
+</a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

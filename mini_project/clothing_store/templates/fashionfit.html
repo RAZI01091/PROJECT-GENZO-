@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion Fit – Men's Store</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* Professional Men's Palette 2025 - SAME AS NAVBAR & CASUAL */
+            --charcoal-pro: #1F2937;
+            --steel-matte: #374151;
+            --mocha-mousse: #A67C52;
+            --bronze-matte: #8B5A2B;
+            --graphite-dark: #111827;
+            --silver-steel: #D1D5DB;
+            --platinum-base: #F9FAFB;
+            --shadow-pro: rgba(31, 41, 55, 0.25);
+            --glow-mocha: rgba(166, 124, 82, 0.35);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--platinum-base) 0%, #F3F4F6 50%, var(--silver-steel) 100%);
+            color: var(--charcoal-pro);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 15% 15%, rgba(166,124,82,0.08) 0%, transparent 50%),
+                radial-gradient(circle at 85% 85%, rgba(139,90,43,0.06) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+            mix-blend-mode: overlay;
+        }
+
+        /* EXECUTIVE TITLE */
+        .title-section {
+            text-align: center;
+            margin: 80px 0 60px;
+            padding: 0 20px;
+            position: relative;
+        }
+
+        .title-section h2 {
+            font-size: clamp(2.8rem, 8vw, 4.5rem);
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--charcoal-pro), var(--steel-matte));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -1px;
+            position: relative;
+            animation: titleProSlide 1.5s cubic-bezier(0.23, 1, 0.32, 1);
+            text-transform: uppercase;
+        }
+
+        .title-section p {
+            font-size: 1.3rem;
+            color: var(--steel-matte);
+            font-weight: 400;
+            margin-top: 12px;
+            letter-spacing: 0.5px;
+            animation: fadeSlideUp 1.8s ease 0.3s both;
+        }
+
+        /* PROFESSIONAL FILTER BOX */
+        .filter-box {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(25px);
+            border-radius: 24px;
+            padding: 32px 28px;
+            box-shadow: 
+                0 25px 60px var(--shadow-pro),
+                inset 0 1px 0 rgba(255,255,255,0.6);
+            border: 1px solid rgba(166, 124, 82, 0.2);
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+            animation: filterProSlide 1.2s cubic-bezier(0.23, 1, 0.32, 1) 0.2s both;
+        }
+
+        .filter-box h5 {
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--mocha-mousse), var(--bronze-matte));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        .filter-box h6 {
+            font-weight: 600;
+            color: var(--charcoal-pro);
+            font-size: 0.95rem;
+            margin-top: 28px;
+            margin-bottom: 16px;
+            letter-spacing: 0.5px;
+        }
+
+        .form-check-input {
+            border-radius: 8px;
+            transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            border: 2px solid rgba(166, 124, 82, 0.3);
+        }
+
+        .form-check-input:checked {
+            background-color: var(--mocha-mousse);
+            border-color: var(--mocha-mousse);
+            box-shadow: 0 0 0 4px var(--glow-mocha);
+            transform: scale(1.05);
+        }
+
+        .form-check-label {
+            font-weight: 500;
+            color: var(--steel-matte);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding-left: 12px;
+        }
+
+        .form-check:hover .form-check-label {
+            color: var(--mocha-mousse);
+            transform: translateX(4px);
+        }
+
+        .form-range {
+            height: 8px;
+            border-radius: 10px;
+            background: rgba(166, 124, 82, 0.2);
+            transition: all 0.4s ease;
+        }
+
+        .form-range::-webkit-slider-thumb {
+            background: var(--mocha-mousse);
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            box-shadow: 0 8px 20px var(--glow-mocha);
+            border: 3px solid white;
+        }
+
+        /* ADVANCED PRODUCT CARDS */
+        .product-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            box-shadow: 
+                0 20px 50px var(--shadow-pro),
+                inset 0 1px 0 rgba(255,255,255,0.8);
+            transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+            border: 1px solid rgba(166, 124, 82, 0.15);
+            overflow: hidden;
+            position: relative;
+            animation: cardProFloat 6s ease-in-out infinite;
+        }
+
+        .product-card:nth-child(2) { animation-delay: 0.2s; }
+        .product-card:nth-child(3) { animation-delay: 0.4s; }
+        .product-card:nth-child(4) { animation-delay: 0.6s; }
+        .product-card:nth-child(5) { animation-delay: 0.8s; }
+        .product-card:nth-child(6) { animation-delay: 1s; }
+
+        .product-card:hover {
+            transform: translateY(-20px) rotateX(8deg) scale(1.04);
+            box-shadow: 
+                0 45px 100px rgba(166,124,82,0.3),
+                0 20px 40px rgba(0,0,0,0.2);
+            border-color: var(--mocha-mousse);
+        }
+
+        .product-img {
+            height: 260px;
+            background: linear-gradient(135deg, 
+                rgba(166,124,82,0.1), 
+                rgba(139,90,43,0.08),
+                rgba(248,250,251,0.9));
+            position: relative;
+            overflow: hidden;
+            border-radius: 24px 24px 0 0;
+        }
+
+        .product-img::before {
+            content: "";
+            position: absolute;
+            top: 20%;
+            left: -80%;
+            width: 120%;
+            height: 120%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255,255,255,0.6), 
+                rgba(166,124,82,0.3), 
+                transparent);
+            transform: skewX(-25deg);
+            animation: productShimmer 4s infinite;
+        }
+
+        .product-card h5 {
+            color: var(--charcoal-pro);
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            letter-spacing: 0.3px;
+        }
+
+        .product-card p {
+            color: var(--mocha-mousse);
+            font-weight: 800;
+            font-size: 1.4rem;
+            text-shadow: 0 2px 8px var(--glow-mocha);
+        }
+
+        /* ANIMATIONS */
+        @keyframes titleProSlide {
+            0% { 
+                opacity: 0; 
+                transform: translateY(-50px) scale(0.9); 
+            }
+            100% { 
+                opacity: 1; 
+                transform: translateY(0) scale(1); 
+            }
+        }
+
+        @keyframes fadeSlideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes filterProSlide {
+            0% { 
+                opacity: 0; 
+                transform: translateX(-40px) rotateY(15deg); 
+            }
+            100% { 
+                opacity: 1; 
+                transform: translateX(0) rotateY(0deg); 
+            }
+        }
+
+        @keyframes cardProFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(0.5deg); }
+        }
+
+        @keyframes productShimmer {
+            0% { transform: translateX(-100%) skewX(-25deg); }
+            100% { transform: translateX(400%) skewX(-25deg); }
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .filter-box {
+                position: static;
+                margin-bottom: 32px;
+            }
+            
+            .product-card:hover {
+                transform: translateY(-12px) scale(1.02);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.15s !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    {% include 'base.html' %}
+
+    <!-- PAGE TITLE -->
+    <div class="title-section">
+        <h2>FASHION FIT COLLECTION</h2>
+        <p>Trendy • Smart • Modern Fashion Wear</p>
+    </div>
+
+    <!-- PAGE BODY -->
+    <div class="container my-4">
+        <div class="row">
+            <!-- FILTER SIDEBAR -->
+            <div class="col-md-3">
+                <div class="filter-box">
+                    <h5>Filters</h5>
+                    <hr class="border border-secondary-subtle">
+
+                    <!-- SIZE FILTER -->
+                    <h6>Size</h6>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="size-xs">
+                        <label class="form-check-label" for="size-xs">XS</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="size-s">
+                        <label class="form-check-label" for="size-s">S</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="size-m">
+                        <label class="form-check-label" for="size-m">M</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="size-l">
+                        <label class="form-check-label" for="size-l">L</label>
+                    </div>
+
+                    <!-- COLOR FILTER -->
+                    <h6>Color</h6>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="color-black2">
+                        <label class="form-check-label" for="color-black2">Black</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="color-olive">
+                        <label class="form-check-label" for="color-olive">Olive</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="color-navy">
+                        <label class="form-check-label" for="color-navy">Navy Blue</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="color-white2">
+                        <label class="form-check-label" for="color-white2">White</label>
+                    </div>
+
+                    <!-- STYLE FILTER -->
+                    <h6>Style</h6>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="style-slim">
+                        <label class="form-check-label" for="style-slim">Slim Fit</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="style-smart">
+                        <label class="form-check-label" for="style-smart">Smart Fit</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="style-modern">
+                        <label class="form-check-label" for="style-modern">Modern Fit</label>
+                    </div>
+
+                    <!-- PRICE FILTER -->
+                    <h6>Price Range</h6>
+                    <input type="range" class="form-range" min="0" max="7000" value="3500">
+                    <p class="text-muted small mt-2 mb-0">Up to ₹7000</p>
+                </div>
+            </div>
+
+            <!-- PRODUCT GRID -->
+            <div class="col-md-9">
+                <div class="row g-4">
+                    <!-- PRODUCT 1 -->
+                    <div class="col-md-4">
+                        <div class="product-card">
+                            <div class="product-img"></div>
+                            <div class="p-4">
+                                <h5>Luxury Slim Fit Shirt</h5>
+                                <p>₹2499</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PRODUCT 2 -->
+                    <div class="col-md-4">
+                        <div class="product-card">
+                            <div class="product-img"></div>
+                            <div class="p-4">
+                                <h5>Premium Blazer</h5>
+                                <p>₹4999</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PRODUCT 3 -->
+                    <div class="col-md-4">
+                        <div class="product-card">
+                            <div class="product-img"></div>
+                            <div class="p-4">
+                                <h5>Designer Polo Tee</h5>
+                                <p>₹1899</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PRODUCT 4 -->
+                    <div class="col-md-4">
+                        <div class="product-card">
+                            <div class="product-img"></div>
+                            <div class="p-4">
+                                <h5>Fashion Fit Denim</h5>
+                                <p>₹2799</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PRODUCT 5 -->
+                    <div class="col-md-4">
+                        <div class="product-card">
+                            <div class="product-img"></div>
+                            <div class="p-4">
+                                <h5>Smart Stretch Shirt</h5>
+                                <p>₹2299</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PRODUCT 6 -->
+                    <div class="col-md-4">
+                        <div class="product-card">
+                            <div class="product-img"></div>
+                            <div class="p-4">
+                                <h5>Modern Fit Trousers</h5>
+                                <p>₹2599</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Details</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <style>
+        body {
+            background: #f8f9fa;
+        }
+
+        .order-card {
+            border-radius: 12px;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+        }
+
+        .order-item {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+
+        .order-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .price {
+            font-weight: bold;
+            color: #000;
+        }
+
+        .total-box {
+            background: #fff;
+            border-radius: 12px;
+            padding: 20px;
+            border: 2px solid #eee;
+        }
+
+        .section-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container my-5">
+
+        <h2 class="mb-4 fw-bold">Order Summary</h2>
+
+        <div class="row">
+            <!-- LEFT SIDE CONTENT -->
+            <div class="col-lg-8">
+
+                <!-- Delivery Address -->
+                <div class="order-card mb-4">
+                    <h5 class="section-title"><i class="bi bi-geo-alt-fill text-primary"></i> Delivery Address</h5>
+
+                    <p class="mb-1"><strong>Razi A</strong></p>
+                    <p class="mb-1">123, MG Road, Ernakulam, Kerala</p>
+                    <p class="mb-1">Phone: 9876543210</p>
+
+                    <button class="btn btn-outline-primary btn-sm mt-2">Change Address</button>
+                </div>
+
+                <!-- Payment Method -->
+                <div class="order-card mb-4">
+                    <h5 class="section-title"><i class="bi bi-credit-card-2-front text-success"></i> Payment Method</h5>
+
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="payment" checked>
+                        <label class="form-check-label">Cash on Delivery</label>
+                    </div>
+
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="payment">
+                        <label class="form-check-label">UPI</label>
+                    </div>
+
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="payment">
+                        <label class="form-check-label">Debit / Credit Card</label>
+                    </div>
+                </div>
+
+                <!-- Order Items -->
+                <div class="order-card">
+                    <h5 class="section-title"><i class="bi bi-bag-check text-warning"></i> Items in Order</h5>
+
+                    <!-- Item 1 -->
+                    <div class="order-item d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="mb-1">Men's Casual Shirt</h6>
+                            <p class="mb-0 text-muted">Size: M | Color: Blue</p>
+                        </div>
+                        <p class="price">₹799</p>
+                    </div>
+
+                    <!-- Item 2 -->
+                    <div class="order-item d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="mb-1">Regular Fit Jeans</h6>
+                            <p class="mb-0 text-muted">Size: 32 | Black</p>
+                        </div>
+                        <p class="price">₹1199</p>
+                    </div>
+
+                    <!-- Item 3 -->
+                    <div class="order-item d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="mb-1">Sport Sneakers</h6>
+                            <p class="mb-0 text-muted">Size: 9</p>
+                        </div>
+                        <p class="price">₹1499</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- RIGHT SIDE TOTAL CARD -->
+            <div class="col-lg-4">
+                <div class="total-box">
+                    <h5 class="fw-bold mb-3">Price Details</h5>
+
+                    <div class="d-flex justify-content-between mb-2">
+                        <p>Items Total</p>
+                        <p>₹3497</p>
+                    </div>
+
+                    <div class="d-flex justify-content-between mb-2">
+                        <p>Delivery Charge</p>
+                        <p class="text-success">FREE</p>
+                    </div>
+
+                    <hr>
+
+                    <div class="d-flex justify-content-between mb-3">
+                        <h6>Total Amount</h6>
+                        <h6 class="price">₹3497</h6>
+                    </div>
+
+                    <button class="btn btn-primary w-100 py-2 mt-2">
+                        Place Order
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

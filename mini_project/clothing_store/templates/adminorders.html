@@ -1,0 +1,185 @@
+{% comment %} <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin – Order Management</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: #f5f6fa;
+        }
+
+        /* Sidebar White */
+        .sidebar {
+            width: 240px;
+            height: 100vh;
+            background: #ffffff;
+            border-right: 1px solid #e6e6e6;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding: 25px 0;
+        }
+
+        .sidebar h4 {
+            text-align: center;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: #2d3436;
+        }
+
+        .sidebar .nav-link {
+            color: #555;
+            padding: 12px 20px;
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .sidebar .nav-link i {
+            margin-right: 8px;
+        }
+
+        .sidebar .nav-link:hover,
+        .sidebar .nav-link.active {
+            background: #f1f2f6;
+            color: #000;
+        }
+
+        /* Main Content */
+        .content {
+            margin-left: 240px;
+            padding: 30px;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: white;
+            padding: 20px 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+        }
+
+        .search-bar input {
+            border-radius: 8px;
+        }
+
+        /* Table Card */
+        .table-card {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h4>Admin Panel</h4>
+        <ul class="nav flex-column">
+            <li><a href="{% url 'adminpanel'%}" class="nav-link"><i class="bi bi-speedometer2"></i> Dashboard</a></li>
+            <li><a href="{% url 'adminorders'%}" class="nav-link active"><i class="bi bi-cart-check"></i> Orders</a></li>
+            <li><a href="{% url 'adminproducts'%}" class="nav-link"><i class="bi bi-bag"></i> Products</a></li>
+            <li><a href="{% url 'adminusers'%}" class="nav-link"><i class="bi bi-people"></i> Users</a></li>
+            <li><a href="#" class="nav-link"><i class="bi bi-gear"></i> Settings</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+
+        <!-- Page Header -->
+        <div class="page-header mb-4 d-flex justify-content-between align-items-center">
+            <h3 class="mb-0">Order Management</h3>
+
+            <div class="search-bar d-flex align-items-center">
+                <input type="text" class="form-control" placeholder="Search orders...">
+            </div>
+        </div>
+
+        <!-- Order Table -->
+        <div class="card table-card">
+            <div class="card-body">
+
+                <table class="table table-hover align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Customer</th>
+                            <th>Total Amount</th>
+                            <th>Status</th>
+                            <th>Payment</th>
+                            <th>Date</th>
+                            <th class="text-center">Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>#1001</td>
+                            <td>Rahul Kumar</td>
+                            <td>₹1,250</td>
+                            <td><span class="badge bg-success">Completed</span></td>
+                            <td><span class="badge bg-primary">Paid</span></td>
+                            <td>12 Dec 2025</td>
+                            <td class="text-center">
+                                <div class="d-flex justify-content-center gap-2">
+                                   <button class="btn btn-sm btn-primary">Edit</button>
+                                    <button class="btn btn-sm btn-danger">Delete</button>
+</div>
+
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>#1002</td>
+                            <td>Anjali Sharma</td>
+                            <td>₹980</td>
+                            <td><span class="badge bg-warning text-dark">Pending</span></td>
+                            <td><span class="badge bg-secondary">Unpaid</span></td>
+                            <td>12 Dec 2025</td>
+                            <td class="text-center">
+                                 <div class="d-flex justify-content-center gap-2">
+                                <button class="btn btn-sm btn-primary">Edit</button>
+                                 <button class="btn btn-sm btn-danger">Delete</button>
+</div>
+
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>#1003</td>
+                            <td>Kiran Kumar</td>
+                            <td>₹2,450</td>
+                            <td><span class="badge bg-danger">Cancelled</span></td>
+                            <td><span class="badge bg-secondary">Unpaid</span></td>
+                            <td>11 Dec 2025</td>
+                            <td class="text-center">
+                                <div class="d-flex justify-content-center gap-2">
+                                <button class="btn btn-sm btn-primary">Edit</button>
+                                <button class="btn btn-sm btn-danger">Delete</button>
+</div>
+
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html> {% endcomment %}
