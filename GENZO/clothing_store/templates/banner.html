@@ -1,0 +1,236 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<title>Admin | Banner Slider</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+body{
+    background:#f4f5f9;
+    font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar{
+    width:240px;
+    height:100vh;
+    position:fixed;
+    left:0;
+    top:0;
+    background:#ffffff;
+    border-right:1px solid #e4e4e4;
+    padding-top:20px;
+}
+
+.sidebar h4{
+    text-align:center;
+    margin-bottom:30px;
+    font-weight:700;
+}
+
+.sidebar .nav-link{
+    color:#555;
+    padding:12px 20px;
+    font-size:15px;
+    border-radius:8px;
+    margin:4px 10px;
+}
+
+.sidebar .nav-link:hover,
+.sidebar .nav-link.active{
+    background:#e9efff;
+    color:#0d6efd;
+}
+
+/* ===== CONTENT ===== */
+.content{
+    margin-left:240px;
+    padding:30px;
+}
+
+/* ===== TOP BAR ===== */
+.top-nav{
+    background:#ffffff;
+    padding:14px 20px;
+    border-radius:12px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.05);
+    margin-bottom:25px;
+}
+
+/* ===== CARD ===== */
+.card-box{
+    background:#ffffff;
+    border-radius:14px;
+    padding:25px;
+    box-shadow:0 2px 12px rgba(0,0,0,0.07);
+    margin-bottom:30px;
+}
+
+.card-title{
+    font-size:18px;
+    font-weight:700;
+    margin-bottom:20px;
+}
+
+/* ===== FORM ===== */
+.form-label{
+    font-weight:600;
+    font-size:14px;
+}
+
+.form-control{
+    border-radius:8px;
+}
+
+.btn-save{
+    background:#0d6efd;
+    color:#fff;
+    padding:8px 30px;
+    border-radius:8px;
+    font-weight:600;
+}
+
+/* ===== TABLE ===== */
+.table th{
+    font-weight:600;
+    font-size:14px;
+}
+
+.table td{
+    font-size:14px;
+    vertical-align:middle;
+}
+
+.banner-img{
+    width:140px;
+    height:70px;
+    object-fit:cover;
+    border-radius:8px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+    <h4>Admin Panel</h4>
+    <ul class="nav flex-column">
+        <li><a href="{% url 'adminpanel' %}" class="nav-link">Dashboard</a></li>
+        <li><a href="{% url 'adminorders' %}" class="nav-link">Orders</a></li>
+        <li><a href="{% url 'adminproducts' %}" class="nav-link">Products</a></li>
+        <li><a href="{% url 'banner' %}" class="nav-link active">Banner Slider</a></li>
+        <li><a href="{% url 'adminusers' %}" class="nav-link">Users</a></li>
+        <li><a href="{% url 'adminsettings' %}" class="nav-link">Settings</a></li>
+    </ul>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+    <!-- TOP NAV -->
+    <div class="top-nav d-flex justify-content-between align-items-center">
+        <h5 class="mb-0">Banner Slider</h5>
+        <div>
+            <button class="btn btn-outline-secondary btn-sm">Notifications</button>
+            <button class="btn btn-outline-secondary btn-sm">Profile</button>
+        </div>
+    </div>
+
+    <!-- ADD BANNER -->
+    <div class="card-box">
+        <h5 class="card-title">Add New Banner</h5>
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row g-3">
+
+                <div class="col-md-6">
+                    <label class="form-label">Banner Title</label>
+                    <input type="text" name="title" class="form-control" required>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Subtitle</label>
+                    <input type="text" name="subtitle" class="form-control">
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Banner Image</label>
+                    <input type="file" name="image" class="form-control" required>
+                </div>
+
+                <div class="col-md-6 d-flex align-items-end">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="is_active" checked>
+                        <label class="form-check-label">Active Banner</label>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="mt-4">
+                <button type="submit" class="btn btn-save">Save Banner</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- BANNER LIST -->
+    <div class="card-box">
+        <h5 class="card-title">Banner List</h5>
+
+        <table class="table table-hover align-middle">
+            <thead class="table-light">
+                <tr>
+                    <th>#</th>
+                    <th>Image</th>
+                    <th>Title</th>
+                    <th>Status</th>
+                    <th>Created</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for banner in banners %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td><img src="{{ banner.image.url }}" class="banner-img"></td>
+                    <td>
+                        <strong>{{ banner.title }}</strong><br>
+                        <small class="text-muted">{{ banner.subtitle }}</small>
+                    </td>
+                    <td>
+                        {% if banner.is_active %}
+                            <span class="badge bg-success">Active</span>
+                        {% else %}
+                            <span class="badge bg-danger">Inactive</span>
+                        {% endif %}
+                    </td>
+                    <td>{{ banner.created_at|date:"d M Y" }}</td>
+                    <td>
+                        <form method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="delete_banner_id" value="{{ banner.id }}">
+                            <button class="btn btn-sm btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="6" class="text-center text-muted">No banners added</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+</body>
+</html>
