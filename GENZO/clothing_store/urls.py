@@ -8,7 +8,7 @@ urlpatterns = [
     path('cart/',views.cart,name='cart'),
     path('wishlist/',views.wishlist,name='wishlist'),
     path('casualfit/',views.casualfit,name='casualfit'),
-    path('fashionfit/',views.fashionfit,name='fashionfit'),
+    path('formalfit/',views.formalfit,name='formalfit'),
     path('innerwear/',views.innerwear,name='innerwear'),
     path('accessories/',views.accessories,name='accessories'),
     path('newarrivals/',views.newarrivals,name='newarrivals'),
@@ -35,7 +35,9 @@ urlpatterns = [
     path("payment/",views.payment,name="payment"),
     path('ordersummary/',views.ordersummary,name="ordersummary"),
     path('productsdelete/<int:id>/', views.productsdelete, name='productsdelete'),
-    path('banner',views.banner,name='banner')
+    path('banner/',views.banner,name='banner'),
+    path('productsdetail/<int:id>/', views.product_detail, name='productsdetail')
+
 
 
 

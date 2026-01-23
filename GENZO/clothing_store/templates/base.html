@@ -30,6 +30,7 @@
 }
 
 
+
 /* GLOBAL */
 * {
     box-sizing: border-box;
@@ -457,21 +458,19 @@ body::before {
         transition-duration: 0.15s !important;
     }
 }
+
 </style>
 </head>
 
 <body>
-
+{% block content%}{% endblock%}
 <!-- ================= EXECUTIVE TOPBAR ================= -->
 <nav class="topbar">
     <div class="container d-flex justify-content-between align-items-center">
-        <!-- ADVANCED SEARCH -->
-        <form class="d-flex align-items-center">
-            <input type="text" class="form-control top-search" placeholder="Search men's collections...">
-            <button class="btn" type="submit">
-                <i class="bi bi-search"></i>
-            </button>
-        </form>
+
+        <a class="navbar-brand" href="{% url 'home'%}">GENZO</a>
+        
+
 
         <!-- EXECUTIVE CONTROLS -->
         <div class="d-flex align-items-center">
@@ -505,30 +504,36 @@ body::before {
 <nav class="navbar navbar-expand-lg main-navbar">
     <div class="container">
         <!-- EXECUTIVE BRAND -->
-        <a class="navbar-brand" href="{% url 'home'%}">GENZO</a>
+        <form class="d-flex align-items-center">
+    <input type="text" class="form-control top-search" placeholder="Search men's collections...">
+    <button class="btn" type="submit">
+        <i class="bi bi-search"></i>
+    </button>
+</form>
+
 
         <!-- PROFESSIONAL NAV -->
         <ul class="navbar-nav ms-auto me-4">
             <li class="nav-item dropdown-hover">
                 <a class="nav-link" href="{% url 'casualfit'%}">CASUAL</a>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Shirts</a></li>
-                    <li><a class="dropdown-item" href="#">Jeans</a></li>
-                    <li><a class="dropdown-item" href="#">T-Shirts</a></li>
-                    <li><a class="dropdown-item" href="#">Track Pants</a></li>
-                    <li><a class="dropdown-item" href="#">Shorts</a></li>
+                    <li><a class="dropdown-item" href="{% url 'casualfit'%}?sub_id=1">Shirts</a></li>
+                    <li><a class="dropdown-item" href="{% url 'casualfit'%}?sub_id=2">Jeans</a></li>
+                    <li><a class="dropdown-item" href="{% url 'casualfit'%}?sub_id=3">T-Shirts</a></li>
+                    <li><a class="dropdown-item" href="{% url 'casualfit'%}?sub_id=5">Track Pants</a></li>
+                    <li><a class="dropdown-item" href="{% url 'casualfit'%}?sub_id=4">Shorts</a></li>
 
 
                 </ul>
             </li>
             <li class="nav-item dropdown-hover">
-                <a class="nav-link" href="{% url 'fashionfit'%}">FORMAL</a>
+                <a class="nav-link" href="{% url 'formalfit'%}">FORMAL</a>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Formal Shirts</a></li>
-                    <li><a class="dropdown-item" href="#">Pant</a></li>
-                    <li><a class="dropdown-item" href="#">Suits</a></li>
-                    <li><a class="dropdown-item" href="#">Blazer</a></li>
-                    <li><a class="dropdown-item" href="#">Waistcoat</a></li>
+                    <li><a class="dropdown-item" href="{% url 'formalfit'%}?sub_id=6">Formal Shirts</a></li>
+                    <li><a class="dropdown-item" href="{% url 'formalfit'%}?sub_id=7">Pant</a></li>
+                    <li><a class="dropdown-item" href="{% url 'formalfit'%}?sub_id=8">Suits</a></li>
+                    <li><a class="dropdown-item" href="{% url 'formalfit'%}?sub_id=9">Blazer</a></li>
+                    <li><a class="dropdown-item" href="{% url 'formalfit'%}?sub_id=10">Waistcoat</a></li>
 
 
                 </ul>
@@ -536,30 +541,30 @@ body::before {
             <li class="nav-item dropdown-hover">
                 <a class="nav-link" href="{% url 'innerwear'%}">INNERWEAR</a>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Vests</a></li>
-                    <li><a class="dropdown-item" href="#">Thermals</a></li>
-                    <li><a class="dropdown-item" href="#">Boxers</a></li>
-                    <li><a class="dropdown-item" href="#">Briefs</a></li>
+                    <li><a class="dropdown-item" href="{% url 'innerwear'%}?sub_id=11">Vests</a></li>
+                    <li><a class="dropdown-item" href="{% url 'innerwear'%}?sub_id=12">Thermals</a></li>
+                    <li><a class="dropdown-item" href="{% url 'innerwear'%}?sub_id=13">Boxers</a></li>
+                    <li><a class="dropdown-item" href="{% url 'innerwear'%}?sub_id=14">Briefs</a></li>
                 </ul>
             </li>
             <li class="nav-item dropdown-hover">
                 <a class="nav-link" href="{% url 'accessories'%}">ACCESSORIES</a>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Belts</a></li>
-                    <li><a class="dropdown-item" href="#">Wallets</a></li>
-                    <li><a class="dropdown-item" href="#">Sunglasses</a></li>
-                    <li><a class="dropdown-item" href="#">Caps</a></li>
-                    <li><a class="dropdown-item" href="#">Chains</a></li>
+                    <li><a class="dropdown-item" href="{% url 'accessories'%}?sub_id=15">Belts</a></li>
+                    <li><a class="dropdown-item" href="{% url 'accessories'%}?sub_id=16">Wallets</a></li>
+                    <li><a class="dropdown-item" href="{% url 'accessories'%}?sub_id=17">Sunglasses</a></li>
+                    <li><a class="dropdown-item" href="{% url 'accessories'%}?sub_id=18">Caps</a></li>
+                    <li><a class="dropdown-item" href="{% url 'accessories'%}?sub_id=19">Chains</a></li>
 
 
                 </ul>
             </li>
             <li class="nav-item dropdown-hover">
-                <a class="nav-link" href="{% url 'newarrivals'%}">NEW</a>
+                <a class="nav-link" href="{% url 'newarrivals'%}">NEW ARRIVALS</a>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">New Dropes</a></li>
-                    <li><a class="dropdown-item" href="#">Trending</a></li>
-                    <li><a class="dropdown-item" href="#">Limited Edition</a></li>
+                    <li><a class="dropdown-item" href="{% url 'newarrivals'%}?sub_id=22">New Dropes</a></li>
+                    <li><a class="dropdown-item" href="{% url 'newarrivals'%}?sub_id=23">Trending</a></li>
+                    <li><a class="dropdown-item" href="{% url 'newarrivals'%}?sub_id=24">Limited Edition</a></li>
                     
                 </ul>
             </li>
@@ -568,4 +573,4 @@ body::before {
 </nav>
 
 </body>
-</html>
+</html> 

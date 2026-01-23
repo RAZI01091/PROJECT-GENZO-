@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ product.name }} – Men's Store</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root{
+            --charcoal:#1F2937;
+            --steel:#374151;
+            --mocha:#A67C52;
+            --bronze:#8B5A2B;
+            --platinum:#F9FAFB;
+            --silver:#D1D5DB;
+            --shadow:rgba(31,41,55,.25);
+        }
+
+        body{
+            font-family:'Poppins',sans-serif;
+            background:linear-gradient(135deg,var(--platinum),#F3F4F6,var(--silver));
+            color:var(--charcoal);
+        }
+
+        .detail-card{
+            background:#fff;
+            border-radius:30px;
+            padding:42px;
+            box-shadow:0 25px 60px var(--shadow);
+        }
+
+        /* ================= IMAGE GALLERY ================= */
+
+        input[type="radio"]{
+            display:none;
+        }
+
+        .image-viewer{
+            position:relative;
+            width:100%;
+            height:420px;
+            border-radius:26px;
+            overflow:hidden;
+            margin-bottom:18px;
+        }
+
+        .image-viewer img{
+            position:absolute;
+            inset:0;
+            width:100%;
+            height:100%;
+            object-fit:cover;
+            opacity:0;
+            transform:scale(1.05);
+            transition:.6s ease;
+        }
+
+        #img1:checked ~ .image-viewer .img1,
+        #img2:checked ~ .image-viewer .img2,
+        #img3:checked ~ .image-viewer .img3,
+        #img4:checked ~ .image-viewer .img4{
+            opacity:1;
+            transform:scale(1);
+            z-index:1;
+        }
+
+        /* ================= THUMBNAILS ================= */
+
+        .main-images{
+            display:grid;
+            grid-template-columns:repeat(4,1fr);
+            gap:12px;
+        }
+
+        .main-images label img{
+            width:100%;
+            height:90px;
+            object-fit:cover;
+            border-radius:14px;
+            cursor:pointer;
+            border:2px solid transparent;
+            transition:.4s;
+        }
+
+        #img1:checked ~ .main-images label:nth-child(1) img,
+        #img2:checked ~ .main-images label:nth-child(2) img,
+        #img3:checked ~ .main-images label:nth-child(3) img,
+        #img4:checked ~ .main-images label:nth-child(4) img{
+            border-color:var(--mocha);
+            transform:scale(1.06);
+        }
+
+        /* ================= CONTENT ================= */
+
+        .product-title{
+            font-size:2.4rem;
+            font-weight:800;
+            margin-bottom:6px;
+        }
+
+        .product-category{
+            font-size:.95rem;
+            color:var(--steel);
+            margin-bottom:20px;
+        }
+
+        .price{
+            font-size:2rem;
+            font-weight:800;
+            color:var(--mocha);
+        }
+
+        .price span{
+            font-size:1.1rem;
+            color:#999;
+            text-decoration:line-through;
+            margin-left:12px;
+        }
+
+        .description{
+            margin-top:22px;
+            font-size:1rem;
+            line-height:1.9;
+            color:var(--steel);
+        }
+
+        .btn-primary{
+            background:linear-gradient(135deg,var(--mocha),var(--bronze));
+            border:none;
+            border-radius:14px;
+            padding:14px;
+            font-weight:600;
+        }
+
+        .btn-outline{
+            border:2px solid var(--mocha);
+            border-radius:14px;
+            padding:14px;
+            font-weight:600;
+            color:var(--mocha);
+            background:transparent;
+        }
+
+        @media(max-width:768px){
+            .image-viewer{height:300px}
+            .detail-card{padding:28px}
+            .product-title{font-size:2rem}
+            .main-images label img{height:70px}
+        }
+    </style>
+</head>
+
+<body>
+
+{% include "base.html" %}
+
+<div class="container my-5">
+    <div class="detail-card">
+        <div class="row g-5 align-items-center">
+
+            <!-- IMAGE COLUMN -->
+            <div class="col-md-6">
+
+                <!-- RADIO BUTTONS -->
+                <input type="radio" name="gallery" id="img1" checked>
+                <input type="radio" name="gallery" id="img2">
+                <input type="radio" name="gallery" id="img3">
+                <input type="radio" name="gallery" id="img4">
+
+                <!-- BIG IMAGE -->
+                <div class="image-viewer">
+                    {% if product.image %}
+                        <img src="{{ product.image.url }}" class="img1">
+                    {% endif %}
+                    {% if product.image1 %}
+                        <img src="{{ product.image1.url }}" class="img2">
+                    {% endif %}
+                    {% if product.image2 %}
+                        <img src="{{ product.image2.url }}" class="img3">
+                    {% endif %}
+                    {% if product.image3 %}
+                        <img src="{{ product.image3.url }}" class="img4">
+                    {% endif %}
+                </div>
+
+                <!-- THUMBNAILS -->
+                <div class="main-images">
+                    {% if product.image %}
+                        <label for="img1"><img src="{{ product.image.url }}"></label>
+                    {% endif %}
+                    {% if product.image1 %}
+                        <label for="img2"><img src="{{ product.image1.url }}"></label>
+                    {% endif %}
+                    {% if product.image2 %}
+                        <label for="img3"><img src="{{ product.image2.url }}"></label>
+                    {% endif %}
+                    {% if product.image3 %}
+                        <label for="img4"><img src="{{ product.image3.url }}"></label>
+                    {% endif %}
+                </div>
+
+            </div>
+
+            <!-- DETAILS COLUMN -->
+            <div class="col-md-6">
+
+                <h1 class="product-title">{{ product.name }}</h1>
+                <p class="product-category">{{ product.category }}</p>
+
+                {% if product.discount_price %}
+                    <p class="price">
+                        ₹{{ product.discount_price }}
+                        <span>₹{{ product.price }}</span>
+                    </p>
+                {% else %}
+                    <p class="price">₹{{ product.price }}</p>
+                {% endif %}
+
+                <p class="description">{{ product.description }}</p>
+
+                <div class="d-grid gap-3 mt-4">
+                    <button class="btn btn-primary">Add to Cart</button>
+                    <button class="btn btn-outline">Add to Wishlist</button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

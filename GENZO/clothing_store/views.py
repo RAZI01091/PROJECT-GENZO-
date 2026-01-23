@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from .forms import Signupform,Loginform
 from django.contrib.auth import login
 import random
@@ -10,25 +10,25 @@ from django.conf import settings
 from django.views.decorators.cache import never_cache
 from django.contrib.auth import logout as auth_logout
 from . models import Products,Category,SubCategory,Banner
-from decimal import Decimal
+from django.shortcuts import render, get_object_or_404
+
 
 
 
 @never_cache
 def home(request):
     banner = Banner.objects.filter(is_active=True).first()
-    return render(request,"home.html",{
-        "banner": banner
-    })
-    # if 'key' in request.session:    
-    #     print("User logged in ")
-    # else:
-    #     print("User not logged in ")
+    return render(request,"home.html",{"banner": banner})
+   
 
 
 
-
+@never_cache
 def signup(request):
+        
+        if 'key' in request.session:
+            return redirect('home')
+        
         form=Signupform(request.POST or None)
         if form.is_valid():
             form.save()
@@ -46,19 +46,17 @@ def loggin(request):
         form = Loginform(request.POST)
         if form.is_valid():
             user = form.user
-            if not user.is_active:
-                messages.error(request,"This user is blocked")
-                return redirect('loggin')
 
-            login(request, user)
-            
-            request.session['key']='user'
-            request.session.set_expiry(0)
+                        
+            # request.session['key']='user'
+            # request.session.set_expiry(0)
 
             
             if user.is_staff or user.is_superuser:
                 return redirect('adminpanel') 
             else:
+                request.session['key']='user'
+                request.session.set_expiry(0)
                 return redirect('home')  
             
     else:
@@ -74,16 +72,62 @@ def wishlist(request):
     if 'key' not in request.session:
         return redirect("showlogin")
     return render(request,("wishlist.html"))
+
+
 def casualfit(request):
-    return render(request,("casualfit.html"))
-def fashionfit(request):
-    return render(request,("fashionfit.html"))
+    casual = Category.objects.get(name='CASUAL')
+    products = Products.objects.filter(category=casual)
+
+    sub_id=request.GET.get("sub_id")
+
+    if sub_id:
+        products= Products.objects.filter(subcategory_id=sub_id)
+
+    return render(request, 'casualfit.html', {
+        'products': products
+    })
+
+
+
+def formalfit(request):
+    formal=Category.objects.get(name='FORMAL')
+    products=Products.objects.filter(category=formal)
+    
+    sub_id=request.GET.get("sub_id")
+
+    if sub_id:
+        products=Products.objects.filter(subcategory_id=sub_id)
+
+    return render(request,"formalfit.html",{"products":products})
+
 def accessories(request):
-    return render(request,("accessories.html"))
+    accessories=Category.objects.get(name='ACCESSORIES')
+    products=Products.objects.filter(category=accessories)
+    sub_id=request.GET.get("sub_id")
+
+    if sub_id:
+        products= Products.objects.filter(subcategory_id=sub_id)
+
+    return render(request,"accessories.html",{"products":products})
+
 def newarrivals(request):
-    return render(request,("newarrivals.html"))
+    newarrivals=Category.objects.get(name='NEW')
+    products=Products.objects.filter(category=newarrivals)
+
+    sub_id=request.GET.get("sub_id")
+
+    if sub_id:
+        products= Products.objects.filter(subcategory_id=sub_id)
+    return render(request,"newarrivals.html",{'products':products})
+
 def innerwear(request):
-    return render(request,("innerwear.html"))
+    innerwear=Category.objects.get(name='INNERWEAR')
+    products=Products.objects.filter(category=innerwear)
+    sub_id=request.GET.get("sub_id")
+
+    if sub_id:
+        products= Products.objects.filter(subcategory_id=sub_id)
+    return render(request,"innerwear.html",{"products":products})
 
 
 
@@ -166,30 +210,30 @@ def new_password(request):
         password = request.POST.get('password')
         confirm = request.POST.get('confirm_password')
 
-        # 1️⃣ Password mismatch check
+        # Password mismatch check
         if password != confirm:
             messages.error(request, "Passwords do not match")
             return redirect('new_password')
 
-        # 2️⃣ Get email from session safely
+        # Get email from session safely
         email = request.session.get('reset_email')
 
         if not email:
             messages.error(request, "Session expired. Please try again.")
             return redirect('forgot')
 
-        # 3️⃣ Get user safely
+        # Get user safely
         user = User.objects.filter(email=email).first()
 
         if not user:
             messages.error(request, "User does not exist")
             return redirect('forgot')
 
-        # 4️⃣ Set new password
+        #  Set newpas
         user.set_password(password)
-        user.save()   # ✅ IMPORTANT
+        user.save()   
 
-        # 5️⃣ Clear session
+        
         request.session.flush()
 
         messages.success(request, "Password updated successfully")
@@ -211,8 +255,12 @@ def logout(request):
     return redirect('home')
 def order(request):
     return render(request,"order.html")
+
 @never_cache
 def adminpanel(request):
+    
+    if 'key' in request.session:
+        return redirect('home')
     return render(request,"adminpanel.html")
 
 def adminproducts(request):
@@ -240,18 +288,6 @@ def adminsettings(request):
 
 
 
-# def addproducts(request):
-#     form=ProductForm()
-    
-#     if request.method=="POST":
-#         form=ProductForm(request.POST,request.FILES)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('adminproducts')
-#     return render(request,"addproducts.html")
-
-
-
 
 def addproducts(request):
     categories = Category.objects.all()
@@ -260,9 +296,9 @@ def addproducts(request):
     if request.method == 'POST':
         Products.objects.create(
             name=request.POST.get('name'),
+            price = request.POST.get('price') or 0,
             category_id=request.POST.get('category'),
             subcategory_id=request.POST.get('subcategory'),
-            price=float(request.POST.get('price', 0)),
             stock=int(request.POST.get('stock', 0)),
             description=request.POST.get('description'),
             discount_price=request.POST.get('discount_price') or None,
@@ -270,7 +306,7 @@ def addproducts(request):
             image=request.FILES.get('image'),
             image1=request.FILES.get('image1'),
             image2=request.FILES.get('image2'),
-            image3=request.FILES.get('image3'),
+            image3=request.FILES.get('image3'),     
         )
         return redirect('adminproducts')
 
@@ -327,15 +363,45 @@ def banner(request):
 
 
 def editproducts(request, id):
-    product = Products.objects.get(id=id)
+    product = get_object_or_404(Products, id=id)
+    categories = Category.objects.all()
     subcategories = SubCategory.objects.filter(category=product.category)
 
-    context = {
-        'product': product,
-        'subcategories': subcategories,
-    }
+    if request.method == 'POST':
+        product.name = request.POST.get('name')
+        product.price = request.POST.get('price')
+        product.stock = request.POST.get('stock')
+        product.description = request.POST.get('description')
+        product.discount_price = request.POST.get('discount_price') or None
+        product.discount_percentage = request.POST.get('discount_percentage') or None
+        product.category_id = request.POST.get('category')
+        product.subcategory_id = request.POST.get('subcategory')
 
-    return render(request, 'editproducts.html', context)
+
+        if request.FILES.get('image'):
+            product.image = request.FILES.get('image')
+
+        if request.FILES.get('image1'):
+            product.image1 = request.FILES.get('image1')
+
+        if request.FILES.get('image2'):
+            product.image2 = request.FILES.get('image2')
+
+        if request.FILES.get('image3'):
+            product.image3 = request.FILES.get('image3')
+
+        product.save()
+        return redirect('adminproducts')
+
+    return render(request, 'editproducts.html', {
+        'product': product,
+        'categories': categories,
+        'subcategories': subcategories,
+    })
+
+def product_detail(request, id):
+    product = get_object_or_404(Products, id=id)
+    return render(request, 'product_detail.html', {'product': product})
 
 
 

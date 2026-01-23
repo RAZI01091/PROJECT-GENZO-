@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 # Create your models here.
 
-class table(AbstractUser):
+class User(AbstractUser):
     email=models.EmailField(unique=True)
     
 class Category(models.Model):
@@ -51,4 +51,16 @@ class Banner(models.Model):
 
     def __str__(self):
         return self.title if self.title else "Banner"
+
+
+class Wishlist(models.Model):
+    User=models.ForeignKey(User,on_delete=models.CASCADE,related_name='Wishlists')
+    Products=models.ForeignKey(Products,on_delete=models.CASCADE,related_name='Wishlisted_by')
+
+    class Meta:
+        unique_together=('User','Products')
+
+    def __str__(self):
+        return f"{self.User.email}>{self.Products.name}"
+
 

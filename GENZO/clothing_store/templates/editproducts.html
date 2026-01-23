@@ -28,6 +28,14 @@
             border-radius: 8px;
             border: 1px solid #dee2e6;
         }
+        .preview-img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
     </style>
 </head>
 
@@ -134,11 +142,40 @@
                     <div class="section-title">Update Images (Optional)</div>
 
                     <div class="row g-3 mb-4">
-                        <div class="col-md-3"><input type="file" name="image0" class="form-control"></div>
-                        <div class="col-md-3"><input type="file" name="image1" class="form-control"></div>
-                        <div class="col-md-3"><input type="file" name="image2" class="form-control"></div>
-                        <div class="col-md-3"><input type="file" name="image3" class="form-control"></div>
-                    </div>
+
+    <!-- Image 0 -->
+    <div class="col-md-3 text-center">
+        {% if product.image %}
+            <img src="{{ product.image.url }}" class="preview-img mb-2">
+        {% endif %}
+        <input type="file" name="image" class="form-control">
+    </div>
+
+    <!-- Image 1 -->
+    <div class="col-md-3 text-center">
+        {% if product.image1 %}
+            <img src="{{ product.image1.url }}" class="preview-img mb-2">
+        {% endif %}
+        <input type="file" name="image1" class="form-control">
+    </div>
+
+    <!-- Image 2 -->
+    <div class="col-md-3 text-center">
+        {% if product.image2 %}
+            <img src="{{ product.image2.url }}" class="preview-img mb-2">
+        {% endif %}
+        <input type="file" name="image2" class="form-control">
+    </div>
+
+    <!-- Image 3 -->
+    <div class="col-md-3 text-center">
+        {% if product.image3 %}
+            <img src="{{ product.image3.url }}" class="preview-img mb-2">
+        {% endif %}
+        <input type="file" name="image3" class="form-control">
+    </div>
+
+</div>
 
                     <div class="text-center">
                         <button type="submit" class="btn btn-success px-5">

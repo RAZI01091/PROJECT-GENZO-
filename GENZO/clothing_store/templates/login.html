@@ -146,6 +146,15 @@
 <div class="login-card">
     <h2 class="text-center mb-4">Welcome Back</h2>
 
+     {% comment %} login error mesges {% endcomment %}
+     
+     {% if form.non_field_errors %}
+        <div class="alert alert-danger text-center">
+            {{ form.non_field_errors.0 }}
+        </div>
+    {% endif %}
+
+
     <form method="post">
         {% csrf_token %}
 

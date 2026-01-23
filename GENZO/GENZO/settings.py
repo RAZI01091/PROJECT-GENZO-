@@ -137,7 +137,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 
 
-AUTH_USER_MODEL='clothing_store.table'
+AUTH_USER_MODEL='clothing_store.User'
 
 
 # athentication backend for direct google login

@@ -1,8 +1,7 @@
 from django import forms
-from .models import table
+from .models import User
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth import authenticate
-# from . models import Products,SubCategory
 
 
 class Signupform(forms.ModelForm):
@@ -10,14 +9,14 @@ class Signupform(forms.ModelForm):
     confirm_password=forms.CharField(widget=forms.PasswordInput)
 
     class Meta:
-        model = table
+        model = User
         fields = ('username', 'email', 'password', 'confirm_password')
 
     # user check
 
     def clean_username(self):
         username = self.cleaned_data.get("username")
-        if table.objects.filter(username=username).exists():
+        if User.objects.filter(username=username).exists():
             raise forms.ValidationError("username already exists")
         return username
         
@@ -25,7 +24,7 @@ class Signupform(forms.ModelForm):
 
     def clean_email(self):
         email = self.cleaned_data.get("email")
-        if table.objects.filter(email=email).exists():
+        if User.objects.filter(email=email).exists():
             raise forms.ValidationError("email already exists")
         return email
         
@@ -72,9 +71,9 @@ class Loginform(forms.Form):
         login_input = data.get('login')
         password = data.get('password')
 
+
         if login_input and password:
-            # Find user by username or email
-            user = table.objects.filter(username=login_input).first() or table.objects.filter(email=login_input).first()
+            user = User.objects.filter(username=login_input).first() or User.objects.filter(email=login_input).first()
             
             if not user:
                 raise forms.ValidationError("User does not exist")
@@ -93,31 +92,6 @@ class Loginform(forms.Form):
         return data
 
 
-
-
-# class ProductForm(forms.ModelForm):
-
-#     class Meta:
-#         model = Products
-#         fields = ['name', 'category', 'subcategory', 'price']
-
-#     def __init__(self, *args, **kwargs):
-#         super().__init__(*args, **kwargs)
-
-#         # 🔐 safety check
-#         if 'subcategory' in self.fields:
-#             self.fields['subcategory'].queryset = SubCategory.objects.none()
-
-#             category_id = self.data.get('category')
-#             if category_id:
-#                 self.fields['subcategory'].queryset = SubCategory.objects.filter(
-#                     category_id=category_id
-#                 )
-
-#             elif self.instance.pk:
-#                 self.fields['subcategory'].queryset = SubCategory.objects.filter(
-#                     category=self.instance.category
-#                 )
 
 
 
