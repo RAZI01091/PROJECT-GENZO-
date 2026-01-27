@@ -155,7 +155,6 @@ SOCIALACCOUNT_PROVIDERS = {
             'key': ''
         },
 
-        # 🔥 IMPORTANT: Request email from Google
         'SCOPE': [
             'profile',
             'email',
