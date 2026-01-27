@@ -9,8 +9,9 @@ User = get_user_model()
 from django.conf import settings
 from django.views.decorators.cache import never_cache
 from django.contrib.auth import logout as auth_logout
-from . models import Products,Category,SubCategory,Banner
+from . models import Products,Category,SubCategory,Banner,Wishlist,User
 from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.decorators import login_required
 
 
 
@@ -68,14 +69,34 @@ def cart(request):
     if 'key' not in request.session:
         return redirect("showlogin")
     return render(request,("cart.html"))
-def wishlist(request):
-    if 'key' not in request.session:
-        return redirect("showlogin")
-    return render(request,("wishlist.html"))
+
+@login_required
+def wishlist(request, product_id):
+    product = get_object_or_404(Products, id=product_id)
+
+    wishlist_item = Wishlist.objects.filter(
+        User=request.user,
+        Products=product
+    ).first()
+
+    if wishlist_item:
+        wishlist_item.delete()   
+    else:
+        Wishlist.objects.create(
+            User=request.user,
+            Products=product
+        )                       
+
+    return redirect(request.META.get('HTTP_REFERER'))
+
+@login_required
+def wishlists(request):
+    items=Wishlist.objects.filter(User=request.user)
+    return render(request,'wishlist.html',{'items':items})
 
 
 def casualfit(request):
-    casual = Category.objects.get(name='CASUAL')
+    casual = Category.objects.get(name='Casual')
     products = Products.objects.filter(category=casual)
 
     sub_id=request.GET.get("sub_id")
@@ -90,7 +111,7 @@ def casualfit(request):
 
 
 def formalfit(request):
-    formal=Category.objects.get(name='FORMAL')
+    formal=Category.objects.get(name='Formal')
     products=Products.objects.filter(category=formal)
     
     sub_id=request.GET.get("sub_id")
@@ -101,7 +122,7 @@ def formalfit(request):
     return render(request,"formalfit.html",{"products":products})
 
 def accessories(request):
-    accessories=Category.objects.get(name='ACCESSORIES')
+    accessories=Category.objects.get(name='Accessories')
     products=Products.objects.filter(category=accessories)
     sub_id=request.GET.get("sub_id")
 
@@ -111,7 +132,7 @@ def accessories(request):
     return render(request,"accessories.html",{"products":products})
 
 def newarrivals(request):
-    newarrivals=Category.objects.get(name='NEW')
+    newarrivals=Category.objects.get(name='New arrival')
     products=Products.objects.filter(category=newarrivals)
 
     sub_id=request.GET.get("sub_id")
@@ -121,17 +142,13 @@ def newarrivals(request):
     return render(request,"newarrivals.html",{'products':products})
 
 def innerwear(request):
-    innerwear=Category.objects.get(name='INNERWEAR')
+    innerwear=Category.objects.get(name='Innerwear')
     products=Products.objects.filter(category=innerwear)
     sub_id=request.GET.get("sub_id")
 
     if sub_id:
         products= Products.objects.filter(subcategory_id=sub_id)
     return render(request,"innerwear.html",{"products":products})
-
-
-
-
 
 
 

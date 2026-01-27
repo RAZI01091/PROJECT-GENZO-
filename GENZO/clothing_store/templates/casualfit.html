@@ -269,11 +269,17 @@ body{
         <div class="col-md-9">
     <div class="row products-row">
 
-        {% for product in products %}
+        {% comment %} {% for product in products %}
         <div class="col-md-4">
 
             <a href="{% url 'productsdetail' product.id %}"
                class="text-decoration-none text-dark d-block h-100">
+                                      <a href="{% url 'toggle_wishlist' product.id %}">
+    {% if product.id in wishlist_ids %}
+        ❤️ Remove from Wishlist
+    {% else %}
+        🤍 Add to Wishlist
+    {% endif}
 
                 <div class="product-card h-100">
 
@@ -290,9 +296,12 @@ body{
                                 ₹{{ product.price }}
                             </span>
                         </p>
+     
+
                     {% else %}
                         <p class="product-price">₹{{ product.price }}</p>
                     {% endif %}
+                
 
                     <button class="btn w-100 mt-2">View Product</button>
 
@@ -302,7 +311,52 @@ body{
         </div>
         {% empty %}
         <p>No casual products found</p>
-        {% endfor %}
+        {% endfor %} {% endcomment %}
+        {% for product in products %}
+<div class="col-md-4">
+
+    <div class="product-card h-100">
+
+        <!-- WISHLIST BUTTON -->
+        <a href="{% url 'wishlist' product.id %}"
+           style="position:absolute; top:18px; right:18px; z-index:10; text-decoration:none;">
+            {% if product.id in wishlist_ids %}
+                ❤️
+            {% else %}
+                🤍
+            {% endif %}
+        </a>
+
+        <!-- PRODUCT LINK -->
+        <a href="{% url 'productsdetail' product.id %}"
+           class="text-decoration-none text-dark d-block h-100">
+
+            {% if product.image %}
+                <img src="{{ product.image.url }}" class="product-image">
+            {% endif %}
+
+            <h6>{{ product.name }}</h6>
+
+            {% if product.discount_price %}
+                <p class="product-price">
+                    ₹{{ product.discount_price }}
+                    <span style="text-decoration:line-through; color:#999; font-size:0.9rem;">
+                        ₹{{ product.price }}
+                    </span>
+                </p>
+            {% else %}
+                <p class="product-price">₹{{ product.price }}</p>
+            {% endif %}
+
+            <button class="btn w-100 mt-2">View Product</button>
+
+        </a>
+
+    </div>
+
+</div>
+{% endfor %}
+
 
     </div>
 </div>

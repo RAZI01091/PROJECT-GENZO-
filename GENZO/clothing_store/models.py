@@ -62,5 +62,8 @@ class Wishlist(models.Model):
 
     def __str__(self):
         return f"{self.User.email}>{self.Products.name}"
+    
+
+    
 
 
