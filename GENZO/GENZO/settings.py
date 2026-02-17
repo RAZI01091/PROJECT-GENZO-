@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'clothing_store.apps.ClothingStoreConfig',
+    'clothing_store',
     'django.contrib.sites',
 
     'allauth',
@@ -183,6 +183,7 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 
 SOCIALACCOUNT_AUTO_SIGNUP = True
 SOCIALACCOUNT_QUERY_EMAIL = True
+ACCOUNT_ALLOW_REGISTRATION = True
 
 
 

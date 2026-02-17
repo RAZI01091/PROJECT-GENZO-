@@ -1,171 +1,405 @@
-<!DOCTYPE html>
+{% comment %} <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shopping Cart</title>
+<meta charset="UTF-8">
+<title>Your Cart – Men's Store</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <style>
-        body {
-            background: #f8f9fa;
-        }
+<style>
+body{
+    background:#f4f6f9;
+}
 
-        .cart-item {
-            border-radius: 12px;
-            border: 1px solid #e5e5e5;
-            padding: 20px;
-            background: #fff;
-        }
+.cart-card{
+    background:#fff;
+    border-radius:18px;
+    padding:30px;
+    box-shadow:0 15px 40px rgba(0,0,0,.1);
+}
 
-        .cart-img {
-            width: 100%;
-            height: 160px;
-            background: #e2e2e2;
-            border-radius: 10px;
-        }
+.cart-img{
+    width:80px;
+    height:80px;
+    object-fit:cover;
+    border-radius:10px;
+}
 
-        .product-name {
-            font-size: 18px;
-            font-weight: 600;
-        }
+.cart-title{
+    font-weight:700;
+}
 
-        .product-price {
-            font-weight: 700;
-            font-size: 17px;
-            margin-bottom: 5px;
-        }
+.price{
+    font-weight:700;
+    color:#8B5A2B;
+}
 
-        .cart-summary {
-            background: #fff;
-            border-radius: 12px;
-            border: 1px solid #e5e5e5;
-            padding: 25px;
-        }
+.total-box{
+    background:#fff;
+    border-radius:18px;
+    padding:25px;
+    box-shadow:0 15px 40px rgba(0,0,0,.1);
+}
 
-        .summary-title {
-            font-size: 22px;
-            font-weight: 700;
-        }
-
-        .btn-checkout {
-            border-radius: 10px;
-            font-weight: 600;
-            padding: 12px;
-            margin-top: 10px;
-        }
-
-        .remove-link {
-            text-decoration: none;
-            font-weight: 500;
-            color: #dc3545;
-        }
-    </style>
+.btn-primary{
+    background:#8B5A2B;
+    border:none;
+}
+</style>
 </head>
 
 <body>
 
-    <div class="container py-5">
+{% include "base.html" %}
 
-        <h2 class="fw-bold mb-4 text-center">My Cart</h2>
+<div class="container my-5">
 
-        <div class="row g-4">
+  <h2 class="mb-4">🛒 Your Cart</h2>
 
-            <!-- Left: Cart Items -->
-            <div class="col-lg-8">
+  {% if cart_items %}
 
-                <!-- Item 1 -->
-                <div class="cart-item mb-4">
-                    <div class="row align-items-center">
+  <div class="row g-4">
 
-                        <div class="col-md-3">
-                            <div class="cart-img"></div>
-                        </div>
+    <!-- CART ITEMS -->
+    <div class="col-md-8">
+      <div class="cart-card">
 
-                        <div class="col-md-6">
-                            <p class="product-name mb-1">Classic Casual Shirt</p>
-                            <p class="product-price mb-2">₹1,499</p>
+        {% for item in cart_items %}
+        <div class="d-flex align-items-center mb-4 border-bottom pb-3">
 
-                            <a href="#" class="remove-link">Remove</a>
-                        </div>
+          <!-- IMAGE -->
+          {% if item.product.image %}
+          <img src="{{ item.product.image.url }}" class="cart-img me-3">
+          {% endif %}
 
-                        <div class="col-md-3">
-                            <label class="form-label mb-1">Quantity</label>
-                            
-                            <!-- UPDATED QUANTITY INPUT -->
-                            <input type="number" class="form-control" min="1" max="10" value="1">
+          <!-- DETAILS -->
+          <div class="flex-grow-1">
+            <h6 class="cart-title mb-1">{{ item.product.name }}</h6>
+            <small class="text-muted">
+              Size: {{ item.size }} |
+              Qty: {{ item.quantity }}
+            </small>
+          </div>
 
-                        </div>
-
-                    </div>
-                </div>
-
-                <!-- Item 2 -->
-                <div class="cart-item mb-4">
-                    <div class="row align-items-center">
-
-                        <div class="col-md-3">
-                            <div class="cart-img"></div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <p class="product-name mb-1">Premium Hoodie</p>
-                            <p class="product-price mb-2">₹1,999</p>
-
-                            <a href="#" class="remove-link">Remove</a>
-                        </div>
-
-                        <div class="col-md-3">
-                            <label class="form-label mb-1">Quantity</label>
-
-                            <!-- UPDATED QUANTITY INPUT -->
-                            <input type="number" class="form-control" min="1" max="10" value="1">
-
-                        </div>
-
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- Right: Summary -->
-            <div class="col-lg-4">
-
-                <div class="cart-summary">
-                    <h4 class="summary-title mb-3">Order Summary</h4>
-
-                    <div class="d-flex justify-content-between">
-                        <p class="mb-1">Subtotal</p>
-                        <p class="mb-1 fw-bold">₹3,498</p>
-                    </div>
-
-                    <div class="d-flex justify-content-between">
-                        <p class="mb-1">Delivery Fee</p>
-                        <p class="mb-1 fw-bold">₹80</p>
-                    </div>
-
-                    <hr>
-
-                    <div class="d-flex justify-content-between">
-                        <p class="mb-1 fw-bold fs-5">Total</p>
-                        <p class="mb-1 fw-bold fs-5">₹3,578</p>
-                    </div>
-
-                    <a href="{% url 'checkout'%}" class="btn btn-dark w-100 btn-checkout">
-    Proceed to Checkout
-</a>
-
-                </div>
-
-            </div>
+          <!-- PRICE -->
+          <div class="text-end">
+            {% if item.product.discount_price %}
+              <div class="price">
+                ₹{{ item.product.discount_price|floatformat:2 }}
+              </div>
+              <small class="text-muted text-decoration-line-through">
+                ₹{{ item.product.price|floatformat:2 }}
+              </small>
+            {% else %}
+              <div class="price">
+                ₹{{ item.product.price|floatformat:2 }}
+              </div>
+            {% endif %}
+          </div>
 
         </div>
+        {% endfor %}
 
+      </div>
     </div>
 
-</body>
+    <!-- SUMMARY -->
+    <div class="col-md-4">
+      <div class="total-box">
+        <h5 class="mb-3">Order Summary</h5>
 
+        <div class="d-flex justify-content-between mb-2">
+          <span>Total Items</span>
+          <span>{{ cart_items|length }}</span>
+        </div>
+
+        <div class="d-flex justify-content-between fw-bold fs-5">
+          <span>Total</span>
+          <span>₹{{ total_price|floatformat:2 }}</span>
+        </div>
+
+        <hr>
+
+        <button class="btn btn-primary w-100 mt-3">
+          Proceed to Checkout
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  {% else %}
+  <!-- EMPTY CART -->
+  <div class="alert alert-info text-center">
+    Your cart is empty 🛍️
+  </div>
+  {% endif %}
+
+</div>
+
+</body>
+</html> {% endcomment %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Your Cart – GENZO</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --brand:#8B5A2B;
+  --bg:#f4f6f9;
+}
+
+body{
+  font-family:'Poppins',sans-serif;
+  background:var(--bg);
+}
+
+/* TITLE */
+.page-title{
+  font-weight:800;
+}
+
+/* CARD */
+.cart-card{
+  background:#fff;
+  border-radius:22px;
+  padding:28px;
+  box-shadow:0 20px 50px rgba(0,0,0,.12);
+  animation:fadeUp .6s ease;
+}
+
+/* ITEM */
+.cart-item{
+  display:flex;
+  align-items:center;
+  gap:18px;
+  padding:18px 0;
+  border-bottom:1px solid #eee;
+}
+
+.cart-item:last-child{
+  border-bottom:none;
+}
+
+/* IMAGE */
+.cart-img{
+  width:90px;
+  height:90px;
+  object-fit:cover;
+  border-radius:16px;
+  box-shadow:0 10px 25px rgba(0,0,0,.15);
+}
+
+/* TEXT */
+.cart-title{
+  font-weight:700;
+}
+
+.cart-meta{
+  font-size:.85rem;
+  color:#777;
+}
+
+/* QUANTITY */
+.qty-box{
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+
+.qty-btn{
+  border:1px solid #ddd;
+  background:#fff;
+  width:32px;
+  height:32px;
+  border-radius:8px;
+  font-weight:700;
+}
+
+.qty-num{
+  width:36px;
+  text-align:center;
+  font-weight:600;
+}
+
+/* PRICE */
+.cart-price{
+  font-weight:800;
+  color:var(--brand);
+}
+
+/* REMOVE */
+.remove-btn{
+  background:none;
+  border:none;
+  color:#dc3545;
+  font-size:.85rem;
+}
+
+/* SUMMARY */
+.summary-box{
+  background:#fff;
+  border-radius:22px;
+  padding:26px;
+  box-shadow:0 20px 50px rgba(0,0,0,.12);
+  animation:fadeUp .8s ease;
+}
+
+.summary-row{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:14px;
+}
+
+.summary-total{
+  font-size:1.4rem;
+  font-weight:800;
+}
+
+/* BUTTON */
+.checkout-btn{
+  background:var(--brand);
+  border:none;
+  border-radius:14px;
+  padding:14px;
+  font-weight:700;
+}
+
+/* EMPTY */
+.empty-cart{
+  background:#fff;
+  border-radius:22px;
+  padding:60px;
+  text-align:center;
+  box-shadow:0 20px 50px rgba(0,0,0,.12);
+}
+
+/* ANIMATION */
+@keyframes fadeUp{
+  from{opacity:0; transform:translateY(30px);}
+  to{opacity:1; transform:translateY(0);}
+}
+</style>
+</head>
+
+<body>
+
+{% include "base.html" %}
+
+<div class="container my-5">
+
+<h2 class="page-title mb-4">🛒 Your Cart</h2>
+
+{% if cart_items %}
+<div class="row g-4">
+
+<!-- CART ITEMS -->
+<div class="col-lg-8">
+  <div class="cart-card">
+
+    {% for item in cart_items %}
+    <div class="cart-item">
+
+      {% if item.product.image %}
+      <img src="{{ item.product.image.url }}" class="cart-img">
+      {% endif %}
+
+      <div class="flex-grow-1">
+        <div class="cart-title">{{ item.product.name }}</div>
+        <div class="cart-meta">
+          {% if item.size %}Size: {{ item.size.name }} ·{% endif %}
+          Qty: {{ item.quandity }}
+        </div>
+
+        <!-- REMOVE -->
+        <form method="post" action="{% url 'remove_cart' item.id %}">
+          {% csrf_token %}
+          <button class="remove-btn">Remove</button>
+        </form>
+      </div>
+
+      <!-- QUANTITY -->
+      <div class="qty-box">
+        <form method="post" action="{% url 'decrease_qty' item.id %}">
+          {% csrf_token %}
+          <button class="qty-btn">−</button>
+        </form>
+
+        <div class="qty-num">{{ item.quandity }}</div>
+
+        <form method="post" action="{% url 'increase_qty' item.id %}">
+          {% csrf_token %}
+          <button class="qty-btn">+</button>
+        </form>
+      </div>
+
+      <!-- PRICE -->
+      <div class="text-end ms-3">
+        {% if item.product.discount_price %}
+        <div class="cart-price">
+          ₹{{ item.product.discount_price|floatformat:2 }}
+        </div>
+        <small class="text-muted text-decoration-line-through">
+          ₹{{ item.product.price|floatformat:2 }}
+        </small>
+        {% else %}
+        <div class="cart-price">
+          ₹{{ item.product.price|floatformat:2 }}
+        </div>
+        {% endif %}
+      </div>
+
+    </div>
+    {% endfor %}
+
+  </div>
+</div>
+
+<!-- SUMMARY -->
+<div class="col-lg-4">
+  <div class="summary-box">
+    <h5 class="fw-bold mb-4">Order Summary</h5>
+
+    <div class="summary-row">
+      <span>Total Items</span>
+      <span>{{ cart_items|length }}</span>
+    </div>
+
+    <div class="summary-row summary-total">
+      <span>Total</span>
+      <span>₹{{ total_price|floatformat:2 }}</span>
+    </div>
+
+    <hr>
+
+    <a href="{% url 'checkout' %}" class="checkout-btn btn w-100">
+  Proceed to Checkout
+</a>
+
+  </div>
+</div>
+
+</div>
+
+{% else %}
+<div class="empty-cart">
+  <h4 class="fw-bold">Your cart is empty</h4>
+  <p class="text-muted">Start shopping to add items</p>
+  <a href="{% url 'home' %}" class="btn btn-outline-dark mt-3">
+    Continue Shopping
+  </a>
+</div>
+{% endif %}
+
+</div>
+
+</body>
 </html>

@@ -200,6 +200,22 @@
                 {% for product in products %}
                 <div class="col-md-4">
                     <div class="product-card">
+                                     
+            {% if user.is_authenticated %}
+            <form method="post"
+             action="{% url 'wishlist' product.id %}"
+             style="position:absolute; top:15px; right:15px; z-index:10;">
+            {% csrf_token %}
+                <button type="submit"
+            style="background:#fff;border:none;font-size:22px;border-radius:50%;padding:6px 10px;">
+                {% if product.id in wishlist_id %}
+            ❤️
+            {% else %}
+            🤍
+            {% endif %}
+            </button>
+        </form>
+            {% endif %}
                         <a href="{% url 'productsdetail' product.id %}" class="text-decoration-none text-dark d-block h-100">
 
                             {% if product.image %}

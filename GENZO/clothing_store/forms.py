@@ -51,6 +51,7 @@ class Signupform(forms.ModelForm):
         # hash pass   
 
     def save(self, commit =True):
+        
         user= super().save(commit=False)
         user.password=make_password(self.cleaned_data['password'])
         

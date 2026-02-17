@@ -67,7 +67,20 @@
     <div class="container py-5">
 
         <h3 class="mb-4 text-center">Order Summary</h3>
+  {% comment %} <!-- Rating Filter -->
+        <div class="filter-block">
+            <input type="checkbox" id="rating-toggle" hidden>
+            <label for="rating-toggle" class="filter-title">
+                RATING <i class="bi bi-chevron-down"></i>
+            </label>
+            <div class="filter-content">
+                <div class="form-check"><input class="form-check-input" type="radio" name="rating"> ⭐ 4 & above</div>
+                <div class="form-check"><input class="form-check-input" type="radio" name="rating"> ⭐ 3 & above</div>
+                <div class="form-check"><input class="form-check-input" type="radio" name="rating"> ⭐ 2 & above</div>
+            </div>
+        </div> {% endcomment %}
 
+        
         <!-- DELIVERY ADDRESS -->
         <div class="address-box">
             <div class="d-flex justify-content-between">
