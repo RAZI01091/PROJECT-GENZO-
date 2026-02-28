@@ -17,30 +17,25 @@
 
 <style>
 :root {
-    /* OLD MONEY / PINTEREST THEME (FROM IMAGE) */
-    --charcoal-pro: #000000;   /* Pure black */
-    --steel-matte: #1a1a1a;    /* Soft black */
-    --mocha-mousse: #76220b;   /* Dark luxury brown */
-    --bronze-matte:rgb(163, 86, 69);   /* Deeper brown */
+    --charcoal-pro: #000000;
+    --steel-matte: #1a1a1a;
+    --mocha-mousse: #76220b;
+    --bronze-matte: rgb(163, 86, 69);
     --graphite-dark: #000000;
-    --silver-steel:rgb(196, 179, 165);   /* Muted cream grey */
-    --platinum-base: #fff9f2;  /* Warm cream background */
+    --silver-steel: rgb(196, 179, 165);
+    --platinum-base: #fff9f2;
     --shadow-pro: rgba(0, 0, 0, 0.35);
     --glow-mocha: rgba(118, 34, 11, 0.45);
 }
 
-
-
-/* GLOBAL */
 * {
     box-sizing: border-box;
 }
 
 body {
     font-family: 'Poppins', sans-serif;
-    background:rgb(255, 255, 255) ;
+    background: rgb(255, 255, 255);
     color: var(--charcoal-pro);
-    animation: proFadeIn 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     position: relative;
     overflow-x: hidden;
 }
@@ -65,10 +60,9 @@ body::before {
     backdrop-filter: blur(45px) saturate(200%) brightness(1.02);
     border-bottom: 1px solid rgba(166, 124, 82, 0.2);
     position: relative;
-    will-change: transform, opacity;
 }
 
-/* TOPBAR - Executive */
+/* TOPBAR */
 .topbar {
     background: rgba(255, 255, 255, 0.93);
     box-shadow: 
@@ -76,21 +70,9 @@ body::before {
         inset 0 1px 0 rgba(255,255,255,0.6);
     padding: 20px 0;
     z-index: 1050;
-    animation: topbarProSlide 1s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-@keyframes topbarProSlide {
-    0% { 
-        opacity: 0; 
-        transform: translateY(-120%) scale(0.95); 
-    }
-    100% { 
-        opacity: 1; 
-        transform: translateY(0) scale(1); 
-    }
-}
-
-/* MAIN NAVBAR - Premium */
+/* MAIN NAVBAR */
 .main-navbar {
     background: rgba(255, 255, 255, 0.95);
     box-shadow: 
@@ -98,18 +80,6 @@ body::before {
         inset 0 1px 0 rgba(255,255,255,0.8);
     padding: 7px 0;
     z-index: 1000;
-    animation: navbarProSlide 1.3s cubic-bezier(0.23, 1, 0.32, 1) 0.4s both;
-}
-
-@keyframes navbarProSlide {
-    0% { 
-        opacity: 0; 
-        transform: translateY(-60px) scale(0.92); 
-    }
-    100% { 
-        opacity: 1; 
-        transform: translateY(0) scale(1); 
-    }
 }
 
 /* PROFESSIONAL SEARCH */
@@ -119,7 +89,7 @@ body::before {
     padding: 16px 28px;
     background: rgba(255, 255, 255, 0.85);
     color: var(--charcoal-pro);
-    transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: border-color 0.3s, box-shadow 0.3s;
     font-weight: 500;
     font-size: 15px;
     box-shadow: 
@@ -137,7 +107,6 @@ body::before {
         inset 0 2px 16px rgba(0,0,0,0.06),
         0 8px 25px rgba(0,0,0,0.12);
     border-color: var(--mocha-mousse);
-    transform: scale(1.025) translateY(-1px);
     background: rgba(255, 255, 255, 0.98);
 }
 
@@ -149,7 +118,7 @@ body::before {
     padding: 16px 32px;
     font-weight: 700;
     font-size: 15px;
-    transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: box-shadow 0.3s;
     box-shadow: 
         0 10px 35px var(--glow-mocha),
         inset 0 1px 0 rgba(255,255,255,0.2);
@@ -159,26 +128,7 @@ body::before {
     letter-spacing: 0.5px;
 }
 
-.topbar button::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -150%;
-    width: 150%;
-    height: 100%;
-    background: linear-gradient(90deg, 
-        transparent, 
-        rgba(255,255,255,0.4) 50%, 
-        transparent);
-    transition: left 1s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.topbar button:hover::before { 
-    left: 150%; 
-}
-
 .topbar button:hover {
-    transform: translateY(-4px) scale(1.08);
     box-shadow: 
         0 20px 50px var(--glow-mocha),
         inset 0 1px 0 rgba(255,255,255,0.3);
@@ -190,20 +140,18 @@ body::before {
     font-weight: 600;
     font-size: 14px;
     letter-spacing: 0.5px;
-    transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: color 0.3s, background 0.3s, box-shadow 0.3s;
     text-decoration: none;
     padding: 12px 24px;
     border-radius: 32px;
     position: relative;
     text-transform: uppercase;
-    will-change: transform;
 }
 
 .topbar a { margin-left: 32px; }
 
 .topbar a:hover, .nav-link:hover {
     color: var(--mocha-mousse) !important;
-    transform: translateY(-6px) scale(1.05);
     background: linear-gradient(135deg, 
         rgba(166,124,82,0.1), 
         rgba(139,90,43,0.08));
@@ -222,7 +170,7 @@ body::before {
     height: 3px;
     background: linear-gradient(90deg, var(--mocha-mousse), var(--bronze-matte));
     border-radius: 2px;
-    transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: width 0.3s;
     transform: translateX(-50%);
     box-shadow: 0 2px 10px var(--glow-mocha);
 }
@@ -232,34 +180,25 @@ body::before {
 }
 
 /* EXECUTIVE BRAND */
-/* EXECUTIVE BRAND – BIG & STRONG */
 .navbar-brand {
-    font-size: 76px;           /* BIGGER */
+    font-size: 76px;
     font-weight: 900;
     letter-spacing: -3px;
     text-transform: uppercase;
-
-    background: linear-gradient(
-        135deg,
-        var(--charcoal-pro),
-        var(--steel-matte)
-    );
+    background: linear-gradient(135deg, var(--charcoal-pro), var(--steel-matte));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-
-      line-height: 1.2;         /* KEY FIX */
+    line-height: 1.2;
     padding: 0;
     margin: 0;
     display: inline-block;
     isolation: isolate;
-
-    transition: all 0.5s ease;
+    transition: all 0.3s ease;
     cursor: pointer;
     position: relative;
     z-index: 2000;
 }
-
 
 .navbar-brand::after {
     content: "";
@@ -268,12 +207,8 @@ body::before {
     bottom: -8px;
     width: 0;
     height: 5px;
-    background: linear-gradient(
-        90deg,
-        var(--mocha-mousse),
-        var(--bronze-matte)
-    );
-    transition: width 0.5s ease;
+    background: linear-gradient(90deg, var(--mocha-mousse), var(--bronze-matte));
+    transition: width 0.3s ease;
     border-radius: 4px;
 }
 
@@ -282,13 +217,11 @@ body::before {
 }
 
 .navbar-brand:hover {
-    -webkit-text-fill-color: #000000; /* force visible text */
-    background: none;                /* disable gradient on hover */
+    -webkit-text-fill-color: #000000;
+    background: none;
 }
 
-
-
-/* FIXED DROPDOWN - NOW OPENS DOWNWARDS */
+/* DROPDOWN - OPENS DOWNWARDS */
 .dropdown-css {
     position: relative;
 }
@@ -296,9 +229,9 @@ body::before {
 .dropdown-css-menu {
     display: none;
     position: absolute;
-    top: 100%; /* Changed from right: 0 to top: 100% */
-    left: 0;   /* Added left: 0 */
-    right: auto; /* Reset right positioning */
+    top: 100%;
+    left: 0;
+    right: auto;
     background: rgba(255, 255, 255, 0.97);
     border-radius: 28px;
     min-width: 280px;
@@ -308,14 +241,12 @@ body::before {
     padding: 10px 0;
     backdrop-filter: blur(50px);
     border: 1px solid rgba(166, 124, 82, 0.25);
-    animation: proDropdown 0.8s cubic-bezier(0.23, 1, 0.32, 1);
     margin-top: 16px;
     z-index: 1100;
 }
 
 .dropdown-css:hover .dropdown-css-menu { 
     display: block; 
-    animation-play-state: running;
 }
 
 .dropdown-css-menu a {
@@ -323,7 +254,7 @@ body::before {
     color: var(--steel-matte);
     font-weight: 500;
     font-size: 15px;
-    transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: all 0.3s;
     border-bottom: 1px solid rgba(166, 124, 82, 0.12);
     position: relative;
     letter-spacing: 0.3px;
@@ -344,7 +275,7 @@ body::before {
     height: 0;
     background: linear-gradient(180deg, var(--mocha-mousse), var(--bronze-matte));
     transform: translateY(-50%);
-    transition: height 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: height 0.3s;
     border-radius: 4px;
     box-shadow: 0 2px 8px var(--glow-mocha);
 }
@@ -359,11 +290,10 @@ body::before {
         rgba(139,90,43,0.1));
     color: var(--mocha-mousse);
     padding-left: 52px;
-    transform: translateX(12px) translateY(-1px);
     box-shadow: 0 8px 25px rgba(166,124,82,0.2);
 }
 
-/* MAIN NAVBAR DROPDOWN (unchanged) */
+/* MAIN NAVBAR DROPDOWN */
 .dropdown-hover {
     position: relative;
 }
@@ -382,14 +312,12 @@ body::before {
     padding: 14px 0;
     backdrop-filter: blur(50px);
     border: 1px solid rgba(166, 124, 82, 0.25);
-    animation: proDropdown 0.8s cubic-bezier(0.23, 1, 0.32, 1);
     margin-top: 3px;
     z-index: 1100;
 }
 
 .dropdown-hover:hover .dropdown-menu { 
     display: block; 
-    animation-play-state: running;
 }
 
 .dropdown-menu .dropdown-item {
@@ -397,7 +325,7 @@ body::before {
     color: var(--steel-matte);
     font-weight: 500;
     font-size: 15px;
-    transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: all 0.3s;
     border-bottom: 1px solid rgba(166, 124, 82, 0.12);
     position: relative;
     letter-spacing: 0.3px;
@@ -417,7 +345,7 @@ body::before {
     height: 0;
     background: linear-gradient(180deg, var(--mocha-mousse), var(--bronze-matte));
     transform: translateY(-50%);
-    transition: height 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: height 0.3s;
     border-radius: 4px;
     box-shadow: 0 2px 8px var(--glow-mocha);
 }
@@ -432,11 +360,10 @@ body::before {
         rgba(139,90,43,0.1));
     color: var(--mocha-mousse);
     padding-left: 52px;
-    transform: translateX(12px) translateY(-1px);
     box-shadow: 0 8px 25px rgba(166,124,82,0.2);
 }
 
-/* RESPONSIVE PROFESSIONAL */
+/* RESPONSIVE */
 @media (max-width: 991px) {
     .navbar-nav { 
         background: rgba(255,255,255,0.98);
@@ -450,7 +377,6 @@ body::before {
         border: 1px solid rgba(166, 124, 82, 0.25);
     }
     
-    /* Mobile dropdown fix */
     .dropdown-css-menu {
         position: static !important;
         margin-top: 10px;
@@ -458,30 +384,6 @@ body::before {
         border: 1px solid rgba(166, 124, 82, 0.2);
     }
 }
-
-@keyframes proDropdown {
-    0% { 
-        opacity: 0; 
-        transform: translateY(-30px) scale(0.9) rotateX(-10deg); 
-    }
-    100% { 
-        opacity: 1; 
-        transform: translateY(0) scale(1) rotateX(0deg); 
-    }
-}
-
-@keyframes proFadeIn {
-    0% { opacity: 0; transform: translateY(40px); }
-    100% { opacity: 1; transform: translateY(0); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        transition-duration: 0.15s !important;
-    }
-}
-
 </style>
 </head>
 
@@ -495,12 +397,8 @@ body::before {
     GENZO
 </a>
 
-        
-
-
         <!-- EXECUTIVE CONTROLS -->
         <div class="d-flex align-items-center">
-            <!-- FIXED LOGIN DROPDOWN - NOW DROPS DOWN -->
             <div class="dropdown-css">
                 <a href="#"><i class="bi bi-person-circle me-3"></i>Account</a>
                 <div class="dropdown-css-menu">
@@ -529,14 +427,13 @@ body::before {
 <!-- ================= PREMIUM MAIN NAVBAR ================= -->
 <nav class="navbar navbar-expand-lg main-navbar">
     <div class="container">
-        <!-- EXECUTIVE BRAND -->
-        <form class="d-flex align-items-center">
-    <input type="text" class="form-control top-search" placeholder="Search men's collections...">
-    <button class="btn" type="submit">
-        <i class="bi bi-search"></i>
-    </button>
-</form>
 
+        <form method="get" action="{% url 'searchbutton'%}" class="d-flex">
+            <input type="text"
+                   name="q"
+                   placeholder="Search products..."
+                   class="form-control me-2">
+        </form>
 
         <!-- PROFESSIONAL NAV -->
         <ul class="navbar-nav ms-auto me-4">
@@ -548,8 +445,6 @@ body::before {
                     <li><a class="dropdown-item" href="{% url 'casualfit'%}?sub_id=3">T-Shirts</a></li>
                     <li><a class="dropdown-item" href="{% url 'casualfit'%}?sub_id=4">Track Pants</a></li>
                     <li><a class="dropdown-item" href="{% url 'casualfit'%}?sub_id=5">Shorts</a></li>
-
-
                 </ul>
             </li>
             <li class="nav-item dropdown-hover">
@@ -560,8 +455,6 @@ body::before {
                     <li><a class="dropdown-item" href="{% url 'formalfit'%}?sub_id=8">Suits</a></li>
                     <li><a class="dropdown-item" href="{% url 'formalfit'%}?sub_id=9">Blazer</a></li>
                     <li><a class="dropdown-item" href="{% url 'formalfit'%}?sub_id=10">Waistcoat</a></li>
-
-
                 </ul>
             </li>
             <li class="nav-item dropdown-hover">
@@ -581,8 +474,6 @@ body::before {
                     <li><a class="dropdown-item" href="{% url 'accessories'%}?sub_id=17">Sunglasses</a></li>
                     <li><a class="dropdown-item" href="{% url 'accessories'%}?sub_id=18">Caps</a></li>
                     <li><a class="dropdown-item" href="{% url 'accessories'%}?sub_id=19">Chains</a></li>
-
-
                 </ul>
             </li>
             <li class="nav-item dropdown-hover">
@@ -591,7 +482,6 @@ body::before {
                     <li><a class="dropdown-item" href="{% url 'newarrivals'%}?sub_id=22">New Dropes</a></li>
                     <li><a class="dropdown-item" href="{% url 'newarrivals'%}?sub_id=23">Trending</a></li>
                     <li><a class="dropdown-item" href="{% url 'newarrivals'%}?sub_id=24">Limited Edition</a></li>
-                    
                 </ul>
             </li>
         </ul>
@@ -599,4 +489,4 @@ body::before {
 </nav>
 
 </body>
-</html> 
+</html>

@@ -21,7 +21,9 @@ urlpatterns = [
     path('verify-otp/', views.verify_otp, name='verify_otp'),
     path('new_password/', views.new_password, name='new_password'),
     path('profile/',views.profile,name='profile'),
-    path('profilesetup/',views.profilesetup,name='profilesetup'),
+    path("editprofile/", views.editprofile, name="editprofile"),
+    path('addaddress/',views.addaddress,name='addaddress'),
+    path('address/delete/<int:id>/', views.delete_address, name='delete_address'),
     path('logout/',views.logout,name='logout'),
     path('order/',views.order,name='order'),
     path('adminpanel/',views.adminpanel,name='adminpanel'),
@@ -37,10 +39,25 @@ urlpatterns = [
     path('coupons/',views.coupons,name='coupons'),
     path('checkout/',views.checkout,name='checkout'),
     path("payment/",views.payment,name="payment"),
-    path('ordersummary/',views.ordersummary,name="ordersummary"),
     path('productsdelete/<int:id>/', views.productsdelete, name='productsdelete'),
     path('banner/',views.banner,name='banner'),
-    path('productsdetail/<int:id>/', views.product_detail, name='productsdetail')
+    path('productsdetail/<int:id>/', views.product_detail, name='productsdetail'),
+    path('searchbutton',views.searchbutton,name='searchbutton'),
+    path('product-toggle/<int:id>/', views.product_toggle, name='product_toggle'),
+    # path("placeorder/", views.placeorder, name="placeorder"),
+    path('addcategory/', views.add_category, name='add_category'),
+    path('addsubcategory/', views.add_subcategory, name='add_subcategory'),
+    path('admincategory/', views.admin_category, name='admin_category'),
+    path('updatecategory/<int:id>/', views.update_category, name='update_category'),
+    path('deletecategory/<int:id>/', views.delete_category, name='delete_category'),
+    path('updatesubcategory/<int:id>/', views.update_subcategory, name='update_subcategory'),
+    path('deletesubcategory/<int:id>/', views.delete_subcategory, name='delete_subcategory'),
+    path("pay/", views.pay, name="pay"),
+    path("placeorder/", views.place_order, name="place_order"),
+    path("paymentsuccess/", views.payment_success, name="payment_success"),
+    path("paymentfailed/", views.payment_failed, name="payment_failed"),
+    path("buynow/<int:product_id>/", views.buy_now, name="buy_now"),
+
 
 
 

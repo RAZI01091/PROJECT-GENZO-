@@ -354,12 +354,27 @@ input[type="radio"]:checked + img{
 
 /* BUTTON */
 .btn-primary{
-    background:#8B5A2B;
+    background: #8B5A2B;
     border:none;
     border-radius:14px;
     padding:14px;
     font-weight:600;
+}/* COMMON BUTTON STYLE */
+.action-btn{
+    background:#8B5A2B;
+    border:none;
+    border-radius:14px;
+    padding:12px;
+    font-weight:600;
+    color:#fff;
+    transition:.25s;
 }
+
+.action-btn:hover{
+    background:#6f4722;
+    color:#fff;
+}
+
 </style>
 </head>
 
@@ -461,9 +476,15 @@ input[type="radio"]:checked + img{
           <p class="mt-4 text-muted">{{ product.description }}</p>
 
           <div class="d-grid gap-3 mt-4">
-            <button type="submit" class="btn btn-primary">Add to Cart</button>
-            <a href="{% url 'checkout' %}" class="btn btn-dark w-100">Buy Now</a>
-          </div>
+  <button type="submit" class="action-btn w-100">Add to Cart</button>
+
+
+  <a href="{% url 'buy_now' product.id %}"
+   class="action-btn text-center text-decoration-none w-100 d-block">
+    Buy Now
+</a>
+</div>
+
 
         </form>
 

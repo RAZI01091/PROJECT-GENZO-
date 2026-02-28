@@ -9,12 +9,21 @@ User = get_user_model()
 from django.conf import settings
 from django.views.decorators.cache import never_cache
 from django.contrib.auth import logout as auth_logout
-from . models import Products,Category,SubCategory,Banner,Wishlist,Size,Cart,Profile
+from . models import Products,Category,SubCategory,Banner,Wishlist,Size,Cart,Profile,Address,Order
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
 from django.contrib.admin.views.decorators import staff_member_required
 from django.db.models.functions import Coalesce
+from django.db.models import Q
+from django.db.models import Count
+from decimal import Decimal
+from django.conf import settings
+import stripe
+stripe.api_key = settings.STRIPE_SECRET_KEY
+
+
+
 
 
 
@@ -40,7 +49,9 @@ def signup(request):
         form = Signupform(request.POST)
 
         if form.is_valid():
-            form.save()
+            user=form.save()
+
+            Profile.objects.create(user=user)
             
             return redirect('loggin')
 
@@ -134,6 +145,8 @@ def carts(request, product_id):
 
 
 
+
+
 @login_required
 def remove_cart(request, id):
     cart_item = get_object_or_404(Cart, id=id, user=request.user)
@@ -162,7 +175,9 @@ def decrease_qty(request, id):
 
     return redirect("cart")
 
-
+def buy_now(request,product_id):
+    request.session['buy_now_product_id']=product_id
+    return redirect('checkout')
 
 
 @login_required(login_url='loggin')
@@ -201,8 +216,9 @@ def wishlist(request, product_id):
 
 
 def casualfit(request):
+    
     casual = Category.objects.get(name='Casual')
-    products = Products.objects.filter(category=casual).annotate(effective_price=Coalesce('discount_price','price'))
+    products = Products.objects.filter(category=casual,is_listed=True).annotate(effective_price=Coalesce('discount_price','price'))
 
     sub_id = request.GET.get("sub_id")
     if sub_id:
@@ -246,7 +262,7 @@ def casualfit(request):
 
 def formalfit(request):
     formal=Category.objects.get(name='Formal')
-    products=Products.objects.filter(category=formal).annotate(effective_price=Coalesce('discount_price','price'))
+    products=Products.objects.filter(category=formal,is_listed=True).annotate(effective_price=Coalesce('discount_price','price'))
     
     sub_id=request.GET.get("sub_id")
 
@@ -278,14 +294,14 @@ def formalfit(request):
         'wishlist_id':wishlist_id,
         'top_sizes':top_sizes,
         'bottom_sizes':bottom_size,
-        'selected_size':selected_size,
+        'selected_sizes':selected_size,
         })
 
 
 
 def accessories(request):
     accessories=Category.objects.get(name='Accessories')
-    products=Products.objects.filter(category=accessories).annotate(effective_price=Coalesce('discount_price','price'))
+    products=Products.objects.filter(category=accessories,is_listed=True).annotate(effective_price=Coalesce('discount_price','price'))
 
     sub_id=request.GET.get("sub_id")
 
@@ -319,7 +335,7 @@ def accessories(request):
         "products":products,
         'wishlist_id':wishlist_id,
         'top_sizes':top_sizes,
-        'selected_size':selected_size,
+        'selected_sizes':selected_size,
         'min_price':min_price,
         'max_price':max_price
         
@@ -347,7 +363,7 @@ def newarrivals(request):
 
 def innerwear(request):
     innerwear=Category.objects.get(name='Innerwear')
-    products=Products.objects.filter(category=innerwear).annotate(effective_price=Coalesce('discount_price','price'))
+    products=Products.objects.filter(category=innerwear,is_listed=True).annotate(effective_price=Coalesce('discount_price','price'))
     sub_id=request.GET.get("sub_id")
 
     if sub_id:
@@ -380,7 +396,7 @@ def innerwear(request):
         "products":products,
         'wishlist_id':wishlist_id,
         'top_sizes':top_sizes,
-        'selected_size':selected_size,
+        'selected_sizes':selected_size,
 
         })
 
@@ -496,10 +512,56 @@ def showlogin(request):
 
 
 def profile(request):
-    user=Profile.objects.get(user=request.user)
-    return render(request,"profile.html",{'user':user})
-def profilesetup(request):
-    return render(request,("profilesetup.html"))
+    profile, created=Profile.objects.get_or_create(user=request.user)
+    return render(request,"profile.html",{'profile':profile})
+
+
+def editprofile(request):
+    profile, created=Profile.objects.get_or_create(user=request.user)
+    if request.method=='POST':
+        profile.phone=request.POST.get("phone")
+        profile.address=request.POST.get("address")
+
+        if request.FILES.get("image"):
+            profile.image=request.POST.get("image")
+
+        profile.save()
+        return redirect('profile')    
+    return render(request,("editprofile.html"))
+
+@login_required
+def addaddress(request):
+    if request.method=="POST":
+
+        is_default=request.POST.get('is_default')
+
+        if is_default:
+            Address.objects.filter(user=request.user,is_default=True).update(is_default=False)
+
+
+        Address.objects.create(
+            user=request.user,
+            name=request.POST.get('name'),
+            phone=request.POST.get('phone'),
+            pincode=request.POST.get('pincode'),
+            locality=request.POST.get('locality'),
+            address=request.POST.get('address'),
+            city=request.POST.get('city'),
+            state=request.POST.get('state'),
+        )
+        return redirect('checkout')
+
+
+    return render(request,'addaddress.html')
+
+def delete_address(request,id):
+    delete_address=get_object_or_404(Address,id=id,user=request.user)
+    delete_address.delete()
+    return redirect('checkout')
+
+
+
+
 
 def logout(request):
     if request.user.is_authenticated:
@@ -507,7 +569,12 @@ def logout(request):
     return redirect('home')
 
 def order(request):
-    return render(request,"order.html")
+    orders=Order.objects.filter(user=request.user).order_by("-id")
+    return render(request,"order.html",{
+    'orders':orders})
+
+
+
 
 @never_cache
 @staff_member_required(login_url='home')
@@ -515,10 +582,28 @@ def adminpanel(request):
     return render(request,"adminpanel.html")
 
 
+
+
 def adminproducts(request):
     product=Products.objects.all()
-   
-    return render(request,"adminproducts.html",{'products':product})
+    category=Category.objects.all()
+     
+    category_id=request.GET.get('category') 
+
+    if category_id:
+        product=product.filter(category_id= category_id)
+    
+    search=request.GET.get("search")
+
+    if search:
+        product=product.filter(Q(name__icontains=search)|Q(category__name__icontains=search)).distinct()
+
+    
+    return render(request,"adminproducts.html",{
+        'products':product,
+        'categories':category
+        })
+
 
 
 
@@ -526,9 +611,25 @@ def adminorders(request):
     return render(request,"adminorders.html")
 
 
+
 def adminusers(request):
     user=User.objects.filter(is_superuser=False)
-    return render(request,"adminusers.html",{'user':user})
+    search=request.GET.get('search')
+
+    if search:
+        user=user.filter(Q(username__icontains=search)|Q(email__icontains=search))
+
+    status=request.GET.get("status")
+
+    if status =='active':
+        user =user.filter(is_active=True)
+    elif status:
+        user=user.filter(is_active=False)
+
+    return render(request,"adminusers.html",{'users':user})
+
+
+
 def block_unblock(request,user_id):
     user=User.objects.get(id=user_id)
     user.is_active =not user.is_active
@@ -600,12 +701,61 @@ def addproducts(request):
 
 def coupons(request):
     return render(request,"coupons.html")
+
+
+@login_required
 def checkout(request):
-    return render(request,"checkout.html")
+
+    buy_now_product_id = request.session.get("buy_now_product_id")
+    cart_items = Cart.objects.filter(user=request.user)
+    addresses = Address.objects.filter(user=request.user)
+    profile = Profile.objects.get(user=request.user)
+
+
+    if buy_now_product_id:
+        product = get_object_or_404(Products, id=buy_now_product_id)
+
+        price = product.discount_price or product.price
+        total_price = price
+
+        cart_items = [{
+            "product": product,
+            "quandity": 1,  
+        }]
+
+        context = {
+            "cart_items": cart_items,
+            "total_price": total_price,
+            "address": addresses,
+            "profile": profile,
+            "buy_now": True,
+        }
+        return render(request, "checkout.html", context)
+
+    # ===== CART FLOW =====
+    if not cart_items.exists():
+        return redirect("cart")
+
+    total_price = 0
+    for item in cart_items:
+        price = item.product.discount_price or item.product.price
+        total_price += price * item.quandity  # ✅ fixed
+
+    context = {
+        "cart_items": cart_items,
+        "total_price": total_price,
+        "address": addresses,
+        "profile": profile,
+        "buy_now": False,
+    }
+
+    return render(request, "checkout.html", context)
+
+
+
+
 def payment(request):
     return render(request,"payment.html")
-def ordersummary(request):
-    return render(request,"ordersummary.html")
 
 
 @staff_member_required(login_url='home')
@@ -729,6 +879,265 @@ def product_detail(request, id):
     })
 
 
+def searchbutton(request):
+    query = request.GET.get('q')
+
+    products = Products.objects.all().annotate(
+        effective_price=Coalesce('discount_price', 'price')
+    )
+
+    if query:
+        products = products.filter(
+            Q(name__icontains=query) |
+            Q(description__icontains=query) |
+            Q(category__name__icontains=query) |
+            Q(subcategory__name__icontains=query)
+        ).distinct()
+
+    sub_id = request.GET.get("sub_id")
+    if sub_id:
+        products = products.filter(subcategory_id=sub_id)
+
+    top_sizes = Size.objects.filter(size_type='TOP')
+    bottom_size = Size.objects.filter(size_type='BOTTOM')
+
+    selected_size = request.GET.getlist('size')
+    if selected_size:
+        products = products.filter(
+            sizes__name__in=selected_size
+        ).distinct()
+
+    wishlist_id = []
+    if request.user.is_authenticated:
+
+        wishlist_id = Wishlist.objects.filter(
+            User=request.user
+        ).values_list('Products_id', flat=True)
+    
+
+    min_price = request.GET.get('min_price')
+    max_price = request.GET.get('max_price')
+
+    if min_price:
+        products = products.filter(effective_price__gte=min_price)
+
+    if max_price:
+        products = products.filter(effective_price__lte=max_price)
+
+    return render(request, 'searchbutton.html', {
+        'products': products,
+        'query': query,
+        'top_sizes': top_sizes,
+        'bottom_sizes': bottom_size,
+        'selected_sizes': selected_size,
+        'min_price': min_price,
+        'max_price': max_price,
+        'wishlist_id':wishlist_id,
+    })
+
+def product_toggle(request,id):
+    product=Products.objects.get(id=id)
+    product.is_listed = not product.is_listed
+    product.save()
+    return redirect('adminproducts')
+
+
+def admin_category(request):
+    categories=Category.objects.annotate(sub_count=Count('subcategories',distinct=True),product_count=Count('products',distinct=True))
+    return render(request,'admincategory.html',{
+    'categories':categories})
+
+def add_category(request):
+    if request.method=="POST":
+        name =request.POST.get("name")
+        
+        if name:
+            Category.objects.create(name=name)
+
+    categories=Category.objects.all()
+
+    return render(request,'addcategory.html',{
+    'categories':categories})
+
+
+
+def add_subcategory(request):
+    categories = Category.objects.all()
+
+    # 🔹 handle add form
+    if request.method == "POST":
+        name = request.POST.get('name')
+        category_id = request.POST.get('category')
+
+        if name and category_id:
+            SubCategory.objects.create(
+                name=name,
+                category_id=category_id
+            )
+            return redirect('add_subcategory')
+
+    # 🔹 filter logic (IMPORTANT)
+    selected_category = request.GET.get('filter_category')
+
+    subcategories = SubCategory.objects.select_related('category')
+
+    if selected_category:
+        subcategories = subcategories.filter(category_id=selected_category)
+
+    return render(request, 'addsubcategory.html', {
+        'subcategories': subcategories,
+        'categories': categories,
+        'selected_category': selected_category,
+    })
+
+def delete_category(request,id):
+    category=get_object_or_404(Category,id=id)
+    category.delete()
+    return redirect('add_category')
+
+def update_category(request,id):
+    category=get_object_or_404(Category,id=id)
+
+    if request.method=="POST":
+        name= request.POST.get("name")
+
+        if name:
+            category.name =name
+            category.save()
+    return redirect('add_category')
+
+def delete_subcategory(request,id):
+    subcategory=get_object_or_404(SubCategory,id=id)
+    subcategory.delete()
+    return redirect('add_subcategory')
+
+def update_subcategory(request,id):
+    subcategory=get_object_or_404(SubCategory,id=id)
+
+    if request.method=="POST":
+        name=request.POST.get('name')
+
+        if name:
+            subcategory.name=name
+            subcategory.save()
+    return redirect('add_subcategory')        
+
+
+
+def pay(request):
+    address_id=request.POST.get('address_id')
+    if not address_id:
+        messages.error(request,'please select the address')
+        return redirect('checkout')
+    
+    discount=Decimal(str(request.session.get('discount',0)))
+
+    buy_now_product_id= request.session.get("buy_now_product_id")
+
+    if buy_now_product_id:
+        product=get_object_or_404(Products,id=buy_now_product_id)
+
+        price=product.discount_price or product.price
+        subtotal=price
+    else:
+
+
+        cart_item=Cart.objects.filter(user=request.user)
+
+        if not cart_item:
+            messages.error(request,'Cart is empty')
+            return redirect('cart')
+    
+
+        subtotal=sum(
+            (item.product.discount_price or item.product.price)*item.quandity
+            for item in cart_item
+                )
+    
+    total= max(subtotal - discount, 0)
+
+    order=Order.objects.create(
+        user=request.user,
+        address_id=address_id,
+        total=total,
+        payment_method="STRIPE",
+        payment_status="PENDING",
+        discount_amount=discount,
+    )
+
+    return render(request,'payment.html')
+
+
+
+
+@login_required
+def place_order(request):
+
+    payment_method = request.POST.get("payment_method")
+    address_id = request.session.get("address_id")
+    discount = Decimal(str(request.session.get("discount", 0)))
+    buy_now_product_id = request.session.get("buy_now_product_id")
+
+    # ===== CALCULATE TOTAL =====
+    if buy_now_product_id:
+        product = get_object_or_404(Products, id=buy_now_product_id)
+        subtotal = product.discount_price or product.price
+    else:
+        cart_items = Cart.objects.filter(user=request.user)
+        if not cart_items.exists():
+            return redirect("cart")
+
+        subtotal = sum(
+            (item.product.discount_price or item.product.price) * item.quantity
+            for item in cart_items
+        )
+
+    total = max(subtotal - discount, 0)
+
+    # ===== CREATE ORDER =====
+    order = Order.objects.create(
+        user=request.user,
+        address_id=address_id,
+        total=total,
+        payment_method=payment_method,
+        payment_status="PENDING",
+        discount_amount=discount,
+    )
+
+    # ================= COD =================
+    if payment_method == "COD":
+        order.status = "confirmed"
+        order.save()
+
+        Cart.objects.filter(user=request.user).delete()
+        request.session.pop("buy_now_product_id", None)
+
+        return render(request,"paymentsuccess.html")
+
+    # ================= STRIPE =================
+    elif payment_method == "STRIPE":
+
+        session = stripe.checkout.Session.create(
+            payment_method_types=["card"],
+            line_items=[{
+                "price_data": {
+                    "currency": "inr",
+                    "product_data": {"name": f"Order #{order.id}"},
+                    "unit_amount": int(total * 100),
+                },
+                "quantity": 1,
+            }],
+            mode="payment",
+            success_url="http://127.0.0.1:8000/paymentsuccess/?session_id={CHECKOUT_SESSION_ID}",
+            cancel_url="http://127.0.0.1:8000/paymentfailed/",
+        )
+
+        order.stripe_session_id = session.id
+        order.save()
+
+        return redirect(session.url)
+
+    return redirect("checkout")
 
 
 
@@ -736,4 +1145,31 @@ def product_detail(request, id):
 
 
 
+
+def payment_success(request):
+
+    session_id= request.GET.get("session_id")
+
+    if not session_id:
+        return redirect('home')
+    
+    try:
+        order = Order.objects.get(stripe_session_id=session_id,user=request.user)
+
+    except Order.DoesNotExist:
+        return redirect('home')
+
+    order.payment_status="PAID"
+    order.status="confirmed"
+    order.save()
+
+    Cart.objects.filter(user=request.user).delete()
+    request.session.pop("address_id",None)
+
+    return render(request,'paymentsuccess.html',{
+    'order':order})    
+
+@login_required
+def payment_failed(request):
+    return render(request, "paymentfailed.html")    
 

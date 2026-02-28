@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.conf import settings
+
 # Create your models here.
 
 class User(AbstractUser):
@@ -47,7 +49,7 @@ class Products(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     subcategory = models.ForeignKey(SubCategory, on_delete=models.CASCADE, null=True, blank=True)
     is_trending = models.BooleanField(default=False)
-    
+    is_listed=models.BooleanField(default=True)
     
 
     
@@ -93,15 +95,77 @@ class Cart(models.Model):
 
 class Profile(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE)
-    phone=models.CharField(max_length=15,blank=True)
-    address=models.TextField(blank=True)
-    image = models.ImageField(upload_to='profile_images/', default='profile_images/default.png')
+    phone=models.CharField(max_length=15,blank=True,null=True)
+    address=models.TextField(blank=True,null=True)
+    image = models.ImageField(upload_to='profiles/', blank=True,null=True)
 
     def __str__(self):
         return self.user.username
-
-
     
 
+class Address(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    name=models.CharField(max_length=10)
+    phone=models.CharField(max_length=15)
+    pincode=models.CharField(max_length=6)
+    locality=models.CharField(max_length=30)
+    address=models.CharField(max_length=100)
+    city=models.CharField(max_length=20)
+    state = models.CharField(max_length=30)
+    is_default = models.BooleanField(default=False)
 
 
+from django.conf import settings
+
+class Order(models.Model):
+
+    STATUS_CHOICES = [
+        ("pending", "Pending"),
+        ("confirmed", "Confirmed"),
+        ("shipped", "Shipped"),
+        ("delivered", "Delivered"),
+        ("cancelled", "Cancelled"),
+    ]
+
+    PAYMENT_METHOD_CHOICES = [
+        ("COD", "Cash on Delivery"),
+        ("STRIPE", "Stripe"),
+    ]
+
+    PAYMENT_STATUS_CHOICES = [
+        ("PENDING", "Pending"),
+        ("PAID", "Paid"),
+        ("FAILED", "Failed"),
+    ]
+    
+
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    address = models.ForeignKey("Address", on_delete=models.SET_NULL, null=True)
+
+    total = models.DecimalField(max_digits=10, decimal_places=2)
+
+    payment_method = models.CharField(
+        max_length=20,
+        choices=PAYMENT_METHOD_CHOICES
+    )
+
+    payment_status = models.CharField(
+        max_length=20,
+        choices=PAYMENT_STATUS_CHOICES,
+        default="PENDING"
+    )
+
+    status = models.CharField(
+        max_length=20,
+        choices=STATUS_CHOICES,
+        default="pending"
+    )
+
+    stripe_session_id = models.CharField(max_length=255, blank=True, null=True)
+    coupon_code = models.CharField(max_length=50, blank=True, null=True)
+    discount_amount = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Order #{self.id}"

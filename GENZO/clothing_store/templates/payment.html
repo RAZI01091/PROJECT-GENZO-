@@ -1,166 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment Page</title>
+<meta charset="UTF-8">
+<title>Payment | HOUSE BLOOM</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.1/font/bootstrap-icons.min.css" rel="stylesheet">
 
-    <style>
-        body {
-            background: #f4f4f4;
-        }
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+      font-family:'Poppins',sans-serif;
 
-        .payment-container {
-            background: #fff;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
+}
 
-        .summary-box {
-            background: #fff;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
-        }
+body{
+    background:#ffff;
+}
 
-        .method-label {
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            padding: 15px;
-            cursor: pointer;
-            display: block;
-            margin-bottom: 10px;
-            transition: 0.3s;
-        }
+.logo-section{
+    padding:15px 0;
+    display:flex;
+    justify-content:center;
+    background:#fff;
+    margin-bottom:40px;
+}
 
-        input[type="radio"]:checked + .method-label {
-            border-color: black;
-            background: #f1f1f1;
-        }
+.logo{
+    max-width:220px;
+}
 
-        .section {
-            display: none;
-            padding: 15px;
-            border: 1px solid #ddd;
-            background: #fafafa;
-            border-radius: 10px;
-            margin-top: 10px;
-        }
+.payment-container{
+    max-width:950px;
+    margin:auto;
+    padding:0 20px 60px;
+    margin-top:30px;
+}
 
-        #upi:checked ~ #upi-section,
-        #card:checked ~ #card-section,
-        #cod:checked ~ #cod-section {
-            display: block;
-        }
+.box{
+    background:#fff;
+    padding:28px;
+    border-radius:10px;
+    box-shadow:0 6px 18px rgba(0,0,0,.08);
+    margin-bottom:25px;
+}
 
-        .coupon-box {
-            border: 1px dashed #999;
-            padding: 15px;
-            border-radius: 10px;
-            background: #fff;
-        }
-    </style>
+.box h2{
+    color:#6b4f2c;
+    margin-bottom:18px;
+}
+
+.payment-option{
+    border:2px solid #eee;
+    border-radius:8px;
+    padding:18px;
+    margin-bottom:12px;
+    display:flex;
+    gap:12px;
+    transition:.2s;
+    cursor:pointer;
+}
+
+.payment-option:hover{
+    border-color:#8B6F47;
+}
+
+.summary-row{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:12px;
+    font-size:15px;
+}
+
+.total{
+    font-weight:700;
+    font-size:18px;
+}
+
+.place-order{
+    width:100%;
+    padding:16px;
+    background:#8B6F47;
+    color:#fff;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+}
+
+.place-order:hover{
+    background:#6b5234;
+}
+</style>
 </head>
 
 <body>
 
-<div class="container py-5">
 
-    <div class="row justify-content-center">
+<div class="payment-container">
 
-        <!-- ORDER SUMMARY -->
-        <div class="col-md-4">
-            <div class="summary-box">
-                <h4 class="fw-bold mb-3">Order Summary</h4>
+<form method="post" action="{% url 'place_order' %}">
+{% csrf_token %}
 
-                <div class="d-flex justify-content-between mb-2">
-                    <span class="fw-bold">Product:</span>
-                    <span>Men's Cotton Shirt</span>
-                </div>
+<!-- ================= PAYMENT METHOD ================= -->
+<div class="box">
+<h2>Select Payment Method</h2>
 
-                <div class="d-flex justify-content-between mb-2">
-                    <span class="fw-bold">Price:</span>
-                    <span>₹799</span>
-                </div>
+<label class="payment-option">
+<input type="radio" name="payment_method" value="COD" required>
+<div>
+<strong>Cash on Delivery</strong><br>
+Pay when delivered
+</div>
+</label>
 
-                <div class="d-flex justify-content-between mb-2">
-                    <span class="fw-bold">Quantity:</span>
-                    <span>1</span>
-                </div>
+<label class="payment-option">
+<input type="radio" name="payment_method" value="STRIPE" required>
+<div>
+<strong>Online Payment</strong><br>
+UPI / Card / Netbanking
+</div>
+</label>
 
-                <hr>
+</div>
 
-                <div class="d-flex justify-content-between">
-                    <span class="fw-bold">Total:</span>
-                    <span class="fw-bold">₹799</span>
-                </div>
-            </div>
-        </div>
+<!-- ================= ORDER SUMMARY ================= -->
+<div class="box">
+<h2>Order Summary</h2>
 
-        <!-- PAYMENT SECTION -->
-        <div class="col-md-6">
+{% for item in cart_items %}
+<div class="summary-row" style="align-items:center; gap:12px;">
 
-            <div class="payment-container">
+    {% if item.product.image %}
+    <img src="{{ item.product.image.url }}"
+         style="width:60px;height:60px;object-fit:cover;border-radius:6px;">
+    {% endif %}
 
-                <h3 class="fw-bold mb-4">Payment Options</h3>
-
-                <!-- COUPON -->
-                <div class="coupon-box mb-4">
-                    <h6 class="fw-bold">Apply Coupon</h6>
-                    <div class="input-group mt-2">
-                        <input type="text" class="form-control" placeholder="Enter coupon code">
-                        <button class="btn btn-dark">Apply</button>
-                    </div>
-                </div>
-
-                <!-- PAYMENT OPTIONS -->
-                <input type="radio" name="payment" id="upi" class="d-none">
-                <label for="upi" class="method-label">UPI Payment</label>
-
-                <input type="radio" name="payment" id="card" class="d-none">
-                <label for="card" class="method-label">Debit / Credit Card</label>
-
-                <input type="radio" name="payment" id="cod" class="d-none">
-                <label for="cod" class="method-label">Cash on Delivery</label>
-
-                <!-- UPI SECTION -->
-                <div id="upi-section" class="section">
-                    <input type="text" class="form-control" placeholder="Enter UPI ID (example: name@upi)">
-                </div>
-
-                <!-- CARD SECTION -->
-                <div id="card-section" class="section">
-                    <input type="number" class="form-control mb-2" placeholder="Card Number">
-                    <div class="row">
-                        <div class="col-6 mb-2">
-                            <input type="text" class="form-control" placeholder="MM/YY">
-                        </div>
-                        <div class="col-6 mb-2">
-                            <input type="password" class="form-control" placeholder="CVV">
-                        </div>
-                    </div>
-                    <input type="text" class="form-control" placeholder="Cardholder Name">
-                </div>
-
-                <!-- COD SECTION -->
-                <div id="cod-section" class="section">
-                    <textarea class="form-control" rows="3" placeholder="Enter Delivery Address"></textarea>
-                </div>
-
-                <!-- BUTTON -->
-                <button class="btn btn-dark w-100 mt-4">Pay Now</button>
-
-            </div>
-
-        </div>
-
+    <div style="flex:1;">
+        <strong>{{ item.product.name }}</strong><br>
+        Qty: {{ item.quantity }}
     </div>
+
+    <div>
+        ₹{{ item.product.discount_price|default:item.product.price }}
+    </div>
+
+</div>
+{% endfor %}
+
+<hr style="margin:15px 0;">
+
+<div class="summary-row">
+<span>Subtotal</span>
+<span>₹{{ subtotal }}</span>
+</div>
+
+{% if discount %}
+<div class="summary-row">
+<span>Discount</span>
+<span>- ₹{{ discount }}</span>
+</div>
+{% endif %}
+
+<div class="summary-row total">
+<span>Total Payable</span>
+<span>₹{{ total }}</span>
+</div>
+
+</div>
+
+<button type="submit" class="place-order">
+Place Order
+</button>
+
+</form>
 
 </div>
 

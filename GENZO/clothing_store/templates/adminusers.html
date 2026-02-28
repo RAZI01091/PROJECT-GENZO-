@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,10 +42,6 @@
             color: #fff;
         }
 
-        .table tbody tr {
-            transition: all 0.3s ease;
-        }
-
         .table tbody tr:hover {
             background-color: #f1f5ff;
             transform: scale(1.01);
@@ -55,10 +53,6 @@
 
         .badge-blocked {
             background-color: #dc3545;
-        }
-
-        .action-btn {
-            transition: all 0.3s ease;
         }
 
         .action-btn:hover {
@@ -78,10 +72,48 @@
                 User Management
             </h3>
             <a href="{% url 'adminpanel' %}" class="badge bg-primary p-2 text-decoration-none">
-    Admin Panel
-</a>
-
+                Admin Panel
+            </a>
         </div>
+
+        <!-- 🔍 SEARCH + DROPDOWN (SIDE BY SIDE) -->
+        <form method="GET" class="d-flex gap-2 mb-4">
+
+            <!-- Search input -->
+            <input type="text"
+                   name="search"
+                   class="form-control"
+                   placeholder="Search users..."
+                   value="{{ request.GET.search }}"
+                   style="max-width: 350px;">
+
+            <!-- Search button -->
+            <button type="submit" class="btn btn-primary">
+                <i class="bi bi-search"></i>
+            </button>
+
+            <!-- Status dropdown -->
+<select name="status"
+        class="form-select"
+        onchange="this.form.submit()"
+        style="max-width: 180px;">                <option value="">All</option>
+                <option value="active"
+                    {% if request.GET.status == 'active' %}selected{% endif %}>
+                    Active
+                </option>
+                <option value="blocked"
+                    {% if request.GET.status == 'blocked' %}selected{% endif %}>
+                    Blocked
+                </option>
+            </select>
+
+            <div class="col-md-2">
+            <a href="{% url 'adminusers' %}" class="btn btn-secondary w-100">
+                Reset
+            </a>
+        </div>
+
+        </form>
 
         <!-- Table -->
         <div class="table-responsive">
@@ -96,13 +128,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                {% for user in user %}
+                {% for user in users %}
                     <tr>
                         <td>{{ user.id }}</td>
                         <td>{{ user.username }}</td>
                         <td>{{ user.email }}</td>
 
-                        <!-- STATUS -->
                         <td>
                             {% if user.is_active %}
                                 <span class="badge badge-active px-3 py-2">
@@ -115,7 +146,6 @@
                             {% endif %}
                         </td>
 
-                        <!-- ACTION -->
                         <td>
                             {% if user.is_active %}
                                 <a href="{% url 'block_unblock' user.id %}"
@@ -129,6 +159,10 @@
                                 </a>
                             {% endif %}
                         </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="5">No users found</td>
                     </tr>
                 {% endfor %}
                 </tbody>
