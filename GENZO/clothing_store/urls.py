@@ -26,6 +26,7 @@ urlpatterns = [
     path('address/delete/<int:id>/', views.delete_address, name='delete_address'),
     path('logout/',views.logout,name='logout'),
     path('order/',views.order,name='order'),
+    path("orderdetails/<int:order_id>/", views.orderdetails, name="orderdetails"),
     path('adminpanel/',views.adminpanel,name='adminpanel'),
     path('adminproducts/',views.adminproducts,name='adminproducts'),
     path('adminorders/',views.adminorders,name='adminorders'),

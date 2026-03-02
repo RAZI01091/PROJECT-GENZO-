@@ -175,7 +175,7 @@ body{
         <div class="cart-title">{{ item.product.name }}</div>
         <div class="cart-meta">
           {% if item.size %}Size: {{ item.size.name }} ·{% endif %}
-          Qty: {{ item.quandity }}
+          Qty: {{ item.quantity }}
         </div>
 
         <!-- REMOVE -->
@@ -192,7 +192,7 @@ body{
           <button class="qty-btn">−</button>
         </form>
 
-        <div class="qty-num">{{ item.quandity }}</div>
+        <div class="qty-num">{{ item.quantity }}</div>
 
         <form method="post" action="{% url 'increase_qty' item.id %}">
           {% csrf_token %}

@@ -85,6 +85,16 @@ body{
     border-radius:10px;
     border:1px solid #ddd;
 }
+.form-check-input {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.form-check-label {
+    cursor: pointer;
+    font-size: 0.95rem;
+}
 </style>
 </head>
 
@@ -203,6 +213,22 @@ body{
 <textarea name="description"
           rows="3"
           class="form-control mb-3">{{ product.description }}</textarea>
+
+<div class="section-title">Product Status</div>
+
+<div class="section-title">Product Status</div>
+
+<div class="form-check mb-3">
+    <input type="checkbox"
+           name="is_trending"
+           id="trendingCheck"
+           class="form-check-input"
+           {% if product.is_trending %}checked{% endif %}>
+
+    <label class="form-check-label fw-semibold" for="trendingCheck">
+        Mark as Trending Product
+    </label>
+</div>
 
 <!-- DISCOUNT -->
 <div class="section-title">Discount</div>

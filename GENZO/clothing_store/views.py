@@ -9,7 +9,7 @@ User = get_user_model()
 from django.conf import settings
 from django.views.decorators.cache import never_cache
 from django.contrib.auth import logout as auth_logout
-from . models import Products,Category,SubCategory,Banner,Wishlist,Size,Cart,Profile,Address,Order
+from . models import Products,Category,SubCategory,Banner,Wishlist,Size,Cart,Profile,Address,Order,OrderItem
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
@@ -97,7 +97,7 @@ def cart(request):
     total_price = 0
     for item in cart_items:
         price = item.product.discount_price or item.product.price
-        total_price += price * item.quandity
+        total_price += price * item.quantity
 
     context = {
         "cart_items": cart_items,   
@@ -134,11 +134,11 @@ def carts(request, product_id):
             user=request.user,
             product=product,
             size=size,
-            defaults={"quandity": 1}
+            defaults={"quantity": 1}
         )
 
         if not created:
-            cart_item.quandity += 1
+            cart_item.quantity += 1
             cart_item.save()
 
     return redirect("cart")
@@ -159,7 +159,7 @@ def remove_cart(request, id):
 def increase_qty(request, id):
     cart_item = get_object_or_404(Cart, id=id, user=request.user)
 
-    cart_item.quandity += 1
+    cart_item.quantity += 1
     cart_item.save()
 
     return redirect("cart")
@@ -169,8 +169,8 @@ def increase_qty(request, id):
 def decrease_qty(request, id):
     cart_item = get_object_or_404(Cart, id=id, user=request.user)
 
-    if cart_item.quandity > 1:
-        cart_item.quandity -= 1
+    if cart_item.quantity > 1:
+        cart_item.quantity -= 1
         cart_item.save()
 
     return redirect("cart")
@@ -306,7 +306,7 @@ def accessories(request):
     sub_id=request.GET.get("sub_id")
 
     if sub_id:
-        products= Products.filter(subcategory_id=sub_id)
+        products= Products.objects.filter(subcategory_id=sub_id)
 
     top_sizes=Size.objects.filter(size_type='TOP')
 
@@ -569,7 +569,7 @@ def logout(request):
     return redirect('home')
 
 def order(request):
-    orders=Order.objects.filter(user=request.user).order_by("-id")
+    orders=Order.objects.filter(user=request.user).prefetch_related("items__product")
     return render(request,"order.html",{
     'orders':orders})
 
@@ -714,13 +714,13 @@ def checkout(request):
 
     if buy_now_product_id:
         product = get_object_or_404(Products, id=buy_now_product_id)
-
+        
         price = product.discount_price or product.price
         total_price = price
 
         cart_items = [{
             "product": product,
-            "quandity": 1,  
+            "quantity": 1,  
         }]
 
         context = {
@@ -739,7 +739,7 @@ def checkout(request):
     total_price = 0
     for item in cart_items:
         price = item.product.discount_price or item.product.price
-        total_price += price * item.quandity  # ✅ fixed
+        total_price += price * item.quantity  
 
     context = {
         "cart_items": cart_items,
@@ -1050,7 +1050,7 @@ def pay(request):
     
 
         subtotal=sum(
-            (item.product.discount_price or item.product.price)*item.quandity
+            (item.product.discount_price or item.product.price)*item.quantity
             for item in cart_item
                 )
     
@@ -1078,13 +1078,19 @@ def place_order(request):
     discount = Decimal(str(request.session.get("discount", 0)))
     buy_now_product_id = request.session.get("buy_now_product_id")
 
-    # ===== CALCULATE TOTAL =====
+    # if not address_id:
+    #     messages.error(request, "Please select an address")
+    #     return redirect("cart")
+
+    # ================= CALCULATE SUBTOTAL =================
     if buy_now_product_id:
         product = get_object_or_404(Products, id=buy_now_product_id)
         subtotal = product.discount_price or product.price
     else:
         cart_items = Cart.objects.filter(user=request.user)
+
         if not cart_items.exists():
+            messages.error(request, "Cart is empty")
             return redirect("cart")
 
         subtotal = sum(
@@ -1094,7 +1100,7 @@ def place_order(request):
 
     total = max(subtotal - discount, 0)
 
-    # ===== CREATE ORDER =====
+    # ================= CREATE ORDER =================
     order = Order.objects.create(
         user=request.user,
         address_id=address_id,
@@ -1104,17 +1110,42 @@ def place_order(request):
         discount_amount=discount,
     )
 
-    # ================= COD =================
+
+    if buy_now_product_id:
+        price = product.discount_price or product.price
+
+        OrderItem.objects.create(
+            order=order,
+            product=product,
+            quantity=1,
+            price=price,
+        )
+
+    else:
+        for item in cart_items:
+            price = item.product.discount_price or item.product.price
+
+            OrderItem.objects.create(
+                order=order,
+                product=item.product,
+                quantity=item.quantity,   # ⚠️ make sure spelling matches your Cart model
+                price=price,
+            )
+
+    # ================= PAYMENT HANDLING =================
+
+    # ===== COD =====
     if payment_method == "COD":
         order.status = "confirmed"
+        order.payment_status = "PENDING"
         order.save()
 
         Cart.objects.filter(user=request.user).delete()
         request.session.pop("buy_now_product_id", None)
 
-        return render(request,"paymentsuccess.html")
+        return render(request, "paymentsuccess.html")
 
-    # ================= STRIPE =================
+    # ===== STRIPE =====
     elif payment_method == "STRIPE":
 
         session = stripe.checkout.Session.create(
@@ -1138,8 +1169,6 @@ def place_order(request):
         return redirect(session.url)
 
     return redirect("checkout")
-
-
 
 
 
@@ -1173,3 +1202,8 @@ def payment_success(request):
 def payment_failed(request):
     return render(request, "paymentfailed.html")    
 
+
+
+def orderdetails(request,order_id):
+    order=get_object_or_404(Order.objects.prefetch_related('items__product'),id=order_id, user=request.user)
+    return render(request,'orderdetails.html',{'order':order})
