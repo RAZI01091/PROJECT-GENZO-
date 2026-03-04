@@ -9,7 +9,7 @@ User = get_user_model()
 from django.conf import settings
 from django.views.decorators.cache import never_cache
 from django.contrib.auth import logout as auth_logout
-from . models import Products,Category,SubCategory,Banner,Wishlist,Size,Cart,Profile,Address,Order,OrderItem
+from . models import Products,Category,SubCategory,Banner,Wishlist,Size,Cart,Profile,Address,Order,OrderItem,ReviewRating,Notification
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
@@ -107,7 +107,7 @@ def cart(request):
     return render(request, "cart.html", context)
 
 
-
+from django.contrib import messages
 
 @login_required(login_url='showlogin')
 def carts(request, product_id):
@@ -118,15 +118,11 @@ def carts(request, product_id):
 
         size_id = request.POST.get("size")
 
-
         if product.category.has_size:
             if not size_id:
                 return redirect("productsdetail", id=product.id)
 
             size = get_object_or_404(Size, id=size_id)
-
-
-
         else:
             size = None
 
@@ -141,11 +137,9 @@ def carts(request, product_id):
             cart_item.quantity += 1
             cart_item.save()
 
-    return redirect("cart")
+        messages.success(request, "Product added to cart successfully")
 
-
-
-
+    return redirect("productsdetail", id=product.id)
 
 @login_required
 def remove_cart(request, id):
@@ -175,9 +169,10 @@ def decrease_qty(request, id):
 
     return redirect("cart")
 
-def buy_now(request,product_id):
-    request.session['buy_now_product_id']=product_id
-    return redirect('checkout')
+@login_required
+def buy_now(request, product_id):
+    request.session["buy_now_product_id"] = product_id
+    return redirect("checkout")
 
 
 @login_required(login_url='loggin')
@@ -510,12 +505,12 @@ def new_password(request):
 def showlogin(request):
     return render(request,"showlogin.html")
 
-
+login_required
 def profile(request):
     profile, created=Profile.objects.get_or_create(user=request.user)
     return render(request,"profile.html",{'profile':profile})
 
-
+login_required
 def editprofile(request):
     profile, created=Profile.objects.get_or_create(user=request.user)
     if request.method=='POST':
@@ -553,7 +548,7 @@ def addaddress(request):
 
 
     return render(request,'addaddress.html')
-
+login_required
 def delete_address(request,id):
     delete_address=get_object_or_404(Address,id=id,user=request.user)
     delete_address.delete()
@@ -562,7 +557,7 @@ def delete_address(request,id):
 
 
 
-
+login_required
 def logout(request):
     if request.user.is_authenticated:
         auth_logout(request)
@@ -570,8 +565,7 @@ def logout(request):
 
 def order(request):
     orders=Order.objects.filter(user=request.user).prefetch_related("items__product")
-    return render(request,"order.html",{
-    'orders':orders})
+    return render(request,"order.html",{'orders':orders})
 
 
 
@@ -583,7 +577,7 @@ def adminpanel(request):
 
 
 
-
+staff_member_required
 def adminproducts(request):
     product=Products.objects.all()
     category=Category.objects.all()
@@ -606,12 +600,33 @@ def adminproducts(request):
 
 
 
-
+staff_member_required
 def adminorders(request):
-    return render(request,"adminorders.html")
+    orders=Order.objects.prefetch_related('items__product').order_by('-id')
+    return render(request,'adminorders.html',{'orders':orders})
 
+staff_member_required
+def update_order_status(request,order_id):
+    if request.method=="POST":
+        order=get_object_or_404(Order,id=order_id)
+        new_status=request.POST.get('status')
 
+        if new_status in dict(Order.STATUS_CHOICES):
+            order.status=new_status
+            order.save()
 
+            Notification.objects.create(
+                user=order.user,
+                message=f"Your order #{order.id} status updated to {status}."
+            )
+    return redirect(adminorders)
+staff_member_required
+def adminorderdetails(request, order_id):
+    order = Order.objects.prefetch_related("items__product").get(id=order_id)
+
+    return render(request, "adminorderdetails.html", {"order": order})
+
+staff_member_required
 def adminusers(request):
     user=User.objects.filter(is_superuser=False)
     search=request.GET.get('search')
@@ -629,14 +644,14 @@ def adminusers(request):
     return render(request,"adminusers.html",{'users':user})
 
 
-
+staff_member_required
 def block_unblock(request,user_id):
     user=User.objects.get(id=user_id)
     user.is_active =not user.is_active
     user.save()
     return redirect('adminusers')
 
-
+staff_member_required
 def adminsettings(request):
     return render(request,"adminsettings.html")
 
@@ -699,57 +714,55 @@ def addproducts(request):
     })   
 
 
-def coupons(request):
-    return render(request,"coupons.html")
-
 
 @login_required
 def checkout(request):
 
     buy_now_product_id = request.session.get("buy_now_product_id")
-    cart_items = Cart.objects.filter(user=request.user)
+
+    cart_queryset = Cart.objects.filter(user=request.user)
     addresses = Address.objects.filter(user=request.user)
-    profile = Profile.objects.get(user=request.user)
+    profile = Profile.objects.filter(user=request.user).first()
 
-
+    # ===== BUY NOW FLOW =====
     if buy_now_product_id:
         product = get_object_or_404(Products, id=buy_now_product_id)
-        
+
         price = product.discount_price or product.price
         total_price = price
 
         cart_items = [{
             "product": product,
-            "quantity": 1,  
+            "quantity": 1,
         }]
 
-        context = {
+        # ✅ clear AFTER using
+        # request.session.pop("buy_now_product_id", None)
+
+        return render(request, "checkout.html", {
             "cart_items": cart_items,
             "total_price": total_price,
             "address": addresses,
             "profile": profile,
             "buy_now": True,
-        }
-        return render(request, "checkout.html", context)
+        })
 
     # ===== CART FLOW =====
-    if not cart_items.exists():
+    if not cart_queryset.exists():
         return redirect("cart")
 
     total_price = 0
-    for item in cart_items:
+    for item in cart_queryset:
         price = item.product.discount_price or item.product.price
-        total_price += price * item.quantity  
+        total_price += price * item.quantity
 
-    context = {
-        "cart_items": cart_items,
+    return render(request, "checkout.html", {
+        "cart_items": cart_queryset,
         "total_price": total_price,
         "address": addresses,
         "profile": profile,
         "buy_now": False,
-    }
-
-    return render(request, "checkout.html", context)
+    })
 
 
 
@@ -761,8 +774,7 @@ def payment(request):
 @staff_member_required(login_url='home')
 def productsedit(request,id):
     return render('productsedit')
-
-
+staff_member_required
 def productsdelete(request,id):
     Products.objects.filter(id=id).delete()
     return redirect('adminproducts')
@@ -790,7 +802,7 @@ def banner(request):
         'banners': banners
     })
 
-
+staff_member_required
 def editproducts(request, id):
     product = get_object_or_404(Products, id=id)
     categories = Category.objects.all()
@@ -869,6 +881,10 @@ def product_detail(request, id):
     if has_size:
         default_size = available_sizes.first()
 
+    reviews = ReviewRating.objects.filter(
+        product=product,
+    ).select_related("user")    
+
     return render(request, 'product_detail.html', {
         'product': product,
         'available_sizes': available_sizes,
@@ -876,6 +892,7 @@ def product_detail(request, id):
         'is_bottom': is_bottom,
         'has_size': has_size,
         'default_size': default_size,
+        'reviews':reviews
     })
 
 
@@ -946,7 +963,7 @@ def admin_category(request):
     categories=Category.objects.annotate(sub_count=Count('subcategories',distinct=True),product_count=Count('products',distinct=True))
     return render(request,'admincategory.html',{
     'categories':categories})
-
+staff_member_required
 def add_category(request):
     if request.method=="POST":
         name =request.POST.get("name")
@@ -960,7 +977,7 @@ def add_category(request):
     'categories':categories})
 
 
-
+staff_member_required
 def add_subcategory(request):
     categories = Category.objects.all()
 
@@ -989,12 +1006,12 @@ def add_subcategory(request):
         'categories': categories,
         'selected_category': selected_category,
     })
-
+staff_member_required
 def delete_category(request,id):
     category=get_object_or_404(Category,id=id)
     category.delete()
     return redirect('add_category')
-
+staff_member_required
 def update_category(request,id):
     category=get_object_or_404(Category,id=id)
 
@@ -1005,12 +1022,12 @@ def update_category(request,id):
             category.name =name
             category.save()
     return redirect('add_category')
-
+staff_member_required
 def delete_subcategory(request,id):
     subcategory=get_object_or_404(SubCategory,id=id)
     subcategory.delete()
     return redirect('add_subcategory')
-
+staff_member_required
 def update_subcategory(request,id):
     subcategory=get_object_or_404(SubCategory,id=id)
 
@@ -1023,50 +1040,52 @@ def update_subcategory(request,id):
     return redirect('add_subcategory')        
 
 
-
+@login_required
 def pay(request):
-    address_id=request.POST.get('address_id')
+    address_id = request.POST.get('address_id')
     if not address_id:
-        messages.error(request,'please select the address')
+        messages.error(request, 'please select the address')
         return redirect('checkout')
-    
-    discount=Decimal(str(request.session.get('discount',0)))
 
-    buy_now_product_id= request.session.get("buy_now_product_id")
+    discount = Decimal(str(request.session.get('discount', 0)))
+    buy_now_product_id = request.session.get("buy_now_product_id")
 
+    # ================= BUY NOW =================
     if buy_now_product_id:
-        product=get_object_or_404(Products,id=buy_now_product_id)
+        product = get_object_or_404(Products, id=buy_now_product_id)
 
-        price=product.discount_price or product.price
-        subtotal=price
+        price = product.discount_price or product.price
+        subtotal = price
+
+        cart_items = [{
+            'product': product,
+            'quantity': 1,
+        }]
+
+    # ================= CART =================
     else:
+        cart_items = Cart.objects.filter(user=request.user)
 
-
-        cart_item=Cart.objects.filter(user=request.user)
-
-        if not cart_item:
-            messages.error(request,'Cart is empty')
+        if not cart_items.exists():  # ✅ FIXED
+            messages.error(request, 'Cart is empty')
             return redirect('cart')
-    
 
-        subtotal=sum(
-            (item.product.discount_price or item.product.price)*item.quantity
-            for item in cart_item
-                )
-    
-    total= max(subtotal - discount, 0)
+        subtotal = sum(
+            (item.product.discount_price or item.product.price) * item.quantity
+            for item in cart_items
+        )
 
-    order=Order.objects.create(
-        user=request.user,
-        address_id=address_id,
-        total=total,
-        payment_method="STRIPE",
-        payment_status="PENDING",
-        discount_amount=discount,
-    )
+    total = max(subtotal - discount, 0)
 
-    return render(request,'payment.html')
+    context = {
+        "cart_items": cart_items,
+        "subtotal": subtotal,
+        "discount": discount,
+        "total": total,
+        "address_id": address_id,
+    }
 
+    return render(request, 'pay.html', context)
 
 
 
@@ -1128,7 +1147,7 @@ def place_order(request):
             OrderItem.objects.create(
                 order=order,
                 product=item.product,
-                quantity=item.quantity,   # ⚠️ make sure spelling matches your Cart model
+                quantity=item.quantity,  
                 price=price,
             )
 
@@ -1175,6 +1194,7 @@ def place_order(request):
 
 
 
+login_required
 def payment_success(request):
 
     session_id= request.GET.get("session_id")
@@ -1203,7 +1223,44 @@ def payment_failed(request):
     return render(request, "paymentfailed.html")    
 
 
-
+staff_member_required
 def orderdetails(request,order_id):
     order=get_object_or_404(Order.objects.prefetch_related('items__product'),id=order_id, user=request.user)
     return render(request,'orderdetails.html',{'order':order})
+
+
+def review_rating(request,order_id):
+    order=get_object_or_404(Order,id=order_id,user=request.user)
+
+    if order.status !="delivered":
+        messages.error(request,"You can review only delivered orders.")
+        return redirect('order')
+    
+    if request.method =="POST":
+        rating = request.POST.get('rating')
+        review_text = request.POST.get('review_text')
+
+        for item in order.items.all():
+            ReviewRating.objects.update_or_create(
+                user=request.user,
+                product=item.product,
+                defaults={
+                    'rating':rating,
+                    'review':review_text,
+                }
+            )
+
+        messages.success(request,"Review submitted successfully.")
+        return redirect('order')
+    return redirect('order')
+
+
+def delete_review(request,review_id):
+    review=get_object_or_404(ReviewRating,id=review_id,user=request.user)
+    review.delete()
+
+    messages.success(request,'review deleted successfully')
+
+    return redirect('order')
+
+

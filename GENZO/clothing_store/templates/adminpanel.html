@@ -26,11 +26,17 @@ body{
 }
 
 /* SIDEBAR */
+/* ===== SIDEBAR ===== */
 .sidebar{
-    width:240px;
-    background:#6f4722;
-    color:#ffffff;
-    padding:30px 20px;
+    position: fixed;      /* ⭐ makes it fixed */
+    left: 0;
+    top: 0;
+    width: 240px;
+    height: 100vh;        /* full height */
+    background: #6f4722;
+    color: #ffffff;
+    padding: 30px 20px;
+    overflow-y: auto;     /* scroll if sidebar content grows */
 }
 
 .brand{
@@ -84,6 +90,7 @@ body{
 .main-content{
     flex:1;
     padding:30px 40px;
+    margin-left:240px;   /* ⭐ push content right */
 }
 
 /* TOP BAR */
@@ -262,13 +269,13 @@ body{
     }
 }
 
-@media(max-width:576px){
+@media(max-width:992px){
     .sidebar{
         display:none;
     }
 
-    .stats{
-        grid-template-columns:1fr;
+    .main-content{
+        margin-left:0;   /* remove space when sidebar hidden */
     }
 }
 
@@ -288,7 +295,7 @@ body{
             <a href="{% url 'adminorders' %}">Orders</a>
              <a href="{% url 'adminusers'%}">Customers</a>
             <a href="{% url 'admin_category'%}">Categories</a>
-            <a href="#">Coupons</a>
+            {% comment %} <a href="#">Coupons</a> {% endcomment %}
             <a href="{% url 'banner'%}">Banner</a>
             {% comment %} <a href="{%url 'addproducts'%}">Add Product</a> {% endcomment %}
             <a href="">Notifications</a>

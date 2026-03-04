@@ -30,6 +30,8 @@ urlpatterns = [
     path('adminpanel/',views.adminpanel,name='adminpanel'),
     path('adminproducts/',views.adminproducts,name='adminproducts'),
     path('adminorders/',views.adminorders,name='adminorders'),
+    path("adminorders/status/<int:order_id>/", views.update_order_status, name="update_order_status"),
+    path("adminorderdetails/<int:order_id>/", views.adminorderdetails, name="adminorderdetails"),    
     path('adminusers/',views.adminusers,name='adminusers'),
     path('adminusers/<int:user_id>/',views.block_unblock,name='block_unblock'),
     path('showlogin/',views.showlogin,name='showlogin'),
@@ -37,15 +39,13 @@ urlpatterns = [
     path('adminsettings/',views.adminsettings,name='adminsettings'),
     path('addproducts/',views.addproducts,name='addproducts'),
     path('editproducts/<int:id>/',views.editproducts,name='editproducts'),
-    path('coupons/',views.coupons,name='coupons'),
     path('checkout/',views.checkout,name='checkout'),
-    path("payment/",views.payment,name="payment"),
+    # path("payment/",views.payment,name="payment"),
     path('productsdelete/<int:id>/', views.productsdelete, name='productsdelete'),
     path('banner/',views.banner,name='banner'),
     path('productsdetail/<int:id>/', views.product_detail, name='productsdetail'),
     path('searchbutton',views.searchbutton,name='searchbutton'),
     path('product-toggle/<int:id>/', views.product_toggle, name='product_toggle'),
-    # path("placeorder/", views.placeorder, name="placeorder"),
     path('addcategory/', views.add_category, name='add_category'),
     path('addsubcategory/', views.add_subcategory, name='add_subcategory'),
     path('admincategory/', views.admin_category, name='admin_category'),
@@ -58,7 +58,8 @@ urlpatterns = [
     path("paymentsuccess/", views.payment_success, name="payment_success"),
     path("paymentfailed/", views.payment_failed, name="payment_failed"),
     path("buynow/<int:product_id>/", views.buy_now, name="buy_now"),
-
+    path("reviewrating/<int:order_id>/", views.review_rating, name="review_rating"),
+    path('deletereview/<int:review_id>/', views.delete_review, name='delete_review'),
 
 
 
