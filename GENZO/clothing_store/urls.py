@@ -60,7 +60,7 @@ urlpatterns = [
     path("buynow/<int:product_id>/", views.buy_now, name="buy_now"),
     path("reviewrating/<int:order_id>/", views.review_rating, name="review_rating"),
     path('deletereview/<int:review_id>/', views.delete_review, name='delete_review'),
-
+    path('notifications/', views.notifications, name='notifications'),
 
 
 ]

@@ -617,7 +617,7 @@ def update_order_status(request,order_id):
 
             Notification.objects.create(
                 user=order.user,
-                message=f"Your order #{order.id} status updated to {status}."
+                message=f"Your order #{order.id} status updated to {new_status}."
             )
     return redirect(adminorders)
 staff_member_required
@@ -1097,11 +1097,7 @@ def place_order(request):
     discount = Decimal(str(request.session.get("discount", 0)))
     buy_now_product_id = request.session.get("buy_now_product_id")
 
-    # if not address_id:
-    #     messages.error(request, "Please select an address")
-    #     return redirect("cart")
-
-    # ================= CALCULATE SUBTOTAL =================
+    #  total amount
     if buy_now_product_id:
         product = get_object_or_404(Products, id=buy_now_product_id)
         subtotal = product.discount_price or product.price
@@ -1150,6 +1146,11 @@ def place_order(request):
                 quantity=item.quantity,  
                 price=price,
             )
+
+        Notification.objects.create(
+            user=request.user,
+            message=f"Your order #{item.product.name} has been placed succesfully."
+        )    
 
     # ================= PAYMENT HANDLING =================
 
@@ -1249,6 +1250,10 @@ def review_rating(request,order_id):
                     'review':review_text,
                 }
             )
+        Notification.objects.create(
+            user=request.user,
+            message=f"Your review for order #{item.product.name} was submitted sucessfully."
+        )    
 
         messages.success(request,"Review submitted successfully.")
         return redirect('order')
@@ -1263,4 +1268,9 @@ def delete_review(request,review_id):
 
     return redirect('order')
 
+@login_required
+def notifications(request):
+    notifications=Notification.objects.filter(user=request.user).order_by('-created_at')
+    return render(request,'notifications.html',{'notifications':notifications})
 
+  
