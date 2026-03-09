@@ -19,6 +19,8 @@ from django.db.models import Q
 from django.db.models import Count
 from decimal import Decimal
 from django.conf import settings
+from django.db.models import Sum
+from django.db.models.functions import ExtractMonth
 import stripe
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
@@ -79,7 +81,7 @@ def loggin(request):
             login(request, user)   
 
             if user.is_staff or user.is_superuser:
-                return redirect('adminpanel')
+                return redirect('admindashboard')
 
             return redirect('home')
 
@@ -572,8 +574,35 @@ def order(request):
 
 @never_cache
 @staff_member_required(login_url='home')
-def adminpanel(request):
-    return render(request,"adminpanel.html")
+def admindashboard(request):
+
+    total_orders = Order.objects.count()
+    total_products = Products.objects.count()
+    total_customers = User.objects.filter(is_staff=False).count()
+    revenue = Order.objects.aggregate(total=Sum("total"))["total"] or 0
+
+    monthly_sales = (
+        Order.objects
+        .annotate(month=ExtractMonth("created_at"))
+        .values("month")
+        .annotate(total=Sum("total"))
+        .order_by("month")
+    )
+
+    context = {
+        "total_orders": total_orders,
+        "total_products": total_products,
+        "total_customers": total_customers,
+        "revenue": revenue,
+        "monthly_sales": monthly_sales,
+    }
+
+    return render(request, "admindashboard.html", context)
+
+
+
+
+
 
 
 

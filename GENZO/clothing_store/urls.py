@@ -27,7 +27,7 @@ urlpatterns = [
     path('logout/',views.logout,name='logout'),
     path('order/',views.order,name='order'),
     path("orderdetails/<int:order_id>/", views.orderdetails, name="orderdetails"),
-    path('adminpanel/',views.adminpanel,name='adminpanel'),
+    path('admindashboard/',views.admindashboard,name='admindashboard'),
     path('adminproducts/',views.adminproducts,name='adminproducts'),
     path('adminorders/',views.adminorders,name='adminorders'),
     path("adminorders/status/<int:order_id>/", views.update_order_status, name="update_order_status"),
@@ -40,7 +40,6 @@ urlpatterns = [
     path('addproducts/',views.addproducts,name='addproducts'),
     path('editproducts/<int:id>/',views.editproducts,name='editproducts'),
     path('checkout/',views.checkout,name='checkout'),
-    # path("payment/",views.payment,name="payment"),
     path('productsdelete/<int:id>/', views.productsdelete, name='productsdelete'),
     path('banner/',views.banner,name='banner'),
     path('productsdetail/<int:id>/', views.product_detail, name='productsdetail'),
@@ -61,6 +60,5 @@ urlpatterns = [
     path("reviewrating/<int:order_id>/", views.review_rating, name="review_rating"),
     path('deletereview/<int:review_id>/', views.delete_review, name='delete_review'),
     path('notifications/', views.notifications, name='notifications'),
-
-
+   
 ]
