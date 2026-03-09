@@ -1,0 +1,240 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Checkout</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+body{
+    background:#f6f7f9;
+}
+
+/* ===== CARD ===== */
+.checkout-card{
+    background:#fff;
+    border-radius:16px;
+    padding:24px;
+    border:1px solid #e9ecef;
+    box-shadow:0 10px 28px rgba(0,0,0,0.05);
+}
+
+/* ===== PROFILE ===== */
+.profile-img{
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    object-fit:cover;
+}
+
+/* ===== ADDRESS BOX ===== */
+.address-box{
+    border:1px solid #e9ecef;
+    border-radius:14px;
+    padding:18px;
+    cursor:pointer;
+    transition:.25s;
+    position:relative;
+}
+
+.address-box:hover{
+    border-color:#000;
+    box-shadow:0 6px 18px rgba(0,0,0,0.06);
+}
+
+.address-box input{
+    margin-right:10px;
+    transform:scale(1.2);
+}
+
+/* default badge */
+.default-badge{
+    position:absolute;
+    top:12px;
+    right:12px;
+    font-size:11px;
+}
+
+/* ===== ORDER ITEM ===== */
+.order-item{
+    border-bottom:1px solid #eee;
+    padding:14px 0;
+}
+
+.order-item:last-child{
+    border-bottom:none;
+}
+
+.cart-img{
+    width:48px;
+    height:48px;
+    object-fit:cover;
+    border-radius:8px;
+    margin-right:10px;
+}
+
+/* ===== TOTAL ===== */
+.total-box{
+    background:#fafafa;
+    border-radius:12px;
+    padding:18px;
+}
+
+/* ===== BUTTON ===== */
+.pay-btn{
+    padding:13px;
+    font-weight:600;
+    border-radius:10px;
+}
+
+/* ===== TITLE ===== */
+.page-title{
+    font-weight:700;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container py-5">
+
+<h3 class="page-title mb-4">Checkout</h3>
+
+<form method="post" action="{% url 'pay' %}">
+{% csrf_token %}
+
+<div class="row g-4">
+
+<!-- ================= LEFT ================= -->
+<div class="col-lg-7">
+
+<!-- ===== ACCOUNT DETAILS ===== -->
+<div class="checkout-card mb-4">
+
+<h5 class="fw-bold mb-3">Account Details</h5>
+
+<div class="d-flex align-items-center gap-3">
+
+{% if profile.image %}
+    <img src="{{ profile.image.url }}" class="profile-img">
+{% else %}
+    <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+         class="profile-img">
+{% endif %}
+
+<div>
+    <div class="fw-semibold">{{ request.user.username }}</div>
+    <small class="text-muted">{{ request.user.email }}</small><br>
+    <small class="text-muted">
+        📞 {{ profile.phone|default:"Not added" }}
+    </small>
+</div>
+
+</div>
+</div>
+
+<!-- ===== ADDRESS SECTION ===== -->
+<div class="checkout-card">
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h5 class="fw-bold mb-0">Delivery Address</h5>
+
+    <a href="{% url 'addaddress' %}"
+       class="btn btn-sm btn-outline-dark">
+        + Add New
+    </a>
+</div>
+
+{% for addr in address %}
+<label class="address-box d-block mb-3">
+
+{% if addr.is_default %}
+<span class="badge bg-dark default-badge">Default</span>
+{% endif %}
+
+<input type="radio"
+       name="address_id"
+       value="{{ addr.id }}"
+       {% if addr.is_default %}checked{% endif %}
+       required>
+
+<strong>{{ addr.name }}</strong><br>
+<small class="text-muted">📞 {{ addr.phone }}</small><br>
+
+<div class="mt-1">
+{{ addr.address }}, {{ addr.locality }}<br>
+{{ addr.city }}, {{ addr.state }} - {{ addr.pincode }}
+</div>
+
+<div class="mt-3">
+<a href="{% url 'delete_address' addr.id %}"
+   class="btn btn-sm btn-outline-danger"
+   onclick="return confirm('Delete this address?')">
+   Delete
+</a>
+</div>
+
+</label>
+{% empty %}
+<p class="text-muted">No address found. Please add one.</p>
+{% endfor %}
+
+</div>
+</div>
+
+<!-- ================= RIGHT ================= -->
+<div class="col-lg-5">
+
+<div class="checkout-card">
+
+<h5 class="fw-bold mb-3">Order Summary</h5>
+
+{% for item in cart_items %}
+<div class="order-item d-flex justify-content-between align-items-center">
+
+<div class="d-flex align-items-center">
+
+{% if item.product.image %}
+<img src="{{ item.product.image.url }}" class="cart-img">
+{% endif %}
+
+<div>
+<div class="fw-semibold">{{ item.product.name }}</div>
+<small class="text-muted">Qty: {{ item.quantity }}</small>
+</div>
+
+</div>
+
+<div class="fw-semibold">
+₹{{ item.product.discount_price|default:item.product.price }}
+</div>
+
+</div>
+{% empty %}
+<p class="text-muted">Your cart is empty</p>
+{% endfor %}
+
+<hr>
+
+<div class="total-box d-flex justify-content-between mb-3">
+<strong>Total</strong>
+<strong>₹{{ total_price }}</strong>
+</div>
+
+<button type="submit"
+        class="btn btn-dark w-100 pay-btn">
+    Proceed to Payment
+</button>
+
+</div>
+</div>
+
+</div>
+</form>
+</div>
+
+</body>
+</html>

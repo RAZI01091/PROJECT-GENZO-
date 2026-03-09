@@ -1,0 +1,163 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Order Details</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#f4f1ec;
+    padding:40px;
+}
+
+/* ===== PAGE WRAPPER ===== */
+.page-wrapper{
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    min-height:100vh;
+}
+
+/* ===== BIG CARD ===== */
+.details-card{
+    background:#ffffff;
+    padding:35px;
+    border-radius:18px;
+    width:100%;
+    max-width:900px;
+    box-shadow:0 10px 35px rgba(0,0,0,0.08);
+}
+
+/* ===== TITLE ===== */
+.page-title{
+    font-size:26px;
+    font-weight:600;
+    color:#3f3007;
+    margin-bottom:25px;
+}
+
+/* ===== PRODUCTS WRAPPER ===== */
+.products-wrapper{
+    max-height:350px;
+    overflow-y:auto;
+    padding-right:6px;
+}
+
+/* ===== PRODUCT BOX ===== */
+.product-box{
+    display:flex;
+    gap:16px;
+    margin-bottom:18px;
+    padding-bottom:14px;
+    border-bottom:1px solid #f1f1f1;
+}
+
+.product-box:last-child{
+    border-bottom:none;
+}
+
+.product-box img{
+    width:80px;
+    height:80px;
+    object-fit:cover;
+    border-radius:12px;
+}
+
+/* ===== PRODUCT TEXT ===== */
+.product-name{
+    font-weight:600;
+    color:#222;
+}
+
+/* ===== SECTION ===== */
+.section{
+    margin-top:22px;
+    padding-top:18px;
+    border-top:1px solid #eee;
+    line-height:1.7;
+}
+
+/* ===== LABEL ===== */
+.section strong{
+    font-size:16px;
+    color:#3f3007;
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:768px){
+    body{
+        padding:20px;
+    }
+
+    .details-card{
+        padding:25px;
+    }
+
+    .product-box{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .product-box img{
+        width:70px;
+        height:70px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="page-wrapper">
+
+    <div class="details-card">
+
+        <div class="page-title">Order Details</div>
+
+        <!-- ===== PRODUCTS ===== -->
+        <div class="products-wrapper">
+            {% for item in order.items.all %}
+            <div class="product-box">
+                <img src="{{ item.product.image.url }}" alt="">
+                <div>
+                    <div class="product-name">{{ item.product.name }}</div>
+                    Qty: {{ item.quantity }}<br>
+                    Price: ₹{{ item.price }}
+                </div>
+            </div>
+            {% empty %}
+            <p>No products in this order.</p>
+            {% endfor %}
+        </div>
+
+        <!-- ===== CUSTOMER ===== -->
+        <div class="section">
+            <strong>Customer Details</strong><br>
+            Total Price: ₹{{ order.total }}<br>
+            Email: {{ order.user.email }}
+        </div>
+
+        <!-- ===== PAYMENT ===== -->
+        <div class="section">
+            <strong>Payment Info</strong><br>
+            Method: {{ order.payment_method }}<br>
+            Status: {{ order.status }}
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

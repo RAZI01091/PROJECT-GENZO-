@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Payment | HOUSE BLOOM</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.1/font/bootstrap-icons.min.css" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+      font-family:'Poppins',sans-serif;
+
+}
+
+body{
+    background:#ffff;
+}
+
+.logo-section{
+    padding:15px 0;
+    display:flex;
+    justify-content:center;
+    background:#fff;
+    margin-bottom:40px;
+}
+
+.logo{
+    max-width:220px;
+}
+
+.payment-container{
+    max-width:950px;
+    margin:auto;
+    padding:0 20px 60px;
+    margin-top:30px;
+}
+
+.box{
+    background:#fff;
+    padding:28px;
+    border-radius:10px;
+    box-shadow:0 6px 18px rgba(0,0,0,.08);
+    margin-bottom:25px;
+}
+
+.box h2{
+    color:#6b4f2c;
+    margin-bottom:18px;
+}
+
+.payment-option{
+    border:2px solid #eee;
+    border-radius:8px;
+    padding:18px;
+    margin-bottom:12px;
+    display:flex;
+    gap:12px;
+    transition:.2s;
+    cursor:pointer;
+}
+
+.payment-option:hover{
+    border-color:#8B6F47;
+}
+
+.summary-row{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:12px;
+    font-size:15px;
+}
+
+.total{
+    font-weight:700;
+    font-size:18px;
+}
+
+.place-order{
+    width:100%;
+    padding:16px;
+    background:#8B6F47;
+    color:#fff;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+}
+
+.place-order:hover{
+    background:#6b5234;
+}
+</style>
+</head>
+
+<body>
+
+
+<div class="payment-container">
+
+<form method="post" action="{% url 'place_order' %}">
+{% csrf_token %}
+
+<!-- ================= PAYMENT METHOD ================= -->
+<div class="box">
+<h2>Select Payment Method</h2>
+
+<label class="payment-option">
+<input type="radio" name="payment_method" value="COD" required>
+<div>
+<strong>Cash on Delivery</strong><br>
+Pay when delivered
+</div>
+</label>
+
+<label class="payment-option">
+<input type="radio" name="payment_method" value="STRIPE" required>
+<div>
+<strong>Online Payment</strong><br>
+UPI / Card / Netbanking
+</div>
+</label>
+
+</div>
+
+<!-- ================= ORDER SUMMARY ================= -->
+<div class="box">
+<h2>Order Summary</h2>
+
+{% for item in cart_items %}
+<div class="summary-row" style="align-items:center; gap:12px;">
+
+    {% if item.product.image %}
+    <img src="{{ item.product.image.url }}"
+         style="width:60px;height:60px;object-fit:cover;border-radius:6px;">
+    {% endif %}
+
+    <div style="flex:1;">
+        <strong>{{ item.product.name }}</strong><br>
+        Qty: {{ item.quantity }}
+    </div>
+
+    <div>
+        ₹{{ item.product.discount_price|default:item.product.price }}
+    </div>
+
+</div>
+{% endfor %}
+
+<hr style="margin:15px 0;">
+
+<div class="summary-row">
+<span>Subtotal</span>
+<span>₹{{ subtotal }}</span>
+</div>
+
+{% if discount %}
+<div class="summary-row">
+<span>Discount</span>
+<span>- ₹{{ discount }}</span>
+</div>
+{% endif %}
+
+<div class="summary-row total">
+<span>Total Payable</span>
+<span>₹{{ total }}</span>
+</div>
+
+</div>
+
+<button type="submit" class="place-order">
+Place Order
+</button>
+
+</form>
+
+</div>
+
+</body>
+</html>

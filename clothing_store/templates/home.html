@@ -1,0 +1,519 @@
+
+ {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Men's Store – Premium Fashion</title>
+
+<!-- Bootstrap -->
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+<!-- Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --charcoal-pro:#000;
+    --steel-matte:#1a1a1a;
+    --mocha-mousse:#76220b;
+    --bronze-matte:#5c1808;
+    --silver-steel:#d6d0cb;
+    --platinum-base:#fff9f2;
+    --shadow-pro:rgba(0,0,0,.35);
+    --glow-mocha:rgba(118,34,11,.45);
+}
+
+body{
+    font-family:"Georgia", serif;
+    background:linear-gradient(135deg,var(--platinum-base),#f3f4f6,var(--silver-steel));
+    color:var(--charcoal-pro);
+    overflow-x:hidden;
+}
+
+.hero{
+    position: relative;
+    width: 100%;
+    height: 620px;
+    margin: 0;              /* removes gap */
+    border-radius: 0;       /* ✅ square edges */
+    overflow: hidden;
+    box-shadow: none;       /* optional: cleaner flat look */
+}
+
+.hero img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+}
+
+.banner-overlay{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+        90deg,
+        rgba(0,0,0,.65) 0%,
+        rgba(0,0,0,.25) 55%,
+        rgba(0,0,0,.05) 100%
+    );
+    display:flex;
+    align-items:center;
+    padding-left:70px;
+}
+
+
+.banner-content{
+    color:#fff;
+}
+
+.banner-content h1{
+    font-size:68px;
+    font-weight:900;
+    line-height:1.05;
+    text-transform:uppercase;
+}
+
+.banner-content p{
+    font-size:22px;
+    color:#d6d0cb;
+    margin:20px 0 30px;
+}
+
+.btn-shop{
+    padding:16px 42px;
+    background:linear-gradient(135deg,var(--mocha-mousse),var(--bronze-matte));
+    color:#fff;
+    border-radius:35px;
+    font-weight:700;
+    text-decoration:none;
+    display:inline-block;
+}
+
+.hero::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(135deg,rgba(31,41,55,.4),rgba(55,65,81,.3),rgba(166,124,82,.4));
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+}
+
+.hero-content h1{
+    font-size:68px;
+    font-weight:900;
+    line-height:1.05;
+    color:#fff;
+    text-transform:uppercase;
+}
+
+.hero-content p{
+    font-size:22px;
+    color:var(--silver-steel);
+    margin:20px 0 30px;
+}
+
+.btn-shop{
+    padding:16px 42px;
+    background:linear-gradient(135deg,var(--mocha-mousse),var(--bronze-matte));
+    color:#fff;
+    border-radius:35px;
+    font-weight:700;
+    text-decoration:none;
+    display:inline-block;
+}
+
+/* CATEGORY */
+.category-card{
+height:100px;
+border-radius:22px;
+background:#fff;
+display:flex;
+align-items:center;
+justify-content:center;
+position:relative;
+box-shadow:0 20px 50px var(--shadow-pro);
+}
+
+.category-label{
+position:absolute;
+bottom:22px;
+left:22px;
+background:#000;
+color:#fff;
+padding:14px 30px;
+border-radius:28px;
+font-size:14px;
+font-weight:700;
+}
+
+/* PRODUCTS */
+.product-card{
+background:#fff;
+box-shadow:0 20px 50px var(--shadow-pro);
+overflow:hidden;
+    border-radius:30px;
+    padding:28px;
+    height:90%;
+    transition:.4s;
+    position:relative;
+}
+
+.product-image{
+    height:300px;
+    width:100%;
+    margin-bottom:20px;
+}
+
+.product-image img{
+    width:100%;
+    height:70%;
+    object-fit:cover;
+    border-radius:22px;
+}
+
+
+.product-card h5{
+font-weight:700;
+}
+
+.product-card p{
+font-weight:800;
+color:var(--mocha-mousse);
+}
+
+/* PROMO */
+.promo{
+background:linear-gradient(135deg,#000,#1a1a1a,#76220b);
+color:#fff;
+padding:90px 30px;
+text-align:center;
+border-radius:24px;
+margin:60px auto;
+}
+
+.promo h2{
+font-size:3.2rem;
+font-weight:900;
+}
+
+.promo p{
+font-size:1.4rem;
+}
+
+/* FOOTER */
+.footer{
+background:#000;
+color:var(--silver-steel);
+padding:70px 0 30px;
+margin-top:80px;
+}
+
+.footer-content{
+display:flex;
+justify-content:space-between;
+gap:40px;
+flex-wrap:wrap;
+}
+
+.footer-section h4{
+color:#fff;
+font-weight:700;
+margin-bottom:20px;
+}
+
+.footer-section a,
+.footer-section p{
+color:var(--silver-steel);
+text-decoration:none;
+font-size:.95rem;
+display:block;
+margin-bottom:10px;
+}
+
+.social-icons a{
+font-size:1.4rem;
+margin-right:15px;
+color:var(--silver-steel);
+}
+
+.footer-bottom{
+border-top:1px solid rgba(255,255,255,.1);
+margin-top:40px;
+padding-top:20px;
+text-align:center;
+font-size:.9rem;
+}
+
+/* ================= RESPONSIVE ONLY ================= */
+
+@media(max-width:992px){
+.hero{height:70vh;padding-left:40px;}
+.hero-content h1{font-size:52px;}
+.category-card{height:230px;}
+.product-image-box{height:210px;}
+.promo h2{font-size:2.6rem;}
+}
+
+@media(max-width:768px){
+.hero{
+height:65vh;
+padding:0 20px;
+justify-content:center;
+text-align:center;
+}
+.hero-content h1{font-size:40px;}
+.hero-content p{font-size:16px;}
+.btn-shop{padding:14px 34px;font-size:14px;}
+.category-card{height:200px;}
+.product-image-box{height:190px;}
+.promo{padding:60px 20px;margin:40px 15px;}
+.promo h2{font-size:2rem;}
+.footer-content{flex-direction:column;text-align:center;}
+}
+
+@media(max-width:480px){
+.hero-content h1{font-size:32px;}
+.hero-content p{font-size:15px;}
+.promo h2{font-size:1.6rem;}
+.footer{padding:50px 15px 25px;}
+}
+
+@media(max-width:768px){
+    .hero{
+        height:300px;
+        margin:20px 15px 0;
+        border-radius:18px;
+    }
+
+    .banner-overlay{
+        padding:0 20px;
+        justify-content:center;
+        text-align:center;
+    }
+
+    .banner-content h1{
+        font-size:32px;
+    }
+
+    .banner-content p{
+        font-size:15px;
+    }
+}
+.category-card{
+    background:#fff;
+    border-radius:16px;
+    overflow:hidden;
+    box-shadow:0 6px 20px rgba(0,0,0,0.08);
+    transition:all .25s ease;
+    height:100%;
+}
+
+.category-img{
+    width:100%;
+    aspect-ratio: 16 / 10;
+    background:#f6f6f6;
+    overflow:hidden;
+    position:relative; /* ⭐ important */
+}
+
+.category-img img{
+    width:100%;
+    height:100%;
+    object-fit: cover;
+    object-position:center;
+    display:block;
+    transition:transform .25s ease;
+}
+
+/* White button style */
+.shop-btn{
+    position:absolute;
+    bottom:15px;
+    left:14px;              /* 🔥 move to left */
+    transform:none;         /* 🔥 remove centering */
+    opacity:0;
+    transition:all .25s ease;
+
+    background:#fff !important;
+    color:#000 !important;
+    border:none;
+    font-weight:600;
+}
+
+.shop-btn:hover{
+    background:#000 !important;
+    color:#fff !important;
+}
+
+/* ⭐ Hover effects */
+.category-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 14px 35px rgba(0,0,0,0.15);
+}
+
+.category-card:hover img{
+    transform:scale(1.06);
+}
+
+.category-card:hover .shop-btn{
+    opacity:1;
+    bottom:20px;
+}
+</style>
+</head>
+
+<body>
+
+{% include 'base.html'%}
+
+{% if banner %}
+<section class="hero">
+    <img src="{{ banner.image.url }}" alt="Banner">
+
+    <div class="banner-overlay">
+        <div class="banner-content">
+            <h1>{{ banner.title }}</h1>
+            <p>{{ banner.subtitle }}</p>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<div class="container my-5">
+    <h2 class="fw-bold mb-4">SHOP BY CATEGORY</h2>
+
+    <div class="row g-4">
+
+        <!-- Casual -->
+        <div class="col-6 col-md-6">
+            <div class="category-card">
+                <div class="category-img">
+                    <img src="{% static 'images/casual.png' %}" alt="Casual Fit">
+                    <a href="{% url 'casualfit'%}" class="btn btn-sm shop-btn">Shop Now</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Formal -->
+        <div class="col-6 col-md-6">
+            <div class="category-card">
+                <div class="category-img">
+                    <img src="{% static 'images/formal.png' %}" alt="Formal Fit">
+                    <a href="{% url 'formalfit'%}" class="btn btn-sm shop-btn">Shop Now</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Innerwear -->
+        <div class="col-6 col-md-6">
+            <div class="category-card">
+                <div class="category-img">
+                    <img src="{% static 'images/innerwear.png' %}" alt="Innerwear">
+                    <a href="{% url 'innerwear'%}" class="btn btn-sm shop-btn">Shop Now</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Accessories -->
+        <div class="col-6 col-md-6">
+            <div class="category-card">
+                <div class="category-img">
+                    <img src="{% static 'images/accessories.png' %}" alt="Accessories">
+                    <a href="{% url 'accessories'%}" class="btn btn-sm shop-btn">Shop Now</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="container my-5">
+    <h2 class="mb-4">TRENDING PRODUCTS</h2>
+
+    <div class="row g-4">
+
+        {% for product in trending %}
+        <div class="col-md-3">
+
+            <div class="product-card">
+
+                <div class="product-image">
+
+                    <a href="{% url 'productsdetail' product.id %}"
+               class="text-decoration-none text-dark d-block h-100">
+                    {% if product.image %}
+                        <img src="{{ product.image.url }}"
+                             alt="{{ product.name }}"
+                             style="width:100%; height:100%; object-fit:cover;">
+                    {% endif %}
+                </div>
+
+                <div class="p-4 text-center">
+                    <h5>{{ product.name }}</h5>
+
+                    {% if product.discount_price %}
+                        <p>₹{{ product.discount_price }}</p>
+                    {% else %}
+                        <p>₹{{ product.price }}</p>
+                    {% endif %}
+                </div>
+
+            </div>
+                        </a>
+
+        </div>
+        {% empty %}
+        <p class="text-muted">No trending products right now.</p>
+        {% endfor %}
+
+    </div>
+</div>
+
+
+
+
+<footer class="footer">
+<div class="container">
+<div class="footer-content">
+<div class="footer-section">
+<h4>Men’s Store</h4>
+<p><i class="bi bi-geo-alt"></i> Kerala, India</p>
+<p><i class="bi bi-telephone"></i> +91 98765 43210</p>
+<p><i class="bi bi-envelope"></i> support@mensstore.com</p>
+</div>
+
+<div class="footer-section">
+<h4>Quick Links</h4>
+<a href="{% url 'home' %}">Home</a>
+<a href="{% url 'loggin' %}">Login</a>
+{% comment %} <a href="{% url '' %}">Forgot Password</a> {% endcomment %}
+</div>
+
+<div class="footer-section">
+<h4>Follow Us</h4>
+<div class="social-icons">
+<a href="#"><i class="bi bi-facebook"></i></a>
+<a href="#"><i class="bi bi-instagram"></i></a>
+<a href="#"><i class="bi bi-twitter-x"></i></a>
+</div>
+</div>
+</div>
+
+<div class="footer-bottom">
+<p>© 2026 Men’s Store. Crafted with <i class="bi bi-heart-fill"></i></p>
+</div>
+</div>
+</footer>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+ 
+</html>
