@@ -1,433 +1,389 @@
+{% extends 'base.html' %}
+{% load static %}
 
- {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Men's Store – Premium Fashion</title>
-
-<!-- Bootstrap -->
-   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
-<!-- Icons -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
-
-<!-- Google Font -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+{% block content %}
 
 <style>
-:root{
-    --charcoal-pro:#000;
-    --steel-matte:#1a1a1a;
-    --mocha-mousse:#76220b;
-    --bronze-matte:#5c1808;
-    --silver-steel:#d6d0cb;
-    --platinum-base:#fff9f2;
-    --shadow-pro:rgba(0,0,0,.35);
-    --glow-mocha:rgba(118,34,11,.45);
+/* ===== ROOT ===== */
+:root {
+    --mocha: #76220b;
+    --bronze: #5c1808;
+    --silver: #d6d0cb;
+    --platinum: #fff9f2;
 }
 
-body{
-    font-family:"Georgia", serif;
-    background:linear-gradient(135deg,var(--platinum-base),#f3f4f6,var(--silver-steel));
-    color:var(--charcoal-pro);
-    overflow-x:hidden;
-}
-
-.hero{
+/* ===== HERO BANNER ===== */
+.hero {
     position: relative;
     width: 100%;
-    height: 620px;
-    margin: 0;              /* removes gap */
-    border-radius: 0;       /* ✅ square edges */
+    height: 600px;
     overflow: hidden;
-    box-shadow: none;       /* optional: cleaner flat look */
 }
 
-.hero img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    display:block;
+.hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
 }
 
-.banner-overlay{
-    position:absolute;
-    inset:0;
-    background:linear-gradient(
+.banner-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
         90deg,
-        rgba(0,0,0,.65) 0%,
-        rgba(0,0,0,.25) 55%,
+        rgba(0,0,0,.68) 0%,
+        rgba(0,0,0,.28) 55%,
         rgba(0,0,0,.05) 100%
     );
-    display:flex;
-    align-items:center;
-    padding-left:70px;
+    display: flex;
+    align-items: center;
+    padding-left: 70px;
 }
 
+.banner-content { color: #fff; }
 
-.banner-content{
-    color:#fff;
+.banner-content h1 {
+    font-family: Georgia, serif;
+    font-size: clamp(2rem, 5.5vw, 4.2rem);
+    font-weight: 900;
+    line-height: 1.05;
+    text-transform: uppercase;
+    margin-bottom: 16px;
 }
 
-.banner-content h1{
-    font-size:68px;
-    font-weight:900;
-    line-height:1.05;
-    text-transform:uppercase;
+.banner-content p {
+    font-size: clamp(0.95rem, 2vw, 1.35rem);
+    color: var(--silver);
+    margin-bottom: 28px;
 }
 
-.banner-content p{
-    font-size:22px;
-    color:#d6d0cb;
-    margin:20px 0 30px;
+.btn-shop {
+    padding: 14px 40px;
+    background: linear-gradient(135deg, var(--mocha), var(--bronze));
+    color: #fff;
+    border-radius: 35px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-decoration: none;
+    display: inline-block;
+    transition: opacity 0.2s, transform 0.2s;
 }
 
-.btn-shop{
-    padding:16px 42px;
-    background:linear-gradient(135deg,var(--mocha-mousse),var(--bronze-matte));
-    color:#fff;
-    border-radius:35px;
-    font-weight:700;
-    text-decoration:none;
-    display:inline-block;
+.btn-shop:hover {
+    opacity: 0.88;
+    transform: translateY(-2px);
+    color: #fff;
 }
 
-.hero::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:linear-gradient(135deg,rgba(31,41,55,.4),rgba(55,65,81,.3),rgba(166,124,82,.4));
+/* ===== SECTION TITLES ===== */
+.section-title {
+    font-family: Georgia, serif;
+    font-size: clamp(1.3rem, 3.5vw, 1.9rem);
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #111;
+    margin-bottom: 24px;
 }
 
-.hero-content{
-    position:relative;
-    z-index:2;
+/* ===== CATEGORY CARDS — original style ===== */
+.category-card {
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    transition: transform .25s ease, box-shadow .25s ease;
+    height: 100%;
 }
 
-.hero-content h1{
-    font-size:68px;
-    font-weight:900;
-    line-height:1.05;
-    color:#fff;
-    text-transform:uppercase;
+.category-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 35px rgba(0,0,0,0.15);
 }
 
-.hero-content p{
-    font-size:22px;
-    color:var(--silver-steel);
-    margin:20px 0 30px;
+.category-img {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    position: relative;
+    background: #f6f6f6;
 }
 
-.btn-shop{
-    padding:16px 42px;
-    background:linear-gradient(135deg,var(--mocha-mousse),var(--bronze-matte));
-    color:#fff;
-    border-radius:35px;
-    font-weight:700;
-    text-decoration:none;
-    display:inline-block;
+.category-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    transition: transform .25s ease;
 }
 
-/* CATEGORY */
-.category-card{
-height:100px;
-border-radius:22px;
-background:#fff;
-display:flex;
-align-items:center;
-justify-content:center;
-position:relative;
-box-shadow:0 20px 50px var(--shadow-pro);
+.category-card:hover .category-img img { transform: scale(1.06); }
+
+/* Label pill overlaid on image — bottom left */
+.category-label {
+    position: absolute;
+    bottom: 15px;
+    left: 14px;
+    background: #000;
+    color: #fff;
+    padding: 10px 22px;
+    border-radius: 24px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    pointer-events: none;
+    z-index: 1;
 }
 
-.category-label{
-position:absolute;
-bottom:22px;
-left:22px;
-background:#000;
-color:#fff;
-padding:14px 30px;
-border-radius:28px;
-font-size:14px;
-font-weight:700;
+/* Shop Now button — replaces label on hover */
+.shop-btn {
+    position: absolute;
+    bottom: 15px;
+    left: 14px;
+    background: #fff !important;
+    color: #000 !important;
+    border: none;
+    font-weight: 600;
+    font-size: 0.78rem;
+    border-radius: 20px;
+    padding: 8px 20px;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: all .25s ease;
+    z-index: 2;
 }
 
-/* PRODUCTS */
-.product-card{
-background:#fff;
-box-shadow:0 20px 50px var(--shadow-pro);
-overflow:hidden;
-    border-radius:30px;
-    padding:28px;
-    height:90%;
-    transition:.4s;
-    position:relative;
+.shop-btn:hover {
+    background: #000 !important;
+    color: #fff !important;
 }
 
-.product-image{
-    height:300px;
-    width:100%;
-    margin-bottom:20px;
+.category-card:hover .shop-btn {
+    opacity: 1;
+    transform: translateY(0);
 }
 
-.product-image img{
-    width:100%;
-    height:70%;
-    object-fit:cover;
-    border-radius:22px;
+/* ===== TRENDING PRODUCTS ===== */
+.product-card {
+    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 28px rgba(0,0,0,0.10);
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
-
-.product-card h5{
-font-weight:700;
+.product-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 20px 50px rgba(118,34,11,0.18);
 }
 
-.product-card p{
-font-weight:800;
-color:var(--mocha-mousse);
+.product-img-wrap {
+    width: 100%;
+    aspect-ratio: 3 / 3.2;
+    overflow: hidden;
+    flex-shrink: 0;
 }
 
-/* PROMO */
-.promo{
-background:linear-gradient(135deg,#000,#1a1a1a,#76220b);
-color:#fff;
-padding:90px 30px;
-text-align:center;
-border-radius:24px;
-margin:60px auto;
+.product-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    transition: transform 0.45s ease;
 }
 
-.promo h2{
-font-size:3.2rem;
-font-weight:900;
+.product-card:hover .product-img-wrap img { transform: scale(1.06); }
+
+.product-info {
+    padding: 16px 18px 20px;
+    text-align: center;
+    flex: 1;
 }
 
-.promo p{
-font-size:1.4rem;
+.product-info h5 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 6px;
+    line-height: 1.3;
 }
 
-/* FOOTER */
-.footer{
-background:#000;
-color:var(--silver-steel);
-padding:70px 0 30px;
-margin-top:80px;
+.product-info p {
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--mocha);
+    margin: 0;
 }
 
-.footer-content{
-display:flex;
-justify-content:space-between;
-gap:40px;
-flex-wrap:wrap;
+/* ===== FOOTER ===== */
+.footer {
+    background: #000;
+    color: var(--silver);
+    padding: 64px 0 28px;
+    margin-top: 80px;
 }
 
-.footer-section h4{
-color:#fff;
-font-weight:700;
-margin-bottom:20px;
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.footer-section h4 {
+    color: #fff;
+    font-weight: 700;
+    margin-bottom: 18px;
+    font-size: 1rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
 }
 
 .footer-section a,
-.footer-section p{
-color:var(--silver-steel);
-text-decoration:none;
-font-size:.95rem;
-display:block;
-margin-bottom:10px;
+.footer-section p {
+    color: var(--silver);
+    text-decoration: none;
+    font-size: 0.9rem;
+    display: block;
+    margin-bottom: 10px;
+    transition: color 0.2s;
 }
 
-.social-icons a{
-font-size:1.4rem;
-margin-right:15px;
-color:var(--silver-steel);
+.footer-section a:hover { color: #fff; }
+
+.social-icons a {
+    font-size: 1.4rem;
+    margin-right: 16px;
+    color: var(--silver);
+    transition: color 0.2s;
 }
 
-.footer-bottom{
-border-top:1px solid rgba(255,255,255,.1);
-margin-top:40px;
-padding-top:20px;
-text-align:center;
-font-size:.9rem;
+.social-icons a:hover { color: #fff; }
+
+.footer-bottom {
+    border-top: 1px solid rgba(255,255,255,.1);
+    margin-top: 40px;
+    padding-top: 20px;
+    text-align: center;
+    font-size: 0.88rem;
+    color: #888;
 }
 
-/* ================= RESPONSIVE ONLY ================= */
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
 
-@media(max-width:992px){
-.hero{height:70vh;padding-left:40px;}
-.hero-content h1{font-size:52px;}
-.category-card{height:230px;}
-.product-image-box{height:210px;}
-.promo h2{font-size:2.6rem;}
+@media (max-width: 1199px) {
+    .hero { height: 500px; }
+    .banner-overlay { padding-left: 50px; }
 }
 
-@media(max-width:768px){
-.hero{
-height:65vh;
-padding:0 20px;
-justify-content:center;
-text-align:center;
-}
-.hero-content h1{font-size:40px;}
-.hero-content p{font-size:16px;}
-.btn-shop{padding:14px 34px;font-size:14px;}
-.category-card{height:200px;}
-.product-image-box{height:190px;}
-.promo{padding:60px 20px;margin:40px 15px;}
-.promo h2{font-size:2rem;}
-.footer-content{flex-direction:column;text-align:center;}
+@media (max-width: 991px) {
+    .hero { height: 440px; }
+    .banner-overlay { padding-left: 36px; }
 }
 
-@media(max-width:480px){
-.hero-content h1{font-size:32px;}
-.hero-content p{font-size:15px;}
-.promo h2{font-size:1.6rem;}
-.footer{padding:50px 15px 25px;}
-}
+@media (max-width: 767px) {
+    .hero { height: 320px; }
 
-@media(max-width:768px){
-    .hero{
-        height:300px;
-        margin:20px 15px 0;
-        border-radius:18px;
+    .banner-overlay {
+        padding: 0 24px;
+        justify-content: center;
+        text-align: center;
+        background: linear-gradient(180deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.65) 100%);
     }
 
-    .banner-overlay{
-        padding:0 20px;
-        justify-content:center;
-        text-align:center;
-    }
+    .banner-content h1 { font-size: clamp(1.5rem, 7vw, 2.2rem); }
+    .banner-content p  { font-size: 0.88rem; margin-bottom: 18px; }
+    .btn-shop          { padding: 11px 26px; font-size: 0.85rem; }
 
-    .banner-content h1{
-        font-size:32px;
-    }
+    /* Category: square on mobile */
+    .category-img { aspect-ratio: 1 / 1; }
+    .shop-btn { opacity: 1; transform: none; }
 
-    .banner-content p{
-        font-size:15px;
-    }
-}
-.category-card{
-    background:#fff;
-    border-radius:16px;
-    overflow:hidden;
-    box-shadow:0 6px 20px rgba(0,0,0,0.08);
-    transition:all .25s ease;
-    height:100%;
+    /* Products */
+    .product-img-wrap { aspect-ratio: 1 / 1; }
+    .product-info { padding: 12px 14px 16px; }
+    .product-info h5 { font-size: 0.84rem; }
+    .product-info p  { font-size: 0.9rem; }
+
+    .footer { padding: 48px 0 22px; margin-top: 50px; }
+    .footer-content { flex-direction: column; text-align: center; gap: 28px; }
+    .social-icons { display: flex; justify-content: center; }
+    .social-icons a { margin: 0 10px; }
 }
 
-.category-img{
-    width:100%;
-    aspect-ratio: 16 / 10;
-    background:#f6f6f6;
-    overflow:hidden;
-    position:relative; /* ⭐ important */
-}
-
-.category-img img{
-    width:100%;
-    height:100%;
-    object-fit: cover;
-    object-position:center;
-    display:block;
-    transition:transform .25s ease;
-}
-
-/* White button style */
-.shop-btn{
-    position:absolute;
-    bottom:15px;
-    left:14px;              /* 🔥 move to left */
-    transform:none;         /* 🔥 remove centering */
-    opacity:0;
-    transition:all .25s ease;
-
-    background:#fff !important;
-    color:#000 !important;
-    border:none;
-    font-weight:600;
-}
-
-.shop-btn:hover{
-    background:#000 !important;
-    color:#fff !important;
-}
-
-/* ⭐ Hover effects */
-.category-card:hover{
-    transform:translateY(-6px);
-    box-shadow:0 14px 35px rgba(0,0,0,0.15);
-}
-
-.category-card:hover img{
-    transform:scale(1.06);
-}
-
-.category-card:hover .shop-btn{
-    opacity:1;
-    bottom:20px;
+@media (max-width: 479px) {
+    .hero { height: 240px; }
+    .section-title { font-size: 1.1rem; }
+    .category-label { font-size: 11px; padding: 8px 16px; }
 }
 </style>
-</head>
 
-<body>
-
-{% include 'base.html'%}
-
+<!-- ===== HERO BANNER ===== -->
 {% if banner %}
 <section class="hero">
-    <img src="{{ banner.image.url }}" alt="Banner">
-
+    <img src="{{ banner.image.url }}" alt="{{ banner.title }}">
     <div class="banner-overlay">
         <div class="banner-content">
             <h1>{{ banner.title }}</h1>
             <p>{{ banner.subtitle }}</p>
+            <a href="{% url 'casualfit' %}" class="btn-shop">Shop Now</a>
         </div>
     </div>
 </section>
 {% endif %}
 
+<!-- ===== SHOP BY CATEGORY ===== -->
 <div class="container my-5">
-    <h2 class="fw-bold mb-4">SHOP BY CATEGORY</h2>
+    <h2 class="section-title">Shop By Category</h2>
 
-    <div class="row g-4">
+    <div class="row g-3 g-md-4">
 
-        <!-- Casual -->
         <div class="col-6 col-md-6">
             <div class="category-card">
                 <div class="category-img">
                     <img src="{% static 'images/casual.png' %}" alt="Casual Fit">
-                    <a href="{% url 'casualfit'%}" class="btn btn-sm shop-btn">Shop Now</a>
+                    
+                    <a href="{% url 'casualfit' %}" class="btn btn-sm shop-btn">Shop Now</a>
                 </div>
             </div>
         </div>
 
-        <!-- Formal -->
         <div class="col-6 col-md-6">
             <div class="category-card">
                 <div class="category-img">
                     <img src="{% static 'images/formal.png' %}" alt="Formal Fit">
-                    <a href="{% url 'formalfit'%}" class="btn btn-sm shop-btn">Shop Now</a>
+                    
+                    <a href="{% url 'formalfit' %}" class="btn btn-sm shop-btn">Shop Now</a>
                 </div>
             </div>
         </div>
 
-        <!-- Innerwear -->
         <div class="col-6 col-md-6">
             <div class="category-card">
                 <div class="category-img">
                     <img src="{% static 'images/innerwear.png' %}" alt="Innerwear">
-                    <a href="{% url 'innerwear'%}" class="btn btn-sm shop-btn">Shop Now</a>
+                 
+                    <a href="{% url 'innerwear' %}" class="btn btn-sm shop-btn">Shop Now</a>
                 </div>
             </div>
         </div>
 
-        <!-- Accessories -->
         <div class="col-6 col-md-6">
             <div class="category-card">
                 <div class="category-img">
                     <img src="{% static 'images/accessories.png' %}" alt="Accessories">
-                    <a href="{% url 'accessories'%}" class="btn btn-sm shop-btn">Shop Now</a>
+                   
+                    <a href="{% url 'accessories' %}" class="btn btn-sm shop-btn">Shop Now</a>
                 </div>
             </div>
         </div>
@@ -435,40 +391,31 @@ text-align:center;
     </div>
 </div>
 
+<!-- ===== TRENDING PRODUCTS ===== -->
 <div class="container my-5">
-    <h2 class="mb-4">TRENDING PRODUCTS</h2>
+    <h2 class="section-title">Trending Products</h2>
 
-    <div class="row g-4">
+    <div class="row g-3 g-md-4">
 
         {% for product in trending %}
-        <div class="col-md-3">
-
-            <div class="product-card">
-
-                <div class="product-image">
-
-                    <a href="{% url 'productsdetail' product.id %}"
-               class="text-decoration-none text-dark d-block h-100">
-                    {% if product.image %}
-                        <img src="{{ product.image.url }}"
-                             alt="{{ product.name }}"
-                             style="width:100%; height:100%; object-fit:cover;">
-                    {% endif %}
+        <div class="col-6 col-md-3">
+            <a href="{% url 'productsdetail' product.id %}" class="text-decoration-none">
+                <div class="product-card">
+                    <div class="product-img-wrap">
+                        {% if product.image %}
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                        {% endif %}
+                    </div>
+                    <div class="product-info">
+                        <h5>{{ product.name }}</h5>
+                        {% if product.discount_price %}
+                            <p>₹{{ product.discount_price }}</p>
+                        {% else %}
+                            <p>₹{{ product.price }}</p>
+                        {% endif %}
+                    </div>
                 </div>
-
-                <div class="p-4 text-center">
-                    <h5>{{ product.name }}</h5>
-
-                    {% if product.discount_price %}
-                        <p>₹{{ product.discount_price }}</p>
-                    {% else %}
-                        <p>₹{{ product.price }}</p>
-                    {% endif %}
-                </div>
-
-            </div>
-                        </a>
-
+            </a>
         </div>
         {% empty %}
         <p class="text-muted">No trending products right now.</p>
@@ -477,43 +424,39 @@ text-align:center;
     </div>
 </div>
 
-
-
-
+<!-- ===== FOOTER ===== -->
 <footer class="footer">
-<div class="container">
-<div class="footer-content">
-<div class="footer-section">
-<h4>Men’s Store</h4>
-<p><i class="bi bi-geo-alt"></i> Kerala, India</p>
-<p><i class="bi bi-telephone"></i> +91 98765 43210</p>
-<p><i class="bi bi-envelope"></i> support@mensstore.com</p>
-</div>
+    <div class="container">
+        <div class="footer-content">
 
-<div class="footer-section">
-<h4>Quick Links</h4>
-<a href="{% url 'home' %}">Home</a>
-<a href="{% url 'loggin' %}">Login</a>
-{% comment %} <a href="{% url '' %}">Forgot Password</a> {% endcomment %}
-</div>
+            <div class="footer-section">
+                <h4>Men's Store</h4>
+                <p><i class="bi bi-geo-alt me-2"></i>Kerala, India</p>
+                <p><i class="bi bi-telephone me-2"></i>+91 98765 43210</p>
+                <p><i class="bi bi-envelope me-2"></i>support@mensstore.com</p>
+            </div>
 
-<div class="footer-section">
-<h4>Follow Us</h4>
-<div class="social-icons">
-<a href="#"><i class="bi bi-facebook"></i></a>
-<a href="#"><i class="bi bi-instagram"></i></a>
-<a href="#"><i class="bi bi-twitter-x"></i></a>
-</div>
-</div>
-</div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="{% url 'home' %}">Home</a>
+                <a href="{% url 'loggin' %}">Login</a>
+            </div>
 
-<div class="footer-bottom">
-<p>© 2026 Men’s Store. Crafted with <i class="bi bi-heart-fill"></i></p>
-</div>
-</div>
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="bi bi-facebook"></i></a>
+                    <a href="#"><i class="bi bi-instagram"></i></a>
+                    <a href="#"><i class="bi bi-twitter-x"></i></a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 Men's Store. Crafted with <i class="bi bi-heart-fill text-danger"></i></p>
+        </div>
+    </div>
 </footer>
 
-</body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
- 
-</html>
+{% endblock %}

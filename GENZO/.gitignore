@@ -1,0 +1,36 @@
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Virtual environment
+venv/
+env/
+
+# Environment variables
+.env
+
+# Database
+db.sqlite3
+
+# Logs
+*.log
+
+# Static collected files
+staticfiles/
+
+# Media uploads
+media/
+
+# VS Code
+.vscode/
+
+# Mac files
+.DS_Store
+
+# Python build files
+*.egg-info/
+dist/
+build/
+
+# Migrations cache
+*/migrations/__pycache__/

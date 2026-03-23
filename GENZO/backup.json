@@ -1,0 +1,5185 @@
+[
+{
+    "model": "auth.permission",
+    "pk": 1,
+    "fields": {
+        "name": "Can add log entry",
+        "content_type": 1,
+        "codename": "add_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 2,
+    "fields": {
+        "name": "Can change log entry",
+        "content_type": 1,
+        "codename": "change_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 3,
+    "fields": {
+        "name": "Can delete log entry",
+        "content_type": 1,
+        "codename": "delete_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 4,
+    "fields": {
+        "name": "Can view log entry",
+        "content_type": 1,
+        "codename": "view_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 5,
+    "fields": {
+        "name": "Can add permission",
+        "content_type": 2,
+        "codename": "add_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 6,
+    "fields": {
+        "name": "Can change permission",
+        "content_type": 2,
+        "codename": "change_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 7,
+    "fields": {
+        "name": "Can delete permission",
+        "content_type": 2,
+        "codename": "delete_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 8,
+    "fields": {
+        "name": "Can view permission",
+        "content_type": 2,
+        "codename": "view_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 9,
+    "fields": {
+        "name": "Can add group",
+        "content_type": 3,
+        "codename": "add_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 10,
+    "fields": {
+        "name": "Can change group",
+        "content_type": 3,
+        "codename": "change_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 11,
+    "fields": {
+        "name": "Can delete group",
+        "content_type": 3,
+        "codename": "delete_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 12,
+    "fields": {
+        "name": "Can view group",
+        "content_type": 3,
+        "codename": "view_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 13,
+    "fields": {
+        "name": "Can add content type",
+        "content_type": 4,
+        "codename": "add_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 14,
+    "fields": {
+        "name": "Can change content type",
+        "content_type": 4,
+        "codename": "change_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 15,
+    "fields": {
+        "name": "Can delete content type",
+        "content_type": 4,
+        "codename": "delete_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 16,
+    "fields": {
+        "name": "Can view content type",
+        "content_type": 4,
+        "codename": "view_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 17,
+    "fields": {
+        "name": "Can add session",
+        "content_type": 5,
+        "codename": "add_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 18,
+    "fields": {
+        "name": "Can change session",
+        "content_type": 5,
+        "codename": "change_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 19,
+    "fields": {
+        "name": "Can delete session",
+        "content_type": 5,
+        "codename": "delete_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 20,
+    "fields": {
+        "name": "Can view session",
+        "content_type": 5,
+        "codename": "view_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 21,
+    "fields": {
+        "name": "Can add banner",
+        "content_type": 6,
+        "codename": "add_banner"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 22,
+    "fields": {
+        "name": "Can change banner",
+        "content_type": 6,
+        "codename": "change_banner"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 23,
+    "fields": {
+        "name": "Can delete banner",
+        "content_type": 6,
+        "codename": "delete_banner"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 24,
+    "fields": {
+        "name": "Can view banner",
+        "content_type": 6,
+        "codename": "view_banner"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 25,
+    "fields": {
+        "name": "Can add category",
+        "content_type": 7,
+        "codename": "add_category"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 26,
+    "fields": {
+        "name": "Can change category",
+        "content_type": 7,
+        "codename": "change_category"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 27,
+    "fields": {
+        "name": "Can delete category",
+        "content_type": 7,
+        "codename": "delete_category"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 28,
+    "fields": {
+        "name": "Can view category",
+        "content_type": 7,
+        "codename": "view_category"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 29,
+    "fields": {
+        "name": "Can add user",
+        "content_type": 8,
+        "codename": "add_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 30,
+    "fields": {
+        "name": "Can change user",
+        "content_type": 8,
+        "codename": "change_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 31,
+    "fields": {
+        "name": "Can delete user",
+        "content_type": 8,
+        "codename": "delete_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 32,
+    "fields": {
+        "name": "Can view user",
+        "content_type": 8,
+        "codename": "view_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 33,
+    "fields": {
+        "name": "Can add sub category",
+        "content_type": 9,
+        "codename": "add_subcategory"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 34,
+    "fields": {
+        "name": "Can change sub category",
+        "content_type": 9,
+        "codename": "change_subcategory"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 35,
+    "fields": {
+        "name": "Can delete sub category",
+        "content_type": 9,
+        "codename": "delete_subcategory"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 36,
+    "fields": {
+        "name": "Can view sub category",
+        "content_type": 9,
+        "codename": "view_subcategory"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 37,
+    "fields": {
+        "name": "Can add products",
+        "content_type": 10,
+        "codename": "add_products"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 38,
+    "fields": {
+        "name": "Can change products",
+        "content_type": 10,
+        "codename": "change_products"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 39,
+    "fields": {
+        "name": "Can delete products",
+        "content_type": 10,
+        "codename": "delete_products"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 40,
+    "fields": {
+        "name": "Can view products",
+        "content_type": 10,
+        "codename": "view_products"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 41,
+    "fields": {
+        "name": "Can add wishlist",
+        "content_type": 11,
+        "codename": "add_wishlist"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 42,
+    "fields": {
+        "name": "Can change wishlist",
+        "content_type": 11,
+        "codename": "change_wishlist"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 43,
+    "fields": {
+        "name": "Can delete wishlist",
+        "content_type": 11,
+        "codename": "delete_wishlist"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 44,
+    "fields": {
+        "name": "Can view wishlist",
+        "content_type": 11,
+        "codename": "view_wishlist"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 45,
+    "fields": {
+        "name": "Can add site",
+        "content_type": 12,
+        "codename": "add_site"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 46,
+    "fields": {
+        "name": "Can change site",
+        "content_type": 12,
+        "codename": "change_site"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 47,
+    "fields": {
+        "name": "Can delete site",
+        "content_type": 12,
+        "codename": "delete_site"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 48,
+    "fields": {
+        "name": "Can view site",
+        "content_type": 12,
+        "codename": "view_site"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 49,
+    "fields": {
+        "name": "Can add email address",
+        "content_type": 13,
+        "codename": "add_emailaddress"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 50,
+    "fields": {
+        "name": "Can change email address",
+        "content_type": 13,
+        "codename": "change_emailaddress"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 51,
+    "fields": {
+        "name": "Can delete email address",
+        "content_type": 13,
+        "codename": "delete_emailaddress"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 52,
+    "fields": {
+        "name": "Can view email address",
+        "content_type": 13,
+        "codename": "view_emailaddress"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 53,
+    "fields": {
+        "name": "Can add email confirmation",
+        "content_type": 14,
+        "codename": "add_emailconfirmation"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 54,
+    "fields": {
+        "name": "Can change email confirmation",
+        "content_type": 14,
+        "codename": "change_emailconfirmation"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 55,
+    "fields": {
+        "name": "Can delete email confirmation",
+        "content_type": 14,
+        "codename": "delete_emailconfirmation"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 56,
+    "fields": {
+        "name": "Can view email confirmation",
+        "content_type": 14,
+        "codename": "view_emailconfirmation"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 57,
+    "fields": {
+        "name": "Can add social account",
+        "content_type": 15,
+        "codename": "add_socialaccount"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 58,
+    "fields": {
+        "name": "Can change social account",
+        "content_type": 15,
+        "codename": "change_socialaccount"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 59,
+    "fields": {
+        "name": "Can delete social account",
+        "content_type": 15,
+        "codename": "delete_socialaccount"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 60,
+    "fields": {
+        "name": "Can view social account",
+        "content_type": 15,
+        "codename": "view_socialaccount"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 61,
+    "fields": {
+        "name": "Can add social application",
+        "content_type": 16,
+        "codename": "add_socialapp"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 62,
+    "fields": {
+        "name": "Can change social application",
+        "content_type": 16,
+        "codename": "change_socialapp"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 63,
+    "fields": {
+        "name": "Can delete social application",
+        "content_type": 16,
+        "codename": "delete_socialapp"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 64,
+    "fields": {
+        "name": "Can view social application",
+        "content_type": 16,
+        "codename": "view_socialapp"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 65,
+    "fields": {
+        "name": "Can add social application token",
+        "content_type": 17,
+        "codename": "add_socialtoken"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 66,
+    "fields": {
+        "name": "Can change social application token",
+        "content_type": 17,
+        "codename": "change_socialtoken"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 67,
+    "fields": {
+        "name": "Can delete social application token",
+        "content_type": 17,
+        "codename": "delete_socialtoken"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 68,
+    "fields": {
+        "name": "Can view social application token",
+        "content_type": 17,
+        "codename": "view_socialtoken"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 69,
+    "fields": {
+        "name": "Can add size",
+        "content_type": 18,
+        "codename": "add_size"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 70,
+    "fields": {
+        "name": "Can change size",
+        "content_type": 18,
+        "codename": "change_size"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 71,
+    "fields": {
+        "name": "Can delete size",
+        "content_type": 18,
+        "codename": "delete_size"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 72,
+    "fields": {
+        "name": "Can view size",
+        "content_type": 18,
+        "codename": "view_size"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 73,
+    "fields": {
+        "name": "Can add cart",
+        "content_type": 19,
+        "codename": "add_cart"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 74,
+    "fields": {
+        "name": "Can change cart",
+        "content_type": 19,
+        "codename": "change_cart"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 75,
+    "fields": {
+        "name": "Can delete cart",
+        "content_type": 19,
+        "codename": "delete_cart"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 76,
+    "fields": {
+        "name": "Can view cart",
+        "content_type": 19,
+        "codename": "view_cart"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 77,
+    "fields": {
+        "name": "Can add profile",
+        "content_type": 20,
+        "codename": "add_profile"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 78,
+    "fields": {
+        "name": "Can change profile",
+        "content_type": 20,
+        "codename": "change_profile"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 79,
+    "fields": {
+        "name": "Can delete profile",
+        "content_type": 20,
+        "codename": "delete_profile"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 80,
+    "fields": {
+        "name": "Can view profile",
+        "content_type": 20,
+        "codename": "view_profile"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 81,
+    "fields": {
+        "name": "Can add address",
+        "content_type": 21,
+        "codename": "add_address"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 82,
+    "fields": {
+        "name": "Can change address",
+        "content_type": 21,
+        "codename": "change_address"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 83,
+    "fields": {
+        "name": "Can delete address",
+        "content_type": 21,
+        "codename": "delete_address"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 84,
+    "fields": {
+        "name": "Can view address",
+        "content_type": 21,
+        "codename": "view_address"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 85,
+    "fields": {
+        "name": "Can add payment",
+        "content_type": 22,
+        "codename": "add_payment"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 86,
+    "fields": {
+        "name": "Can change payment",
+        "content_type": 22,
+        "codename": "change_payment"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 87,
+    "fields": {
+        "name": "Can delete payment",
+        "content_type": 22,
+        "codename": "delete_payment"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 88,
+    "fields": {
+        "name": "Can view payment",
+        "content_type": 22,
+        "codename": "view_payment"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 89,
+    "fields": {
+        "name": "Can add order",
+        "content_type": 23,
+        "codename": "add_order"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 90,
+    "fields": {
+        "name": "Can change order",
+        "content_type": 23,
+        "codename": "change_order"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 91,
+    "fields": {
+        "name": "Can delete order",
+        "content_type": 23,
+        "codename": "delete_order"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 92,
+    "fields": {
+        "name": "Can view order",
+        "content_type": 23,
+        "codename": "view_order"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 93,
+    "fields": {
+        "name": "Can add order item",
+        "content_type": 24,
+        "codename": "add_orderitem"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 94,
+    "fields": {
+        "name": "Can change order item",
+        "content_type": 24,
+        "codename": "change_orderitem"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 95,
+    "fields": {
+        "name": "Can delete order item",
+        "content_type": 24,
+        "codename": "delete_orderitem"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 96,
+    "fields": {
+        "name": "Can view order item",
+        "content_type": 24,
+        "codename": "view_orderitem"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 97,
+    "fields": {
+        "name": "Can add coupon",
+        "content_type": 25,
+        "codename": "add_coupon"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 98,
+    "fields": {
+        "name": "Can change coupon",
+        "content_type": 25,
+        "codename": "change_coupon"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 99,
+    "fields": {
+        "name": "Can delete coupon",
+        "content_type": 25,
+        "codename": "delete_coupon"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 100,
+    "fields": {
+        "name": "Can view coupon",
+        "content_type": 25,
+        "codename": "view_coupon"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 101,
+    "fields": {
+        "name": "Can add review rating",
+        "content_type": 26,
+        "codename": "add_reviewrating"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 102,
+    "fields": {
+        "name": "Can change review rating",
+        "content_type": 26,
+        "codename": "change_reviewrating"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 103,
+    "fields": {
+        "name": "Can delete review rating",
+        "content_type": 26,
+        "codename": "delete_reviewrating"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 104,
+    "fields": {
+        "name": "Can view review rating",
+        "content_type": 26,
+        "codename": "view_reviewrating"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 105,
+    "fields": {
+        "name": "Can add notification",
+        "content_type": 27,
+        "codename": "add_notification"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 106,
+    "fields": {
+        "name": "Can change notification",
+        "content_type": 27,
+        "codename": "change_notification"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 107,
+    "fields": {
+        "name": "Can delete notification",
+        "content_type": 27,
+        "codename": "delete_notification"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 108,
+    "fields": {
+        "name": "Can view notification",
+        "content_type": 27,
+        "codename": "view_notification"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 1,
+    "fields": {
+        "app_label": "admin",
+        "model": "logentry"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 2,
+    "fields": {
+        "app_label": "auth",
+        "model": "permission"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 3,
+    "fields": {
+        "app_label": "auth",
+        "model": "group"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 4,
+    "fields": {
+        "app_label": "contenttypes",
+        "model": "contenttype"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 5,
+    "fields": {
+        "app_label": "sessions",
+        "model": "session"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 6,
+    "fields": {
+        "app_label": "clothing_store",
+        "model": "banner"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 7,
+    "fields": {
+        "app_label": "clothing_store",
+        "model": "category"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 8,
+    "fields": {
+        "app_label": "clothing_store",
+        "model": "user"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 9,
+    "fields": {
+        "app_label": "clothing_store",
+        "model": "subcategory"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 10,
+    "fields": {
+        "app_label": "clothing_store",
+        "model": "products"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 11,
+    "fields": {
+        "app_label": "clothing_store",
+        "model": "wishlist"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 12,
+    "fields": {
+        "app_label": "sites",
+        "model": "site"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 13,
+    "fields": {
+        "app_label": "account",
+        "model": "emailaddress"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 14,
+    "fields": {
+        "app_label": "account",
+        "model": "emailconfirmation"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 15,
+    "fields": {
+        "app_label": "socialaccount",
+        "model": "socialaccount"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 16,
+    "fields": {
+        "app_label": "socialaccount",
+        "model": "socialapp"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 17,
+    "fields": {
+        "app_label": "socialaccount",
+        "model": "socialtoken"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 18,
+    "fields": {
+        "app_label": "clothing_store",
+        "model": "size"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 19,
+    "fields": {
+        "app_label": "clothing_store",
+        "model": "cart"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 20,
+    "fields": {
+        "app_label": "clothing_store",
+        "model": "profile"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 21,
+    "fields": {
+        "app_label": "clothing_store",
+        "model": "address"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 22,
+    "fields": {
+        "app_label": "clothing_store",
+        "model": "payment"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 23,
+    "fields": {
+        "app_label": "clothing_store",
+        "model": "order"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 24,
+    "fields": {
+        "app_label": "clothing_store",
+        "model": "orderitem"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 25,
+    "fields": {
+        "app_label": "clothing_store",
+        "model": "coupon"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 26,
+    "fields": {
+        "app_label": "clothing_store",
+        "model": "reviewrating"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 27,
+    "fields": {
+        "app_label": "clothing_store",
+        "model": "notification"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "2gi1m3h8js747nze7bvdmyxki802ff5u",
+    "fields": {
+        "session_data": "e30:1vlP8O:RiHiD8_JvOhT2ZvxOJnsP7KzYIf-bAmVYpbyaQl4jRc",
+        "expire_date": "2026-02-12T10:20:20.770Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "c1ne7w4p3q43a0ckwhltrm7zysxbt1kl",
+    "fields": {
+        "session_data": "eyJrZXkiOiJ1c2VyIiwiX3Nlc3Npb25fZXhwaXJ5IjowfQ:1vlPET:8bgKOard4-SjZWvrRB-h1PrBDRyKgiCt8OsOJAWgT2s",
+        "expire_date": "2026-02-12T10:26:37.136Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "dlv0hb95jmxei9y8tcsil3fsog5jgapu",
+    "fields": {
+        "session_data": "eyJrZXkiOiJ1c2VyIiwiX3Nlc3Npb25fZXhwaXJ5IjowfQ:1vkdLn:al7reE1s3IWBR69fMLqAdymobBmLW8GKDYa5Qwm1z0Y",
+        "expire_date": "2026-02-10T07:18:59.667Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "l2cjzwqyf4vs4mez1ze2k05n5b2azmli",
+    "fields": {
+        "session_data": "eyJrZXkiOiJ1c2VyIiwiX3Nlc3Npb25fZXhwaXJ5IjowfQ:1vlSur:-FMBLmds-xRSetllt7UQf1HyODHdUGXEvSu7uOrqXGs",
+        "expire_date": "2026-02-12T14:22:37.444Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "vkdta1p7enxbwbwlrpztmmr4ejvkmc1b",
+    "fields": {
+        "session_data": "eyJrZXkiOiJ1c2VyIiwiX3Nlc3Npb25fZXhwaXJ5IjowfQ:1vkbqO:GgoQWDEADkFJoA3QyTxPDoUzTmgPj49kR_pklVZ76xY",
+        "expire_date": "2026-02-10T05:42:28.807Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "vpdq1kdtllj7bfpftia22hpf2ibj2qf9",
+    "fields": {
+        "session_data": ".eJxVjEEOwiAQRe_C2hBKhsK4dO8ZyMAMUjU0Ke3KeHdt0oVu_3vvv1Skba1x67LEidVZgTr9bonyQ9oO-E7tNus8t3WZkt4VfdCurzPL83K4fweVev3WozODczaBYDaAkoopHkZk74vkoYgQA1gWE4IlHzgBoDcYPBIGYfX-AOMYN_4:1vzWkl:fhIAIjeZudCp4GUezwLCKSvUJCDWnoo98L-u3t1WTaY",
+        "expire_date": "2026-03-23T09:18:19.247Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "w0zxv0w00cyvsmq2qtmy2cvpktbkw4mz",
+    "fields": {
+        "session_data": "eyJrZXkiOiJ1c2VyIiwiX3Nlc3Npb25fZXhwaXJ5IjowfQ:1vkf74:Nva6z3-iqRdciEn8pagsL5nXFUn1E6O5jJFMOPJ-Qhk",
+        "expire_date": "2026-02-10T09:11:54.824Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "w3bue6tg4omzws98nzq17ea3n69exmn5",
+    "fields": {
+        "session_data": "eyJrZXkiOiJ1c2VyIiwiX3Nlc3Npb25fZXhwaXJ5IjowfQ:1vlOuK:reIylGFnF8Gl3H3nAJlZGGNZW4rv6qsNhHR5-GQ0a_E",
+        "expire_date": "2026-02-12T10:05:48.812Z"
+    }
+},
+{
+    "model": "clothing_store.user",
+    "pk": 1,
+    "fields": {
+        "password": "!BLONUN1UNioiY8tvFdN48BAOZ0lFdczWOviPA7A0",
+        "last_login": "2026-03-09T07:37:58.618Z",
+        "is_superuser": false,
+        "username": "business",
+        "first_name": "Business",
+        "last_name": "Business",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-01-23T11:08:31.061Z",
+        "email": "business01091@gmail.com",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "clothing_store.user",
+    "pk": 3,
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$qHpU1Jjw5LnPW0eExljHtZ$akD2d4mp9ofoJsENlxN2y2oAHmx7lZjJmaPQvoLslec=",
+        "last_login": "2026-03-09T07:40:00.982Z",
+        "is_superuser": true,
+        "username": "admin",
+        "first_name": "",
+        "last_name": "",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2026-01-23T17:01:25.448Z",
+        "email": "admin@gmail.com",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "clothing_store.user",
+    "pk": 4,
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$CaTh5hx3qTh3pHKfy6uMZm$suGyO2GostEWInxS4k4iyBqjgJ90l9RzVDwFaINpo9c=",
+        "last_login": "2026-03-09T09:18:19.239Z",
+        "is_superuser": false,
+        "username": "nothing",
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-01-27T07:18:45.915Z",
+        "email": "nothing@gmail.com",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "clothing_store.user",
+    "pk": 5,
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$JiWWHCBSImI0RXBc95OhKh$oP/HE0OMGuAsGjiyAUGjlqoNrOYXUT5Y0Oz5wjentpQ=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "nasi",
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-01-28T06:55:10.157Z",
+        "email": "nasih8089@gmail.com",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "clothing_store.user",
+    "pk": 8,
+    "fields": {
+        "password": "!wvPsobOtgJsQoHa1OZ43w6xf2JkRu52HRLinJKYL",
+        "last_login": "2026-01-29T09:17:40.347Z",
+        "is_superuser": false,
+        "username": "muhammed",
+        "first_name": "Muhammed",
+        "last_name": "Razi",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-01-29T08:57:22.988Z",
+        "email": "muhammedrazi01091@gmail.com",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "clothing_store.user",
+    "pk": 9,
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$TObvn0IXBnmMedspuNK0rM$AaWanV/k+WqtoU5WY05YUL4XHIQ9+ZOHJ9JOiZKIbRo=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "hey",
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-01-29T10:20:20.047Z",
+        "email": "hey@gmail.com",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "clothing_store.user",
+    "pk": 10,
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$leloBZhtr8QX3oWekao7Qj$v1Qyb1U//x7/DrAnvPtJOJQMkWrCfepDyGmf2CbQEK0=",
+        "last_login": "2026-02-05T16:30:33.592Z",
+        "is_superuser": false,
+        "username": "shazal",
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-02-05T16:29:59.528Z",
+        "email": "shazalnoushad055@gmail.com",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "clothing_store.user",
+    "pk": 11,
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$TJuHpH4KIHsm2cwjrJPog1$ts4+0LhWFrR7N7J9XqbKzAH6gxCbdtJABxPBxVdVe4s=",
+        "last_login": "2026-02-05T16:35:33.214Z",
+        "is_superuser": false,
+        "username": "whhjwb",
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "is_active": false,
+        "date_joined": "2026-02-05T16:35:30.320Z",
+        "email": "gvuwv@gmail.com",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "clothing_store.user",
+    "pk": 12,
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$2YhrRfnDecM2TbW9FOOubp$wSLf2PWvst5Lqwej2aKelMftQXMrPAtYl5AKBBCkbxY=",
+        "last_login": "2026-02-05T16:36:49.674Z",
+        "is_superuser": false,
+        "username": "frfk",
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "is_active": false,
+        "date_joined": "2026-02-05T16:36:46.928Z",
+        "email": "skjend@gmail.com",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "clothing_store.user",
+    "pk": 13,
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$BZBxK0pWArbbaU5WedchPq$y6OzkpdZOoQdPnWK6X6gs1ehxfbvKdcLuuwNhCV7g2o=",
+        "last_login": "2026-02-05T16:49:34.139Z",
+        "is_superuser": false,
+        "username": "efaem",
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "is_active": false,
+        "date_joined": "2026-02-05T16:49:31.282Z",
+        "email": "ehjrwn@gmail.com",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "clothing_store.user",
+    "pk": 14,
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$6OXGoR4ghgnVYtWajZ6w4u$tVqmzb4D6ExR97ukSJZWxsYOcek6qACutECsqEaS7GU=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "vwxwqjx",
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "is_active": false,
+        "date_joined": "2026-02-06T04:38:22.069Z",
+        "email": "xgwvgw@gmail.com",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "clothing_store.user",
+    "pk": 15,
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$xYXBmRVdCq27xThxAfna6x$gZtcJDVbG8G5WXNxryFA5QD7LNxvmn+KUnHMmJKqVAU=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "fcccy",
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "is_active": false,
+        "date_joined": "2026-02-06T04:39:01.474Z",
+        "email": "vxjw2@gmail.com",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "clothing_store.user",
+    "pk": 16,
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$QDhh0G0YrbQspQRLyNq4t3$1FyZgSQM0yRo1oJxex8mCjE5RHjItrFUx4eOQdLUV5k=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "hu3b3hu",
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "is_active": false,
+        "date_joined": "2026-02-09T10:56:12.118Z",
+        "email": "shb2b@gmail.com",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "clothing_store.user",
+    "pk": 17,
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$Qkzj50NcTTwMbqCacDcVlb$n0SDlRRAwF8GzcbXnixTH46dO603j3mNvFz9eZ8eLAg=",
+        "last_login": "2026-02-09T11:22:34.623Z",
+        "is_superuser": false,
+        "username": "hjbhjbj",
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "is_active": false,
+        "date_joined": "2026-02-09T10:57:26.508Z",
+        "email": "bxbqw@gmail.com",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "clothing_store.user",
+    "pk": 18,
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$V6swxJehUEKZGsdNsgHdfp$eDA9KwFO1zvqiv+Tbjj4xCu/OimbviBZ4LcwQjlS/y0=",
+        "last_login": "2026-03-09T07:36:11.060Z",
+        "is_superuser": false,
+        "username": "skill",
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-02-20T05:58:03.246Z",
+        "email": "skill@gmail.com",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "clothing_store.category",
+    "pk": 1,
+    "fields": {
+        "name": "Casual",
+        "has_size": true
+    }
+},
+{
+    "model": "clothing_store.category",
+    "pk": 2,
+    "fields": {
+        "name": "Formal",
+        "has_size": true
+    }
+},
+{
+    "model": "clothing_store.category",
+    "pk": 3,
+    "fields": {
+        "name": "Innerwear",
+        "has_size": true
+    }
+},
+{
+    "model": "clothing_store.category",
+    "pk": 4,
+    "fields": {
+        "name": "Accessories",
+        "has_size": true
+    }
+},
+{
+    "model": "clothing_store.category",
+    "pk": 16,
+    "fields": {
+        "name": "jersy",
+        "has_size": true
+    }
+},
+{
+    "model": "clothing_store.subcategory",
+    "pk": 1,
+    "fields": {
+        "name": "Shirt",
+        "category": 1
+    }
+},
+{
+    "model": "clothing_store.subcategory",
+    "pk": 2,
+    "fields": {
+        "name": "Jeans",
+        "category": 1
+    }
+},
+{
+    "model": "clothing_store.subcategory",
+    "pk": 3,
+    "fields": {
+        "name": "T-shirt",
+        "category": 1
+    }
+},
+{
+    "model": "clothing_store.subcategory",
+    "pk": 4,
+    "fields": {
+        "name": "Track Pants",
+        "category": 1
+    }
+},
+{
+    "model": "clothing_store.subcategory",
+    "pk": 5,
+    "fields": {
+        "name": "Shorts",
+        "category": 1
+    }
+},
+{
+    "model": "clothing_store.subcategory",
+    "pk": 6,
+    "fields": {
+        "name": "Formal Shirt",
+        "category": 2
+    }
+},
+{
+    "model": "clothing_store.subcategory",
+    "pk": 7,
+    "fields": {
+        "name": "Pant",
+        "category": 2
+    }
+},
+{
+    "model": "clothing_store.subcategory",
+    "pk": 8,
+    "fields": {
+        "name": "Suit",
+        "category": 2
+    }
+},
+{
+    "model": "clothing_store.subcategory",
+    "pk": 9,
+    "fields": {
+        "name": "Blazer",
+        "category": 2
+    }
+},
+{
+    "model": "clothing_store.subcategory",
+    "pk": 10,
+    "fields": {
+        "name": "Waistcoat",
+        "category": 2
+    }
+},
+{
+    "model": "clothing_store.subcategory",
+    "pk": 11,
+    "fields": {
+        "name": "Vest",
+        "category": 3
+    }
+},
+{
+    "model": "clothing_store.subcategory",
+    "pk": 12,
+    "fields": {
+        "name": "Thermal",
+        "category": 3
+    }
+},
+{
+    "model": "clothing_store.subcategory",
+    "pk": 13,
+    "fields": {
+        "name": "Boxer",
+        "category": 3
+    }
+},
+{
+    "model": "clothing_store.subcategory",
+    "pk": 14,
+    "fields": {
+        "name": "Brief",
+        "category": 3
+    }
+},
+{
+    "model": "clothing_store.subcategory",
+    "pk": 15,
+    "fields": {
+        "name": "Belt",
+        "category": 4
+    }
+},
+{
+    "model": "clothing_store.subcategory",
+    "pk": 16,
+    "fields": {
+        "name": "Wallet",
+        "category": 4
+    }
+},
+{
+    "model": "clothing_store.subcategory",
+    "pk": 17,
+    "fields": {
+        "name": "Sunglass",
+        "category": 4
+    }
+},
+{
+    "model": "clothing_store.subcategory",
+    "pk": 18,
+    "fields": {
+        "name": "Cap",
+        "category": 4
+    }
+},
+{
+    "model": "clothing_store.subcategory",
+    "pk": 19,
+    "fields": {
+        "name": "Chain",
+        "category": 4
+    }
+},
+{
+    "model": "clothing_store.size",
+    "pk": 1,
+    "fields": {
+        "size_type": "TOP",
+        "name": "S"
+    }
+},
+{
+    "model": "clothing_store.size",
+    "pk": 2,
+    "fields": {
+        "size_type": "TOP",
+        "name": "M"
+    }
+},
+{
+    "model": "clothing_store.size",
+    "pk": 3,
+    "fields": {
+        "size_type": "TOP",
+        "name": "L"
+    }
+},
+{
+    "model": "clothing_store.size",
+    "pk": 4,
+    "fields": {
+        "size_type": "TOP",
+        "name": "XL"
+    }
+},
+{
+    "model": "clothing_store.size",
+    "pk": 5,
+    "fields": {
+        "size_type": "TOP",
+        "name": "XXL"
+    }
+},
+{
+    "model": "clothing_store.size",
+    "pk": 6,
+    "fields": {
+        "size_type": "BOTTOM",
+        "name": "28"
+    }
+},
+{
+    "model": "clothing_store.size",
+    "pk": 7,
+    "fields": {
+        "size_type": "BOTTOM",
+        "name": "30"
+    }
+},
+{
+    "model": "clothing_store.size",
+    "pk": 8,
+    "fields": {
+        "size_type": "BOTTOM",
+        "name": "32"
+    }
+},
+{
+    "model": "clothing_store.size",
+    "pk": 9,
+    "fields": {
+        "size_type": "BOTTOM",
+        "name": "34"
+    }
+},
+{
+    "model": "clothing_store.size",
+    "pk": 10,
+    "fields": {
+        "size_type": "BOTTOM",
+        "name": "36"
+    }
+},
+{
+    "model": "clothing_store.size",
+    "pk": 11,
+    "fields": {
+        "size_type": "TOP",
+        "name": "FREE SIZE"
+    }
+},
+{
+    "model": "clothing_store.products",
+    "pk": 1,
+    "fields": {
+        "name": " Navy Casual Solid Shirt",
+        "price": "2000.00",
+        "description": "Upgrade your everyday wardrobe with GENZO men's Solid Regular Fit Casual Shirt. This shirt combines timeless style with unbeatable comfort, making it a must-have for every modern manΓÇÖs collection",
+        "image": "products/Screenshot_2026-01-16_111931_2grIK1F.png",
+        "image1": "products/Screenshot_2026-01-16_112028_hzGezwv.png",
+        "image2": "products/Screenshot_2026-01-16_112057_U6eRZGl.png",
+        "image3": "products/Screenshot_2026-01-16_112202_ohWUG1K.png",
+        "stock": 13,
+        "discount_price": "1999.00",
+        "discount_percentage": 1,
+        "category": 1,
+        "subcategory": 1,
+        "is_trending": true,
+        "is_listed": true,
+        "sizes": [
+            1,
+            2,
+            4,
+            5
+        ]
+    }
+},
+{
+    "model": "clothing_store.products",
+    "pk": 3,
+    "fields": {
+        "name": "Black Solid Regular Fit Half Sleeve",
+        "price": "1000.00",
+        "description": "Premium Fabric: Crafted from premium cotton in pique weave, ensuring maximum comfort, softness, and breathability. Softener wash enhances feel and comfort.\r\n",
+        "image": "products/Screenshot_2026-01-16_114505_WpuoA0W.png",
+        "image1": "products/Screenshot_2026-01-16_114525_PkIWTNT.png",
+        "image2": "products/Screenshot_2026-01-16_114543_7HGJJKy.png",
+        "image3": "products/Screenshot_2026-01-16_114602_nYzfYS3.png",
+        "stock": 45,
+        "discount_price": "999.00",
+        "discount_percentage": 1,
+        "category": 1,
+        "subcategory": 3,
+        "is_trending": true,
+        "is_listed": true,
+        "sizes": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ]
+    }
+},
+{
+    "model": "clothing_store.products",
+    "pk": 4,
+    "fields": {
+        "name": "Men Gym Soft Trackpants",
+        "price": "1000.00",
+        "description": "You can expect natural comfort and softness from the cotton fibres.The brushed jersey fabric wraps you in warmth.",
+        "image": "products/Screenshot_2026-01-16_115441_Y3tYIQz.png",
+        "image1": "products/Screenshot_2026-01-16_115516_n0bjsq3.png",
+        "image2": "products/Screenshot_2026-01-16_115538_Hb5ftNU.png",
+        "image3": "products/Screenshot_2026-01-16_115613_FK3eFwA.png",
+        "stock": 23,
+        "discount_price": "999.00",
+        "discount_percentage": 1,
+        "category": 1,
+        "subcategory": 4,
+        "is_trending": false,
+        "is_listed": true,
+        "sizes": [
+            6,
+            7,
+            8,
+            9,
+            10
+        ]
+    }
+},
+{
+    "model": "clothing_store.products",
+    "pk": 5,
+    "fields": {
+        "name": "Men Mid-Rise Shorts",
+        "price": "1000.00",
+        "description": "Make heads turn & stay effortlessly cool in this GENZO Fashion Men's  Fit , which brings the latest trend for the fashion conscious",
+        "image": "products/Screenshot_2026-01-16_121121_mTiNY19.png",
+        "image1": "products/Screenshot_2026-01-16_121136_ymYiXM5.png",
+        "image2": "products/Screenshot_2026-01-16_121156_TXS7CRb.png",
+        "image3": "products/Screenshot_2026-01-16_121213_jl9Hbf8.png",
+        "stock": 21,
+        "discount_price": "999.00",
+        "discount_percentage": 1,
+        "category": 1,
+        "subcategory": 5,
+        "is_trending": false,
+        "is_listed": true,
+        "sizes": [
+            6,
+            7,
+            8,
+            9,
+            10
+        ]
+    }
+},
+{
+    "model": "clothing_store.products",
+    "pk": 6,
+    "fields": {
+        "name": "Linen Blend five Sleeve",
+        "price": "1400.00",
+        "description": "The perfect shirts for elevated and modern casual wear, GENZO latest Relaxed Fit LinenBlend Shirts are crafted for the modern man who values comfort and effortless style.",
+        "image": "products/Screenshot_2026-01-16_112906_zY5woKW.png",
+        "image1": "products/Screenshot_2026-01-16_112923_1fhR89A.png",
+        "image2": "products/Screenshot_2026-01-16_112959_oboRykf.png",
+        "image3": "products/Screenshot_2026-01-16_113023_tw9Cea3.png",
+        "stock": 11,
+        "discount_price": "1399.00",
+        "discount_percentage": 1,
+        "category": 1,
+        "subcategory": 1,
+        "is_trending": false,
+        "is_listed": true,
+        "sizes": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ]
+    }
+},
+{
+    "model": "clothing_store.products",
+    "pk": 7,
+    "fields": {
+        "name": " Coffee Formal Shirt with black detailing",
+        "price": "3000.00",
+        "description": "Coffee brown solid formal shirt with black detailing, has a spread collar, long sleeves, button placket, straight hem, and 1 patch pocket Material : 70%Cotton, 30% Polyester Wash Care : Machine-wash",
+        "image": "products/Screenshot_2026-01-16_121911_KPc5v08.png",
+        "image1": "products/Screenshot_2026-01-16_121925_OjUjHQE.png",
+        "image2": "products/Screenshot_2026-01-16_121945_5Xkkpq7.png",
+        "image3": "products/Screenshot_2026-01-16_122000_yGNsG3S.png",
+        "stock": 1,
+        "discount_price": "2999.00",
+        "discount_percentage": 1,
+        "category": 2,
+        "subcategory": 6,
+        "is_trending": false,
+        "is_listed": true,
+        "sizes": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ]
+    }
+},
+{
+    "model": "clothing_store.products",
+    "pk": 8,
+    "fields": {
+        "name": "Beige Plaid Slim-Fit Pants",
+        "price": "1000.00",
+        "description": "Color: beige plaid\r\nMaterial: 68% Poliviscose, 30% Polyester , 2% Elastane\r\nFitting: slim-fit\r\nCare instructions: dry clean only \r\nMachine washable: no",
+        "image": "products/Screenshot_2026-01-16_122854_sUPk4gl.png",
+        "image1": "products/Screenshot_2026-01-16_122919_C5bZOwg.png",
+        "image2": "products/Screenshot_2026-01-16_122935_Gr0blfZ.png",
+        "image3": "",
+        "stock": 15,
+        "discount_price": "999.00",
+        "discount_percentage": 1,
+        "category": 2,
+        "subcategory": 7,
+        "is_trending": false,
+        "is_listed": true,
+        "sizes": [
+            6,
+            7,
+            8,
+            9,
+            10
+        ]
+    }
+},
+{
+    "model": "clothing_store.products",
+    "pk": 9,
+    "fields": {
+        "name": "Arrow grey Regular Fit Blazer",
+        "price": "4000.00",
+        "description": "Garner the attention of many by wearing this grey regular fit blazer from Arrow. Tailored to sartorial perfection from premium quality fabric, it assures a soft and soothing touch against the skin. Exuding full sleeves, it is sure to fetch you compliments from all. It emanates a striped pattern which makes it a unique choice.\r\n",
+        "image": "products/Screenshot_2026-01-16_124444_R5RuKtu.png",
+        "image1": "products/Screenshot_2026-01-16_124528_cfqxptW.png",
+        "image2": "products/Screenshot_2026-01-16_124508_fdEa6GE.png",
+        "image3": "products/Screenshot_2026-01-16_124536_hbq5h69.png",
+        "stock": 11,
+        "discount_price": "3999.00",
+        "discount_percentage": 1,
+        "category": 2,
+        "subcategory": 9,
+        "is_trending": true,
+        "is_listed": true,
+        "sizes": [
+            1,
+            2,
+            5
+        ]
+    }
+},
+{
+    "model": "clothing_store.products",
+    "pk": 10,
+    "fields": {
+        "name": "Luxe Linen Blazer",
+        "price": "1000.00",
+        "description": "Inspired by the timeless elegance of the Italian Riviera, \"Yacht Club\" captures the spirit of sun-drenched coastlines, crisp sea breezes, and effortless coastal sophistication.",
+        "image": "products/Screenshot_2026-01-16_123206_qC0rG9A.png",
+        "image1": "products/Screenshot_2026-01-16_123353_aycweMq.png",
+        "image2": "products/Screenshot_2026-01-16_123414_RvYPp4d.png",
+        "image3": "products/Screenshot_2026-01-16_123503_2Q7Dt2r.png",
+        "stock": 61,
+        "discount_price": "999.00",
+        "discount_percentage": 1,
+        "category": 2,
+        "subcategory": 9,
+        "is_trending": false,
+        "is_listed": true,
+        "sizes": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ]
+    }
+},
+{
+    "model": "clothing_store.products",
+    "pk": 11,
+    "fields": {
+        "name": "mid trunks Boxer",
+        "price": "1000.00",
+        "description": "Trunks in stretch jersey with flatlock seams for added comfort. Elasticated waist, a lined front and mid-length legs. Made using Lycra┬« Xtra LifeΓäó technology for high comfort and long-lasting shape.\r\n\r\n",
+        "image": "products/Screenshot_2026-01-16_213707_wZblIMo.png",
+        "image1": "products/Screenshot_2026-01-16_213753_wwqN1vF.png",
+        "image2": "products/Screenshot_2026-01-16_213830_gQpkD1f.png",
+        "image3": "",
+        "stock": 1,
+        "discount_price": "999.00",
+        "discount_percentage": 1,
+        "category": 3,
+        "subcategory": 13,
+        "is_trending": false,
+        "is_listed": true,
+        "sizes": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ]
+    }
+},
+{
+    "model": "clothing_store.products",
+    "pk": 12,
+    "fields": {
+        "name": "Men's Square polarization Sunglasses",
+        "price": "1000.00",
+        "description": "Comfortable Nose Pads Design - This pair of polarized sunglasses for men with its one-piece nose pads design which will not oppress nose bridge. It will make you more stable and more comfortable to wear",
+        "image": "products/Screenshot_2026-01-18_234023_R7eeacr.png",
+        "image1": "products/Screenshot_2026-01-18_234100_2n4ITxQ.png",
+        "image2": "products/Screenshot_2026-01-18_234140_fpX5Htl.png",
+        "image3": "products/Screenshot_2026-01-18_234223.png",
+        "stock": 12,
+        "discount_price": "999.00",
+        "discount_percentage": 1,
+        "category": 4,
+        "subcategory": 17,
+        "is_trending": true,
+        "is_listed": true,
+        "sizes": [
+            11
+        ]
+    }
+},
+{
+    "model": "clothing_store.products",
+    "pk": 13,
+    "fields": {
+        "name": "Bruh Premium Suede Cap",
+        "price": "1000.00",
+        "description": "Fabric: Premium Suede \r\nFitting: One size (54 cm) | Fits All | Adjustable Snapback\r\nDesign: Rich 3D Embroidery\r\nColour: Black\r\nPanels: 5-Panel Structured Design",
+        "image": "products/Screenshot_2026-01-19_113520_lVxcXRO.png",
+        "image1": "products/Screenshot_2026-01-19_113607_84BRQI6.png",
+        "image2": "products/Screenshot_2026-01-19_113628_1d36wxV.png",
+        "image3": "",
+        "stock": 16,
+        "discount_price": "999.00",
+        "discount_percentage": 1,
+        "category": 4,
+        "subcategory": 18,
+        "is_trending": false,
+        "is_listed": true,
+        "sizes": [
+            11
+        ]
+    }
+},
+{
+    "model": "clothing_store.products",
+    "pk": 14,
+    "fields": {
+        "name": "Legacy Belt (Saddle Tan)",
+        "price": "2000.00",
+        "description": "A belt build with the best of full grain waxed buffalo harness leather and custom forged solid brass buckle.",
+        "image": "products/Screenshot_2026-01-18_230317_K8Lzacs.png",
+        "image1": "products/Screenshot_2026-01-18_230526_lppHIpv.png",
+        "image2": "products/Screenshot_2026-01-18_230610_VOA1AKu.png",
+        "image3": "",
+        "stock": 18,
+        "discount_price": "1299.00",
+        "discount_percentage": 1,
+        "category": 4,
+        "subcategory": 15,
+        "is_trending": false,
+        "is_listed": true,
+        "sizes": [
+            1,
+            2,
+            3,
+            11
+        ]
+    }
+},
+{
+    "model": "clothing_store.products",
+    "pk": 15,
+    "fields": {
+        "name": "Spitfire Wallet - Cash Light",
+        "price": "1000.00",
+        "description": "Spitfire's Vintage Raw finish provides a comfortable texture, while premium high-grain leather ensures durability. This mens leather wallet is compact and lightweight, you can easily put it in your pocket or put it in your purse, backpack or other carry-on luggage.",
+        "image": "products/Screenshot_2026-01-24_103551.png",
+        "image1": "products/Screenshot_2026-01-24_103626.png",
+        "image2": "products/Screenshot_2026-01-24_103648.png",
+        "image3": "",
+        "stock": 17,
+        "discount_price": "889.00",
+        "discount_percentage": 1,
+        "category": 4,
+        "subcategory": 16,
+        "is_trending": false,
+        "is_listed": true,
+        "sizes": [
+            11
+        ]
+    }
+},
+{
+    "model": "clothing_store.products",
+    "pk": 16,
+    "fields": {
+        "name": "Sporto Men's Cotton White Parka Vest -",
+        "price": "1000.00",
+        "description": "100% Super Combed Cotton, Interlock Fabric with a soft feel, Silicon washed, Bio washed, comfort fit with Good absorbency, Tag less main label, broad and round neckline, sleeveless, available in Sizes 75-110 cm",
+        "image": "products/Screenshot_2026-01-18_233154_QpNANKp.png",
+        "image1": "products/Screenshot_2026-01-18_233107_K0SewUU.png",
+        "image2": "products/Screenshot_2026-01-18_233024_x24kbET.png",
+        "image3": "",
+        "stock": 1,
+        "discount_price": "899.00",
+        "discount_percentage": 1,
+        "category": 3,
+        "subcategory": 11,
+        "is_trending": false,
+        "is_listed": true,
+        "sizes": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ]
+    }
+},
+{
+    "model": "clothing_store.products",
+    "pk": 17,
+    "fields": {
+        "name": "Long Sleeves Cotton Thermal Top",
+        "price": "1000.00",
+        "description": "Charcoalgrey solid thermal top, has a round neck, regular long sleeves with slip-on closure and straight hem",
+        "image": "products/Screenshot_2026-01-18_232223_yb3c7HS.png",
+        "image1": "products/Screenshot_2026-01-18_232308_qgrjIei.png",
+        "image2": "products/Screenshot_2026-01-18_232355_6HBwh8j.png",
+        "image3": "products/Screenshot_2026-01-18_232447_D9i2f0w.png",
+        "stock": 1,
+        "discount_price": "699.00",
+        "discount_percentage": 1,
+        "category": 3,
+        "subcategory": 12,
+        "is_trending": false,
+        "is_listed": true,
+        "sizes": [
+            2,
+            3,
+            4,
+            5
+        ]
+    }
+},
+{
+    "model": "clothing_store.products",
+    "pk": 26,
+    "fields": {
+        "name": "Moss Green Pre-Washed Linen Cotton Shirt",
+        "price": "2400.00",
+        "description": "Introducing our Summer Breeze collection: this linen-cotton shirt features a unique moss green colour. Its a perfect way to elevate your look effortlessly. The blend of cotton and linen fabric ensures durability and comfort, perfect for warm days.",
+        "image": "products/Screenshot_2026-02-19_142414.png",
+        "image1": "products/Screenshot_2026-02-19_142434.png",
+        "image2": "products/Screenshot_2026-02-19_142448.png",
+        "image3": "products/Screenshot_2026-02-19_142459.png",
+        "stock": 12,
+        "discount_price": "1199.00",
+        "discount_percentage": 50,
+        "category": 1,
+        "subcategory": 1,
+        "is_trending": false,
+        "is_listed": true,
+        "sizes": [
+            1,
+            2,
+            3,
+            4
+        ]
+    }
+},
+{
+    "model": "clothing_store.products",
+    "pk": 27,
+    "fields": {
+        "name": "Brown Pre-Washed Linen Blend Shirt",
+        "price": "2400.00",
+        "description": "Introducing our Summer Breeze collection: this linen-cotton shirt combines the elegance of Brown color with textured linen blend fabric. It can't get more old money than this.",
+        "image": "products/Screenshot_2026-02-19_143347.png",
+        "image1": "products/Screenshot_2026-02-19_143359.png",
+        "image2": "products/Screenshot_2026-02-19_143407.png",
+        "image3": "products/Screenshot_2026-02-19_143420.png",
+        "stock": 14,
+        "discount_price": "1199.00",
+        "discount_percentage": 50,
+        "category": 1,
+        "subcategory": 1,
+        "is_trending": false,
+        "is_listed": true,
+        "sizes": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ]
+    }
+},
+{
+    "model": "clothing_store.products",
+    "pk": 28,
+    "fields": {
+        "name": "Beige Striped Pre-Washed Linen Cotton Shirt",
+        "price": "2499.00",
+        "description": "Beige Striped Slim Fit Linen Shirt. Has a Full Sleeve, Button Down Collar, Linen Cotton Fabric, Front Placket With Curved Hem.",
+        "image": "products/Screenshot_2026-02-19_143633.png",
+        "image1": "products/Screenshot_2026-02-19_143639.png",
+        "image2": "products/Screenshot_2026-02-19_143648.png",
+        "image3": "products/Screenshot_2026-02-19_143705.png",
+        "stock": 16,
+        "discount_price": "1299.00",
+        "discount_percentage": 48,
+        "category": 1,
+        "subcategory": 1,
+        "is_trending": false,
+        "is_listed": true,
+        "sizes": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ]
+    }
+},
+{
+    "model": "clothing_store.products",
+    "pk": 29,
+    "fields": {
+        "name": "Olive & White Printed Check Slim Fit Casual Shirt",
+        "price": "2499.00",
+        "description": "Olive & White Urban Printed Check Full Sleeve Casual Shirt ",
+        "image": "products/Screenshot_2026-02-19_144543.png",
+        "image1": "products/Screenshot_2026-02-19_144627.png",
+        "image2": "products/Screenshot_2026-02-19_144646.png",
+        "image3": "products/Screenshot_2026-02-19_144709.png",
+        "stock": 8,
+        "discount_price": "1249.00",
+        "discount_percentage": 50,
+        "category": 1,
+        "subcategory": 1,
+        "is_trending": false,
+        "is_listed": true,
+        "sizes": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ]
+    }
+},
+{
+    "model": "clothing_store.products",
+    "pk": 30,
+    "fields": {
+        "name": "Copper Echo Baggy Fit Jeans",
+        "price": "1750.00",
+        "description": "Elevate your denim collection with our Copper Echo Baggy Fit Jeans. These meticulously crafted jeans feature a relaxed silhouette that balances contemporary style with exceptional comfort. The distinctive copper-toned wash adds a refined dimension to casual ensembles, making these versatile jeans suitable for both daytime sophistication and evening elegance.",
+        "image": "products/Screenshot_2026-02-19_145435.png",
+        "image1": "products/Screenshot_2026-02-19_145508.png",
+        "image2": "products/Screenshot_2026-02-19_145529.png",
+        "image3": "products/Screenshot_2026-02-19_145612.png",
+        "stock": 9,
+        "discount_price": "1290.00",
+        "discount_percentage": 12,
+        "category": 1,
+        "subcategory": 2,
+        "is_trending": false,
+        "is_listed": true,
+        "sizes": [
+            6,
+            7,
+            8,
+            9,
+            10
+        ]
+    }
+},
+{
+    "model": "clothing_store.products",
+    "pk": 31,
+    "fields": {
+        "name": "The Flex Symbol Grey Baggy Jeans",
+        "price": "2199.00",
+        "description": "Soft grey wash, oversized fall, and a striking flex graphic down the side.These jeans were made for days when you want your outfit to speak first.",
+        "image": "products/Screenshot_2026-02-19_150644.png",
+        "image1": "products/Screenshot_2026-02-19_150734.png",
+        "image2": "products/Screenshot_2026-02-19_150753.png",
+        "image3": "products/Screenshot_2026-02-19_150822.png",
+        "stock": 14,
+        "discount_price": "1999.00",
+        "discount_percentage": 16,
+        "category": 1,
+        "subcategory": 2,
+        "is_trending": false,
+        "is_listed": true,
+        "sizes": [
+            6,
+            7,
+            8,
+            9,
+            10
+        ]
+    }
+},
+{
+    "model": "clothing_store.products",
+    "pk": 32,
+    "fields": {
+        "name": "Iron Grey Japan Baggy Jeans",
+        "price": "1990.00",
+        "description": "The Iron Grey Japan Baggy Jeans channel modern Japanese streetwear with an exaggerated baggy silhouette and structured drape. Finished in a muted iron grey wash with soft vertical fading, this pair delivers strong volume through the leg while maintaining a balanced, wearable shape. Built for statement looks that still feel effortless, these jeans pair perfectly with oversized tops and layered fits.",
+        "image": "products/Screenshot_2026-02-19_151929.png",
+        "image1": "products/Screenshot_2026-02-19_152008.png",
+        "image2": "products/Screenshot_2026-02-19_152017.png",
+        "image3": "products/Screenshot_2026-02-19_152027.png",
+        "stock": 14,
+        "discount_price": null,
+        "discount_percentage": null,
+        "category": 1,
+        "subcategory": 2,
+        "is_trending": false,
+        "is_listed": true,
+        "sizes": [
+            6,
+            7,
+            8,
+            9,
+            10
+        ]
+    }
+},
+{
+    "model": "clothing_store.products",
+    "pk": 33,
+    "fields": {
+        "name": "Casual Jacquard Collar Polo T-Shirt | Khaki",
+        "price": "1599.00",
+        "description": "Everyday cool, dialed up. The Casual Jacquard Collar Polo T-Shirt in Khaki brings subtle design cues to a timeless silhouette. The collar detail adds that elevated touch, while the neutral tone keeps it endlessly wearable. Great for low-key evenings, laid-back office days, or smart weekend plans. Best styled with black jeans, white sneakers, and minimal effort.",
+        "image": "products/Screenshot_2026-02-19_153538.png",
+        "image1": "products/Screenshot_2026-02-19_154120.png",
+        "image2": "products/Screenshot_2026-02-19_154154.png",
+        "image3": "products/Screenshot_2026-02-19_154224.png",
+        "stock": 14,
+        "discount_price": "1149.00",
+        "discount_percentage": 28,
+        "category": 1,
+        "subcategory": 3,
+        "is_trending": false,
+        "is_listed": true,
+        "sizes": [
+            1,
+            2,
+            3,
+            4
+        ]
+    }
+},
+{
+    "model": "clothing_store.products",
+    "pk": 34,
+    "fields": {
+        "name": "Polo T-Shirt With Contrast Collar | Yellow",
+        "price": "1599.00",
+        "description": "Bright and bold, this yellow polo stands out with a striking contrast collar. Designed in a classic cut, it blends vibrant energy with timeless style. Ideal for casual days when you want to make a statement.",
+        "image": "products/Screenshot_2026-02-19_154954.png",
+        "image1": "products/Screenshot_2026-02-19_155139.png",
+        "image2": "products/Screenshot_2026-02-19_155526.png",
+        "image3": "products/Screenshot_2026-02-19_155658.png",
+        "stock": 12,
+        "discount_price": "1399.00",
+        "discount_percentage": 12,
+        "category": 1,
+        "subcategory": 3,
+        "is_trending": false,
+        "is_listed": true,
+        "sizes": [
+            1,
+            2,
+            3
+        ]
+    }
+},
+{
+    "model": "clothing_store.products",
+    "pk": 35,
+    "fields": {
+        "name": "Men Running Briefs, Stretchable with Moisture Wick - Asphalt Blue",
+        "price": "499.00",
+        "description": "Run, jump, walk... Move as much as you want thanks to the stretchy fabric of these sport briefs.\r\nBENEFITS\r\nstretch\r\nstretch: With its 16% elastane content, the fabric feels really comfortable.\r\nmoisture management\r\nmoisture management: Stay dry during and after sport with a fabric that wicks away perspiration",
+        "image": "products/Screenshot_2026-03-04_110133.png",
+        "image1": "products/Screenshot_2026-03-04_110046.png",
+        "image2": "products/Screenshot_2026-03-04_110003.png",
+        "image3": "products/Screenshot_2026-03-04_110118.png",
+        "stock": 16,
+        "discount_price": "399.00",
+        "discount_percentage": 25,
+        "category": 3,
+        "subcategory": 14,
+        "is_trending": false,
+        "is_listed": true,
+        "sizes": [
+            1,
+            2,
+            3,
+            4
+        ]
+    }
+},
+{
+    "model": "clothing_store.products",
+    "pk": 36,
+    "fields": {
+        "name": "Cream Baggy Shorts",
+        "price": "1499.00",
+        "description": "Crafted from a premium 86% Viscose and 14% Polyester blend, these cream shorts offer a smooth texture and a baggy fit for ultimate comfort. Perfect for casual outings or lounging.",
+        "image": "products/Screenshot_2026-03-04_110711.png",
+        "image1": "products/Screenshot_2026-03-04_110741.png",
+        "image2": "products/Screenshot_2026-03-04_110806.png",
+        "image3": "",
+        "stock": 56,
+        "discount_price": "1299.00",
+        "discount_percentage": 20,
+        "category": 1,
+        "subcategory": 5,
+        "is_trending": false,
+        "is_listed": true,
+        "sizes": [
+            6,
+            7,
+            8,
+            9,
+            10
+        ]
+    }
+},
+{
+    "model": "clothing_store.products",
+    "pk": 37,
+    "fields": {
+        "name": "Unisex Round Sunglasses Inspired from Allu Arjun Sunglass for Men",
+        "price": "2999.00",
+        "description": "Arjun Allu Sunglasses, Round Sunglasses\r\nUV 400\r\nUnisex Design",
+        "image": "products/Screenshot_2026-03-04_111140.png",
+        "image1": "products/Screenshot_2026-03-04_111212.png",
+        "image2": "products/Screenshot_2026-03-04_111242.png",
+        "image3": "products/Screenshot_2026-03-04_111308.png",
+        "stock": 1,
+        "discount_price": "2888.00",
+        "discount_percentage": 10,
+        "category": 4,
+        "subcategory": 17,
+        "is_trending": false,
+        "is_listed": true,
+        "sizes": [
+            1,
+            2,
+            3
+        ]
+    }
+},
+{
+    "model": "clothing_store.products",
+    "pk": 38,
+    "fields": {
+        "name": "Off-White Men's Silk Shirt: Elegant Long Sleeves Office wear, Luxury Men Silk Shirtt",
+        "price": "3599.00",
+        "description": "Γ£¿ Off-White Silk MenΓÇÖs Shirt ΓÇô Effortless Luxury & Timeless Style Γ£¿\r\n\r\nElevate your wardrobe with this luxurious off-white silk shirt, designed for men who value elegance, comfort, and refined detail. Crafted from smooth, high-quality silk, this shirt offers a soft, breathable feel with a natural sheen that enhances its premium look.",
+        "image": "products/Screenshot_2026-03-04_112807.png",
+        "image1": "products/Screenshot_2026-03-04_112921.png",
+        "image2": "products/Screenshot_2026-03-04_112830.png",
+        "image3": "",
+        "stock": 45,
+        "discount_price": "3400.00",
+        "discount_percentage": 10,
+        "category": 2,
+        "subcategory": 6,
+        "is_trending": false,
+        "is_listed": true,
+        "sizes": [
+            2,
+            3,
+            4,
+            5
+        ]
+    }
+},
+{
+    "model": "clothing_store.products",
+    "pk": 39,
+    "fields": {
+        "name": "Exquisite Blended Wool Dress Pants - Grey",
+        "price": "2399.00",
+        "description": "This pair of dress pants will be tailored to your unique size with premium blended wool fabrics with elastane content to make it stretchy. It has a fantastic fit while having a refined, polished look fit for all your formal and special occasions.",
+        "image": "products/Screenshot_2026-03-04_113425.png",
+        "image1": "products/Screenshot_2026-03-04_113504.png",
+        "image2": "products/Screenshot_2026-03-04_113531.png",
+        "image3": "",
+        "stock": 54,
+        "discount_price": "2300.00",
+        "discount_percentage": 8,
+        "category": 2,
+        "subcategory": 7,
+        "is_trending": false,
+        "is_listed": true,
+        "sizes": [
+            6,
+            7,
+            8,
+            9,
+            10
+        ]
+    }
+},
+{
+    "model": "clothing_store.banner",
+    "pk": 6,
+    "fields": {
+        "title": "PREMIUM COLLECTIONS",
+        "subtitle": "Luxury. Comfort. Modern Lifestyle.",
+        "image": "banners/banner_EsF58e4.jpg",
+        "is_active": true
+    }
+},
+{
+    "model": "clothing_store.wishlist",
+    "pk": 33,
+    "fields": {
+        "User": 8,
+        "Products": 1
+    }
+},
+{
+    "model": "clothing_store.wishlist",
+    "pk": 64,
+    "fields": {
+        "User": 4,
+        "Products": 1
+    }
+},
+{
+    "model": "clothing_store.profile",
+    "pk": 1,
+    "fields": {
+        "user": 17,
+        "phone": "",
+        "address": "",
+        "image": "profile_images/default.png"
+    }
+},
+{
+    "model": "clothing_store.profile",
+    "pk": 2,
+    "fields": {
+        "user": 3,
+        "phone": null,
+        "address": null,
+        "image": "profile_images/default.png"
+    }
+},
+{
+    "model": "clothing_store.profile",
+    "pk": 3,
+    "fields": {
+        "user": 1,
+        "phone": "7025117351",
+        "address": "razi\r\n",
+        "image": ""
+    }
+},
+{
+    "model": "clothing_store.profile",
+    "pk": 4,
+    "fields": {
+        "user": 18,
+        "phone": "73737",
+        "address": "vvgsyvs",
+        "image": ""
+    }
+},
+{
+    "model": "clothing_store.profile",
+    "pk": 5,
+    "fields": {
+        "user": 4,
+        "phone": null,
+        "address": null,
+        "image": ""
+    }
+},
+{
+    "model": "clothing_store.address",
+    "pk": 4,
+    "fields": {
+        "user": 1,
+        "name": "Muhammed Razi",
+        "phone": "7025117351",
+        "pincode": "670631",
+        "locality": "kannur",
+        "address": "alfalah complex, caltex, kannur",
+        "city": "kannur",
+        "state": "Kerala",
+        "is_default": false
+    }
+},
+{
+    "model": "clothing_store.address",
+    "pk": 8,
+    "fields": {
+        "user": 4,
+        "name": "wx",
+        "phone": "255",
+        "pincode": "12",
+        "locality": "nc ",
+        "address": "cwkckw",
+        "city": "xe xhe",
+        "state": "Kerala",
+        "is_default": false
+    }
+},
+{
+    "model": "clothing_store.address",
+    "pk": 9,
+    "fields": {
+        "user": 18,
+        "name": "hahs",
+        "phone": "702344485858",
+        "pincode": "488383",
+        "locality": "rvrhn",
+        "address": "ercercrncirnnr",
+        "city": "ndi",
+        "state": "Tamil Nadu",
+        "is_default": false
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 1,
+    "fields": {
+        "user": 1,
+        "address": null,
+        "total": "13193.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-02-27T04:28:41.633Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 2,
+    "fields": {
+        "user": 1,
+        "address": null,
+        "total": "13193.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-02-27T04:29:11.363Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 3,
+    "fields": {
+        "user": 1,
+        "address": null,
+        "total": "13193.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-02-27T04:30:22.916Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 4,
+    "fields": {
+        "user": 1,
+        "address": null,
+        "total": "13193.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": "cs_test_a1l8k9Pgdy3WrDoYwGqISSDibiZvUw395YQWL0vlNl0RE9Nbl71wWbRvCZ",
+        "discount_amount": "0.00",
+        "created_at": "2026-02-27T04:35:57.292Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 5,
+    "fields": {
+        "user": 1,
+        "address": null,
+        "total": "13193.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": "cs_test_a18u8ONVTlt9t7Jrty86S0kD5plRTpLpMEn3zWrlA1NBKW7r2aq8GqV75p",
+        "discount_amount": "0.00",
+        "created_at": "2026-02-27T04:38:01.289Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 6,
+    "fields": {
+        "user": 1,
+        "address": null,
+        "total": "13193.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": "cs_test_a1QqFKxsUjjT6AMr0mDt1ALdku1tFPQFdOQItMf8HiN5vQhn9LjrjZfNyZ",
+        "discount_amount": "0.00",
+        "created_at": "2026-02-27T04:40:14.133Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 7,
+    "fields": {
+        "user": 1,
+        "address": null,
+        "total": "13193.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": "cs_test_a1DqMyypHYdfdoc2JZAB0nivODUrOFVDBIhlQRbADY2dp55dDXtyXvmaVx",
+        "discount_amount": "0.00",
+        "created_at": "2026-02-27T04:41:12.913Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 8,
+    "fields": {
+        "user": 1,
+        "address": null,
+        "total": "13193.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PAID",
+        "status": "confirmed",
+        "stripe_session_id": "cs_test_a11MVrMQ8V41ymiVSXGy1KTdjpfibElUYTxljAK4hycwiyGhkJOYzassgZ",
+        "discount_amount": "0.00",
+        "created_at": "2026-02-27T04:42:52.494Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 9,
+    "fields": {
+        "user": 1,
+        "address": null,
+        "total": "1999.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PAID",
+        "status": "confirmed",
+        "stripe_session_id": "cs_test_a1OGiRtZM2caR0fWnpisMf5W4muCvTJpOHKIK6HIkzAT6YpDP7rmHDLM3c",
+        "discount_amount": "0.00",
+        "created_at": "2026-02-27T04:46:47.914Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 10,
+    "fields": {
+        "user": 1,
+        "address": null,
+        "total": "1999.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PAID",
+        "status": "confirmed",
+        "stripe_session_id": "cs_test_a1y9EcAegQa7ImKG4Ss71Xfkd4ddY8fz7vWRJdiHaqhCV89nYlJqVA6VmB",
+        "discount_amount": "0.00",
+        "created_at": "2026-02-27T04:48:36.473Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 11,
+    "fields": {
+        "user": 1,
+        "address": null,
+        "total": "2999.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": "cs_test_a1LHXVYVKF5GQeXifgG3FO73S9oyi1CMY9WR3RLjVPNtxORWahic6Qdozs",
+        "discount_amount": "0.00",
+        "created_at": "2026-02-27T04:50:59.803Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 12,
+    "fields": {
+        "user": 1,
+        "address": null,
+        "total": "2999.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PAID",
+        "status": "confirmed",
+        "stripe_session_id": "cs_test_a1vLCsBN7gMYCH5I48weIkjAYpZFtgfoWBpLIw9wa9PocN5Lc2CDbYLHC6",
+        "discount_amount": "0.00",
+        "created_at": "2026-02-27T04:51:20.934Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 13,
+    "fields": {
+        "user": 1,
+        "address": null,
+        "total": "1399.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PAID",
+        "status": "confirmed",
+        "stripe_session_id": "cs_test_a14vRhzRMysyaEU6G5a3x2hQKNpd4xPuqea6m3oXr6XLoQEQdV2NYT1J5T",
+        "discount_amount": "0.00",
+        "created_at": "2026-02-27T05:08:32.424Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 14,
+    "fields": {
+        "user": 1,
+        "address": null,
+        "total": "999.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PAID",
+        "status": "confirmed",
+        "stripe_session_id": "cs_test_a1c6sflGBStp2XU4kTxwqllDZSEINWvmaBFlhbALmCCaEOYBDYMIt16EuN",
+        "discount_amount": "0.00",
+        "created_at": "2026-02-27T05:11:56.048Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 15,
+    "fields": {
+        "user": 4,
+        "address": null,
+        "total": "1399.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": "cs_test_a1jehm9MUIy7DUuuuJR0s9GNUFmOShxnb5Uecpg79No7swALCGkwwZfEJx",
+        "discount_amount": "0.00",
+        "created_at": "2026-02-27T05:14:41.439Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 16,
+    "fields": {
+        "user": 4,
+        "address": null,
+        "total": "1399.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PAID",
+        "status": "confirmed",
+        "stripe_session_id": "cs_test_a1kM60rD9zEojrmQ0jJBNOD9sO0LfmUpNPGzZgfQPxd1DuyltAUZFR9MZt",
+        "discount_amount": "0.00",
+        "created_at": "2026-02-27T05:14:50.985Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 17,
+    "fields": {
+        "user": 4,
+        "address": null,
+        "total": "999.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": "cs_test_a12FWX9uG84SRMRgK7PLe8wvYOPP9dtVf6KJUPeXDTym16XgfjW517kIZX",
+        "discount_amount": "0.00",
+        "created_at": "2026-02-27T05:30:24.043Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 18,
+    "fields": {
+        "user": 4,
+        "address": null,
+        "total": "1898.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PAID",
+        "status": "confirmed",
+        "stripe_session_id": "cs_test_a1dNtCpd8fFpnUOCAJmtMLHHpelQZFj5QhfBQAyxRjyJGL5Hk48Fsrj9U5",
+        "discount_amount": "0.00",
+        "created_at": "2026-02-27T05:33:40.369Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 19,
+    "fields": {
+        "user": 4,
+        "address": null,
+        "total": "2999.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PAID",
+        "status": "confirmed",
+        "stripe_session_id": "cs_test_a18lfvJN9B1fPjZzL8AFRtI0l4kEWbkvNUMee68PThX2vjX8d6cVuJ1RiN",
+        "discount_amount": "0.00",
+        "created_at": "2026-02-27T06:18:17.060Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 20,
+    "fields": {
+        "user": 4,
+        "address": null,
+        "total": "11996.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": "cs_test_a1qR7gXKbEvt07l5wiiF4AuKXQYVcclUNIOi76DWRPxU4KOYW1jRB1EKUm",
+        "discount_amount": "0.00",
+        "created_at": "2026-02-27T06:23:20.482Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 21,
+    "fields": {
+        "user": 4,
+        "address": null,
+        "total": "11996.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PAID",
+        "status": "confirmed",
+        "stripe_session_id": "cs_test_a1gHzI7gucYfoLYvuPhJRv5RkkAle3746N7FK86QsSYzPalfwIDUYohPAc",
+        "discount_amount": "0.00",
+        "created_at": "2026-02-27T06:23:41.885Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 22,
+    "fields": {
+        "user": 4,
+        "address": null,
+        "total": "2998.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": "cs_test_a19c5Hjj1Hq543kkymrBoVgh7YqFsbc8GlyShPiYQyMrhpiN2CnHV1Eihz",
+        "discount_amount": "0.00",
+        "created_at": "2026-02-27T06:41:27.237Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 23,
+    "fields": {
+        "user": 1,
+        "address": 4,
+        "total": "999.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": "cs_test_a1cZWuHgxDfLj9RifE19CnC4hAOpXynx8YWBh4Mk9dNAz1qWucPVuMNwus",
+        "discount_amount": "0.00",
+        "created_at": "2026-02-27T08:28:52.649Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 24,
+    "fields": {
+        "user": 1,
+        "address": 4,
+        "total": "999.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": "cs_test_a1BkrbWRsRVeP1gslIzypGxQtwWDw8OSRQ7g4i1qJquqHAnDP9RkQTG4MF",
+        "discount_amount": "0.00",
+        "created_at": "2026-02-27T08:29:03.865Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 25,
+    "fields": {
+        "user": 1,
+        "address": 4,
+        "total": "3288.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": "cs_test_a1GZJY8XAKxP20oltpkW7uJYS4wXPKTFmZxfJ8V5ZmhUVxCeRoMkozavQS",
+        "discount_amount": "0.00",
+        "created_at": "2026-02-27T09:16:37.905Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 26,
+    "fields": {
+        "user": 1,
+        "address": 4,
+        "total": "999.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": "cs_test_a17sD485sFQnygxseOdvzJIdZmPcLqCiHcQ0qrHqVZhnPOib4bUinQGNeD",
+        "discount_amount": "0.00",
+        "created_at": "2026-02-27T09:35:10.988Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 27,
+    "fields": {
+        "user": 1,
+        "address": 4,
+        "total": "999.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": "cs_test_a1DCJer12aw8V2t4lWtcfdnDhVrZAfJTeHGiLrUGjgdCesS9VajarVGzo6",
+        "discount_amount": "0.00",
+        "created_at": "2026-02-27T09:35:18.603Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 28,
+    "fields": {
+        "user": 1,
+        "address": 4,
+        "total": "1999.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": "cs_test_a1FqNcIqE5Axvs2rjwFKDBljKQtSdUxeuzi6rGGnwVOKYA5VShrYe2vZoF",
+        "discount_amount": "0.00",
+        "created_at": "2026-02-27T09:35:52.890Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 29,
+    "fields": {
+        "user": 1,
+        "address": 4,
+        "total": "1999.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": "cs_test_a1eZLG6PlGzarkre6HQVQ6xR9334uh0eltD5f8ZomFYBZzh6LalZKbZjqC",
+        "discount_amount": "0.00",
+        "created_at": "2026-02-27T09:40:25.871Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 30,
+    "fields": {
+        "user": 1,
+        "address": 4,
+        "total": "1999.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": "cs_test_a1r1ISCCTndEIf0hpKfabrZxQPktA3BKeZAQzw8vbquja8vuNiufWpoT3c",
+        "discount_amount": "0.00",
+        "created_at": "2026-02-27T09:40:41.906Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 31,
+    "fields": {
+        "user": 1,
+        "address": 4,
+        "total": "1999.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-02-27T09:41:32.567Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 32,
+    "fields": {
+        "user": 1,
+        "address": 4,
+        "total": "1999.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-02-27T09:47:45.532Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 33,
+    "fields": {
+        "user": 1,
+        "address": 4,
+        "total": "1999.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-02-27T09:48:23.575Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 34,
+    "fields": {
+        "user": 1,
+        "address": 4,
+        "total": "1999.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-02-27T09:49:35.829Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 35,
+    "fields": {
+        "user": 1,
+        "address": 4,
+        "total": "1999.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-02-27T09:50:02.854Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 36,
+    "fields": {
+        "user": 1,
+        "address": 4,
+        "total": "1999.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-02-27T09:51:12.094Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 37,
+    "fields": {
+        "user": 1,
+        "address": null,
+        "total": "1999.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": "cs_test_a1eJNQ2NpUH0qOqgJSz5dAkCUDmCPvuB2dtmSugz2fjppEG6UD3XmbNCtF",
+        "discount_amount": "0.00",
+        "created_at": "2026-02-27T09:51:15.191Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 38,
+    "fields": {
+        "user": 1,
+        "address": null,
+        "total": "1999.00",
+        "payment_method": "COD",
+        "payment_status": "PENDING",
+        "status": "confirmed",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-02-27T09:51:24.148Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 39,
+    "fields": {
+        "user": 1,
+        "address": null,
+        "total": "1999.00",
+        "payment_method": "COD",
+        "payment_status": "PENDING",
+        "status": "confirmed",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-02-27T09:52:04.351Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 40,
+    "fields": {
+        "user": 1,
+        "address": null,
+        "total": "1999.00",
+        "payment_method": "COD",
+        "payment_status": "PENDING",
+        "status": "confirmed",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-02-27T09:52:08.187Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 41,
+    "fields": {
+        "user": 1,
+        "address": null,
+        "total": "1999.00",
+        "payment_method": "COD",
+        "payment_status": "PENDING",
+        "status": "confirmed",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-02-27T09:52:15.784Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 42,
+    "fields": {
+        "user": 1,
+        "address": 4,
+        "total": "1399.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-02-27T09:52:28.939Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 43,
+    "fields": {
+        "user": 1,
+        "address": null,
+        "total": "1399.00",
+        "payment_method": "COD",
+        "payment_status": "PENDING",
+        "status": "confirmed",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-02-27T09:52:31.754Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 44,
+    "fields": {
+        "user": 1,
+        "address": 4,
+        "total": "999.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-02-27T09:53:18.418Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 45,
+    "fields": {
+        "user": 1,
+        "address": null,
+        "total": "999.00",
+        "payment_method": "COD",
+        "payment_status": "PENDING",
+        "status": "confirmed",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-02-27T09:53:21.276Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 46,
+    "fields": {
+        "user": 1,
+        "address": null,
+        "total": "999.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PAID",
+        "status": "confirmed",
+        "stripe_session_id": "cs_test_a1TWvG079raVDoY6SAM7DpEdAhz108cuENYkMapzmcHa9j7mJ1kbdIhGTi",
+        "discount_amount": "0.00",
+        "created_at": "2026-02-27T09:53:35.450Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 47,
+    "fields": {
+        "user": 1,
+        "address": 4,
+        "total": "1999.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-02-27T09:55:31.478Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 48,
+    "fields": {
+        "user": 1,
+        "address": null,
+        "total": "1999.00",
+        "payment_method": "COD",
+        "payment_status": "PENDING",
+        "status": "confirmed",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-02-27T09:55:34.815Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 49,
+    "fields": {
+        "user": 1,
+        "address": null,
+        "total": "1999.00",
+        "payment_method": "COD",
+        "payment_status": "PENDING",
+        "status": "confirmed",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-02-27T09:55:53.276Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 50,
+    "fields": {
+        "user": 1,
+        "address": 4,
+        "total": "1399.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-02-27T09:57:59.589Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 51,
+    "fields": {
+        "user": 1,
+        "address": null,
+        "total": "1399.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PAID",
+        "status": "confirmed",
+        "stripe_session_id": "cs_test_a104G8JF0Nddde5w9LGDT2CGvcpuYDbyfafSq159OCQFnpaGRxfCtoXecC",
+        "discount_amount": "0.00",
+        "created_at": "2026-02-27T09:58:06.430Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 52,
+    "fields": {
+        "user": 1,
+        "address": 4,
+        "total": "999.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-02-27T10:03:53.327Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 53,
+    "fields": {
+        "user": 1,
+        "address": 4,
+        "total": "999.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-02-27T10:04:18.720Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 54,
+    "fields": {
+        "user": 1,
+        "address": 4,
+        "total": "999.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-02-27T10:05:05.950Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 55,
+    "fields": {
+        "user": 1,
+        "address": 4,
+        "total": "999.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-02-27T10:05:50.965Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 56,
+    "fields": {
+        "user": 1,
+        "address": 4,
+        "total": "999.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-02-27T10:06:07.204Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 57,
+    "fields": {
+        "user": 1,
+        "address": 4,
+        "total": "999.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-02-27T10:06:39.329Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 58,
+    "fields": {
+        "user": 1,
+        "address": 4,
+        "total": "999.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-02-27T10:07:25.230Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 59,
+    "fields": {
+        "user": 1,
+        "address": 4,
+        "total": "1999.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-02-28T08:37:08.606Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 60,
+    "fields": {
+        "user": 1,
+        "address": 4,
+        "total": "3998.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-02-28T08:37:29.692Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 61,
+    "fields": {
+        "user": 1,
+        "address": 4,
+        "total": "3998.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-02-28T08:37:50.362Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 62,
+    "fields": {
+        "user": 1,
+        "address": 4,
+        "total": "3998.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-02-28T08:39:27.430Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 63,
+    "fields": {
+        "user": 1,
+        "address": null,
+        "total": "3998.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": "cs_test_a1PPYl3Xc8t50tMMcfrKSZ1iBqer4kw9lRTudhLX5FqeByCEp6WpnNhG78",
+        "discount_amount": "0.00",
+        "created_at": "2026-02-28T08:40:04.874Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 64,
+    "fields": {
+        "user": 1,
+        "address": null,
+        "total": "3998.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PAID",
+        "status": "confirmed",
+        "stripe_session_id": "cs_test_a1AGpCFnAQ5CMZUcWqHqD202e8YtgkA9KDJLNlFm5VQAnKPENTRKQ5SnyP",
+        "discount_amount": "0.00",
+        "created_at": "2026-02-28T08:40:16.717Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 65,
+    "fields": {
+        "user": 1,
+        "address": 4,
+        "total": "1399.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-02-28T09:22:41.440Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 66,
+    "fields": {
+        "user": 1,
+        "address": null,
+        "total": "1399.00",
+        "payment_method": "COD",
+        "payment_status": "PENDING",
+        "status": "confirmed",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-02-28T09:22:45.766Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 67,
+    "fields": {
+        "user": 1,
+        "address": 4,
+        "total": "999.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-03-01T10:04:42.164Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 68,
+    "fields": {
+        "user": 1,
+        "address": null,
+        "total": "999.00",
+        "payment_method": "COD",
+        "payment_status": "PENDING",
+        "status": "confirmed",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-03-01T10:04:48.477Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 69,
+    "fields": {
+        "user": 1,
+        "address": 4,
+        "total": "4995.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-03-01T10:06:07.372Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 70,
+    "fields": {
+        "user": 1,
+        "address": 4,
+        "total": "4995.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-03-01T10:06:11.905Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 71,
+    "fields": {
+        "user": 1,
+        "address": null,
+        "total": "4995.00",
+        "payment_method": "COD",
+        "payment_status": "PENDING",
+        "status": "confirmed",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-03-01T10:06:15.012Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 72,
+    "fields": {
+        "user": 4,
+        "address": null,
+        "total": "2999.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-03-02T05:24:55.533Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 73,
+    "fields": {
+        "user": 4,
+        "address": null,
+        "total": "999.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-03-02T05:25:24.564Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 74,
+    "fields": {
+        "user": 4,
+        "address": null,
+        "total": "999.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-03-02T05:25:30.854Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 75,
+    "fields": {
+        "user": 4,
+        "address": null,
+        "total": "999.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-03-02T05:25:51.457Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 76,
+    "fields": {
+        "user": 4,
+        "address": null,
+        "total": "999.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-03-02T05:26:57.824Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 77,
+    "fields": {
+        "user": 4,
+        "address": null,
+        "total": "999.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-03-02T05:32:10.720Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 78,
+    "fields": {
+        "user": 4,
+        "address": null,
+        "total": "999.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-03-02T05:32:36.845Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 79,
+    "fields": {
+        "user": 4,
+        "address": null,
+        "total": "999.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-03-02T05:41:19.971Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 80,
+    "fields": {
+        "user": 4,
+        "address": null,
+        "total": "999.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-03-02T05:41:29.973Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 81,
+    "fields": {
+        "user": 4,
+        "address": null,
+        "total": "999.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-03-02T05:45:01.159Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 82,
+    "fields": {
+        "user": 4,
+        "address": null,
+        "total": "999.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-03-02T05:45:11.636Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 83,
+    "fields": {
+        "user": 4,
+        "address": null,
+        "total": "999.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-03-02T05:45:27.728Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 84,
+    "fields": {
+        "user": 4,
+        "address": 8,
+        "total": "999.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-03-02T05:49:08.581Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 85,
+    "fields": {
+        "user": 4,
+        "address": 8,
+        "total": "999.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-03-02T05:50:29.594Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 86,
+    "fields": {
+        "user": 4,
+        "address": null,
+        "total": "999.00",
+        "payment_method": "COD",
+        "payment_status": "PENDING",
+        "status": "confirmed",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-03-02T05:50:32.892Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 87,
+    "fields": {
+        "user": 4,
+        "address": 8,
+        "total": "13892.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-03-02T05:52:19.323Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 88,
+    "fields": {
+        "user": 4,
+        "address": null,
+        "total": "13892.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PAID",
+        "status": "confirmed",
+        "stripe_session_id": "cs_test_a1fh5w0gxYSgqymtsryS9awrZNffFTGq25HlzIAKBeK78x5Jn7CZ2FQLQM",
+        "discount_amount": "0.00",
+        "created_at": "2026-03-02T05:52:23.221Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 89,
+    "fields": {
+        "user": 4,
+        "address": 8,
+        "total": "999.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-03-02T06:16:26.435Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 90,
+    "fields": {
+        "user": 4,
+        "address": null,
+        "total": "999.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": "cs_test_a1xPjlMd5WC3Vfsek5TGCmzmRbdLzNTOydMkhPqKzjWXGAZ2V7cLkxKPZn",
+        "discount_amount": "0.00",
+        "created_at": "2026-03-02T06:16:28.650Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 91,
+    "fields": {
+        "user": 1,
+        "address": 4,
+        "total": "999.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-03-02T07:06:04.016Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 92,
+    "fields": {
+        "user": 1,
+        "address": 4,
+        "total": "999.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-03-02T07:09:08.732Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 93,
+    "fields": {
+        "user": 18,
+        "address": 9,
+        "total": "1999.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-03-03T05:09:35.064Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 94,
+    "fields": {
+        "user": 18,
+        "address": null,
+        "total": "1999.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PAID",
+        "status": "confirmed",
+        "stripe_session_id": "cs_test_a19VKBr6xHiNW7WSReFs9wTF16fLBXepIyFET0Bqr39JM9iuKXpBMtRy0b",
+        "discount_amount": "0.00",
+        "created_at": "2026-03-03T05:09:38.343Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 95,
+    "fields": {
+        "user": 18,
+        "address": 9,
+        "total": "3998.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-03-03T05:21:12.355Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 96,
+    "fields": {
+        "user": 18,
+        "address": 9,
+        "total": "1998.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-03-03T05:39:31.915Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 97,
+    "fields": {
+        "user": 18,
+        "address": null,
+        "total": "1998.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": "cs_test_a1twadLLXnvhdBaqJcxr2AScTPlgyoFeePkizqqt6Idd9y5XI77YTsPLIi",
+        "discount_amount": "0.00",
+        "created_at": "2026-03-03T05:40:18.127Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 98,
+    "fields": {
+        "user": 18,
+        "address": 9,
+        "total": "1998.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-03-03T05:42:46.472Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 99,
+    "fields": {
+        "user": 18,
+        "address": null,
+        "total": "1998.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": "cs_test_a1htG3FbqeISbuwwN9qkg3q4ucQqfZb9vMJlQuAo0HR0ztb17YFqhGDMps",
+        "discount_amount": "0.00",
+        "created_at": "2026-03-03T05:42:51.170Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 100,
+    "fields": {
+        "user": 18,
+        "address": 9,
+        "total": "1998.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-03-03T05:44:10.117Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 101,
+    "fields": {
+        "user": 18,
+        "address": 9,
+        "total": "1998.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-03-03T05:45:19.964Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 102,
+    "fields": {
+        "user": 18,
+        "address": 9,
+        "total": "3288.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-03-03T05:45:45.329Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 103,
+    "fields": {
+        "user": 18,
+        "address": null,
+        "total": "3288.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": "cs_test_a1358MOb52icBdWXruQN2DJurjvXsfibaUK6ajvynaVhKZyZAlF9xiaXj2",
+        "discount_amount": "0.00",
+        "created_at": "2026-03-03T05:45:48.348Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 104,
+    "fields": {
+        "user": 18,
+        "address": 9,
+        "total": "3288.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-03-03T05:48:12.256Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 105,
+    "fields": {
+        "user": 18,
+        "address": null,
+        "total": "3288.00",
+        "payment_method": "COD",
+        "payment_status": "PENDING",
+        "status": "confirmed",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-03-03T05:48:30.318Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 106,
+    "fields": {
+        "user": 18,
+        "address": 9,
+        "total": "0.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PENDING",
+        "status": "pending",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-03-03T05:54:54.996Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 107,
+    "fields": {
+        "user": 18,
+        "address": null,
+        "total": "5997.00",
+        "payment_method": "COD",
+        "payment_status": "PENDING",
+        "status": "confirmed",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-03-03T06:00:07.192Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 108,
+    "fields": {
+        "user": 18,
+        "address": null,
+        "total": "10794.00",
+        "payment_method": "COD",
+        "payment_status": "PENDING",
+        "status": "confirmed",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-03-03T06:03:34.064Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 109,
+    "fields": {
+        "user": 18,
+        "address": null,
+        "total": "1149.00",
+        "payment_method": "COD",
+        "payment_status": "PENDING",
+        "status": "cancelled",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-03-03T06:17:53.398Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 110,
+    "fields": {
+        "user": 18,
+        "address": null,
+        "total": "999.00",
+        "payment_method": "COD",
+        "payment_status": "PENDING",
+        "status": "delivered",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-03-03T06:18:05.395Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 111,
+    "fields": {
+        "user": 18,
+        "address": null,
+        "total": "5396.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PAID",
+        "status": "confirmed",
+        "stripe_session_id": "cs_test_a1iMpY17d6uaDk0Dtbi5HqKhtiFeqqzYwynHlMICfBynn3l5aWp382QUfG",
+        "discount_amount": "0.00",
+        "created_at": "2026-03-03T07:04:49.977Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 112,
+    "fields": {
+        "user": 4,
+        "address": null,
+        "total": "5388.00",
+        "payment_method": "COD",
+        "payment_status": "PENDING",
+        "status": "delivered",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-03-03T09:23:02.006Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 113,
+    "fields": {
+        "user": 4,
+        "address": null,
+        "total": "1290.00",
+        "payment_method": "COD",
+        "payment_status": "PENDING",
+        "status": "delivered",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-03-04T07:16:10.233Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 114,
+    "fields": {
+        "user": 4,
+        "address": null,
+        "total": "2888.00",
+        "payment_method": "COD",
+        "payment_status": "PENDING",
+        "status": "confirmed",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-03-04T07:46:07.865Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 115,
+    "fields": {
+        "user": 4,
+        "address": null,
+        "total": "399.00",
+        "payment_method": "COD",
+        "payment_status": "PENDING",
+        "status": "confirmed",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-03-04T07:48:45.878Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 116,
+    "fields": {
+        "user": 4,
+        "address": null,
+        "total": "1999.00",
+        "payment_method": "COD",
+        "payment_status": "PENDING",
+        "status": "confirmed",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-03-04T07:49:57.295Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 117,
+    "fields": {
+        "user": 4,
+        "address": null,
+        "total": "1998.00",
+        "payment_method": "STRIPE",
+        "payment_status": "PAID",
+        "status": "confirmed",
+        "stripe_session_id": "cs_test_a14xU7cI2WdtIsdlegkvA2vVGi4ZiTk4xR8gYXFt44Il1g5kU8LwGlZ4u4",
+        "discount_amount": "0.00",
+        "created_at": "2026-03-04T09:38:52.155Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 118,
+    "fields": {
+        "user": 4,
+        "address": null,
+        "total": "999.00",
+        "payment_method": "COD",
+        "payment_status": "PENDING",
+        "status": "confirmed",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-03-05T09:10:05.002Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 119,
+    "fields": {
+        "user": 4,
+        "address": null,
+        "total": "2999.00",
+        "payment_method": "COD",
+        "payment_status": "PENDING",
+        "status": "confirmed",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-03-05T09:11:13.505Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 120,
+    "fields": {
+        "user": 4,
+        "address": null,
+        "total": "2999.00",
+        "payment_method": "COD",
+        "payment_status": "PENDING",
+        "status": "confirmed",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-03-05T09:18:36.505Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 121,
+    "fields": {
+        "user": 4,
+        "address": null,
+        "total": "879.00",
+        "payment_method": "COD",
+        "payment_status": "PENDING",
+        "status": "confirmed",
+        "stripe_session_id": null,
+        "discount_amount": "20.00",
+        "created_at": "2026-03-05T09:38:21.150Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 122,
+    "fields": {
+        "user": 18,
+        "address": null,
+        "total": "1999.00",
+        "payment_method": "COD",
+        "payment_status": "PENDING",
+        "status": "confirmed",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-03-09T07:36:22.752Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 123,
+    "fields": {
+        "user": 1,
+        "address": null,
+        "total": "2888.00",
+        "payment_method": "COD",
+        "payment_status": "PENDING",
+        "status": "confirmed",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-03-09T07:38:27.945Z"
+    }
+},
+{
+    "model": "clothing_store.order",
+    "pk": 124,
+    "fields": {
+        "user": 1,
+        "address": null,
+        "total": "6197.00",
+        "payment_method": "COD",
+        "payment_status": "PENDING",
+        "status": "confirmed",
+        "stripe_session_id": null,
+        "discount_amount": "0.00",
+        "created_at": "2026-03-09T07:39:46.198Z"
+    }
+},
+{
+    "model": "clothing_store.orderitem",
+    "pk": 1,
+    "fields": {
+        "order": 86,
+        "product": 8,
+        "quantity": 1,
+        "price": "999.00",
+        "created_at": "2026-03-02T05:50:32.906Z"
+    }
+},
+{
+    "model": "clothing_store.orderitem",
+    "pk": 2,
+    "fields": {
+        "order": 88,
+        "product": 31,
+        "quantity": 6,
+        "price": "1999.00",
+        "created_at": "2026-03-02T05:52:23.235Z"
+    }
+},
+{
+    "model": "clothing_store.orderitem",
+    "pk": 3,
+    "fields": {
+        "order": 88,
+        "product": 16,
+        "quantity": 1,
+        "price": "899.00",
+        "created_at": "2026-03-02T05:52:23.235Z"
+    }
+},
+{
+    "model": "clothing_store.orderitem",
+    "pk": 4,
+    "fields": {
+        "order": 88,
+        "product": 12,
+        "quantity": 1,
+        "price": "999.00",
+        "created_at": "2026-03-02T05:52:23.251Z"
+    }
+},
+{
+    "model": "clothing_store.orderitem",
+    "pk": 5,
+    "fields": {
+        "order": 90,
+        "product": 4,
+        "quantity": 1,
+        "price": "999.00",
+        "created_at": "2026-03-02T06:16:28.661Z"
+    }
+},
+{
+    "model": "clothing_store.orderitem",
+    "pk": 6,
+    "fields": {
+        "order": 94,
+        "product": 31,
+        "quantity": 1,
+        "price": "1999.00",
+        "created_at": "2026-03-03T05:09:38.354Z"
+    }
+},
+{
+    "model": "clothing_store.orderitem",
+    "pk": 7,
+    "fields": {
+        "order": 97,
+        "product": 12,
+        "quantity": 2,
+        "price": "999.00",
+        "created_at": "2026-03-03T05:40:18.127Z"
+    }
+},
+{
+    "model": "clothing_store.orderitem",
+    "pk": 8,
+    "fields": {
+        "order": 99,
+        "product": 12,
+        "quantity": 2,
+        "price": "999.00",
+        "created_at": "2026-03-03T05:42:51.188Z"
+    }
+},
+{
+    "model": "clothing_store.orderitem",
+    "pk": 9,
+    "fields": {
+        "order": 103,
+        "product": 12,
+        "quantity": 2,
+        "price": "999.00",
+        "created_at": "2026-03-03T05:45:48.355Z"
+    }
+},
+{
+    "model": "clothing_store.orderitem",
+    "pk": 10,
+    "fields": {
+        "order": 103,
+        "product": 30,
+        "quantity": 1,
+        "price": "1290.00",
+        "created_at": "2026-03-03T05:45:48.362Z"
+    }
+},
+{
+    "model": "clothing_store.orderitem",
+    "pk": 11,
+    "fields": {
+        "order": 105,
+        "product": 12,
+        "quantity": 2,
+        "price": "999.00",
+        "created_at": "2026-03-03T05:48:30.323Z"
+    }
+},
+{
+    "model": "clothing_store.orderitem",
+    "pk": 12,
+    "fields": {
+        "order": 105,
+        "product": 30,
+        "quantity": 1,
+        "price": "1290.00",
+        "created_at": "2026-03-03T05:48:30.325Z"
+    }
+},
+{
+    "model": "clothing_store.orderitem",
+    "pk": 13,
+    "fields": {
+        "order": 107,
+        "product": 1,
+        "quantity": 3,
+        "price": "1999.00",
+        "created_at": "2026-03-03T06:00:07.207Z"
+    }
+},
+{
+    "model": "clothing_store.orderitem",
+    "pk": 14,
+    "fields": {
+        "order": 108,
+        "product": 11,
+        "quantity": 2,
+        "price": "999.00",
+        "created_at": "2026-03-03T06:03:34.081Z"
+    }
+},
+{
+    "model": "clothing_store.orderitem",
+    "pk": 15,
+    "fields": {
+        "order": 108,
+        "product": 7,
+        "quantity": 2,
+        "price": "2999.00",
+        "created_at": "2026-03-03T06:03:34.081Z"
+    }
+},
+{
+    "model": "clothing_store.orderitem",
+    "pk": 16,
+    "fields": {
+        "order": 108,
+        "product": 6,
+        "quantity": 2,
+        "price": "1399.00",
+        "created_at": "2026-03-03T06:03:34.081Z"
+    }
+},
+{
+    "model": "clothing_store.orderitem",
+    "pk": 17,
+    "fields": {
+        "order": 109,
+        "product": 33,
+        "quantity": 1,
+        "price": "1149.00",
+        "created_at": "2026-03-03T06:17:53.406Z"
+    }
+},
+{
+    "model": "clothing_store.orderitem",
+    "pk": 18,
+    "fields": {
+        "order": 110,
+        "product": 11,
+        "quantity": 1,
+        "price": "999.00",
+        "created_at": "2026-03-03T06:18:05.404Z"
+    }
+},
+{
+    "model": "clothing_store.orderitem",
+    "pk": 19,
+    "fields": {
+        "order": 111,
+        "product": 11,
+        "quantity": 1,
+        "price": "999.00",
+        "created_at": "2026-03-03T07:04:49.986Z"
+    }
+},
+{
+    "model": "clothing_store.orderitem",
+    "pk": 20,
+    "fields": {
+        "order": 111,
+        "product": 10,
+        "quantity": 1,
+        "price": "999.00",
+        "created_at": "2026-03-03T07:04:49.992Z"
+    }
+},
+{
+    "model": "clothing_store.orderitem",
+    "pk": 21,
+    "fields": {
+        "order": 111,
+        "product": 31,
+        "quantity": 1,
+        "price": "1999.00",
+        "created_at": "2026-03-03T07:04:49.995Z"
+    }
+},
+{
+    "model": "clothing_store.orderitem",
+    "pk": 22,
+    "fields": {
+        "order": 111,
+        "product": 34,
+        "quantity": 1,
+        "price": "1399.00",
+        "created_at": "2026-03-03T07:04:50.000Z"
+    }
+},
+{
+    "model": "clothing_store.orderitem",
+    "pk": 23,
+    "fields": {
+        "order": 112,
+        "product": 31,
+        "quantity": 1,
+        "price": "1999.00",
+        "created_at": "2026-03-03T09:23:02.018Z"
+    }
+},
+{
+    "model": "clothing_store.orderitem",
+    "pk": 24,
+    "fields": {
+        "order": 112,
+        "product": 32,
+        "quantity": 1,
+        "price": "1990.00",
+        "created_at": "2026-03-03T09:23:02.035Z"
+    }
+},
+{
+    "model": "clothing_store.orderitem",
+    "pk": 25,
+    "fields": {
+        "order": 112,
+        "product": 6,
+        "quantity": 1,
+        "price": "1399.00",
+        "created_at": "2026-03-03T09:23:02.035Z"
+    }
+},
+{
+    "model": "clothing_store.orderitem",
+    "pk": 26,
+    "fields": {
+        "order": 113,
+        "product": 30,
+        "quantity": 1,
+        "price": "1290.00",
+        "created_at": "2026-03-04T07:16:10.246Z"
+    }
+},
+{
+    "model": "clothing_store.orderitem",
+    "pk": 27,
+    "fields": {
+        "order": 114,
+        "product": 37,
+        "quantity": 1,
+        "price": "2888.00",
+        "created_at": "2026-03-04T07:46:07.879Z"
+    }
+},
+{
+    "model": "clothing_store.orderitem",
+    "pk": 28,
+    "fields": {
+        "order": 115,
+        "product": 35,
+        "quantity": 1,
+        "price": "399.00",
+        "created_at": "2026-03-04T07:48:45.885Z"
+    }
+},
+{
+    "model": "clothing_store.orderitem",
+    "pk": 29,
+    "fields": {
+        "order": 116,
+        "product": 31,
+        "quantity": 1,
+        "price": "1999.00",
+        "created_at": "2026-03-04T07:49:57.312Z"
+    }
+},
+{
+    "model": "clothing_store.orderitem",
+    "pk": 30,
+    "fields": {
+        "order": 117,
+        "product": 8,
+        "quantity": 2,
+        "price": "999.00",
+        "created_at": "2026-03-04T09:38:52.164Z"
+    }
+},
+{
+    "model": "clothing_store.orderitem",
+    "pk": 31,
+    "fields": {
+        "order": 118,
+        "product": 3,
+        "quantity": 1,
+        "price": "999.00",
+        "created_at": "2026-03-05T09:10:05.007Z"
+    }
+},
+{
+    "model": "clothing_store.orderitem",
+    "pk": 32,
+    "fields": {
+        "order": 119,
+        "product": 7,
+        "quantity": 1,
+        "price": "2999.00",
+        "created_at": "2026-03-05T09:11:13.505Z"
+    }
+},
+{
+    "model": "clothing_store.orderitem",
+    "pk": 33,
+    "fields": {
+        "order": 120,
+        "product": 7,
+        "quantity": 1,
+        "price": "2999.00",
+        "created_at": "2026-03-05T09:18:36.515Z"
+    }
+},
+{
+    "model": "clothing_store.orderitem",
+    "pk": 34,
+    "fields": {
+        "order": 121,
+        "product": 16,
+        "quantity": 1,
+        "price": "899.00",
+        "created_at": "2026-03-05T09:38:21.162Z"
+    }
+},
+{
+    "model": "clothing_store.orderitem",
+    "pk": 35,
+    "fields": {
+        "order": 122,
+        "product": 1,
+        "quantity": 1,
+        "price": "1999.00",
+        "created_at": "2026-03-09T07:36:22.759Z"
+    }
+},
+{
+    "model": "clothing_store.orderitem",
+    "pk": 36,
+    "fields": {
+        "order": 123,
+        "product": 37,
+        "quantity": 1,
+        "price": "2888.00",
+        "created_at": "2026-03-09T07:38:27.970Z"
+    }
+},
+{
+    "model": "clothing_store.orderitem",
+    "pk": 37,
+    "fields": {
+        "order": 124,
+        "product": 38,
+        "quantity": 1,
+        "price": "3400.00",
+        "created_at": "2026-03-09T07:39:46.216Z"
+    }
+},
+{
+    "model": "clothing_store.orderitem",
+    "pk": 38,
+    "fields": {
+        "order": 124,
+        "product": 35,
+        "quantity": 2,
+        "price": "399.00",
+        "created_at": "2026-03-09T07:39:46.233Z"
+    }
+},
+{
+    "model": "clothing_store.orderitem",
+    "pk": 39,
+    "fields": {
+        "order": 124,
+        "product": 31,
+        "quantity": 1,
+        "price": "1999.00",
+        "created_at": "2026-03-09T07:39:46.233Z"
+    }
+},
+{
+    "model": "clothing_store.reviewrating",
+    "pk": 10,
+    "fields": {
+        "user": 4,
+        "product": 30,
+        "rating": 3,
+        "review": "good product",
+        "created_at": "2026-03-09T09:18:54.924Z",
+        "updated_at": "2026-03-09T09:18:54.924Z"
+    }
+},
+{
+    "model": "clothing_store.notification",
+    "pk": 1,
+    "fields": {
+        "user": 4,
+        "message": "Your order #113 status updated to delivered.",
+        "is_read": true,
+        "created_at": "2026-03-04T07:28:32.775Z"
+    }
+},
+{
+    "model": "clothing_store.notification",
+    "pk": 2,
+    "fields": {
+        "user": 4,
+        "message": "Your order #115 has been placed succesfully.",
+        "is_read": true,
+        "created_at": "2026-03-04T07:48:45.894Z"
+    }
+},
+{
+    "model": "clothing_store.notification",
+    "pk": 3,
+    "fields": {
+        "user": 4,
+        "message": "Your order #The Flex Symbol Grey Baggy Jeans has been placed succesfully.",
+        "is_read": true,
+        "created_at": "2026-03-04T07:49:57.317Z"
+    }
+},
+{
+    "model": "clothing_store.notification",
+    "pk": 4,
+    "fields": {
+        "user": 4,
+        "message": "Your order #Beige Plaid Slim-Fit Pants has been placed succesfully.",
+        "is_read": false,
+        "created_at": "2026-03-04T09:38:52.178Z"
+    }
+},
+{
+    "model": "clothing_store.notification",
+    "pk": 5,
+    "fields": {
+        "user": 4,
+        "message": "Your order #Black Solid Regular Fit Half Sleeve has been placed succesfully.",
+        "is_read": false,
+        "created_at": "2026-03-05T09:10:05.022Z"
+    }
+},
+{
+    "model": "clothing_store.notification",
+    "pk": 6,
+    "fields": {
+        "user": 4,
+        "message": "Your order #121 has been placed successfully.",
+        "is_read": false,
+        "created_at": "2026-03-05T09:38:21.162Z"
+    }
+},
+{
+    "model": "clothing_store.notification",
+    "pk": 7,
+    "fields": {
+        "user": 1,
+        "message": "Your order #The Flex Symbol Grey Baggy Jeans has been placed succesfully.",
+        "is_read": false,
+        "created_at": "2026-03-09T07:39:46.250Z"
+    }
+},
+{
+    "model": "clothing_store.notification",
+    "pk": 8,
+    "fields": {
+        "user": 4,
+        "message": "Your review for order #Copper Echo Baggy Fit Jeans was submitted sucessfully.",
+        "is_read": false,
+        "created_at": "2026-03-09T09:18:54.931Z"
+    }
+},
+{
+    "model": "sites.site",
+    "pk": 1,
+    "fields": {
+        "domain": "127.0.0.1:8000",
+        "name": "Localhost"
+    }
+},
+{
+    "model": "account.emailaddress",
+    "pk": 1,
+    "fields": {
+        "user": 1,
+        "email": "business01091@gmail.com",
+        "verified": true,
+        "primary": true
+    }
+},
+{
+    "model": "account.emailaddress",
+    "pk": 3,
+    "fields": {
+        "user": 8,
+        "email": "muhammedrazi01091@gmail.com",
+        "verified": true,
+        "primary": true
+    }
+},
+{
+    "model": "socialaccount.socialapp",
+    "pk": 2,
+    "fields": {
+        "provider": "google",
+        "provider_id": "",
+        "name": "Google",
+        "client_id": "505689622072-s1b01en5afms8nel029ngf8lsd8md529.apps.googleusercontent.com",
+        "secret": "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",
+        "key": "",
+        "settings": {},
+        "sites": []
+    }
+},
+{
+    "model": "socialaccount.socialaccount",
+    "pk": 1,
+    "fields": {
+        "user": 1,
+        "provider": "google",
+        "uid": "106715214581643019747",
+        "last_login": "2026-03-09T07:37:58.577Z",
+        "date_joined": "2026-01-23T11:08:31.093Z",
+        "extra_data": {
+            "iss": "https://accounts.google.com",
+            "azp": "505689622072-s1b01en5afms8nel029ngf8lsd8md529.apps.googleusercontent.com",
+            "aud": "505689622072-s1b01en5afms8nel029ngf8lsd8md529.apps.googleusercontent.com",
+            "sub": "106715214581643019747",
+            "email": "business01091@gmail.com",
+            "email_verified": true,
+            "at_hash": "K4Q8VU88AHyjfXJgITX6Pg",
+            "name": "Business Business",
+            "picture": "https://lh3.googleusercontent.com/a/ACg8ocIflqM0xBLTFFPMYUMx91OBT6gFjFG64y0CfrSzY4eGyG3nxA=s96-c",
+            "given_name": "Business",
+            "family_name": "Business",
+            "iat": 1773041881,
+            "exp": 1773045481
+        }
+    }
+},
+{
+    "model": "socialaccount.socialaccount",
+    "pk": 3,
+    "fields": {
+        "user": 8,
+        "provider": "google",
+        "uid": "109206930120777596377",
+        "last_login": "2026-01-29T09:17:40.305Z",
+        "date_joined": "2026-01-29T08:57:23.003Z",
+        "extra_data": {
+            "iss": "https://accounts.google.com",
+            "azp": "505689622072-s1b01en5afms8nel029ngf8lsd8md529.apps.googleusercontent.com",
+            "aud": "505689622072-s1b01en5afms8nel029ngf8lsd8md529.apps.googleusercontent.com",
+            "sub": "109206930120777596377",
+            "email": "muhammedrazi01091@gmail.com",
+            "email_verified": true,
+            "at_hash": "DjjeI-yi1J2ibYkD8oq4vA",
+            "name": "Muhammed Razi",
+            "picture": "https://lh3.googleusercontent.com/a/ACg8ocKpXTGIaBxHj5P736k7EPgNxCMeCWyDqbgSxisf1o9rW7mFpg=s96-c",
+            "given_name": "Muhammed",
+            "family_name": "Razi",
+            "iat": 1769678262,
+            "exp": 1769681862
+        }
+    }
+}
+]

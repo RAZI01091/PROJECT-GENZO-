@@ -40,7 +40,6 @@ def home(request):
     return render(request,"home.html",{"banner": banner,'trending':trending})
    
 
-
 @never_cache
 def signup(request):
 
@@ -61,6 +60,7 @@ def signup(request):
         form = Signupform()
 
     return render(request, "signup.html", {'form': form})
+
 
 @never_cache
 def loggin(request):
@@ -765,8 +765,6 @@ def checkout(request):
             "quantity": 1,
         }]
 
-        # ✅ clear AFTER using
-        # request.session.pop("buy_now_product_id", None)
 
         return render(request, "checkout.html", {
             "cart_items": cart_items,
@@ -776,7 +774,8 @@ def checkout(request):
             "buy_now": True,
         })
 
-    # ===== CART FLOW =====
+
+
     if not cart_queryset.exists():
         return redirect("cart")
 
@@ -1091,7 +1090,6 @@ def pay(request):
             'quantity': 1,
         }]
 
-    # ================= CART =================
     else:
         cart_items = Cart.objects.filter(user=request.user)
 
@@ -1144,7 +1142,6 @@ def place_order(request):
 
     total = max(subtotal - discount, 0)
 
-    # ================= CREATE ORDER =================
     order = Order.objects.create(
         user=request.user,
         address_id=address_id,
@@ -1181,9 +1178,6 @@ def place_order(request):
             message=f"Your order #{item.product.name} has been placed succesfully."
         )    
 
-    # ================= PAYMENT HANDLING =================
-
-    # ===== COD =====
     if payment_method == "COD":
         order.status = "confirmed"
         order.payment_status = "PENDING"
@@ -1194,7 +1188,6 @@ def place_order(request):
 
         return render(request, "paymentsuccess.html")
 
-    # ===== STRIPE =====
     elif payment_method == "STRIPE":
 
         session = stripe.checkout.Session.create(

@@ -3,65 +3,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login – GENZO</title>
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #4e73df, #1cc88a);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #4e73df, #1cc88a);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 16px;
+}
 
-        .login-card {
-            background: #ffffff;
-            border-radius: 1rem;
-            padding: 2.5rem;
-            width: 100%;
-            max-width: 420px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-            animation: slideUp 0.8s ease;
-        }
+/* ===== CARD ===== */
+.login-card {
+    background: #ffffff;
+    border-radius: 1rem;
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    animation: slideUp 0.8s ease;
+}
 
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
 
-        .form-control {
-            border-radius: 0.6rem;
-            padding: 0.7rem 1rem;
-        }
+/* ===== INPUTS ===== */
+.form-control,
+.login-card input[type="text"],
+.login-card input[type="email"],
+.login-card input[type="password"] {
+    width: 100%;
+    border-radius: 0.6rem;
+    padding: 0.7rem 1rem;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    border: 1px solid #dee2e6;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
 
-        .btn-primary {
-            border-radius: 0.6rem;
-            padding: 0.7rem;
-            font-weight: 500;
-            background: #4e73df;
-            border: none;
-        }
+.login-card input[type="text"]:focus,
+.login-card input[type="email"]:focus,
+.login-card input[type="password"]:focus {
+    border-color: #4e73df;
+    box-shadow: 0 0 0 3px rgba(78,115,223,0.15);
+}
 
-        .btn-primary:hover {
-            background: #2e59d9;
-        }
+/* ===== LOGIN BUTTON ===== */
+.btn-primary {
+    border-radius: 0.6rem;
+    padding: 0.7rem;
+    font-weight: 500;
+    background: #4e73df;
+    border: none;
+    width: 100%;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
 
-        /* ---------- Google Button ---------- */
+.btn-primary:hover { background: #2e59d9; }
+
+    /* ---------- Google Button ---------- */
         .google-btn {
     height: 48px;
     border: 1px solid #dadce0;
@@ -92,53 +108,71 @@
     transform: scale(0.98);
 }
 
+/* ===== DIVIDER ===== */
+.divider {
+    text-align: center;
+    margin: 1.2rem 0;
+    position: relative;
+}
 
-        /* ---------- Divider ---------- */
-        .divider {
-            text-align: center;
-            margin: 1.2rem 0;
-            position: relative;
-        }
+.divider::before,
+.divider::after {
+    content: "";
+    height: 1px;
+    width: 40%;
+    background: #ddd;
+    position: absolute;
+    top: 50%;
+}
 
-        .divider::before,
-        .divider::after {
-            content: "";
-            height: 1px;
-            width: 40%;
-            background: #ddd;
-            position: absolute;
-            top: 50%;
-        }
+.divider::before { left: 0; }
+.divider::after  { right: 0; }
 
-        .divider::before {
-            left: 0;
-        }
+.divider span {
+    background: #fff;
+    padding: 0 0.6rem;
+    color: #888;
+    font-size: 0.9rem;
+}
 
-        .divider::after {
-            right: 0;
-        }
+/* ===== MISC ===== */
+.forgot-link { font-size: 0.9rem; color: #4e73df; text-decoration: none; }
+.forgot-link:hover { text-decoration: underline; color: #2e59d9; }
 
-        .divider span {
-            background: #fff;
-            padding: 0 0.6rem;
-            color: #888;
-            font-size: 0.9rem;
-        }
+.signup-link a {
+    font-weight: 500;
+    color: #4e73df;
+    text-decoration: none;
+}
 
-        .forgot-link {
-            font-size: 0.9rem;
-        }
+.signup-link a:hover { text-decoration: underline; }
 
-        .signup-link a {
-            font-weight: 500;
-            color: #4e73df;
-            text-decoration: none;
-        }
+/* ===== ERROR ===== */
+.alert-danger {
+    border-radius: 0.5rem;
+    font-size: 0.85rem;
+    padding: 0.65rem 1rem;
+    margin-bottom: 1rem;
+}
 
-        .signup-link a:hover {
-            text-decoration: underline;
-        }
-    </style>
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 479px) {
+    .login-card {
+        padding: 1.8rem 1.4rem;
+        border-radius: 0.85rem;
+    }
+
+    .login-card h2 { font-size: 1.4rem; }
+    .google-btn    { font-size: 13px; height: 44px; }
+}
+
+@media (max-width: 359px) {
+    .login-card { padding: 1.4rem 1.1rem; }
+}
+</style>
 </head>
 
 <body>
@@ -146,14 +180,11 @@
 <div class="login-card">
     <h2 class="text-center mb-4">Welcome Back</h2>
 
-     {% comment %} login error mesges {% endcomment %}
-     
-     {% if form.non_field_errors %}
-        <div class="alert alert-danger text-center">
-            {{ form.non_field_errors.0 }}
-        </div>
+    {% if form.non_field_errors %}
+    <div class="alert alert-danger text-center">
+        {{ form.non_field_errors.0 }}
+    </div>
     {% endif %}
-
 
     <form method="post">
         {% csrf_token %}
@@ -175,23 +206,26 @@
         </button>
     </form>
 
-    <!-- Divider -->
-    <div class="divider">
-        <span>OR</span>
-    </div>
-    <!-- Continue with Google -->
+    <div class="divider"><span>OR</span></div>
+
+
   <a href="{% provider_login_url 'google'%}" class="google-btn text-decoration-none w-100 mt-2">
     <img src="{% static 'googleicon.png' %}" alt="">
     Continue with Google
 </a>
 
-
-    <!-- Signup -->
     <p class="text-center mt-4 signup-link">
-        Don’t have an account?
+        Don't have an account?
         <a href="{% url 'signup' %}">Sign Up</a>
     </p>
 </div>
 
 </body>
 </html>
+
+
+
+
+
+
+

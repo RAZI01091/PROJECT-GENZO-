@@ -8,163 +8,178 @@
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
 :root{
-    --mocha:#76220b;
-    --bronze:rgb(163,86,69);
-    --shadow:rgba(0,0,0,.15);
+    --mocha: #76220b;
+    --bronze: rgb(163,86,69);
+    --shadow: rgba(0,0,0,.15);
 }
 
-*{box-sizing:border-box;}
+*, *::before, *::after { box-sizing: border-box; }
 
-body{
-    font-family:'Poppins',sans-serif;
-    background:#ffffff;
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #ffffff;
+    margin: 0;
+    padding: 0;
 }
 
 /* ================= NAVBAR ================= */
-
-.main-navbar{
-    backdrop-filter:blur(30px);
-    background:rgba(255,255,255,.95);
-    box-shadow:0 10px 35px var(--shadow); /* fixed missing value */
-    padding:4px 0;              /* 🔽 reduced from 7px */
-    border-bottom:1px solid rgba(0,0,0,.05);
+.main-navbar {
+    backdrop-filter: blur(30px);
+    background: rgba(255,255,255,.97);
+    box-shadow: 0 4px 20px var(--shadow);
+    padding: 4px 0;
+    border-bottom: 1px solid rgba(0,0,0,.07);
     position: sticky;
     top: 0;
     z-index: 2000;
-}
-/* BRAND */
-.navbar-brand{
-    font-size:36px;   /* 🔽 was 42px */
-    font-weight:800;
-    letter-spacing:-1px;
-    color:#000 !important;
+    width: 100%;
 }
 
-/* SEARCH */
-.search-box{
-    max-width:420px;
+.navbar-brand {
+    font-size: 30px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    color: #000 !important;
 }
 
-.search-box input{
-    border-radius:30px;
-    padding:7px 16px;   /* 🔽 reduced */
-    font-size:14px;
-}
-.nav-icons{
-    gap: 24px;   /* 🔥 space between icons */
-}
-/* NAV LINKS */
-.nav-link{
-    font-weight:600;
-    font-size:13px;        /* 🔽 was 14px */
-    letter-spacing:.5px;
-    padding:8px 14px !important;  /* 🔽 smaller */
-    color:#222 !important;
-    
-}   
+.search-box { max-width: 400px; }
 
-.nav-link:hover{
-    color:var(--mocha) !important;
+.search-box input {
+    border-radius: 30px;
+    padding: 7px 16px;
+    font-size: 14px;
 }
 
-/* ICONS */
-.icon-btn{
-    color:#222;
-    font-size:18px;   /* 🔽 was 20px */
-    margin-left:14px; /* tighter spacing */
-    text-decoration:none;
-    transition:.25s;
+.nav-icons { gap: 20px; }
+
+.nav-link {
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: .5px;
+    padding: 8px 12px !important;
+    color: #222 !important;
 }
 
-.icon-btn:hover{
-    color:var(--mocha);
+.nav-link:hover { color: var(--mocha) !important; }
+
+.icon-btn {
+    color: #222;
+    font-size: 18px;
+    text-decoration: none;
+    transition: color .25s;
 }
 
-/* DROPDOWN */
-.dropdown-hover{
-    position:relative;
+.icon-btn:hover { color: var(--mocha); }
+
+/* ── Desktop hover dropdowns ── */
+.dropdown-hover { position: relative; }
+
+.dropdown-hover > .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 200px;
+    border-radius: 16px;
+    border: none;
+    box-shadow: 0 20px 50px rgba(0,0,0,.12);
+    padding: 10px 0;
+    z-index: 3000;
 }
 
-.dropdown-hover .dropdown-menu{
-    display:none;
-    position:absolute;
-    top:100%;
-    left:0;
-    min-width:200px;
-    border-radius:16px;
-    border:none;
-    box-shadow:0 20px 50px rgba(0,0,0,.12);
-    padding:10px 0;
+.dropdown-hover:hover > .dropdown-menu { display: block; }
+
+.dropdown-item { font-size: 14px; padding: 8px 18px; }
+.dropdown-item:hover { background: #f6f6f6; color: var(--mocha); }
+
+/* ── Account dropdown ── */
+.dropdown-css { position: relative; }
+
+.dropdown-css-menu {
+    display: none;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: calc(100% + 4px);
+    background: #fff;
+    min-width: 180px;
+    border-radius: 12px;
+    box-shadow: 0 20px 50px rgba(0,0,0,.15);
+    padding: 8px 0;
+    z-index: 3000;
 }
 
-.dropdown-hover:hover .dropdown-menu{
-    display:block;
+.dropdown-css:hover .dropdown-css-menu { display: block; }
+
+.dropdown-css-menu a {
+    display: block;
+    padding: 8px 16px;
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
 }
 
-.dropdown-item{
-    font-size:14px;
-    padding:8px 18px;
+.dropdown-css-menu a:hover { background: #f5f5f5; color: var(--mocha); }
+
+/* ================= MOBILE ================= */
+@media (max-width: 991px) {
+
+    .search-box {
+        max-width: 100%;
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    /* Nav links stack vertically */
+    .navbar-nav { width: 100%; }
+
+    .nav-link { padding: 10px 0 !important; border-bottom: 1px solid #f0f0f0; }
+
+    /* Mobile: sub-dropdowns show inline (no hover needed) */
+    .dropdown-hover > .dropdown-menu {
+        display: block !important;   /* always visible when expanded */
+        position: static;
+        box-shadow: none;
+        border-radius: 8px;
+        background: #fafafa;
+        padding: 4px 0;
+        margin: 0 0 8px 12px;
+    }
+
+    /* Account dropdown stays hidden until hover/focus on mobile too */
+    .dropdown-css-menu {
+        left: 0;
+        transform: none;
+        right: auto;
+    }
+
+    /* Icons row */
+    .nav-icons {
+        margin: 12px 0 8px;
+        justify-content: flex-start;
+        gap: 24px;
+    }
+
+    /* Slightly smaller brand on mobile */
+    .navbar-brand { font-size: 26px; }
 }
 
-.dropdown-item:hover{
-    background:#f6f6f6;
-    color:var(--mocha);
-}
-
-/* ACCOUNT DROPDOWN */
-.dropdown-css{
-    position:relative;
-}
-
-.dropdown-css-menu{
-    display:none;
-    position:absolute;
-    left:50%;
-    transform:translateX(-50%);
-    top:100%;
-    margin-top:2px;   /* 🔥 reduced from 6px → closer */
-    background:#fff;
-    min-width:180px;
-    border-radius:12px;
-    box-shadow:0 20px 50px rgba(0,0,0,.15);
-    padding:8px 0;
-}
-.dropdown-css:hover .dropdown-css-menu{
-    display:block;
-}
-
-.dropdown-css-menu a{
-    display:block;
-    padding:8px 16px;
-    text-decoration:none;
-    color:#333;
-    font-size:14px;
-}
-
-.dropdown-css-menu a:hover{
-    background:#f5f5f5;
-    color:var(--mocha);
-}
-
-/* MOBILE */
-@media (max-width:991px){
-    .search-box{max-width:100%;margin:10px 0;}
+@media (max-width: 575px) {
+    .navbar-brand { font-size: 24px; }
 }
 </style>
 </head>
 
 <body>
 
-<!-- ================= SINGLE NAVBAR ================= -->
+<!-- ================= NAVBAR ================= -->
 <nav class="navbar navbar-expand-lg main-navbar">
     <div class="container align-items-center">
 
@@ -172,7 +187,9 @@ body{
         <a class="navbar-brand" href="{% url 'home' %}">GENZO</a>
 
         <!-- MOBILE TOGGLER -->
-        <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+        <button class="navbar-toggler ms-auto" type="button"
+                data-bs-toggle="collapse" data-bs-target="#mainNav"
+                aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -233,7 +250,8 @@ body{
             </ul>
 
             <!-- RIGHT ICONS -->
-           <div class="d-flex align-items-center nav-icons">
+            <div class="d-flex align-items-center nav-icons">
+
                 <!-- ACCOUNT -->
                 <div class="dropdown-css">
                     <a href="#" class="icon-btn"><i class="bi bi-person-circle"></i></a>
@@ -261,8 +279,8 @@ body{
 
             </div>
 
-        </div>
-    </div>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container -->
 </nav>
 
 {% block content %}{% endblock %}

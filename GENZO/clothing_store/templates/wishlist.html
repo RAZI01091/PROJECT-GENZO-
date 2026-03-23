@@ -1,603 +1,326 @@
-{% comment %} <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>My Wishlist – Men's Store</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% extends 'base.html' %}
+{% load static %}
 
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Icons -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
-
-    <!-- Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
+{% block content %}
 
 <style>
-
-/* ================= ROOT ================= */
-
 :root {
-    --charcoal:#1F2937;
-    --steel:#374151;
-    --mocha:#A67C52;
-    --bronze:#8B5A2B;
-    --platinum:#F9FAFB;
-    --silver:#D1D5DB;
-    --shadow:rgba(31,41,55,.25);
-
-    --mocha-mousse:#A67C52;
-    --bronze-matte:#8B5A2B;
-    --glow-mocha:rgba(166,124,82,.45);
+    --mocha: #A67C52;
+    --bronze: #8B5A2B;
+    --charcoal: #1a1a2e;
+    --platinum: #f8f6f2;
+    --silver: #e8e4dd;
+    --shadow: 0 8px 32px rgba(31,41,55,0.12);
+    --radius: 22px;
+    --glow: rgba(166,124,82,0.35);
 }
 
-/* ================= BODY ================= */
-
-body{
-    font-family:'Poppins',sans-serif;
-    background:linear-gradient(135deg,var(--platinum),#F3F4F6,var(--silver));
-    color:var(--charcoal);
+.wishlist-page {
+    background: linear-gradient(135deg, #f9fafb, #f3f4f6, var(--silver));
+    min-height: 100vh;
+    padding: 60px 0 80px;
 }
 
-/* ================= TITLE ================= */
-
-.title-section{
-    text-align:center;
-    margin:80px 0 60px;
+/* ===== TITLE ===== */
+.title-section {
+    text-align: center;
+    margin-bottom: 50px;
 }
 
-.title-section h2{
-    font-size:clamp(2.8rem,6vw,4.2rem);
-    font-weight:900;
+.title-section h2 {
+    font-family: Georgia, serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 900;
+    color: var(--charcoal);
+    letter-spacing: -0.5px;
 }
 
-/* ===============================
-   PRODUCT GRID SPACING
-=============================== */
+.title-section p {
+    font-size: 0.9rem;
+    color: #aaa;
+    margin-top: 6px;
+}
 
+/* ===== GRID ===== */
 .products-row {
-    row-gap: 42px;
+    row-gap: 32px;
 }
 
-/* ===============================
-   PRODUCT CARD (SAME AS FORMAL)
-=============================== */
-
+/* ===== CARD ===== */
 .product-card {
-    background: rgba(255,255,255,0.96);
-    border-radius: 28px;
-    padding: 28px;
+    background: rgba(255,255,255,0.97);
+    border-radius: var(--radius);
+    padding: 22px;
     height: 100%;
-    box-shadow:
-        0 20px 50px var(--shadow),
-        inset 0 1px 0 rgba(255,255,255,0.8);
-    transition: all 0.45s ease;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(255,255,255,0.8);
+    transition: transform 0.38s ease, box-shadow 0.38s ease;
     position: relative;
+    overflow: hidden;
 }
 
 .product-card:hover {
-    transform: translateY(-12px) scale(1.03);
+    transform: translateY(-10px) scale(1.02);
     box-shadow:
-        0 40px 90px rgba(166,124,82,0.3),
-        0 20px 40px rgba(0,0,0,0.2);
+        0 32px 72px var(--glow),
+        0 16px 32px rgba(0,0,0,0.12);
 }
 
-/* ===============================
-   IMAGE
-=============================== */
-
+/* ===== PRODUCT IMAGE ===== */
 .product-image {
-    height: 240px;
     width: 100%;
+    height: 300px;
     object-fit: cover;
-    border-radius: 22px;
-    margin-bottom: 24px;
+    border-radius: 16px;
+    margin-bottom: 18px;
+    display: block;
 }
 
-/* ===============================
-   CARD BODY
-=============================== */
-
-.product-card h6 {
-    font-size: 1.05rem;
+/* ===== CARD BODY ===== */
+.product-name {
+    font-size: 0.95rem;
     font-weight: 700;
-    margin-bottom: 8px;
+    color: var(--charcoal);
+    margin-bottom: 6px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .product-price {
-    font-size: 1.15rem;
-    font-weight: 700;
-    color: var(--mocha);
-}
-
-.product-price span {
-    font-size: 0.9rem;
-    color: #999;
-    text-decoration: line-through;
-    margin-left: 6px;
-}
-
-/* ===============================
-   RESPONSIVE
-=============================== */
-
-@media (max-width: 768px) {
-    .product-image {
-        height: 220px;
-    }
-}
-
-/* ================= BUTTON ================= */
-
-.btn {
-    background: linear-gradient(135deg, var(--mocha-mousse), var(--bronze-matte));
-    border: none;
-    border-radius: 16px;
-    font-weight: 600;
-    font-size: 0.95rem;
-    letter-spacing: 0.5px;
-    padding: 12px 24px;
-    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-    position: relative;
-    overflow: hidden;
-    text-transform: uppercase;
-    color: #fff;
-}
-
-.btn::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-    transition: left 0.6s;
-}
-
-.btn:hover::before {
-    left: 100%;
-}
-
-.btn:hover {
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 15px 35px var(--glow-mocha);
-}
-
-/* ================= FLOATING HEART ================= */
-
-.wishlist-btn{
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    z-index: 10;
-
-    background: #fff;
-    border: none;
-    font-size: 22px;
-    border-radius: 50%;
-    padding: 6px 10px;
-
-    box-shadow: 0 8px 20px rgba(0,0,0,.15);
-
-    transition: all .35s cubic-bezier(.22,1,.36,1);
-}
-
-.product-card:hover .wishlist-btn{
-    transform: scale(1.15);
-    box-shadow: 0 12px 28px rgba(166,124,82,.45);
-}
-
-/* ================= EMPTY ================= */
-
-.empty-box{
-    text-align:center;
-    padding:120px 20px;
-}
-
-</style>
-</head>
-
-<body>
-
-{% include "base.html" %}
-
-<!-- TITLE -->
-<div class="title-section">
-    <h2>❤️ My Wishlist</h2>
-</div>
-
-<div class="container mb-5">
-
-{% if wishlist_items %}
-
-<div class="row products-row">
-
-{% for item in wishlist_items %}
-<div class="col-md-4">
-
-    <!-- PRODUCT CARD -->
-    <div class="product-card">
-
-        <!-- REMOVE HEART -->
-        <form method="post"
-              action="{% url 'wishlist' item.Products.id %}">
-            {% csrf_token %}
-            <button type="submit" class="wishlist-btn">
-                ❤️
-            </button>
-        </form>
-
-        <!-- PRODUCT -->
-        <a href="{% url 'productsdetail' item.Products.id %}"
-           class="text-decoration-none text-dark d-block h-100">
-
-            {% if item.Products.image %}
-            <img src="{{ item.Products.image.url }}"
-                 class="product-image">
-            {% endif %}
-
-            <h6>{{ item.Products.name }}</h6>
-
-            <p class="product-price">
-                ₹{{ item.Products.price }}
-            </p>
-
-            <!-- REMOVE BUTTON -->
-            <form method="post"
-                  action="{% url 'wishlist' item.Products.id %}"
-                  onclick="event.stopPropagation();">
-                {% csrf_token %}
-                <button class="btn w-100">Remove from Wishlist</button>
-            </form>
-
-        </a>
-
-    </div>
-
-</div>
-{% endfor %}
-
-</div>
-
-{% else %}
-
-<div class="empty-box">
-    <h4>Your wishlist is empty 😔</h4>
-    <p class="text-muted">Start adding products you love ❤️</p>
-
-    <a href="{% url 'home' %}" class="btn mt-3">
-        Continue Shopping
-    </a>
-</div>
-
-{% endif %}
-
-</div>
-
-</body>
-</html> {% endcomment %}
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>My Wishlist – Men's Store</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Icons -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
-
-    <!-- Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-
-<style>
-
-/* ================= ROOT ================= */
-
-:root {
-    --charcoal:#1F2937;
-    --steel:#374151;
-    --mocha:#A67C52;
-    --bronze:#8B5A2B;
-    --platinum:#F9FAFB;
-    --silver:#D1D5DB;
-    --shadow:rgba(31,41,55,.25);
-
-    --mocha-mousse:#A67C52;
-    --bronze-matte:#8B5A2B;
-    --glow-mocha:rgba(166,124,82,.45);
-}
-
-/* ================= BODY ================= */
-
-body{
-    font-family:'Poppins',sans-serif;
-    background:linear-gradient(135deg,var(--platinum),#F3F4F6,var(--silver));
-    color:var(--charcoal);
-}
-
-/* ================= TITLE ================= */
-
-.title-section{
-    text-align:center;
-    margin:80px 0 60px;
-}
-
-.title-section h2{
-    font-size:clamp(2.8rem,6vw,4.2rem);
-    font-weight:900;
-}
-
-/* ===============================
-   PRODUCT GRID SPACING
-=============================== */
-
-.products-row {
-    row-gap: 42px;
-}
-
-/* ===============================
-   PRODUCT CARD (SAME AS FORMAL)
-=============================== */
-
-.product-card {
-    background: rgba(255,255,255,0.96);
-    border-radius: 28px;
-    padding: 28px;
-    height: 100%;
-    box-shadow:
-        0 20px 50px var(--shadow),
-        inset 0 1px 0 rgba(255,255,255,0.8);
-    transition: all 0.45s ease;
-    position: relative;
-}
-
-.product-card:hover {
-    transform: translateY(-12px) scale(1.03);
-    box-shadow:
-        0 40px 90px rgba(166,124,82,0.3),
-        0 20px 40px rgba(0,0,0,0.2);
-}
-
-/* ===============================
-   IMAGE
-=============================== */
-
-.product-image {
-    height: 320px;
-    width: 100%;
-    object-fit: cover;
-    border-radius: 22px;
-    margin-bottom: 24px;
-}
-
-/* ===============================
-   CARD BODY
-=============================== */
-
-.product-card h6 {
     font-size: 1.05rem;
     font-weight: 700;
+    color: var(--mocha);
+    margin-bottom: 16px;
+}
+
+.product-price .original {
+    font-size: 0.82rem;
+    color: #bbb;
+    text-decoration: line-through;
+    margin-left: 6px;
+    font-weight: 400;
+}
+
+/* ===== REMOVE BUTTON ===== */
+.remove-btn {
+    display: block;
+    width: 100%;
+    padding: 11px 20px;
+    background: linear-gradient(135deg, var(--mocha), var(--bronze));
+    border: none;
+    border-radius: 14px;
+    font-weight: 600;
+    font-size: 0.82rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: #fff;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.remove-btn::before {
+    content: "";
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s;
+}
+
+.remove-btn:hover::before { left: 100%; }
+
+.remove-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px var(--glow);
+}
+
+/* ===== HEART BUTTON ===== */
+.wishlist-btn {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    z-index: 3;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #fff;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.13);
+    opacity: 0;
+    transform: translateY(-5px);
+    transition: all 0.25s ease;
+    cursor: pointer;
+}
+
+.product-card:hover .wishlist-btn {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* always visible on mobile */
+@media (max-width: 768px) {
+    .wishlist-btn { opacity: 1; transform: none; }
+}
+
+/* ===== EMPTY STATE ===== */
+.empty-box {
+    text-align: center;
+    padding: 80px 20px;
+    background: #fff;
+    border-radius: var(--radius);
+    border: 1px solid var(--silver);
+    box-shadow: var(--shadow);
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+.empty-box i {
+    font-size: 3.5rem;
+    color: #ddd;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.empty-box h4 {
+    font-weight: 700;
+    color: var(--charcoal);
     margin-bottom: 8px;
 }
 
-.product-price {
-    font-size: 1.15rem;
-    font-weight: 700;
-    color: var(--mocha);
-}
+.empty-box p { font-size: 0.88rem; color: #aaa; }
 
-.product-price span {
-    font-size: 0.9rem;
-    color: #999;
-    text-decoration: line-through;
-    margin-left: 6px;
-}
-
-/* ===============================
-   RESPONSIVE
-=============================== */
-
-@media (max-width: 768px) {
-    .product-image {
-        height: 280px;
-    }
-}
-
-/* ================= BUTTON ================= */
-
-.btn {
-    background: linear-gradient(135deg, var(--mocha-mousse), var(--bronze-matte));
-    border: none;
-    border-radius: 16px;
-    font-weight: 600;
-    font-size: 0.95rem;
-    letter-spacing: 0.5px;
-    padding: 12px 24px;
-    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-    position: relative;
-    overflow: hidden;
-    text-transform: uppercase;
+.continue-btn {
+    display: inline-block;
+    margin-top: 22px;
+    padding: 12px 30px;
+    background: linear-gradient(135deg, var(--mocha), var(--bronze));
     color: #fff;
+    border-radius: 14px;
+    font-weight: 700;
+    font-size: 0.88rem;
+    text-decoration: none;
+    letter-spacing: 0.4px;
+    transition: opacity 0.2s, transform 0.15s;
 }
 
-.btn::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-    transition: left 0.6s;
+.continue-btn:hover {
+    opacity: 0.9;
+    color: #fff;
+    transform: translateY(-2px);
 }
 
-.btn:hover::before {
-    left: 100%;
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+/* 4 col → 3 col */
+@media (max-width: 1199px) {
+    .product-image { height: 260px; }
 }
 
-.btn:hover {
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 15px 35px var(--glow-mocha);
+/* 3 col → 2 col */
+@media (max-width: 991px) {
+    .product-image { height: 240px; }
+    .wishlist-page { padding: 44px 0 60px; }
 }
 
-/* ================= FLOATING HEART ================= */
-
-.wishlist-btn{
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    z-index: 10;
-
-    background: #fff;
-    border: none;
-    font-size: 22px;
-    border-radius: 50%;
-    padding: 6px 10px;
-
-    box-shadow: 0 8px 20px rgba(0,0,0,.15);
-
-    transition: all .35s cubic-bezier(.22,1,.36,1);
+/* 2 col */
+@media (max-width: 767px) {
+    .product-image { height: 200px; }
+    .product-card  { padding: 16px; }
+    .title-section { margin-bottom: 36px; }
+    .products-row  { row-gap: 20px; }
 }
 
-.product-card:hover .wishlist-btn{
-    transform: scale(1.15);
-    box-shadow: 0 12px 28px rgba(166,124,82,.45);
+/* 2 col → 1 col on very small */
+@media (max-width: 399px) {
+    .product-image { height: 180px; }
 }
-
-/* ================= EMPTY ================= */
-
-.empty-box{
-    text-align:center;
-    padding:120px 20px;
-}
-/* wishlist icon */
-.wishlist-btn{
-    position:absolute;
-    top:15px;
-    right:15px;
-    z-index:3;
-
-    width:38px;
-    height:38px;
-    border-radius:50%;
-    background:#fff;
-    border:none;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    font-size:20px;
-    box-shadow:0 6px 18px rgba(0,0,0,.15);
-
-    /* ⭐ hidden initially */
-    opacity:0;
-    transform:translateY(-6px);
-    transition:all .25s ease;
-}
-
-/* ⭐ show only when card hover */
-.product-card:hover .wishlist-btn{
-    opacity:1;
-    transform:translateY(0);
-}
-
-/* mobile → always visible */
-@media (max-width:768px){
-    .wishlist-btn{
-        opacity:1;
-        transform:none;
-    }
-}
-
 </style>
-</head>
 
-<body>
+<div class="wishlist-page">
+    <div class="container">
 
-{% include "base.html" %}
-
-<!-- TITLE -->
-<div class="title-section">
-    <h2>❤️ My Wishlist</h2>
-</div>
-
-<div class="container mb-5">
-
-{% if wishlist_items %}
-
-<div class="row products-row">
-
-{% for item in wishlist_items %}
-<div class="col-md-3">
-
-    <!-- PRODUCT CARD -->
-    <div class="product-card">
-
-        <!-- REMOVE HEART -->
-        <form method="post"
-              action="{% url 'wishlist' item.Products.id %}">
-            {% csrf_token %}
-            <button type="submit" class="wishlist-btn">
-                ❤️
-            </button>
-        </form>
-
-        <!-- PRODUCT -->
-        <a href="{% url 'productsdetail' item.Products.id %}"
-           class="text-decoration-none text-dark d-block h-100">
-
-            {% if item.Products.image %}
-            <img src="{{ item.Products.image.url }}"
-                 class="product-image">
+        <!-- TITLE -->
+        <div class="title-section">
+            <h2>❤️ My Wishlist</h2>
+            {% if wishlist_items %}
+            <p>{{ wishlist_items|length }} item{{ wishlist_items|length|pluralize }} saved</p>
             {% endif %}
+        </div>
 
-            <h6>{{ item.Products.name }}</h6>
+        {% if wishlist_items %}
 
-            <p class="product-price">
-                ₹{{ item.Products.price }}
-            </p>
+        <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 products-row g-3">
 
-            <!-- REMOVE BUTTON -->
-            <form method="post"
-                  action="{% url 'wishlist' item.Products.id %}"
-                  onclick="event.stopPropagation();">
-                {% csrf_token %}
-                <button class="btn w-100">Remove from Wishlist</button>
-            </form>
+            {% for item in wishlist_items %}
+            <div class="col">
+                <div class="product-card">
 
-        </a>
+                    <!-- HEART (quick remove) -->
+                    <form method="post" action="{% url 'wishlist' item.Products.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="wishlist-btn" title="Remove from wishlist">
+                            ❤️
+                        </button>
+                    </form>
+
+                    <!-- LINK TO PRODUCT -->
+                    <a href="{% url 'productsdetail' item.Products.id %}"
+                       class="text-decoration-none text-dark">
+
+                        {% if item.Products.image %}
+                        <img src="{{ item.Products.image.url }}"
+                             class="product-image"
+                             alt="{{ item.Products.name }}">
+                        {% endif %}
+
+                        <p class="product-name">{{ item.Products.name }}</p>
+
+                        <p class="product-price">
+                            ₹{{ item.Products.price }}
+                            {% if item.Products.discount_price %}
+                            <span class="original">₹{{ item.Products.discount_price }}</span>
+                            {% endif %}
+                        </p>
+
+                    </a>
+
+                    <!-- REMOVE BUTTON -->
+                    <form method="post"
+                          action="{% url 'wishlist' item.Products.id %}"
+                          onclick="event.stopPropagation();">
+                        {% csrf_token %}
+                        <button type="submit" class="remove-btn">
+                            Remove from Wishlist
+                        </button>
+                    </form>
+
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+
+        {% else %}
+
+        <div class="empty-box">
+            <i class="bi bi-heart"></i>
+            <h4>Your wishlist is empty</h4>
+            <p>Start adding products you love</p>
+            <a href="{% url 'home' %}" class="continue-btn">Continue Shopping</a>
+        </div>
+
+        {% endif %}
 
     </div>
-
-</div>
-{% endfor %}
-
 </div>
 
-{% else %}
-
-<div class="empty-box">
-    <h4>Your wishlist is empty 😔</h4>
-    <p class="text-muted">Start adding products you love ❤️</p>
-
-    <a href="{% url 'home' %}" class="btn mt-3">
-        Continue Shopping
-    </a>
-</div>
-
-{% endif %}
-
-</div>
-
-</body>
-</html>
+{% endblock %}

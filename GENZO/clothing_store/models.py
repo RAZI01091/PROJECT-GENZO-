@@ -105,15 +105,14 @@ class Profile(models.Model):
 
 class Address(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    name=models.CharField(max_length=10)
-    phone=models.CharField(max_length=15)
-    pincode=models.CharField(max_length=6)
-    locality=models.CharField(max_length=30)
-    address=models.CharField(max_length=100)
-    city=models.CharField(max_length=20)
-    state = models.CharField(max_length=30)
+    name = models.CharField(max_length=50)
+    phone = models.CharField(max_length=20)
+    pincode = models.CharField(max_length=10)
+    locality = models.CharField(max_length=50)
+    address = models.CharField(max_length=200)
+    city = models.CharField(max_length=50)
+    state = models.CharField(max_length=50)
     is_default = models.BooleanField(default=False)
-
 
 
 class Order(models.Model):
