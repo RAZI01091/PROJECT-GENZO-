@@ -75,7 +75,7 @@ WSGI_APPLICATION = 'GENZO.wsgi.application'
 # DATABASE
 
 DATABASES = {
-   'default': dj_database_url.parse(config('DATABASE_URL'))
+    'default': dj_database_url.parse(config('DATABASE_URL'), conn_max_age=600)
 }
 
 
