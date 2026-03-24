@@ -1,86 +1,199 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>Notifications</title>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
 
 <style>
-
-body{
-font-family:Arial;
-background:#f5f5f5;
-padding:40px;
+:root {
+    --mocha: #8B5A2B;
+    --charcoal: #1a1a2e;
+    --platinum: #f8f6f2;
+    --silver: #e8e4dd;
+    --shadow: 0 8px 32px rgba(0,0,0,0.08);
+    --radius: 18px;
 }
 
-.container{
-max-width:700px;
-margin:auto;
+.notifications-page {
+    background: var(--platinum);
+    min-height: 100vh;
+    padding: 48px 0 80px;
 }
 
-.header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-bottom:20px;
+/* ===== HEADER ===== */
+.page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+    gap: 12px;
 }
 
-.clear-btn{
-background:#8B6F47;
-color:white;
-padding:8px 14px;
-border-radius:5px;
-text-decoration:none;
-font-size:14px;
+.page-title {
+    font-family: Georgia, serif;
+    font-size: clamp(1.4rem, 4vw, 1.9rem);
+    font-weight: 700;
+    color: var(--charcoal);
+    letter-spacing: 0.06em;
+    margin: 0;
 }
 
-.notification{
-background:white;
-padding:15px;
-margin-bottom:10px;
-border-radius:6px;
-box-shadow:0 2px 6px rgba(0,0,0,0.1);
+.clear-btn {
+    background: var(--charcoal);
+    color: #fff;
+    padding: 9px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: background 0.2s, transform 0.15s;
+    white-space: nowrap;
 }
 
-.time{
-font-size:12px;
-color:gray;
+.clear-btn:hover {
+    background: var(--mocha);
+    color: #fff;
+    transform: translateY(-1px);
 }
 
+/* ===== NOTIFICATION CARD ===== */
+.notification-card {
+    background: #fff;
+    border: 1px solid var(--silver);
+    border-radius: 14px;
+    padding: 18px 20px;
+    margin-bottom: 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.notification-card:last-child { margin-bottom: 0; }
+
+.notification-card:hover {
+    box-shadow: 0 8px 28px rgba(0,0,0,0.09);
+    transform: translateY(-2px);
+}
+
+.notif-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #fff3e0;
+    color: var(--mocha);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.notif-body { flex: 1; min-width: 0; }
+
+.notif-message {
+    font-size: 0.92rem;
+    color: var(--charcoal);
+    line-height: 1.55;
+    margin-bottom: 6px;
+    font-weight: 500;
+}
+
+.notif-time {
+    font-size: 0.75rem;
+    color: #bbb;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* ===== EMPTY STATE ===== */
+.empty-state {
+    text-align: center;
+    padding: 70px 20px;
+    color: #ccc;
+}
+
+.empty-state i {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 14px;
+}
+
+.empty-state p {
+    font-size: 1rem;
+    color: #bbb;
+}
+
+/* ===== WRAPPER BOX ===== */
+.notif-wrapper {
+    background: #fff;
+    border-radius: var(--radius);
+    border: 1px solid var(--silver);
+    box-shadow: var(--shadow);
+    padding: 28px;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 767px) {
+    .notifications-page { padding: 28px 0 60px; }
+    .notif-wrapper { padding: 20px 16px; border-radius: 14px; }
+    .notification-card { padding: 14px 16px; }
+    .notif-icon { width: 34px; height: 34px; font-size: 0.95rem; }
+}
+
+@media (max-width: 479px) {
+    .page-header { flex-direction: column; align-items: flex-start; }
+    .clear-btn { width: 100%; text-align: center; }
+}
 </style>
 
-</head>
+<div class="notifications-page">
+    <div class="container" style="max-width: 760px;">
 
-<body>
+        <div class="notif-wrapper">
 
-<div class="container">
+            <!-- HEADER -->
+            <div class="page-header">
+                <h2 class="page-title">Notifications</h2>
+                {% comment %}
+                <a href="{% url 'clear_notifications' %}" class="clear-btn">
+                    Clear All
+                </a>
+                {% endcomment %}
+            </div>
 
-<div class="header">
-<h2>Notifications</h2>
+            <!-- LIST -->
+            {% for n in notifications %}
+            <div class="notification-card">
+                <div class="notif-icon">
+                    <i class="bi bi-bell"></i>
+                </div>
+                <div class="notif-body">
+                    <p class="notif-message">{{ n.message }}</p>
+                    <span class="notif-time">
+                        <i class="bi bi-clock"></i>
+                        {{ n.created_at|date:"d M Y, H:i" }}
+                    </span>
+                </div>
+            </div>
+            {% empty %}
+            <div class="empty-state">
+                <i class="bi bi-bell-slash"></i>
+                <p>No notifications yet</p>
+            </div>
+            {% endfor %}
 
-{% comment %} <a href="{% url 'clear_notifications' %}" class="clear-btn">
-Clear All
-</a> {% endcomment %}
+        </div>
 
+    </div>
 </div>
 
-{% for n in notifications %}
-
-<div class="notification">
-
-<p>{{ n.message }}</p>
-
-<div class="time">
-{{ n.created_at|date:"d M Y H:i" }}
-</div>
-
-</div>
-
-{% empty %}
-
-<p>No notifications</p>
-
-{% endfor %}
-
-</div>
-
-</body>
-</html>
+{% endblock %}
