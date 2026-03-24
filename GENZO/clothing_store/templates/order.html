@@ -1,0 +1,315 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Orders | HOUSE BLOOM</title>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.1/font/bootstrap-icons.min.css" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:"Georgia", serif;
+}
+
+body{
+background: #f8f6f2;
+min-height:100vh;
+}
+
+.orders-wrapper{
+max-width:1400px;
+margin:auto;
+padding:40px 20px 60px;
+}
+
+.orders-header{
+background:#fff;
+padding:20px 30px;
+border-radius:8px;
+margin-bottom:20px;
+box-shadow:0 2px 10px rgba(0,0,0,0.1);
+}
+
+.orders-header h2{
+color:#8B6F47;
+font-size:1.8rem;
+text-transform:uppercase;
+}
+
+.order-card{
+background:#fff;
+border-radius:8px;
+padding:30px;
+margin-bottom:25px;
+box-shadow:0 2px 10px rgba(0,0,0,0.1);
+}
+
+.order-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
+padding-bottom:15px;
+border-bottom:2px solid #f0f0f0;
+}
+
+.order-id{
+font-size:1.1rem;
+font-weight:700;
+}
+
+.order-status{
+padding:6px 12px;
+border-radius:20px;
+font-size:13px;
+font-weight:600;
+}
+
+.status-pending{background:#fff3cd;color:#856404;}
+.status-confirmed{background:#cce5ff;color:#004085;}
+.status-shipped{background:#d1ecf1;color:#0c5460;}
+.status-delivered{background:#d4edda;color:#155724;}
+.status-cancelled{background:#f8d7da;color:#721c24;}
+
+.order-item{
+display:flex;
+gap:20px;
+padding:15px 0;
+border-bottom:1px solid #f0f0f0;
+}
+
+.item-image{
+width:100px;
+height:100px;
+object-fit:cover;
+border-radius:8px;
+}
+
+.item-name{
+font-size:1.05rem;
+font-weight:600;
+}
+
+.item-price{
+color:#3f3007;
+font-weight:700;
+}
+
+.order-footer{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding-top:20px;
+border-top:2px solid #f0f0f0;
+}
+
+.details-btn{
+padding:10px 18px;
+background:#000;
+color:#fff;
+text-decoration:none;
+border-radius:6px;
+font-weight:500;
+}
+
+.review-section{
+background:#f9f9f9;
+padding:20px;
+border-radius:8px;
+margin-top:20px;
+}
+
+.star-rating{
+display:flex;
+flex-direction:row-reverse;
+justify-content:flex-end;
+gap:8px;
+margin-bottom:15px;
+}
+
+.star-rating input{
+display:none;
+}
+
+.star-rating label{
+font-size:2rem;
+color:#ddd;
+cursor:pointer;
+}
+
+.star-rating input:checked ~ label,
+.star-rating label:hover,
+.star-rating label:hover ~ label{
+color:#ffc107;
+}
+
+.review-text textarea{
+width:100%;
+min-height:100px;
+padding:12px;
+border:1px solid #ddd;
+border-radius:6px;
+resize:vertical;
+}
+
+.review-buttons{
+display:flex;
+gap:10px;
+margin-top:10px;
+}
+
+.submit-review-btn{
+padding:10px 24px;
+background:#8B6F47;
+color:#fff;
+border:none;
+border-radius:6px;
+font-weight:600;
+cursor:pointer;
+}
+
+.review-item{
+border-top:1px solid #ddd;
+padding-top:12px;
+margin-top:12px;
+}
+
+.delete-btn{
+background:red;
+color:white;
+border:none;
+padding:6px 12px;
+border-radius:4px;
+cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="orders-wrapper">
+
+<div class="orders-header">
+<h2>My Orders</h2>
+</div>
+
+{% for order in orders %}
+<div class="order-card">
+
+<div class="order-header">
+<div class="order-id">
+<i class="bi bi-bag"></i>
+Order #{{ order.id }}
+</div>
+
+<span class="order-status status-{{ order.status }}">
+{{ order.status|title }}
+</span>
+</div>
+
+<!-- PRODUCTS -->
+{% for item in order.items.all %}
+<div class="order-item">
+
+{% if item.product.image %}
+<img src="{{ item.product.image.url }}" class="item-image">
+{% endif %}
+
+<div>
+<div class="item-name">{{ item.product.name }}</div>
+<div class="item-price">₹{{ item.price }}</div>
+<div>Qty: {{ item.quantity }}</div>
+</div>
+
+</div>
+{% endfor %}
+
+<div class="order-footer">
+<div>
+<strong>Total: ₹{{ order.total }}</strong>
+<span>({{ order.items.count }} items)</span>
+</div>
+
+<a href="{% url 'orderdetails' order.id %}" class="details-btn">
+Details
+</a>
+</div>
+
+<!-- REVIEW SECTION -->
+{% if order.status == "delivered" %}
+<div class="review-section">
+
+<form method="post" action="{% url 'review_rating' order.id %}">
+{% csrf_token %}
+
+<div class="star-rating">
+{% for i in "54321" %}
+<input type="radio"
+name="rating"
+id="star{{ i }}-{{ order.id }}"
+value="{{ i }}"
+required>
+<label for="star{{ i }}-{{ order.id }}" class="bi bi-star-fill"></label>
+{% endfor %}
+</div>
+
+<div class="review-text">
+<textarea name="review_text"
+placeholder="Share your experience..."></textarea>
+</div>
+
+<div class="review-buttons">
+<button type="submit" class="submit-review-btn">
+Submit Review
+</button>
+</div>
+
+</form>
+
+<!-- SHOW USER REVIEWS -->
+{% for item in order.items.all %}
+{% for r in item.product.reviewrating_set.all %}
+{% if r.user == request.user %}
+
+<div class="review-item">
+
+<strong>{{ r.user.username }}</strong>
+
+<div>
+⭐ {{ r.rating }} / 5
+</div>
+
+{% if r.review %}
+<p>{{ r.review }}</p>
+{% endif %}
+
+<form method="post" action="{% url 'delete_review' r.id %}">
+{% csrf_token %}
+<button type="submit" class="delete-btn">
+Delete Review
+</button>
+</form>
+
+</div>
+
+{% endif %}
+{% endfor %}
+{% endfor %}
+
+</div>
+{% endif %}
+
+</div>
+{% empty %}
+<p>No orders found.</p>
+{% endfor %}
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,326 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<style>
+:root {
+    --mocha: #A67C52;
+    --bronze: #8B5A2B;
+    --charcoal: #1a1a2e;
+    --platinum: #f8f6f2;
+    --silver: #e8e4dd;
+    --shadow: 0 8px 32px rgba(31,41,55,0.12);
+    --radius: 22px;
+    --glow: rgba(166,124,82,0.35);
+}
+
+.wishlist-page {
+    background: linear-gradient(135deg, #f9fafb, #f3f4f6, var(--silver));
+    min-height: 100vh;
+    padding: 60px 0 80px;
+}
+
+/* ===== TITLE ===== */
+.title-section {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.title-section h2 {
+    font-family: Georgia, serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 900;
+    color: var(--charcoal);
+    letter-spacing: -0.5px;
+}
+
+.title-section p {
+    font-size: 0.9rem;
+    color: #aaa;
+    margin-top: 6px;
+}
+
+/* ===== GRID ===== */
+.products-row {
+    row-gap: 32px;
+}
+
+/* ===== CARD ===== */
+.product-card {
+    background: rgba(255,255,255,0.97);
+    border-radius: var(--radius);
+    padding: 22px;
+    height: 100%;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(255,255,255,0.8);
+    transition: transform 0.38s ease, box-shadow 0.38s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.product-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow:
+        0 32px 72px var(--glow),
+        0 16px 32px rgba(0,0,0,0.12);
+}
+
+/* ===== PRODUCT IMAGE ===== */
+.product-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 16px;
+    margin-bottom: 18px;
+    display: block;
+}
+
+/* ===== CARD BODY ===== */
+.product-name {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--charcoal);
+    margin-bottom: 6px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.product-price {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--mocha);
+    margin-bottom: 16px;
+}
+
+.product-price .original {
+    font-size: 0.82rem;
+    color: #bbb;
+    text-decoration: line-through;
+    margin-left: 6px;
+    font-weight: 400;
+}
+
+/* ===== REMOVE BUTTON ===== */
+.remove-btn {
+    display: block;
+    width: 100%;
+    padding: 11px 20px;
+    background: linear-gradient(135deg, var(--mocha), var(--bronze));
+    border: none;
+    border-radius: 14px;
+    font-weight: 600;
+    font-size: 0.82rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: #fff;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.remove-btn::before {
+    content: "";
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s;
+}
+
+.remove-btn:hover::before { left: 100%; }
+
+.remove-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px var(--glow);
+}
+
+/* ===== HEART BUTTON ===== */
+.wishlist-btn {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    z-index: 3;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #fff;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.13);
+    opacity: 0;
+    transform: translateY(-5px);
+    transition: all 0.25s ease;
+    cursor: pointer;
+}
+
+.product-card:hover .wishlist-btn {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* always visible on mobile */
+@media (max-width: 768px) {
+    .wishlist-btn { opacity: 1; transform: none; }
+}
+
+/* ===== EMPTY STATE ===== */
+.empty-box {
+    text-align: center;
+    padding: 80px 20px;
+    background: #fff;
+    border-radius: var(--radius);
+    border: 1px solid var(--silver);
+    box-shadow: var(--shadow);
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+.empty-box i {
+    font-size: 3.5rem;
+    color: #ddd;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.empty-box h4 {
+    font-weight: 700;
+    color: var(--charcoal);
+    margin-bottom: 8px;
+}
+
+.empty-box p { font-size: 0.88rem; color: #aaa; }
+
+.continue-btn {
+    display: inline-block;
+    margin-top: 22px;
+    padding: 12px 30px;
+    background: linear-gradient(135deg, var(--mocha), var(--bronze));
+    color: #fff;
+    border-radius: 14px;
+    font-weight: 700;
+    font-size: 0.88rem;
+    text-decoration: none;
+    letter-spacing: 0.4px;
+    transition: opacity 0.2s, transform 0.15s;
+}
+
+.continue-btn:hover {
+    opacity: 0.9;
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+/* 4 col → 3 col */
+@media (max-width: 1199px) {
+    .product-image { height: 260px; }
+}
+
+/* 3 col → 2 col */
+@media (max-width: 991px) {
+    .product-image { height: 240px; }
+    .wishlist-page { padding: 44px 0 60px; }
+}
+
+/* 2 col */
+@media (max-width: 767px) {
+    .product-image { height: 200px; }
+    .product-card  { padding: 16px; }
+    .title-section { margin-bottom: 36px; }
+    .products-row  { row-gap: 20px; }
+}
+
+/* 2 col → 1 col on very small */
+@media (max-width: 399px) {
+    .product-image { height: 180px; }
+}
+</style>
+
+<div class="wishlist-page">
+    <div class="container">
+
+        <!-- TITLE -->
+        <div class="title-section">
+            <h2>❤️ My Wishlist</h2>
+            {% if wishlist_items %}
+            <p>{{ wishlist_items|length }} item{{ wishlist_items|length|pluralize }} saved</p>
+            {% endif %}
+        </div>
+
+        {% if wishlist_items %}
+
+        <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 products-row g-3">
+
+            {% for item in wishlist_items %}
+            <div class="col">
+                <div class="product-card">
+
+                    <!-- HEART (quick remove) -->
+                    <form method="post" action="{% url 'wishlist' item.Products.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="wishlist-btn" title="Remove from wishlist">
+                            ❤️
+                        </button>
+                    </form>
+
+                    <!-- LINK TO PRODUCT -->
+                    <a href="{% url 'productsdetail' item.Products.id %}"
+                       class="text-decoration-none text-dark">
+
+                        {% if item.Products.image %}
+                        <img src="{{ item.Products.image.url }}"
+                             class="product-image"
+                             alt="{{ item.Products.name }}">
+                        {% endif %}
+
+                        <p class="product-name">{{ item.Products.name }}</p>
+
+                        <p class="product-price">
+                            ₹{{ item.Products.price }}
+                            {% if item.Products.discount_price %}
+                            <span class="original">₹{{ item.Products.discount_price }}</span>
+                            {% endif %}
+                        </p>
+
+                    </a>
+
+                    <!-- REMOVE BUTTON -->
+                    <form method="post"
+                          action="{% url 'wishlist' item.Products.id %}"
+                          onclick="event.stopPropagation();">
+                        {% csrf_token %}
+                        <button type="submit" class="remove-btn">
+                            Remove from Wishlist
+                        </button>
+                    </form>
+
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+
+        {% else %}
+
+        <div class="empty-box">
+            <i class="bi bi-heart"></i>
+            <h4>Your wishlist is empty</h4>
+            <p>Start adding products you love</p>
+            <a href="{% url 'home' %}" class="continue-btn">Continue Shopping</a>
+        </div>
+
+        {% endif %}
+
+    </div>
+</div>
+
+{% endblock %}

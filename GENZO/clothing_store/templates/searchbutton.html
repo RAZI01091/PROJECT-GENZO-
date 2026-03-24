@@ -1,0 +1,502 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<style>
+
+:root{
+    --charcoal:#1a1a2e;
+    --mocha:#c4a35a;
+    --bronze:#9e7e3f;
+    --platinum:#f8f6f2;
+    --silver:#e8e4dd;
+    --card-bg:rgba(255,255,255,0.97);
+    --shadow-soft:0 8px 32px rgba(26,26,46,0.10);
+    --shadow-hover:0 24px 60px rgba(196,163,90,0.22);
+}
+
+/* PAGE */
+.search-page{
+    background:var(--platinum);
+    min-height:100vh;
+}
+
+/* TITLE */
+.search-title{
+    text-align:center;
+    padding:50px 20px 40px;
+}
+
+.search-title h2{
+    font-size:40px;
+    letter-spacing:4px;
+}
+
+.search-title p{
+    color:#777;
+}
+
+/* LAYOUT */
+.shop-wrapper{
+    max-width:1320px;
+    margin:auto;
+    padding:30px 16px 60px;
+}
+
+.shop-layout{
+    display:flex;
+    gap:28px;
+    align-items:flex-start;
+}
+
+/* FILTER */
+.filter-col{
+    width:260px;
+    flex-shrink:0;
+}
+
+#filter-toggle{
+    display:none;
+}
+
+.filter-toggle-label{
+    display:none;
+    background:#1a1a2e;
+    color:#fff;
+    padding:10px 16px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:14px;
+    margin-bottom:15px;
+}
+
+.filter-sidebar{
+    background:#fff;
+    border:1px solid #e0e0e0;
+    border-radius:12px;
+    box-shadow:var(--shadow-soft);
+}
+
+.filter-header{
+    padding:16px;
+    font-weight:600;
+    border-bottom:1px solid #eee;
+}
+
+.filter-title{
+    padding:15px;
+    font-weight:600;
+    font-size:13px;
+    text-transform:uppercase;
+}
+
+.filter-content{
+    padding:0 15px 15px;
+}
+
+.form-check{
+    margin-bottom:8px;
+}
+
+.price-input-box{
+    width:100%;
+    padding:8px 10px;
+    border:1px solid #ddd;
+    border-radius:4px;
+    margin-bottom:8px;
+}
+
+.btn-custom{
+    background:linear-gradient(135deg,var(--mocha),var(--bronze));
+    border:none;
+    border-radius:10px;
+    padding:10px;
+    color:#fff;
+    width:calc(100% - 30px);
+    margin:10px 15px 20px;
+    font-weight:600;
+}
+
+/* PRODUCTS */
+.products-col{
+    flex:1;
+}
+
+.products-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:24px;
+}
+
+/* PRODUCT CARD */
+
+.product-card{
+    background:var(--card-bg);
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:var(--shadow-soft);
+    border:1px solid rgba(232,228,221,0.7);
+    transition:transform .35s ease, box-shadow .35s ease;
+    position:relative;
+    display:flex;
+    flex-direction:column;
+}
+
+.product-card:hover{
+    transform:translateY(-7px);
+    box-shadow:var(--shadow-hover);
+}
+.product-card:hover .wishlist-btn{
+    opacity:1;
+    transform:translateY(0) scale(1);
+}
+
+.product-image-wrap{
+    position:relative;
+    overflow:hidden;
+}
+
+.product-image{
+    width:100%;
+    height:360px;
+    object-fit:cover;
+    display:block;
+    transition:transform .5s ease;
+}
+
+.product-card:hover .product-image{
+    transform:scale(1.05);
+}
+
+.product-price{
+    font-weight:700;
+    color:var(--mocha);
+}
+/* CARD BODY */
+
+.card-body-inner{
+    padding:16px 18px 20px;
+}
+
+.product-name{
+    font-size:.95rem;
+    font-weight:600;
+    color:var(--charcoal);
+    margin-bottom:6px;
+}
+
+.product-price{
+    font-size:.98rem;
+    font-weight:700;
+    color:var(--mocha);
+    display:flex;
+    gap:8px;
+}
+
+.product-price .original{
+    font-size:.8rem;
+    color:#bbb;
+    text-decoration:line-through;
+}
+/* RESPONSIVE */
+
+@media (max-width:1199px){
+
+.products-grid{
+grid-template-columns:repeat(2,1fr);
+}
+
+}
+
+@media (max-width:991px){
+
+.shop-layout{
+flex-direction:column;
+}
+
+.filter-col{
+width:100%;
+}
+
+.filter-toggle-label{
+display:inline-block;
+}
+
+#filter-toggle:not(:checked) ~ .filter-sidebar{
+display:none;
+}
+
+}
+
+@media (max-width:600px){
+
+.products-grid{
+grid-template-columns:repeat(2,1fr);
+gap:14px;
+}
+
+.product-image{
+height:240px;
+}
+
+}
+
+@media (max-width:380px){
+
+.products-grid{
+grid-template-columns:1fr;
+}
+
+}
+.wishlist-btn{
+    position:absolute;
+    top:10px;
+    right:10px;
+    z-index:3;
+    width:36px;
+    height:36px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.92);
+    border:none;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:17px;
+    box-shadow:0 4px 14px rgba(0,0,0,0.12);
+    cursor:pointer;
+    opacity:0;
+    transform:translateY(-5px) scale(.9);
+    transition:opacity .25s ease, transform .25s ease;
+}
+</style>
+
+
+<div class="search-page">
+
+<div class="search-title">
+<h2>SEARCH RESULTS</h2>
+
+{% if query %}
+<p>Showing results for: <strong>"{{ query }}"</strong></p>
+{% endif %}
+
+</div>
+
+
+<div class="shop-wrapper">
+<div class="shop-layout">
+
+
+<!-- FILTER -->
+
+<div class="filter-col">
+
+<input type="checkbox" id="filter-toggle">
+
+<label for="filter-toggle" class="filter-toggle-label">
+Filters
+</label>
+
+<aside class="filter-sidebar">
+
+<div class="filter-header">
+Filter
+</div>
+
+<form method="get">
+
+{% if query %}
+<input type="hidden" name="q" value="{{ query }}">
+{% endif %}
+
+
+<!-- TOP SIZE -->
+
+<div class="filter-title">Top Sizes</div>
+
+<div class="filter-content">
+
+{% for s in top_sizes %}
+
+<div class="form-check">
+
+<input
+class="form-check-input"
+type="checkbox"
+name="size"
+value="{{ s.name }}"
+{% if s.name in selected_sizes %}checked{% endif %}
+>
+
+{{ s.name }}
+
+</div>
+
+{% endfor %}
+
+</div>
+
+
+<!-- BOTTOM SIZE -->
+
+<div class="filter-title">Bottom Sizes</div>
+
+<div class="filter-content">
+
+{% for s in bottom_sizes %}
+
+<div class="form-check">
+
+<input
+class="form-check-input"
+type="checkbox"
+name="size"
+value="{{ s.name }}"
+{% if s.name in selected_sizes %}checked{% endif %}
+>
+
+{{ s.name }}
+
+</div>
+
+{% endfor %}
+
+</div>
+
+
+<!-- PRICE -->
+
+<div class="filter-title">Price</div>
+
+<div class="filter-content">
+
+<input
+type="number"
+name="min_price"
+value="{{ min_price }}"
+placeholder="Min"
+class="price-input-box"
+>
+
+<input
+type="number"
+name="max_price"
+value="{{ max_price }}"
+placeholder="Max"
+class="price-input-box"
+>
+
+</div>
+
+
+<button type="submit" class="btn-custom">
+APPLY FILTER
+</button>
+
+</form>
+
+</aside>
+
+</div>
+
+
+
+<!-- PRODUCTS -->
+
+<div class="products-col">
+
+<div class="products-grid">
+
+{% for product in products %}
+
+<div class="product-card">
+
+<div class="product-image-wrap">
+
+{% if user.is_authenticated %}
+
+<form method="post" action="{% url 'wishlist' product.id %}">
+{% csrf_token %}
+
+<button type="submit" class="wishlist-btn">
+
+{% if product.id in wishlist_id %}
+❤️
+{% else %}
+🤍
+{% endif %}
+
+</button>
+
+</form>
+
+{% endif %}
+
+<a href="{% url 'productsdetail' product.id %}">
+
+{% if product.image %}
+
+<img
+src="{{ product.image.url }}"
+class="product-image"
+alt="{{ product.name }}"
+>
+
+{% endif %}
+
+</a>
+
+</div>
+
+<div class="card-body-inner">
+
+<a
+href="{% url 'productsdetail' product.id %}"
+class="text-decoration-none"
+>
+
+<h6 class="product-name">
+{{ product.name }}
+</h6>
+
+{% if product.discount_price %}
+
+<p class="product-price">
+
+₹{{ product.discount_price }}
+
+<span class="original">
+₹{{ product.price }}
+</span>
+
+</p>
+
+{% else %}
+
+<p class="product-price">
+₹{{ product.price }}
+</p>
+
+{% endif %}
+
+</a>
+
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+
+</div>
+</div>
+
+
+</div>
+
+{% endblock %}
