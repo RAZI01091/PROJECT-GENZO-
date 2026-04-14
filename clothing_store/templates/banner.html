@@ -243,8 +243,15 @@ body{
                     {% for banner in banners %}
                     <tr>
                         <td>{{ forloop.counter }}</td>
-                        <td><img src="{{ banner.image.url }}" class="banner-img"></td>
-                        <td>
+{% load static %}
+
+<td>
+    {% if banner.image %}
+    <img src="{% static 'images/' %}{{ banner.image }}" class="banner-img">
+    {% else %}
+    <img src="{% static 'images/default.jpg' %}" class="banner-img">
+    {% endif %}
+</td>                        <td>
                             <strong>{{ banner.title }}</strong><br>
                             <small class="text-muted">{{ banner.subtitle }}</small>
                         </td>

@@ -523,7 +523,7 @@
 
                             <a href="{% url 'productsdetail' product.id %}">
                                 {% if product.image %}
-                                <img src="{{ product.image.url }}" class="product-image" alt="{{ product.name }}">
+                                <img src="/static/images/{{ product.image }}" alt="{{ product.name }}">
                                 {% endif %}
                             </a>
                         </div>

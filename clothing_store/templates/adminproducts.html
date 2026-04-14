@@ -256,8 +256,12 @@ img.product-img{
 <td>{{ forloop.counter }}</td>
 
 <td>
+{% load static %}
+
 {% if product.image %}
-<img src="{{ product.image.url }}" class="product-img">
+<img src="{% static 'images/' %}{{ product.image }}" class="product-img">
+{% else %}
+<img src="{% static 'images/default.jpg' %}" class="product-img">
 {% endif %}
 </td>
 

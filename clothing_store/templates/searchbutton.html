@@ -435,16 +435,14 @@ APPLY FILTER
 
 <a href="{% url 'productsdetail' product.id %}">
 
+
+{% load static %}
+
 {% if product.image %}
-
-<img
-src="{{ product.image.url }}"
-class="product-image"
-alt="{{ product.name }}"
->
-
+<img src="{% static 'images/' %}{{ product.image }}"
+     class="product-image"
+     alt="{{ product.name }}">
 {% endif %}
-
 </a>
 
 </div>

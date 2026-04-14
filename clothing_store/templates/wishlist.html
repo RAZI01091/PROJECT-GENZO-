@@ -276,11 +276,13 @@
                     <a href="{% url 'productsdetail' item.Products.id %}"
                        class="text-decoration-none text-dark">
 
-                        {% if item.Products.image %}
-                        <img src="{{ item.Products.image.url }}"
-                             class="product-image"
-                             alt="{{ item.Products.name }}">
-                        {% endif %}
+                       {% load static %}
+
+{% if item.Products.image %}
+<img src="{% static 'images/' %}{{ item.Products.image }}"
+     class="product-image"
+     alt="{{ item.Products.name }}">
+{% endif %}
 
                         <p class="product-name">{{ item.Products.name }}</p>
 

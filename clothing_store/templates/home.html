@@ -329,19 +329,18 @@
 </style>
 
 <!-- ===== HERO BANNER ===== -->
-{% if banner %}
+{% load static %}
+
 <section class="hero">
-    <img src="{{ banner.image.url }}" alt="{{ banner.title }}">
+    <img src="{% static 'images/banners/banner.jpg' %}" alt="Banner">
     <div class="banner-overlay">
         <div class="banner-content">
-            <h1>{{ banner.title }}</h1>
-            <p>{{ banner.subtitle }}</p>
+            <h1>Welcome to Men's Store</h1>
+            <p>Premium Collection for Every Style</p>
             <a href="{% url 'casualfit' %}" class="btn-shop">Shop Now</a>
         </div>
     </div>
 </section>
-{% endif %}
-
 <!-- ===== SHOP BY CATEGORY ===== -->
 <div class="container my-5">
     <h2 class="section-title">Shop By Category</h2>
@@ -402,9 +401,10 @@
             <a href="{% url 'productsdetail' product.id %}" class="text-decoration-none">
                 <div class="product-card">
                     <div class="product-img-wrap">
-                        {% if product.image %}
-                        <img src="{{ product.image.url }}" alt="{{ product.name }}">
-                        {% endif %}
+
+
+
+<img src="/static/images/{{ product.image }}" alt="{{ product.name }}">
                     </div>
                     <div class="product-info">
                         <h5>{{ product.name }}</h5>

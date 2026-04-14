@@ -33,6 +33,8 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
 
+
+
 @never_cache
 def home(request):
     banner = Banner.objects.filter(is_active=True).first()

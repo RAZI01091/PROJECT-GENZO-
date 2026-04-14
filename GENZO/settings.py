@@ -14,7 +14,11 @@ SECRET_KEY = config('SECRET_KEY')
 
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = ['project-genzo-2.onrender.com']
+ALLOWED_HOSTS = [
+    'project-genzo-2.onrender.com',
+    '127.0.0.1',
+    'localhost'
+]
 
 # Application definition
 
@@ -39,6 +43,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware', 
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -73,10 +78,17 @@ WSGI_APPLICATION = 'GENZO.wsgi.application'
 
 
 # DATABASE
-
 DATABASES = {
-    'default': dj_database_url.parse(config('DATABASE_URL'), conn_max_age=600)
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST'),
+        'PORT': config('DB_PORT'),
+    }
 }
+
 
 
 # PASSWORD VALIDATION
@@ -116,7 +128,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 
-
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
@@ -190,9 +202,7 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 
 # MEDIA FILES
-
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 
 # STRIPE PAYMENT

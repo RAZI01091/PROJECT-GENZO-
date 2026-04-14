@@ -79,8 +79,10 @@ body{
 {% for item in order.items.all %}
 <div class="d-flex gap-3 mb-3">
 
+{% load static %}
+
 {% if item.product.image %}
-<img src="{{ item.product.image.url }}" class="item-img">
+<img src="{% static 'images/' %}{{ item.product.image }}" class="item-img">
 {% endif %}
 
 <div class="flex-grow-1">

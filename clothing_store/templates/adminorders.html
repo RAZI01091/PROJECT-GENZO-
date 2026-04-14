@@ -217,14 +217,31 @@ body{
 
                     <!-- PRODUCT -->
                     <td>
-                        {% with order.items.first as item %}
+                        {% comment %} {% with order.items.first as item %}
                         {% if item %}
                         <div class="product-cell">
                             <img src="{{ item.product.image.url }}">
                             <div>{{ item.product.name }}</div>
                         </div>
                         {% endif %}
-                        {% endwith %}
+                        {% endwith %} {% endcomment %}
+
+                        {% load static %}
+
+{% with order.items.first as item %}
+    {% if item %}
+    <div class="product-cell">
+
+        {% if item.product.image %}
+        <img src="{% static 'images/' %}{{ item.product.image }}">
+        {% else %}
+        <img src="{% static 'images/default.jpg' %}">
+        {% endif %}
+
+        <div>{{ item.product.name }}</div>
+    </div>
+    {% endif %}
+{% endwith %}
                     </td>
 
                     <!-- ORDER ID -->

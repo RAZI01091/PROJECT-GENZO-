@@ -142,12 +142,11 @@ body{
         <h2 class="brand">Men's store</h2>
 
         <nav>
-            <a href="{% url 'adminpanel' %}">Dashboard</a>
+            <a href="{% url 'admindashboard' %}">Dashboard</a>
             <a href="{% url 'adminproducts' %}">Products</a>
             <a href="{% url 'adminorders' %}">Orders</a>
             <a href="{% url 'adminusers' %}">Customers</a>
             <a href="{% url 'admin_category' %}" class="active">Categories</a>
-            {% comment %} <a href="#">Coupons</a> {% endcomment %}
             <a href="{% url 'banner' %}">Banner</a>
             <a href="#">Notifications</a>
 

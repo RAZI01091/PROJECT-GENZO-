@@ -373,14 +373,19 @@ body {
             <div class="col-lg-8">
                 <div class="cart-card">
 
-                    {% for item in cart_items %}
-                    <div class="cart-item">
+{% load static %}
 
-                        {% if item.product.image %}
-                        <img src="{{ item.product.image.url }}" class="cart-img" alt="{{ item.product.name }}">
-                        {% endif %}
+{% for item in cart_items %}
+<div class="cart-item">
 
-                        <div class="cart-info">
+    {% if item.product.image %}
+        <img src="{% static 'images/' %}{{ item.product.image }}" class="cart-img">
+    {% else %}
+        <img src="{% static 'images/default.jpg' %}" class="cart-img">
+    {% endif %}
+
+{% comment %} </div> {% endcomment %}
+<div class="cart-info">
                             <div class="cart-title">{{ item.product.name }}</div>
                             <div class="cart-meta">
                                 {% if item.size %}Size: {{ item.size.name }} &middot; {% endif %}

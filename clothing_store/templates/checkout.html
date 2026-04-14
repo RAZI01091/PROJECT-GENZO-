@@ -423,9 +423,17 @@ body {
                         {% for item in cart_items %}
                         <div class="order-item">
                             <div class="order-item-left">
-                                {% if item.product.image %}
-                                <img src="{{ item.product.image.url }}" class="cart-img" alt="{{ item.product.name }}">
-                                {% endif %}
+                               {% load static %}
+
+{% if item.product.image %}
+<img src="{% static 'images/' %}{{ item.product.image }}"
+     class="cart-img"
+     alt="{{ item.product.name }}">
+{% else %}
+<img src="{% static 'images/default.jpg' %}"
+     class="cart-img"
+     alt="No image">
+{% endif %}
                                 <div>
                                     <p class="order-item-name mb-0">{{ item.product.name }}</p>
                                     <p class="order-item-qty mb-0">Qty: {{ item.quantity }}</p>

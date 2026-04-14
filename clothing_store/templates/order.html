@@ -216,8 +216,17 @@ Order #{{ order.id }}
 {% for item in order.items.all %}
 <div class="order-item">
 
-{% if item.product.image %}
+{% comment %} {% if item.product.image %}
 <img src="{{ item.product.image.url }}" class="item-image">
+{% endif %} {% endcomment %}
+
+
+{% load static %}
+
+{% if item.product.image %}
+<img src="{% static 'images/' %}{{ item.product.image }}" class="item-image">
+{% else %}
+<img src="{% static 'images/default.jpg' %}" class="item-image">
 {% endif %}
 
 <div>
