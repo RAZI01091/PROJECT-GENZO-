@@ -151,8 +151,8 @@ body{
             <a href="#">Notifications</a>
 
             <form method="post" action="{% url 'logout' %}" class="logout-form">
-                {% csrf_token %}
-                <button type="submit" class="logout-pill">
+                {% csrf_token %} 
+                <button type="submit"  class="logout-pill">
                     Logout
                 </button>
             </form>

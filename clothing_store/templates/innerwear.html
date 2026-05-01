@@ -4,543 +4,786 @@
 {% block content %}
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500&display=swap');
+
 :root {
-    --charcoal: #1a1a2e;
-    --mocha: #c4a35a;
-    --bronze: #9e7e3f;
-    --platinum: #f8f6f2;
-    --silver: #e8e4dd;
-    --card-bg: rgba(255,255,255,0.97);
-    --shadow-soft: 0 8px 32px rgba(26,26,46,0.10);
-    --shadow-hover: 0 24px 60px rgba(196,163,90,0.22);
-    --radius-card: 18px;
-    --radius-btn: 10px;
+    --obsidian: #0a0908;
+    --graphite: #1c1b19;
+    --pewter: #2e2d2a;
+    --warm-white: #f9f7f4;
+    --cream: #f0ece4;
+    --champagne: #c9a96e;
+    --champagne-light: #e2c99a;
+    --muted: #7a7670;
+    --border-light: #e4dfd6;
+    --border-dark: rgba(255,255,255,0.08);
 }
 
-.innerwear-page {
-    background: var(--platinum);
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+.fw-page {
+    font-family: 'Jost', sans-serif;
+    background: var(--warm-white);
+    color: var(--obsidian);
     min-height: 100vh;
 }
 
-/* ===== TITLE ===== */
-.title-section {
-    text-align: center;
-    padding: 52px 16px 40px;
-    background: linear-gradient(160deg, #f8f6f2 60%, #ede8df);
-    border-bottom: 1px solid var(--silver);
-}
-
-.title-section h2 {
-    font-family: Georgia, 'Times New Roman', serif;
-    font-size: clamp(2rem, 6vw, 4rem);
-    font-weight: 700;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--charcoal);
-    margin-bottom: 6px;
-    line-height: 1.1;
-}
-
-.title-section h2 em {
-    color: var(--mocha);
-    font-style: normal;
-}
-
-.title-section p {
-    font-size: clamp(0.78rem, 2vw, 0.95rem);
-    color: #999;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-}
-
-/* ===== LAYOUT ===== */
-.shop-wrapper {
-    max-width: 1320px;
-    margin: 0 auto;
-    padding: 36px 16px 60px;
-}
-
-.shop-layout {
-    display: flex;
-    gap: 28px;
-    align-items: flex-start;
-}
-
-/* ===== FILTER COLUMN ===== */
-.filter-col { width: 260px; flex-shrink: 0; }
-
-#filter-toggle { display: none; }
-
-.filter-toggle-label {
-    display: none;
-    align-items: center;
-    gap: 8px;
-    background: var(--charcoal);
-    color: #fff;
-    padding: 10px 18px;
-    border-radius: var(--radius-btn);
-    font-size: 0.82rem;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    cursor: pointer;
-    margin-bottom: 14px;
-    user-select: none;
-    width: fit-content;
-    transition: background 0.2s;
-}
-
-.filter-toggle-label:hover { background: #2d3561; }
-
-.filter-sidebar {
-    background: var(--card-bg);
-    border: 1px solid var(--silver);
-    border-radius: var(--radius-card);
+/* ── HERO ── */
+.fw-hero {
+    background: #fff;
+    position: relative;
     overflow: hidden;
-    box-shadow: var(--shadow-soft);
-    position: sticky;
-    top: 80px;
+    padding: 100px 48px 80px;
+    border-bottom: 1px solid var(--border-light);
 }
 
-.filter-header {
-    padding: 16px 18px;
-    font-weight: 700;
-    font-size: 0.85rem;
-    letter-spacing: 0.16em;
+.fw-hero::before {
+    display: none;
+}
+
+.fw-hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, transparent, var(--champagne));
+}
+
+.fw-hero-inner {
+    position: relative;
+    max-width: 1280px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.fw-hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.fw-hero-eyebrow span {
+    font-size: 10px;
+    letter-spacing: 0.35em;
     text-transform: uppercase;
-    border-bottom: 1px solid var(--silver);
-    color: var(--charcoal);
+    color: var(--champagne);
+    font-weight: 400;
+}
+
+.fw-hero-eyebrow::before,
+.fw-hero-eyebrow::after {
+    content: '';
+    width: 32px;
+    height: 1px;
+    background: var(--champagne);
+    opacity: 0.5;
+}
+
+.fw-hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(56px, 9vw, 110px);
+    font-weight: 600;
+    line-height: 0.9;
+    letter-spacing: -0.01em;
+    color: var(--obsidian);
+}
+
+.fw-hero h1 em {
+    font-style: italic;
+    color: var(--champagne);
+}
+
+.fw-hero-sub {
+    margin-top: 24px;
     display: flex;
     align-items: center;
-    gap: 8px;
+    justify-content: center;
+    gap: 20px;
 }
 
-.filter-header i { color: var(--mocha); }
-
-.filter-block { border-bottom: 1px solid #f0ece5; }
-.filter-block:last-of-type { border-bottom: none; }
-
-.filter-title {
-    padding: 13px 18px;
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.18em;
+.fw-hero-sub span {
+    font-size: 11px;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: #666;
+    color: var(--muted);
+    font-weight: 300;
 }
 
-.filter-content { padding: 0 18px 16px; }
-
-.form-check {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 8px;
-}
-
-.form-check-input {
-    width: 15px;
-    height: 15px;
-    cursor: pointer;
-    accent-color: var(--mocha);
+.fw-hero-sub .dot {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: var(--champagne);
+    opacity: 0.5;
     flex-shrink: 0;
 }
 
-.form-check-label {
-    font-size: 0.86rem;
-    color: #444;
+/* ── SHELL ── */
+.fw-shell {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 56px 32px 80px;
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 48px;
+    align-items: start;
+}
+
+/* ── SIDEBAR ── */
+#fw-filter-toggle { display: none; }
+
+.fw-filter-btn {
+    display: none;
+    align-items: center;
+    gap: 8px;
+    background: var(--obsidian);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: background 0.2s;
+}
+
+.fw-filter-btn:hover { background: var(--pewter); }
+
+.fw-sidebar {
+    position: sticky;
+    top: 24px;
+}
+
+.fw-sidebar-heading {
+    font-size: 9px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.fw-sidebar-heading::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border-light);
+}
+
+.fw-filter-form { display: flex; flex-direction: column; }
+
+.fw-filter-block {
+    border-top: 1px solid var(--border-light);
+    padding: 18px 0;
+}
+
+.fw-filter-block:last-of-type { border-bottom: 1px solid var(--border-light); }
+
+.fw-block-title {
+    font-size: 9px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--obsidian);
+    font-weight: 500;
+    margin-bottom: 14px;
+}
+
+.fw-group-label {
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--champagne);
+    margin-bottom: 10px;
+    margin-top: 14px;
+}
+
+.fw-group-label:first-of-type { margin-top: 0; }
+
+.fw-check {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 9px;
     cursor: pointer;
 }
 
-.price-row {
+.fw-check input[type="checkbox"] {
+    appearance: none;
+    width: 13px;
+    height: 13px;
+    border: 1px solid #ccc;
+    background: transparent;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: all 0.15s;
+    position: relative;
+}
+
+.fw-check input[type="checkbox"]:checked {
+    background: var(--obsidian);
+    border-color: var(--obsidian);
+}
+
+.fw-check input[type="checkbox"]:checked::after {
+    content: '';
+    position: absolute;
+    top: 1px;
+    left: 3px;
+    width: 4px;
+    height: 7px;
+    border: 1.5px solid #fff;
+    border-top: none;
+    border-left: none;
+    transform: rotate(45deg);
+}
+
+.fw-check span {
+    font-size: 13px;
+    color: #555;
+    letter-spacing: 0.02em;
+}
+
+.fw-price-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 8px;
-    margin-top: 4px;
 }
 
-.price-input-box {
+.fw-price-input {
     width: 100%;
-    padding: 8px 10px;
-    border: 1.5px solid #e0dbd2;
-    border-radius: 8px;
-    font-size: 0.83rem;
-    font-family: 'Poppins', sans-serif;
-    color: var(--charcoal);
-    background: #faf9f7;
+    padding: 9px 10px;
+    border: 1px solid var(--border-light);
+    background: transparent;
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    color: var(--obsidian);
+    outline: none;
     transition: border-color 0.2s;
 }
 
-.price-input-box:focus { outline: none; border-color: var(--mocha); background: #fff; }
-.price-input-box::placeholder { color: #bbb; }
+.fw-price-input:focus { border-color: var(--champagne); }
+.fw-price-input::placeholder { color: #ccc; }
 
-.price-apply-btn {
-    display: block;
-    width: calc(100% - 36px);
-    margin: 14px 18px 18px;
-    padding: 11px;
-    background: linear-gradient(135deg, var(--mocha), var(--bronze));
+.fw-apply-btn {
+    margin-top: 24px;
+    width: 100%;
+    padding: 13px;
+    background: var(--obsidian);
     color: #fff;
     border: none;
-    border-radius: var(--radius-btn);
-    font-family: 'Poppins', sans-serif;
-    font-size: 0.78rem;
-    font-weight: 700;
-    letter-spacing: 0.14em;
+    font-family: 'Jost', sans-serif;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.28em;
     text-transform: uppercase;
     cursor: pointer;
-    transition: opacity 0.2s, transform 0.15s;
+    transition: background 0.25s;
+    position: relative;
+    overflow: hidden;
 }
 
-.price-apply-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+.fw-apply-btn::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--champagne);
+    transition: width 0.3s ease;
+}
 
-/* ===== PRODUCTS ===== */
-.products-col { flex: 1; min-width: 0; }
+.fw-apply-btn:hover { background: var(--graphite); }
+.fw-apply-btn:hover::after { width: 100%; }
 
-.products-grid {
+/* ── PRODUCTS ── */
+.fw-products-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.fw-count {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+.fw-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+    gap: 1px;
+    background: var(--border-light);
+    border: 1px solid var(--border-light);
 }
 
-/* ===== PRODUCT CARD ===== */
-.product-card {
-    background: var(--card-bg);
-    border-radius: var(--radius-card);
-    overflow: hidden;
-    box-shadow: var(--shadow-soft);
-    border: 1px solid rgba(232,228,221,0.7);
-    transition: transform 0.35s ease, box-shadow 0.35s ease;
-    position: relative;
+/* ── CARD ── */
+.fw-card {
+    background: var(--warm-white);
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
-.product-card:hover {
-    transform: translateY(-7px);
-    box-shadow: var(--shadow-hover);
-}
-
-.product-image-wrap {
+.fw-img-wrap {
     position: relative;
     overflow: hidden;
+    aspect-ratio: 3 / 4;
+    background: var(--cream);
 }
 
-/* Fixed 360px height as requested */
-.product-image {
-   
+.fw-img-wrap img {
     width: 100%;
-    height: 360px;
+    height: 100%;
     object-fit: cover;
     display: block;
-    transition: transform 0.5s ease;
+    transition: transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94);
+    filter: grayscale(8%);
 }
 
-.product-card:hover .product-image { transform: scale(1.05); }
+.fw-card:hover .fw-img-wrap img {
+    transform: scale(1.05);
+    filter: grayscale(0%);
+}
 
-/* No discount badge — removed as requested */
+/* Sale badge */
+.fw-badge {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: var(--obsidian);
+    color: var(--champagne);
+    font-size: 8px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    font-weight: 500;
+    z-index: 2;
+}
 
-.wishlist-btn {
+/* Wishlist */
+.fw-wish-form {
     position: absolute;
     top: 10px;
     right: 10px;
     z-index: 3;
-    width: 36px;
-    height: 36px;
+}
+
+.fw-wish-btn {
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
-    background: rgba(255,255,255,0.92);
-    border: none;
+    background: rgba(249,247,244,0.92);
+    border: 1px solid var(--border-light);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 17px;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+    font-size: 13px;
     cursor: pointer;
     opacity: 0;
-    transform: translateY(-5px) scale(0.9);
-    transition: opacity 0.25s ease, transform 0.25s ease;
-    backdrop-filter: blur(4px);
+    transform: scale(0.8);
+    transition: opacity 0.25s, transform 0.25s;
+    backdrop-filter: blur(6px);
 }
 
-.product-card:hover .wishlist-btn { opacity: 1; transform: translateY(0) scale(1); }
+.fw-card:hover .fw-wish-btn,
+.fw-wish-btn.active { opacity: 1; transform: scale(1); }
 
-.card-body-inner {
+/* Quick view */
+.fw-quick {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--obsidian);
+    color: rgba(255,255,255,0.85);
+    text-align: center;
+    padding: 11px;
+    font-size: 9px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    font-weight: 400;
+    transform: translateY(100%);
+    transition: transform 0.32s cubic-bezier(0.25,0.46,0.45,0.94);
+    z-index: 4;
+    text-decoration: none;
+    display: block;
+    border-top: 1px solid rgba(201,169,110,0.3);
+}
+
+.fw-img-wrap:hover .fw-quick { transform: translateY(0); }
+
+/* Card body */
+.fw-card-body {
     padding: 16px 18px 20px;
     flex: 1;
     display: flex;
     flex-direction: column;
+    border-top: 1px solid var(--border-light);
 }
 
-.product-name {
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: var(--charcoal);
-    margin-bottom: 6px;
-    line-height: 1.35;
+.fw-card-name {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--obsidian);
+    line-height: 1.45;
+    letter-spacing: 0.02em;
+    margin-bottom: auto;
+    padding-bottom: 12px;
 }
 
-.product-price {
-    font-size: 0.98rem;
-    font-weight: 700;
-    color: var(--mocha);
+.fw-card-price {
     display: flex;
     align-items: baseline;
     gap: 8px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border-light);
 }
 
-.product-price .original {
-    font-size: 0.8rem;
-    font-weight: 400;
+.fw-price-now {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--obsidian);
+    letter-spacing: 0.01em;
+}
+
+.fw-price-was {
+    font-size: 12px;
     color: #bbb;
     text-decoration: line-through;
 }
 
-.empty-state {
-    grid-column: 1 / -1;
-    text-align: center;
-    padding: 80px 20px;
-    color: #bbb;
+.fw-price-save {
+    margin-left: auto;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--champagne);
+    font-weight: 500;
 }
 
-.empty-state i { font-size: 3rem; display: block; margin-bottom: 16px; }
+/* Empty */
+.fw-empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 100px 20px;
+    color: var(--muted);
+}
 
-/* ===== FOOTER ===== */
-.footer {
-    background: #000;
-    color: #d6d0cb;
-    padding: 64px 0 28px;
+.fw-empty i { font-size: 36px; display: block; margin-bottom: 14px; opacity: 0.3; }
+.fw-empty p { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; }
+
+/* ── FOOTER ── */
+.fw-footer {
+    background: var(--obsidian);
+    padding: 64px 0 0;
     margin-top: 80px;
 }
 
-.footer-content {
-    display: flex;
-    justify-content: space-between;
-    gap: 40px;
-    flex-wrap: wrap;
+.fw-footer-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 32px;
 }
 
-.footer-section h4 {
+.fw-footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid var(--border-dark);
+}
+
+.fw-footer-brand h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 30px;
+    font-weight: 400;
+    font-style: italic;
     color: #fff;
-    font-weight: 700;
-    margin-bottom: 18px;
-    font-size: 1rem;
-    letter-spacing: 0.06em;
+    margin-bottom: 12px;
+    letter-spacing: 0.02em;
+}
+
+.fw-footer-brand p {
+    font-size: 13px;
+    color: rgba(255,255,255,0.35);
+    line-height: 1.8;
+    max-width: 210px;
+    font-weight: 300;
+}
+
+.fw-footer-col h4 {
+    font-size: 9px;
+    letter-spacing: 0.3em;
     text-transform: uppercase;
+    color: var(--champagne);
+    margin-bottom: 20px;
+    font-weight: 400;
 }
 
-.footer-section a,
-.footer-section p {
-    color: #d6d0cb;
-    text-decoration: none;
-    font-size: 0.9rem;
+.fw-footer-col a,
+.fw-footer-col address {
     display: block;
+    font-size: 13px;
+    color: rgba(255,255,255,0.35);
+    text-decoration: none;
     margin-bottom: 10px;
+    font-style: normal;
+    font-weight: 300;
+    letter-spacing: 0.02em;
     transition: color 0.2s;
 }
 
-.footer-section a:hover { color: #fff; }
+.fw-footer-col a:hover { color: var(--champagne-light); }
 
-.social-icons a {
-    font-size: 1.4rem;
-    margin-right: 16px;
-    color: #d6d0cb;
-    transition: color 0.2s;
+.fw-socials {
+    display: flex;
+    gap: 18px;
+    margin-top: 4px;
 }
 
-.social-icons a:hover { color: #fff; }
-
-.footer-bottom {
-    border-top: 1px solid rgba(255,255,255,.1);
-    margin-top: 40px;
-    padding-top: 20px;
-    text-align: center;
-    font-size: 0.88rem;
-    color: #888;
+.fw-socials a {
+    font-size: 17px !important;
+    color: rgba(255,255,255,0.3) !important;
+    transition: color 0.2s !important;
+    margin-bottom: 0 !important;
 }
 
-/* ============================================================
-   RESPONSIVE
-   ============================================================ */
+.fw-socials a:hover { color: var(--champagne-light) !important; }
 
-@media (max-width: 1199px) {
-    .products-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
-    .filter-col { width: 230px; }
+.fw-footer-bottom {
+    padding: 22px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 10px;
+    letter-spacing: 0.14em;
 }
 
-@media (max-width: 991px) {
-    .shop-layout { flex-direction: column; gap: 20px; }
-    .filter-col { width: 100%; }
-    .filter-sidebar { position: static; }
-    .filter-toggle-label { display: flex; }
-    #filter-toggle:not(:checked) ~ .filter-sidebar { display: none; }
-    #filter-toggle:checked  ~ .filter-sidebar { display: block; }
-    .products-grid { grid-template-columns: repeat(2, 1fr); gap: 18px; }
-    .product-image { height: 300px; }
-    .wishlist-btn { opacity: 1; transform: none; }
+.fw-footer-bottom p { color: rgba(255,255,255,0.18); }
+
+.fw-footer-bottom .champ-line {
+    width: 24px;
+    height: 1px;
+    background: var(--champagne);
+    opacity: 0.4;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 10px;
 }
 
-@media (max-width: 767px) {
-    .title-section { padding: 36px 16px 28px; }
-    .shop-wrapper  { padding: 24px 14px 50px; }
-    .products-grid { gap: 12px; }
-    .product-image { height: 240px; }
-    .card-body-inner { padding: 12px 14px 16px; }
-    .product-name  { font-size: 0.86rem; }
-    .product-price { font-size: 0.88rem; }
-    .footer { padding: 48px 0 22px; margin-top: 50px; }
-    .footer-content { flex-direction: column; text-align: center; gap: 28px; }
-    .social-icons { display: flex; justify-content: center; }
-    .social-icons a { margin: 0 10px; }
+/* ── ANIMATIONS ── */
+@keyframes fw-rise {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
 }
 
-@media (max-width: 479px) {
-    .products-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-    .product-image { height: 190px; }
-    .card-body-inner { padding: 10px 12px 14px; }
+.fw-card {
+    animation: fw-rise 0.55s ease both;
 }
 
-@media (max-width: 359px) {
-    .products-grid { grid-template-columns: 1fr; }
-    .product-image { height: 320px; }
+{% for i in "123456789" %}
+.fw-card:nth-child({{ forloop.counter }}) { animation-delay: {{ forloop.counter0 }}0ms; }
+{% endfor %}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1100px) {
+    .fw-grid { grid-template-columns: repeat(2, 1fr); }
+    .fw-footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+}
+
+@media (max-width: 860px) {
+    .fw-shell { grid-template-columns: 1fr; gap: 24px; padding: 32px 20px 60px; }
+    .fw-sidebar { position: static; }
+    .fw-filter-btn { display: flex; }
+    #fw-filter-toggle:not(:checked) ~ .fw-filter-form { display: none; }
+    #fw-filter-toggle:checked ~ .fw-filter-form { display: flex; }
+    .fw-hero { padding: 64px 24px 56px; }
+    .fw-wish-btn { opacity: 1; transform: scale(1); }
+}
+
+@media (max-width: 600px) {
+    .fw-hero::before { font-size: 70px; }
+    .fw-footer-top { grid-template-columns: 1fr 1fr; gap: 28px; padding-bottom: 36px; }
+    .fw-footer-brand { grid-column: 1 / -1; }
+}
+
+@media (max-width: 400px) {
+    .fw-grid { grid-template-columns: 1fr; }
 }
 </style>
 
-<div class="innerwear-page">
+<div class="fw-page">
 
-    <!-- TITLE -->
-    <div class="title-section">
-        <h2>Innerwear <em>Collection</em></h2>
-        <p>Comfort &bull; Breathable &bull; Everyday Essentials</p>
-    </div>
-
-    <!-- SHOP LAYOUT -->
-    <div class="shop-wrapper">
-        <div class="shop-layout">
-
-            <!-- FILTER COLUMN -->
-            <div class="filter-col">
-                <input type="checkbox" id="filter-toggle">
-                <label for="filter-toggle" class="filter-toggle-label">
-                    <i class="bi bi-sliders"></i> Filters
-                </label>
-
-                <aside class="filter-sidebar">
-                    <div class="filter-header">
-                        <i class="bi bi-funnel"></i> Filter
-                    </div>
-
-                    <form method="get">
-
-                        <!-- SIZE -->
-                        <div class="filter-block">
-                            <div class="filter-title">Size</div>
-                            <div class="filter-content">
-                                {% for s in top_sizes %}
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox"
-                                           id="size-{{ forloop.counter }}"
-                                           name="size" value="{{ s.name }}"
-                                           {% if s.name in selected_sizes %}checked{% endif %}>
-                                    <label class="form-check-label" for="size-{{ forloop.counter }}">{{ s.name }}</label>
-                                </div>
-                                {% endfor %}
-                            </div>
-                        </div>
-
-                        <!-- PRICE -->
-                        <div class="filter-block">
-                            <div class="filter-title">Price</div>
-                            <div class="filter-content">
-                                <div class="price-row">
-                                    <input type="number" name="min_price"
-                                           value="{{ min_price|default:'' }}"
-                                           placeholder="Min ₹" class="price-input-box">
-                                    <input type="number" name="max_price"
-                                           value="{{ max_price|default:'' }}"
-                                           placeholder="Max ₹" class="price-input-box">
-                                </div>
-                            </div>
-                        </div>
-
-                        <button type="submit" class="price-apply-btn">Apply Filters</button>
-                    </form>
-                </aside>
+    <!-- HERO -->
+    <header class="fw-hero">
+        <div class="fw-hero-inner">
+            <div class="fw-hero-eyebrow">
+                <span>Men's Collection · 2026</span>
             </div>
+            <h1>Innerwear<br><em>Collection</em></h1>
+            <div class="fw-hero-sub">
+                <span>Comfort</span>
+                <div class="dot"></div>
+                <span>Breathable</span>
+                <div class="dot"></div>
+                <span>Everyday Essentials</span>
+            </div>
+        </div>
+    </header>
 
-            <!-- PRODUCTS -->
-            <div class="products-col">
-                <div class="products-grid">
+    <!-- SHELL -->
+    <div class="fw-shell">
 
-                    {% for product in products %}
-                    <div class="product-card">
+        <!-- SIDEBAR -->
+        <aside class="fw-sidebar">
+            <div class="fw-sidebar-heading">Refine</div>
 
-                        <div class="product-image-wrap">
+            <input type="checkbox" id="fw-filter-toggle">
+            <label for="fw-filter-toggle" class="fw-filter-btn">
+                <i class="bi bi-sliders2"></i> Filters
+            </label>
 
-                            {% if user.is_authenticated %}
-                            <form method="post" action="{% url 'wishlist' product.id %}">
-                                {% csrf_token %}
-                                <button type="submit" class="wishlist-btn" title="Wishlist">
-                                    {% if product.id in wishlist_id %}❤️{% else %}🤍{% endif %}
-                                </button>
-                            </form>
-                            {% endif %}
+            <form method="get" class="fw-filter-form">
+                {% if selected_sub_id %}
+                    <input type="hidden" name="sub_id" value="{{ selected_sub_id }}">
+                {% endif %}
 
-                            <a href="{% url 'productsdetail' product.id %}">
-                                {% if product.image %}
-                              <img src="/static/images/{{ product.image }}" alt="{{ product.name }}">
-                                {% endif %}
-                            </a>
-                        </div>
+                <!-- SIZE -->
+                <div class="fw-filter-block">
+                    <p class="fw-block-title">Size</p>
 
-                        <div class="card-body-inner">
-                            <a href="{% url 'productsdetail' product.id %}" class="text-decoration-none">
-                                <h6 class="product-name">{{ product.name }}</h6>
-                                {% if product.discount_price %}
-                                <p class="product-price">
-                                    ₹{{ product.discount_price }}
-                                    <span class="original">₹{{ product.price }}</span>
-                                </p>
-                                {% else %}
-                                <p class="product-price">₹{{ product.price }}</p>
-                                {% endif %}
-                            </a>
-                        </div>
-
-                    </div>
-                    {% empty %}
-                    <div class="empty-state">
-                        <i class="bi bi-bag-x"></i>
-                        <p>No innerwear products found</p>
-                    </div>
+                    <p class="fw-group-label">Top Sizes</p>
+                    {% for s in top_sizes %}
+                    <label class="fw-check">
+                        <input type="checkbox" name="size" value="{{ s.name }}"
+                               {% if s.name in selected_sizes %}checked{% endif %}>
+                        <span>{{ s.name }}</span>
+                    </label>
                     {% endfor %}
 
+                    <p class="fw-group-label">Waist Sizes</p>
+                    {% for s in bottom_sizes %}
+                    <label class="fw-check">
+                        <input type="checkbox" name="size" value="{{ s.name }}"
+                               {% if s.name in selected_sizes %}checked{% endif %}>
+                        <span>{{ s.name }}</span>
+                    </label>
+                    {% endfor %}
                 </div>
+
+                <!-- PRICE -->
+                <div class="fw-filter-block">
+                    <p class="fw-block-title">Price Range</p>
+                    <div class="fw-price-row">
+                        <input type="number" name="min_price"
+                               value="{{ min_price|default:'' }}"
+                               placeholder="Min ₹" class="fw-price-input">
+                        <input type="number" name="max_price"
+                               value="{{ max_price|default:'' }}"
+                               placeholder="Max ₹" class="fw-price-input">
+                    </div>
+                </div>
+
+                <button type="submit" class="fw-apply-btn">Apply Filters</button>
+            </form>
+        </aside>
+
+        <!-- PRODUCTS -->
+        <section class="fw-products-col">
+            <div class="fw-products-header">
+                <span class="fw-count">{{ products|length }} piece{% if products|length != 1 %}s{% endif %}</span>
             </div>
 
-        </div>
+            <div class="fw-grid">
+                {% for product in products %}
+                <article class="fw-card">
+                    <div class="fw-img-wrap">
+
+                        {% if user.is_authenticated %}
+                        <form method="post" action="{% url 'wishlist' product.id %}" class="fw-wish-form">
+                            {% csrf_token %}
+                            <button type="submit" class="fw-wish-btn {% if product.id in wishlist_id %}active{% endif %}" title="Wishlist">
+                                {% if product.id in wishlist_id %}❤️{% else %}🤍{% endif %}
+                            </button>
+                        </form>
+                        {% endif %}
+
+                        {% if product.image %}
+                        <img src="/static/images/{{ product.image }}" alt="{{ product.name }}">
+                        {% endif %}
+
+                        <a href="{% url 'productsdetail' product.id %}" class="fw-quick">View Product</a>
+                    </div>
+
+                    <div class="fw-card-body">
+                        <a href="{% url 'productsdetail' product.id %}" style="text-decoration:none;color:inherit;display:flex;flex-direction:column;flex:1;">
+                            <p class="fw-card-name">{{ product.name }}</p>
+                            <div class="fw-card-price">
+                                {% if product.discount_price %}
+                                <span class="fw-price-now">₹{{ product.discount_price }}</span>
+                                <span class="fw-price-was">₹{{ product.price }}</span>
+                                <span class="fw-price-save">Sale</span>
+                                {% else %}
+                                <span class="fw-price-now">₹{{ product.price }}</span>
+                                {% endif %}
+                            </div>
+                        </a>
+                    </div>
+                </article>
+                {% empty %}
+                <div class="fw-empty">
+                    <i class="bi bi-bag-x"></i>
+                    <p>No innerwear products found</p>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+
     </div>
 
     <!-- FOOTER -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
+    <footer class="fw-footer">
+        <div class="fw-footer-inner">
+            <div class="fw-footer-top">
 
-                <div class="footer-section">
-                    <h4>Men's Store</h4>
-                    <p><i class="bi bi-geo-alt me-2"></i>Kerala, India</p>
-                    <p><i class="bi bi-telephone me-2"></i>+91 98765 43210</p>
-                    <p><i class="bi bi-envelope me-2"></i>support@mensstore.com</p>
+                <div class="fw-footer-brand">
+                    <h3>Men's Store</h3>
+                    <p>Everyday essentials crafted for comfort. Breathable fabrics, all-day ease.</p>
                 </div>
 
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
+                <div class="fw-footer-col">
+                    <h4>Contact</h4>
+                    <address>
+                        <a href="#"><i class="bi bi-geo-alt me-1"></i> Kerala, India</a>
+                        <a href="tel:+919876543210"><i class="bi bi-telephone me-1"></i> +91 98765 43210</a>
+                        <a href="mailto:support@mensstore.com"><i class="bi bi-envelope me-1"></i> support@mensstore.com</a>
+                    </address>
+                </div>
+
+                <div class="fw-footer-col">
+                    <h4>Navigate</h4>
                     <a href="{% url 'home' %}">Home</a>
                     <a href="{% url 'loggin' %}">Login</a>
                 </div>
 
-                <div class="footer-section">
-                    <h4>Follow Us</h4>
-                    <div class="social-icons">
+                <div class="fw-footer-col">
+                    <h4>Follow</h4>
+                    <div class="fw-socials">
                         <a href="#"><i class="bi bi-facebook"></i></a>
                         <a href="#"><i class="bi bi-instagram"></i></a>
                         <a href="#"><i class="bi bi-twitter-x"></i></a>
@@ -549,8 +792,9 @@
 
             </div>
 
-            <div class="footer-bottom">
-                <p>© 2026 Men's Store. Crafted with <i class="bi bi-heart-fill text-danger"></i></p>
+            <div class="fw-footer-bottom">
+                <p>© 2026 Men's Store</p>
+                <p>Kerala, India <span class="champ-line"></span> Est. 2024</p>
             </div>
         </div>
     </footer>
