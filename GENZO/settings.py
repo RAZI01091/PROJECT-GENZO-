@@ -2,23 +2,25 @@
 Django settings for GENZO project.
 """
 from pathlib import Path
-import os
+from decouple import config
 import dj_database_url
 
-# BASE DIRECTORY
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # SECURITY
-SECRET_KEY = os.environ.get('SECRET_KEY', 'test123')
-DEBUG = os.environ.get('DEBUG', 'False') == 'True'
+SECRET_KEY = config('SECRET_KEY')
 
-ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS = [
-    "https://project-genzo-2.onrender.com"
+DEBUG = config('DEBUG', default=False, cast=bool)
+
+ALLOWED_HOSTS = [
+    'project-genzo-2.onrender.com',
+    '127.0.0.1',
+    'localhost'
 ]
 
-# APPLICATIONS
+# Application definition
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -38,10 +40,9 @@ INSTALLED_APPS = [
 ]
 
 
-# MIDDLEWARE
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware', 
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -55,7 +56,6 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'GENZO.urls'
 
 
-# TEMPLATES
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -76,15 +76,22 @@ TEMPLATES = [
 WSGI_APPLICATION = 'GENZO.wsgi.application'
 
 
-# DATABASE (Render PostgreSQL)
+# DATABASE
 DATABASES = {
-    'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL')
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST'),
+        'PORT': config('DB_PORT'),
+    }
 }
 
 
+
 # PASSWORD VALIDATION
+
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -105,26 +112,30 @@ SITE_ID = 1
 
 
 # INTERNATIONALIZATION
+
 LANGUAGE_CODE = 'en-us'
+
 TIME_ZONE = 'UTC'
+
 USE_I18N = True
+
 USE_TZ = True
 
 
 # STATIC FILES
+
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
+
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-# CUSTOM USER MODEL
 AUTH_USER_MODEL = 'clothing_store.User'
 
 
 # AUTHENTICATION BACKENDS
+
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
@@ -132,20 +143,24 @@ AUTHENTICATION_BACKENDS = (
 
 
 # GOOGLE LOGIN
+
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
         'APP': {
-            'client_id': os.environ.get('GOOGLE_CLIENT_ID'),
-            'secret': os.environ.get('GOOGLE_SECRET'),
+            'client_id': config('GOOGLE_CLIENT_ID'),
+            'secret': config('GOOGLE_SECRET'),
             'key': ''
         },
+
         'SCOPE': [
             'profile',
             'email',
         ],
+
         'AUTH_PARAMS': {
             'access_type': 'online',
         },
+
         'FETCH_USERINFO': True,
     }
 }
@@ -154,7 +169,6 @@ SOCIALACCOUNT_PROVIDERS = {
 SOCIALACCOUNT_LOGIN_ON_GET = True
 
 
-# LOGIN SETTINGS
 LOGIN_URL = 'loggin'
 LOGOUT_URL = 'logout'
 LOGIN_REDIRECT_URL = 'home'
@@ -172,18 +186,25 @@ SOCIALACCOUNT_QUERY_EMAIL = True
 ACCOUNT_ALLOW_REGISTRATION = True
 
 
-# EMAIL SETTINGS
+# EMAIL
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
-EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 
+# MEDIA FILES
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+
 # STRIPE PAYMENT
-STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
-STRIPE_PUBLISHABLE_KEY = os.environ.get('STRIPE_PUBLISHABLE_KEY')
+
+STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY')
+STRIPE_PUBLISHABLE_KEY = config('STRIPE_PUBLISHABLE_KEY')
