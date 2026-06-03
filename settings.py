@@ -3,6 +3,7 @@ Django settings for GENZO project.
 """
 from pathlib import Path
 from decouple import config
+import dj_database_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -15,7 +16,8 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 ALLOWED_HOSTS = [
     'project-genzo-2.onrender.com',
     '127.0.0.1',
-    'localhost'
+    'localhost',
+    '*'
 ]
 
 # Application definition
@@ -74,14 +76,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'GENZO.wsgi.application'
 
-import dj_database_url
-import os
 
 # DATABASE
 DATABASES = {
-    'default': dj_database_url.parse(
-        os.environ.get("DATABASE_URL")
-    )
+    'default': dj_database_url.parse(config('DATABASE_URL'))
 }
 
 

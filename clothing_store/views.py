@@ -299,58 +299,46 @@ def formalfit(request):
 
 
 def accessories(request):
+    accessories=Category.objects.get(name='Accessories')
+    products=Products.objects.filter(category=accessories,is_listed=True).annotate(effective_price=Coalesce('discount_price','price'))
 
-    accessories = get_object_or_404(Category, name='Accessories')
-
-    products = Products.objects.filter(
-        category=accessories,
-        is_listed=True
-    ).annotate(
-        effective_price=Coalesce('discount_price', 'price')
-    )
-
-    sub_id = request.GET.get("sub_id")
+    sub_id=request.GET.get("sub_id")
 
     if sub_id:
-        products = products.filter(subcategory_id=sub_id)
+        products= Products.objects.filter(subcategory_id=sub_id)
 
-    top_sizes = Size.objects.filter(size_type='TOP')
+    top_sizes=Size.objects.filter(size_type='TOP')
 
-    selected_size = request.GET.getlist('size')
-
+    selected_size=request.GET.getlist('size')
     if selected_size:
-        products = products.filter(
-            sizes__name__in=selected_size
-        ).distinct()
+        products=products.filter(sizes__name__in=selected_size).distinct() 
 
-    min_price = request.GET.get('min_price')
-    max_price = request.GET.get('max_price')
+    min_price=request.GET.get('min_price')
+    max_price=request.GET.get('max_price')
 
     if min_price:
-        products = products.filter(
-            effective_price__gte=float(min_price)
-        )
+        products=products.filter(effective_price__gte=min_price)
 
     if max_price:
-        products = products.filter(
-            effective_price__lte=float(max_price)
-        )
+        products=products.filter(effective_price__lte=max_price)           
 
-    wishlist_id = []
+    wishlist_id=[]
 
     if request.user.is_authenticated:
-        wishlist_id = Wishlist.objects.filter(
-            User=request.user
-        ).values_list('Products_id', flat=True)
+            wishlist_id=Wishlist.objects.filter(User=request.user).values_list('Products_id',flat=True)
+    else:
+        wishlist_id=[]
 
-    return render(request, "accessories.html", {
-        "products": products,
-        "wishlist_id": wishlist_id,
-        "top_sizes": top_sizes,
-        "selected_sizes": selected_size,
-        "min_price": min_price,
-        "max_price": max_price
-    })
+
+    return render(request,"accessories.html",{
+        "products":products,
+        'wishlist_id':wishlist_id,
+        'top_sizes':top_sizes,
+        'selected_sizes':selected_size,
+        'min_price':min_price,
+        'max_price':max_price
+        
+        })
 
 def newarrivals(request):
     newarrivals=Category.objects.get(name='New arrival')
@@ -1309,5 +1297,4 @@ def notifications(request):
     notifications=Notification.objects.filter(user=request.user).order_by('-created_at')
     return render(request,'notifications.html',{'notifications':notifications})
 
-  
   
