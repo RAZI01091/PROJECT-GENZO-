@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Summary</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+    <style>
+        body {
+            background-color: #f7f7f7;
+            font-family: "Poppins", sans-serif;
+        }
+
+        .summary-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 25px;
+            border: 1px solid #ddd;
+        }
+
+        .item-card {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 12px;
+            padding: 15px;
+        }
+
+        .item-img {
+            height: 90px;
+            width: 90px;
+            border-radius: 8px;
+            background: #eaeaea;
+            object-fit: cover;
+        }
+
+        .qty-box button {
+            width: 32px;
+            height: 32px;
+            border: none;
+            border-radius: 4px;
+            background: #ddd;
+            font-weight: 600;
+        }
+
+        .qty-box input {
+            width: 45px;
+            text-align: center;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .address-box {
+            background: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #ddd;
+            margin-bottom: 25px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container py-5">
+
+        <h3 class="mb-4 text-center">Order Summary</h3>
+  {% comment %} <!-- Rating Filter -->
+        <div class="filter-block">
+            <input type="checkbox" id="rating-toggle" hidden>
+            <label for="rating-toggle" class="filter-title">
+                RATING <i class="bi bi-chevron-down"></i>
+            </label>
+            <div class="filter-content">
+                <div class="form-check"><input class="form-check-input" type="radio" name="rating"> ⭐ 4 & above</div>
+                <div class="form-check"><input class="form-check-input" type="radio" name="rating"> ⭐ 3 & above</div>
+                <div class="form-check"><input class="form-check-input" type="radio" name="rating"> ⭐ 2 & above</div>
+            </div>
+        </div> {% endcomment %}
+
+        
+        <!-- DELIVERY ADDRESS -->
+        <div class="address-box">
+            <div class="d-flex justify-content-between">
+                <h5 class="mb-2">Delivery Address</h5>
+                <button class="btn btn-outline-dark btn-sm">Change</button>
+            </div>
+
+            <p class="mb-1"><strong>Razi</strong></p>
+            <p class="mb-1">House No: 123, Near Junction,</p>
+            <p class="mb-1">Kochi, Kerala – 682001</p>
+            <p class="mb-0">Phone: 9876543210</p>
+        </div>
+
+        <div class="row g-4">
+
+            <!-- LEFT SIDE: Items List -->
+            <div class="col-lg-8">
+
+                <!-- Item 1 -->
+                <div class="item-card mb-3 d-flex align-items-center">
+                    <img src="https://via.placeholder.com/100" class="item-img me-3">
+
+                    <div class="flex-grow-1">
+                        <h6 class="mb-1">Men's Casual Shirt</h6>
+                        <p class="text-muted mb-1">Size: M</p>
+                        <p class="price-text">₹799</p>
+                    </div>
+
+                    <!-- Quantity -->
+                    <div class="qty-box d-flex align-items-center gap-2">
+                        <button>-</button>
+                        <input type="text" value="1">
+                        <button>+</button>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="item-card mb-3 d-flex align-items-center">
+                    <img src="https://via.placeholder.com/100" class="item-img me-3">
+
+                    <div class="flex-grow-1">
+                        <h6 class="mb-1">Blue Jeans</h6>
+                        <p class="text-muted mb-1">Size: 32</p>
+                        <p class="price-text">₹1199</p>
+                    </div>
+
+                    <!-- Quantity -->
+                    <div class="qty-box d-flex align-items-center gap-2">
+                        <button>-</button>
+                        <input type="text" value="1">
+                        <button>+</button>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="item-card mb-3 d-flex align-items-center">
+                    <img src="https://via.placeholder.com/100" class="item-img me-3">
+
+                    <div class="flex-grow-1">
+                        <h6 class="mb-1">Casual Sneakers</h6>
+                        <p class="text-muted mb-1">Size: 9</p>
+                        <p class="price-text">₹1499</p>
+                    </div>
+
+                    <!-- Quantity -->
+                    <div class="qty-box d-flex align-items-center gap-2">
+                        <button>-</button>
+                        <input type="text" value="1">
+                        <button>+</button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- RIGHT SIDE: SUMMARY -->
+            <div class="col-lg-4">
+                <div class="summary-card">
+
+                    <h5 class="mb-3">Price Details</h5>
+
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Subtotal</span>
+                        <span>₹3497</span>
+                    </div>
+
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Discount</span>
+                        <span class="text-success">-₹300</span>
+                    </div>
+
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Delivery Charges</span>
+                        <span class="text-success">FREE</span>
+                    </div>
+
+                    <hr>
+
+                    <div class="d-flex justify-content-between mb-3">
+                        <strong>Total Amount</strong>
+                        <strong>₹3197</strong>
+                    </div>
+
+                    <a href="payment.html" class="btn btn-dark w-100">
+                        Proceed to Payment
+                    </a>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

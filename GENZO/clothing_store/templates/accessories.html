@@ -1,0 +1,743 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap');
+
+:root {
+    --ink: #0f0e0c;
+    --sand: #f5f0e8;
+    --warm-white: #faf8f4;
+    --gold: #b8975a;
+    --gold-light: #d4b87a;
+    --muted: #8c8278;
+    --border: #e2dbd0;
+    --card-shadow: 0 2px 20px rgba(15,14,12,0.07);
+    --card-shadow-hover: 0 16px 48px rgba(15,14,12,0.14);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body { background: var(--warm-white); }
+
+.ac-page {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--ink);
+    background: var(--warm-white);
+    min-height: 100vh;
+}
+
+/* ── HERO HEADER ── */
+.ac-hero {
+    position: relative;
+    padding: 80px 48px 64px;
+    background: var(--sand);
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+}
+
+.ac-hero::before {
+    content: 'ACCESSO';
+    position: absolute;
+    top: -20px;
+    left: -10px;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(100px, 18vw, 200px);
+    font-weight: 700;
+    color: rgba(184,151,90,0.06);
+    letter-spacing: -0.02em;
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+    white-space: nowrap;
+}
+
+.ac-hero-inner {
+    position: relative;
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 16px;
+}
+
+.ac-hero-title {
+    font-family: 'Playfair Display', serif;
+}
+
+.ac-hero-title .line1 {
+    display: block;
+    font-size: 13px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+}
+
+.ac-hero-title h1 {
+    font-size: clamp(52px, 8vw, 96px);
+    font-weight: 700;
+    line-height: 0.92;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+}
+
+.ac-hero-title h1 em {
+    font-style: italic;
+    color: var(--gold);
+}
+
+.ac-hero-meta {
+    text-align: center;
+}
+
+.ac-hero-meta p {
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    line-height: 2;
+}
+
+.ac-hero-divider {
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+    margin: 0 auto 10px;
+}
+
+/* ── LAYOUT ── */
+.ac-shell {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 48px 32px 80px;
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 40px;
+    align-items: start;
+}
+
+/* ── FILTER SIDEBAR ── */
+#ac-filter-toggle { display: none; }
+
+.ac-filter-btn {
+    display: none;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--ink);
+    background: transparent;
+    color: var(--ink);
+    padding: 9px 18px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-bottom: 16px;
+    transition: background 0.2s, color 0.2s;
+}
+
+.ac-filter-btn:hover { background: var(--ink); color: #fff; }
+
+.ac-sidebar {
+    position: sticky;
+    top: 24px;
+}
+
+.ac-sidebar-label {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.ac-sidebar-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+}
+
+.ac-filter-form { display: flex; flex-direction: column; gap: 0; }
+
+.ac-filter-section {
+    border-top: 1px solid var(--border);
+    padding: 20px 0;
+}
+
+.ac-filter-section:last-of-type { border-bottom: 1px solid var(--border); }
+
+.ac-section-title {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--ink);
+    font-weight: 500;
+    margin-bottom: 14px;
+}
+
+.ac-check {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 9px;
+    cursor: pointer;
+}
+
+.ac-check input[type="checkbox"] {
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    border: 1px solid var(--border);
+    background: transparent;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background 0.15s, border-color 0.15s;
+    position: relative;
+}
+
+.ac-check input[type="checkbox"]:checked {
+    background: var(--ink);
+    border-color: var(--ink);
+}
+
+.ac-check input[type="checkbox"]:checked::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 4px;
+    width: 4px;
+    height: 7px;
+    border: 1.5px solid #fff;
+    border-top: none;
+    border-left: none;
+    transform: rotate(45deg);
+}
+
+.ac-check label {
+    font-size: 13px;
+    color: #444;
+    cursor: pointer;
+    letter-spacing: 0.02em;
+}
+
+.ac-price-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.ac-price-input {
+    width: 100%;
+    padding: 9px 10px;
+    border: 1px solid var(--border);
+    background: transparent;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: var(--ink);
+    transition: border-color 0.2s;
+    outline: none;
+}
+
+.ac-price-input:focus { border-color: var(--gold); }
+.ac-price-input::placeholder { color: #bbb; }
+
+.ac-apply-btn {
+    margin-top: 20px;
+    width: 100%;
+    padding: 12px;
+    background: var(--ink);
+    color: #fff;
+    border: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s, letter-spacing 0.2s;
+}
+
+.ac-apply-btn:hover { background: var(--gold); letter-spacing: 0.3em; }
+
+/* ── PRODUCTS ── */
+.ac-products-col {}
+
+.ac-products-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 28px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+}
+
+.ac-products-count {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+.ac-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+}
+
+/* ── PRODUCT CARD ── */
+.ac-card {
+    background: var(--warm-white);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: z-index 0s;
+}
+
+.ac-card:hover { z-index: 2; }
+
+.ac-img-wrap {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 3 / 4;
+    background: var(--sand);
+}
+
+.ac-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+
+.ac-card:hover .ac-img-wrap img { transform: scale(1.06); }
+
+/* Wishlist */
+.ac-wish-form { position: absolute; top: 12px; right: 12px; z-index: 3; }
+
+.ac-wish-btn {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgba(250,248,244,0.9);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    cursor: pointer;
+    opacity: 0;
+    transform: scale(0.85);
+    transition: opacity 0.25s, transform 0.25s, background 0.2s;
+    backdrop-filter: blur(4px);
+}
+
+.ac-card:hover .ac-wish-btn,
+.ac-wish-btn.active {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.ac-wish-btn:hover { background: #fff; }
+
+/* Card body */
+.ac-card-body {
+    padding: 16px 18px 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    border-top: 1px solid var(--border);
+}
+
+.ac-card-name {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.4;
+    letter-spacing: 0.01em;
+}
+
+.ac-card-price {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-top: auto;
+}
+
+.ac-price-now {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink);
+}
+
+.ac-price-was {
+    font-size: 12px;
+    color: var(--muted);
+    text-decoration: line-through;
+}
+
+.ac-price-tag {
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-left: auto;
+}
+
+/* Quick shop hover overlay */
+.ac-quick {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--ink);
+    color: #fff;
+    text-align: center;
+    padding: 12px;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    font-weight: 500;
+    transform: translateY(100%);
+    transition: transform 0.3s cubic-bezier(0.25,0.46,0.45,0.94);
+    z-index: 4;
+    text-decoration: none;
+    display: block;
+}
+
+.ac-img-wrap:hover .ac-quick { transform: translateY(0); }
+
+/* Empty state */
+.ac-empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 100px 20px;
+    color: var(--muted);
+}
+
+.ac-empty-icon {
+    font-size: 40px;
+    display: block;
+    margin-bottom: 16px;
+    opacity: 0.4;
+}
+
+.ac-empty p {
+    font-size: 13px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+/* ── FOOTER ── */
+.ac-footer {
+    background: var(--ink);
+    color: rgba(255,255,255,0.5);
+    padding: 64px 0 0;
+    margin-top: 80px;
+}
+
+.ac-footer-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 32px;
+}
+
+.ac-footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.ac-footer-brand h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    color: #fff;
+    font-weight: 400;
+    font-style: italic;
+    margin-bottom: 14px;
+}
+
+.ac-footer-brand p {
+    font-size: 13px;
+    line-height: 1.8;
+    max-width: 220px;
+}
+
+.ac-footer-col h4 {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.ac-footer-col a,
+.ac-footer-col span {
+    display: block;
+    font-size: 13px;
+    color: rgba(255,255,255,0.45);
+    text-decoration: none;
+    margin-bottom: 10px;
+    transition: color 0.2s;
+    letter-spacing: 0.02em;
+}
+
+.ac-footer-col a:hover { color: var(--gold-light); }
+
+.ac-socials {
+    display: flex;
+    gap: 20px;
+    margin-top: 4px;
+}
+
+.ac-socials a {
+    font-size: 18px !important;
+    color: rgba(255,255,255,0.45) !important;
+    transition: color 0.2s !important;
+    margin-bottom: 0 !important;
+}
+
+.ac-socials a:hover { color: var(--gold-light) !important; }
+
+.ac-footer-bottom {
+    padding: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+}
+
+.ac-footer-bottom p { color: rgba(255,255,255,0.25); }
+
+.ac-footer-bottom .gold-dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    margin: 0 8px;
+    vertical-align: middle;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1100px) {
+    .ac-grid { grid-template-columns: repeat(2, 1fr); }
+    .ac-footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+}
+
+@media (max-width: 860px) {
+    .ac-shell { grid-template-columns: 1fr; gap: 24px; padding: 32px 20px 60px; }
+    .ac-sidebar { position: static; }
+    .ac-filter-btn { display: flex; }
+    #ac-filter-toggle:not(:checked) ~ .ac-filter-form { display: none; }
+    #ac-filter-toggle:checked ~ .ac-filter-form { display: flex; }
+    .ac-hero { padding: 52px 24px 44px; }
+    .ac-hero-meta { display: block; }
+}
+
+@media (max-width: 600px) {
+    .ac-grid { gap: 1px; }
+    .ac-hero::before { display: none; }
+    .ac-footer-top { grid-template-columns: 1fr 1fr; gap: 28px; padding-bottom: 36px; }
+    .ac-footer-brand { grid-column: 1 / -1; }
+}
+
+@media (max-width: 400px) {
+    .ac-grid { grid-template-columns: 1fr; }
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.ac-card { animation: fadeUp 0.5s ease both; }
+
+{% for i in "123456789" %}
+.ac-card:nth-child({{ forloop.counter }}) { animation-delay: {{ forloop.counter0 }}00ms; }
+{% endfor %}
+</style>
+
+<div class="ac-page">
+
+    <!-- HERO -->
+    <header class="ac-hero">
+        <div class="ac-hero-inner">
+            <div class="ac-hero-title">
+                <span class="line1">Men's Collection · 2026</span>
+                <h1>Men's<br><em>Accessories</em></h1>
+            </div>
+            <div class="ac-hero-meta">
+                <div class="ac-hero-divider"></div>
+                <p>Watches &nbsp;·&nbsp; Belts &nbsp;·&nbsp; Wallets &nbsp;·&nbsp; Premium Essentials</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- SHELL -->
+    <div class="ac-shell">
+
+        <!-- SIDEBAR -->
+        <aside class="ac-sidebar">
+            <div class="ac-sidebar-label">Refine</div>
+
+            <input type="checkbox" id="ac-filter-toggle">
+            <label for="ac-filter-toggle" class="ac-filter-btn">
+                <i class="bi bi-sliders2"></i> Filters
+            </label>
+
+            <form method="get" class="ac-filter-form">
+                {% if selected_sub_id %}
+                    <input type="hidden" name="sub_id" value="{{ selected_sub_id }}">
+                {% endif %}
+
+                <!-- SIZE -->
+                <div class="ac-filter-section">
+                    <p class="ac-section-title">Size</p>
+                    {% for s in top_sizes %}
+                    <label class="ac-check">
+                        <input type="checkbox" name="size" value="{{ s.name }}"
+                               {% if s.name in selected_sizes %}checked{% endif %}>
+                        <span>{{ s.name }}</span>
+                    </label>
+                    {% endfor %}
+                </div>
+
+                <!-- PRICE -->
+                <div class="ac-filter-section">
+                    <p class="ac-section-title">Price Range</p>
+                    <div class="ac-price-row">
+                        <input type="number" name="min_price"
+                               value="{{ min_price|default:'' }}"
+                               placeholder="Min ₹" class="ac-price-input">
+                        <input type="number" name="max_price"
+                               value="{{ max_price|default:'' }}"
+                               placeholder="Max ₹" class="ac-price-input">
+                    </div>
+                </div>
+
+                <button type="submit" class="ac-apply-btn">Apply Filters</button>
+            </form>
+        </aside>
+
+        <!-- PRODUCTS -->
+        <section class="ac-products-col">
+            <div class="ac-products-header">
+                <span class="ac-products-count">{{ products|length }} piece{% if products|length != 1 %}s{% endif %}</span>
+            </div>
+
+            <div class="ac-grid">
+                {% for product in products %}
+                <article class="ac-card">
+                    <div class="ac-img-wrap">
+
+                        {% if user.is_authenticated %}
+                        <form method="post" action="{% url 'wishlist' product.id %}" class="ac-wish-form">
+                            {% csrf_token %}
+                            <button type="submit" class="ac-wish-btn {% if product.id in wishlist_id %}active{% endif %}" title="Wishlist">
+                                {% if product.id in wishlist_id %}❤️{% else %}🤍{% endif %}
+                            </button>
+                        </form>
+                        {% endif %}
+
+                        {% if product.image %}
+                        <img src="/static/images/{{ product.image }}" alt="{{ product.name }}">
+                        {% endif %}
+
+                        <a href="{% url 'productsdetail' product.id %}" class="ac-quick">View Product</a>
+                    </div>
+
+                    <div class="ac-card-body">
+                        <a href="{% url 'productsdetail' product.id %}" style="text-decoration:none; color:inherit;">
+                            <p class="ac-card-name">{{ product.name }}</p>
+                        </a>
+                        <div class="ac-card-price">
+                            {% if product.discount_price %}
+                            <span class="ac-price-now">₹{{ product.discount_price }}</span>
+                            <span class="ac-price-was">₹{{ product.price }}</span>
+                            <span class="ac-price-tag">Sale</span>
+                            {% else %}
+                            <span class="ac-price-now">₹{{ product.price }}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </article>
+                {% empty %}
+                <div class="ac-empty">
+                    <i class="bi bi-bag-x ac-empty-icon"></i>
+                    <p>No accessories found</p>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="ac-footer">
+        <div class="ac-footer-inner">
+            <div class="ac-footer-top">
+
+                <div class="ac-footer-brand">
+                    <h3>Men's Store</h3>
+                    <p>Curated menswear for the modern man. Quality craftsmanship, everyday comfort.</p>
+                </div>
+
+                <div class="ac-footer-col">
+                    <h4>Contact</h4>
+                    <span><i class="bi bi-geo-alt me-1"></i> Kerala, India</span>
+                    <span><i class="bi bi-telephone me-1"></i> +91 98765 43210</span>
+                    <span><i class="bi bi-envelope me-1"></i> support@mensstore.com</span>
+                </div>
+
+                <div class="ac-footer-col">
+                    <h4>Navigate</h4>
+                    <a href="{% url 'home' %}">Home</a>
+                    <a href="{% url 'loggin' %}">Login</a>
+                </div>
+
+                <div class="ac-footer-col">
+                    <h4>Follow</h4>
+                    <div class="ac-socials">
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                        <a href="#"><i class="bi bi-twitter-x"></i></a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="ac-footer-bottom">
+                <p>© 2026 Men's Store</p>
+                <p>Kerala, India <span class="gold-dot"></span> Est. 2024</p>
+            </div>
+        </div>
+    </footer>
+
+</div>
+
+{% endblock %}

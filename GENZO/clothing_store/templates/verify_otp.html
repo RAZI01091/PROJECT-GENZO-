@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Verify OTP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #4e73df, #1cc88a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .otp-card {
+            background: #fff;
+            width: 100%;
+            max-width: 420px;
+            padding: 2.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            animation: slideUp 0.8s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .otp-card h3 {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .otp-card p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .form-control {
+            border-radius: 0.6rem;
+            padding: 0.7rem 1rem;
+            text-align: center;
+            letter-spacing: 4px;
+            font-size: 1.1rem;
+        }
+
+        .btn-verify {
+            background: #4e73df;
+            border: none;
+            border-radius: 0.6rem;
+            padding: 0.7rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-verify:hover {
+            background: #2e59d9;
+        }
+
+        .btn-resend {
+            background: none;
+            border: none;
+            color: #4e73df;
+            font-weight: 500;
+            padding: 0;
+        }
+
+        .btn-resend:hover {
+            text-decoration: underline;
+        }
+
+        .message-box {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="otp-card">
+
+    <h3 class="text-center mb-2">Verify OTP</h3>
+    <p class="text-center mb-4">
+        Enter the 6-digit OTP sent to your email address.
+    </p>
+
+    <!-- Django Messages -->
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} message-box">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <!-- Verify OTP Form -->
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <input type="text"
+                   name="otp"
+                   class="form-control"
+                   placeholder="••••••"
+                   maxlength="6"
+                   required>
+        </div>
+
+        <button type="submit" class="btn btn-verify w-100 mb-3">
+            Verify OTP
+        </button>
+    </form>
+
+    <!-- Resend OTP -->
+    <form method="post" class="text-center">
+        {% csrf_token %}
+        <button type="submit" name="resend" class="btn-resend">
+            Resend OTP
+        </button>
+    </form>
+
+</div>
+
+</body>
+</html>
