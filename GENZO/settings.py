@@ -16,7 +16,8 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 ALLOWED_HOSTS = [
     'project-genzo-2.onrender.com',
     '127.0.0.1',
-    'localhost'
+    'localhost',
+    '*'
 ]
 
 # Application definition
@@ -78,14 +79,7 @@ WSGI_APPLICATION = 'GENZO.wsgi.application'
 
 # DATABASE
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('DB_NAME'),
-        'USER': config('DB_USER'),
-        'PASSWORD': config('DB_PASSWORD'),
-        'HOST': config('DB_HOST'),
-        'PORT': config('DB_PORT'),
-    }
+    'default': dj_database_url.parse(config('DATABASE_URL'))
 }
 
 
