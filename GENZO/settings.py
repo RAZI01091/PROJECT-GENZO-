@@ -79,9 +79,13 @@ import os
 
 # DATABASE
 DATABASES = {
+<<<<<<< HEAD
     'default': dj_database_url.parse(
         os.environ.get("DATABASE_URL", f'sqlite:////{BASE_DIR / "GENZO" / "db.sqlite3"}')
     )
+=======
+    'default': dj_database_url.parse(config('DATABASE_URL', default=f'sqlite:////{BASE_DIR / "GENZO" / "db.sqlite3"}'))
+>>>>>>> 09df3655599175b77c32d304c9fb60e0ea5b9218
 }
 
 

@@ -5,6 +5,7 @@ __pycache__/
 # Virtual environment
 venv/
 env/
+minivenv/
 
 # Environment variables
 .env
@@ -34,3 +35,6 @@ build/
 
 # Migrations cache
 */migrations/__pycache__/
+
+# Fitfusion (old project - not needed)
+fitfusion/
