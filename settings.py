@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'GENZO.wsgi.application'
 
 # DATABASE
 DATABASES = {
-    'default': dj_database_url.parse(config('DATABASE_URL', default='sqlite:///db.sqlite3'))
+    'default': dj_database_url.parse(config('DATABASE_URL', default=f'sqlite:////{BASE_DIR / "GENZO" / "db.sqlite3"}'))
 }
 
 
