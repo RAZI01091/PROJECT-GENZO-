@@ -509,12 +509,12 @@ def new_password(request):
 def showlogin(request):
     return render(request,"showlogin.html")
 
-login_required
+@login_required
 def profile(request):
     profile, created=Profile.objects.get_or_create(user=request.user)
     return render(request,"profile.html",{'profile':profile})
 
-login_required
+@login_required
 def editprofile(request):
     profile, created=Profile.objects.get_or_create(user=request.user)
     if request.method=='POST':
@@ -552,7 +552,7 @@ def addaddress(request):
 
 
     return render(request,'addaddress.html')
-login_required
+@login_required
 def delete_address(request,id):
     delete_address=get_object_or_404(Address,id=id,user=request.user)
     delete_address.delete()
@@ -561,7 +561,7 @@ def delete_address(request,id):
 
 
 
-login_required
+@login_required
 def logout(request):
     if request.user.is_authenticated:
         auth_logout(request)
@@ -608,7 +608,7 @@ def admindashboard(request):
 
 
 
-staff_member_required
+@staff_member_required
 def adminproducts(request):
     product=Products.objects.all()
     category=Category.objects.all()
@@ -631,12 +631,12 @@ def adminproducts(request):
 
 
 
-staff_member_required
+@staff_member_required
 def adminorders(request):
     orders=Order.objects.prefetch_related('items__product').order_by('-id')
     return render(request,'adminorders.html',{'orders':orders})
 
-staff_member_required
+@staff_member_required
 def update_order_status(request,order_id):
     if request.method=="POST":
         order=get_object_or_404(Order,id=order_id)
@@ -651,13 +651,13 @@ def update_order_status(request,order_id):
                 message=f"Your order #{order.id} status updated to {new_status}."
             )
     return redirect(adminorders)
-staff_member_required
+@staff_member_required
 def adminorderdetails(request, order_id):
     order = Order.objects.prefetch_related("items__product").get(id=order_id)
 
     return render(request, "adminorderdetails.html", {"order": order})
 
-staff_member_required
+@staff_member_required
 def adminusers(request):
     user=User.objects.filter(is_superuser=False)
     search=request.GET.get('search')
@@ -675,14 +675,14 @@ def adminusers(request):
     return render(request,"adminusers.html",{'users':user})
 
 
-staff_member_required
+@staff_member_required
 def block_unblock(request,user_id):
     user=User.objects.get(id=user_id)
     user.is_active =not user.is_active
     user.save()
     return redirect('adminusers')
 
-staff_member_required
+@staff_member_required
 def adminsettings(request):
     return render(request,"adminsettings.html")
 
@@ -804,7 +804,7 @@ def payment(request):
 @staff_member_required(login_url='home')
 def productsedit(request,id):
     return render('productsedit')
-staff_member_required
+@staff_member_required
 def productsdelete(request,id):
     Products.objects.filter(id=id).delete()
     return redirect('adminproducts')
@@ -832,7 +832,7 @@ def banner(request):
         'banners': banners
     })
 
-staff_member_required
+@staff_member_required
 def editproducts(request, id):
     product = get_object_or_404(Products, id=id)
     categories = Category.objects.all()
@@ -993,7 +993,7 @@ def admin_category(request):
     categories=Category.objects.annotate(sub_count=Count('subcategories',distinct=True),product_count=Count('products',distinct=True))
     return render(request,'admincategory.html',{
     'categories':categories})
-staff_member_required
+@staff_member_required
 def add_category(request):
     if request.method=="POST":
         name =request.POST.get("name")
@@ -1007,7 +1007,7 @@ def add_category(request):
     'categories':categories})
 
 
-staff_member_required
+@staff_member_required
 def add_subcategory(request):
     categories = Category.objects.all()
 
@@ -1036,12 +1036,12 @@ def add_subcategory(request):
         'categories': categories,
         'selected_category': selected_category,
     })
-staff_member_required
+@staff_member_required
 def delete_category(request,id):
     category=get_object_or_404(Category,id=id)
     category.delete()
     return redirect('add_category')
-staff_member_required
+@staff_member_required
 def update_category(request,id):
     category=get_object_or_404(Category,id=id)
 
@@ -1052,12 +1052,12 @@ def update_category(request,id):
             category.name =name
             category.save()
     return redirect('add_category')
-staff_member_required
+@staff_member_required
 def delete_subcategory(request,id):
     subcategory=get_object_or_404(SubCategory,id=id)
     subcategory.delete()
     return redirect('add_subcategory')
-staff_member_required
+@staff_member_required
 def update_subcategory(request,id):
     subcategory=get_object_or_404(SubCategory,id=id)
 
@@ -1219,7 +1219,7 @@ def place_order(request):
 
 
 
-login_required
+@login_required
 def payment_success(request):
 
     session_id= request.GET.get("session_id")
@@ -1248,7 +1248,7 @@ def payment_failed(request):
     return render(request, "paymentfailed.html")    
 
 
-staff_member_required
+@login_required
 def orderdetails(request,order_id):
     order=get_object_or_404(Order.objects.prefetch_related('items__product'),id=order_id, user=request.user)
     return render(request,'orderdetails.html',{'order':order})
