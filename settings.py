@@ -5,7 +5,7 @@ from pathlib import Path
 from decouple import config
 import dj_database_url
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent
 
 
 # SECURITY
@@ -54,7 +54,7 @@ MIDDLEWARE = [
 ]
 
 
-ROOT_URLCONF = 'GENZO.urls'
+ROOT_URLCONF = 'urls'
 
 
 TEMPLATES = [
@@ -74,12 +74,12 @@ TEMPLATES = [
 ]
 
 
-WSGI_APPLICATION = 'GENZO.wsgi.application'
+WSGI_APPLICATION = 'wsgi.application'
 
 
 # DATABASE
 DATABASES = {
-    'default': dj_database_url.parse(config('DATABASE_URL', default=f'sqlite:////{BASE_DIR / "GENZO" / "db.sqlite3"}'))
+    'default': dj_database_url.parse(config('DATABASE_URL', default=f'sqlite:////{BASE_DIR / "db.sqlite3"}'))
 }
 
 
