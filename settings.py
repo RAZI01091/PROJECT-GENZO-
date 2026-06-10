@@ -14,12 +14,7 @@ SECRET_KEY = config('SECRET_KEY', default='django-insecure-fallback-key-do-not-u
 
 DEBUG=False
 
-ALLOWED_HOSTS = [
-    'project-genzo-2.onrender.com',
-    '127.0.0.1',
-    'localhost',
-    '*'
-]
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -83,6 +78,7 @@ DATABASES = {
         default=os.environ.get('DATABASE_URL')
     )
 }
+
 
 
 # PASSWORD VALIDATION
