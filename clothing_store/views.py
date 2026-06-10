@@ -216,7 +216,10 @@ def wishlist(request, product_id):
 
 def casualfit(request):
     
-    casual = Category.objects.get(name='Casual')
+    casual = Category.objects.filter(name='Casual').first()
+
+    if not casual:
+        return render(request, 'casualfit.html', {'products': []})
     products = Products.objects.filter(category=casual,is_listed=True).annotate(effective_price=Coalesce('discount_price','price'))
 
     sub_id = request.GET.get("sub_id")
@@ -260,7 +263,10 @@ def casualfit(request):
 
 
 def formalfit(request):
-    formal=Category.objects.get(name='Formal')
+    formal = Category.objects.filter(name='Formal').first()
+
+    if not formal:
+        return render(request, 'formalfit.html', {'products': []})
     products=Products.objects.filter(category=formal,is_listed=True).annotate(effective_price=Coalesce('discount_price','price'))
     
     sub_id=request.GET.get("sub_id")
