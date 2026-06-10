@@ -4,6 +4,7 @@ Django settings for GENZO project.
 from pathlib import Path
 from decouple import config
 import dj_database_url
+import os
 
 BASE_DIR = Path(__file__).resolve().parent
 
@@ -11,7 +12,7 @@ BASE_DIR = Path(__file__).resolve().parent
 # SECURITY
 SECRET_KEY = config('SECRET_KEY', default='django-insecure-fallback-key-do-not-use-in-production')
 
-DEBUG = config('DEBUG', default=False, cast=bool)
+DEBUG=False
 
 ALLOWED_HOSTS = [
     'project-genzo-2.onrender.com',
@@ -77,14 +78,11 @@ TEMPLATES = [
 WSGI_APPLICATION = 'wsgi.application'
 
 
-# DATABASE
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(
+        default=os.environ.get('DATABASE_URL')
+    )
 }
-
 
 
 # PASSWORD VALIDATION
