@@ -12,7 +12,7 @@ BASE_DIR = Path(__file__).resolve().parent
 # SECURITY
 SECRET_KEY = config('SECRET_KEY', default='django-insecure-fallback-key-do-not-use-in-production')
 
-DEBUG=False
+DEBUG=True
 
 ALLOWED_HOSTS = ['*']
 
@@ -74,9 +74,10 @@ WSGI_APPLICATION = 'wsgi.application'
 
 
 DATABASES = {
-    'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL')
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
 
 
@@ -194,6 +195,8 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 # MEDIA FILES
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # STRIPE PAYMENT
 
