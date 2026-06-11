@@ -1191,10 +1191,8 @@ def place_order(request):
                 "quantity": 1,
             }],
             mode="payment",
-            success_url=request.build_absolute_uri(
-    "/paymentsuccess/?session_id={CHECKOUT_SESSION_ID}"
-),
-cancel_url=request.build_absolute_uri(
+           success_url="https://project-genzo-5y88.onrender.com/paymentsuccess/",
+            cancel_url=request.build_absolute_uri(
     "/paymentfailed/"
 ),
         )
