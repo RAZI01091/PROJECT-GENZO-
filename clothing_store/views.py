@@ -218,7 +218,7 @@ def casualfit(request):
     
     print("CATEGORIES:", list(Category.objects.values_list("name", flat=True)))
     casual = Category.objects.get(name='Casual')
-    
+
     products = Products.objects.filter(category=casual,is_listed=True).annotate(effective_price=Coalesce('discount_price','price'))
     sub_id = request.GET.get("sub_id")
     if sub_id:
@@ -1191,8 +1191,12 @@ def place_order(request):
                 "quantity": 1,
             }],
             mode="payment",
-            success_url="http://127.0.0.1:8000/paymentsuccess/?session_id={CHECKOUT_SESSION_ID}",
-            cancel_url="http://127.0.0.1:8000/paymentfailed/",
+            success_url=request.build_absolute_uri(
+    "/paymentsuccess/?session_id={CHECKOUT_SESSION_ID}"
+),
+cancel_url=request.build_absolute_uri(
+    "/paymentfailed/"
+),
         )
 
         order.stripe_session_id = session.id
