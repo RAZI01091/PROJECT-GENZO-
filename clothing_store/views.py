@@ -1108,30 +1108,24 @@ def pay(request):
 
 @login_required
 def place_order(request):
-
     payment_method = request.POST.get("payment_method")
     address_id = request.session.get("address_id")
     discount = Decimal(str(request.session.get("discount", 0)))
     buy_now_product_id = request.session.get("buy_now_product_id")
-
     #  total amount
     if buy_now_product_id:
         product = get_object_or_404(Products, id=buy_now_product_id)
         subtotal = product.discount_price or product.price
     else:
         cart_items = Cart.objects.filter(user=request.user)
-
         if not cart_items.exists():
             messages.error(request, "Cart is empty")
             return redirect("cart")
-
         subtotal = sum(
             (item.product.discount_price or item.product.price) * item.quantity
             for item in cart_items
         )
-
     total = max(subtotal - discount, 0)
-
     order = Order.objects.create(
         user=request.user,
         address_id=address_id,
@@ -1140,46 +1134,35 @@ def place_order(request):
         payment_status="PENDING",
         discount_amount=discount,
     )
-
-
     if buy_now_product_id:
         price = product.discount_price or product.price
-
         OrderItem.objects.create(
             order=order,
             product=product,
             quantity=1,
             price=price,
         )
-
     else:
         for item in cart_items:
             price = item.product.discount_price or item.product.price
-
             OrderItem.objects.create(
                 order=order,
                 product=item.product,
                 quantity=item.quantity,  
                 price=price,
             )
-
         Notification.objects.create(
             user=request.user,
             message=f"Your order #{item.product.name} has been placed succesfully."
         )    
-
     if payment_method == "COD":
         order.status = "confirmed"
         order.payment_status = "PENDING"
         order.save()
-
         Cart.objects.filter(user=request.user).delete()
         request.session.pop("buy_now_product_id", None)
-
         return render(request, "paymentsuccess.html")
-
     elif payment_method == "STRIPE":
-
         session = stripe.checkout.Session.create(
             payment_method_types=["card"],
             line_items=[{
@@ -1191,21 +1174,13 @@ def place_order(request):
                 "quantity": 1,
             }],
             mode="payment",
-           success_url="https://project-genzo-5y88.onrender.com/paymentsuccess/",
-            cancel_url=request.build_absolute_uri(
-    "/paymentfailed/"
-),
+            success_url="http://127.0.0.1:8000/paymentsuccess/?session_id={CHECKOUT_SESSION_ID}",
+            cancel_url="http://127.0.0.1:8000/paymentfailed/",
         )
-
         order.stripe_session_id = session.id
         order.save()
-
         return redirect(session.url)
-
     return redirect("checkout")
-
-
-
 
 
 
