@@ -216,7 +216,9 @@ def wishlist(request, product_id):
 
 def casualfit(request):
     
+    print("CATEGORIES:", list(Category.objects.values_list("name", flat=True)))
     casual = Category.objects.get(name='Casual')
+    
     products = Products.objects.filter(category=casual,is_listed=True).annotate(effective_price=Coalesce('discount_price','price'))
     sub_id = request.GET.get("sub_id")
     if sub_id:
@@ -273,7 +275,7 @@ def formalfit(request):
     wishlist_id=[]
     if request.user.is_authenticated:
         wishlist_id=Wishlist.objects.filter(User=request.user).values_list('Products_id',flat=True)  
-          
+
     return render(request,"formalfit.html",{
         "products":products,
         'wishlist_id':wishlist_id,
