@@ -216,38 +216,27 @@ def wishlist(request, product_id):
 
 def casualfit(request):
     
-    casual = Category.objects.filter(name='Casual').first()
-
-    if not casual:
-        return render(request, 'casualfit.html', {'products': []})
+    casual = Category.objects.get(name='Casual')
     products = Products.objects.filter(category=casual,is_listed=True).annotate(effective_price=Coalesce('discount_price','price'))
-
     sub_id = request.GET.get("sub_id")
     if sub_id:
         products = products.filter(subcategory_id=sub_id)
-
-
     top_sizes=Size.objects.filter(size_type='TOP')
     bottom_sizes=Size.objects.filter(size_type='BOTTOM')
 
     selected_size = request.GET.getlist('size')
     if selected_size:                       
         products = products.filter(sizes__name__in=selected_size).distinct()
-
     
 
     min_price=request.GET.get('min_price')
     max_price=request.GET.get('max_price')
-
     if min_price:
         products =products.filter(effective_price__gte=min_price)
-
     if max_price:
         products=products.filter(effective_price__lte=max_price)
-
-
-
     wishlist_id = []
+
     if request.user.is_authenticated:
         wishlist_id = Wishlist.objects.filter(User=request.user).values_list('Products_id', flat=True)
 
@@ -258,19 +247,11 @@ def casualfit(request):
         'bottom_sizes':bottom_sizes,
         'top_sizes':top_sizes
     })
-
-
-
-
 def formalfit(request):
-    formal = Category.objects.filter(name='Formal').first()
-
-    if not formal:
-        return render(request, 'formalfit.html', {'products': []})
+    formal=Category.objects.get(name='Formal')
     products=Products.objects.filter(category=formal,is_listed=True).annotate(effective_price=Coalesce('discount_price','price'))
     
     sub_id=request.GET.get("sub_id")
-
     if sub_id:
         products=Products.objects.filter(subcategory_id=sub_id)
 
@@ -283,17 +264,16 @@ def formalfit(request):
 
     min_price=request.GET.get('min_price')
     max_price=request.GET.get('max_price') 
-
     if min_price:
         products=products.filter(effective_price__gte=min_price)
+
         
     if max_price:
         products=products.filter(effective_price__lte=max_price)    
-
     wishlist_id=[]
     if request.user.is_authenticated:
-        wishlist_id=Wishlist.objects.filter(User=request.user).values_list('Products_id',flat=True)    
-
+        wishlist_id=Wishlist.objects.filter(User=request.user).values_list('Products_id',flat=True)  
+          
     return render(request,"formalfit.html",{
         "products":products,
         'wishlist_id':wishlist_id,
