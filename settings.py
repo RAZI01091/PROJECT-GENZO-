@@ -159,10 +159,15 @@ LOGIN_REDIRECT_URL = 'home'
 ACCOUNT_LOGOUT_REDIRECT_URL = 'loggin'
 
 
-ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_LOGIN_METHODS = {'email'}
+
+ACCOUNT_SIGNUP_FIELDS = [
+    'email*',
+    'password1*',
+    'password2*',
+]
+
 ACCOUNT_EMAIL_VERIFICATION = 'none'
-ACCOUNT_USERNAME_REQUIRED = False
-ACCOUNT_AUTHENTICATION_METHOD = 'email'
 
 
 SOCIALACCOUNT_AUTO_SIGNUP = True
@@ -171,18 +176,17 @@ ACCOUNT_ALLOW_REGISTRATION = True
 
 
 # EMAIL
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
-EMAIL_HOST_USER = "python010917@gmail.com"
+EMAIL_HOST_USER = config('EMAIL_HOST_USER', default='')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='')
 
-DEFAULT_FROM_EMAIL = "python010917@gmail.com"
-
-# DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 
 # MEDIA FILES
@@ -195,3 +199,27 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY', default='')
 STRIPE_PUBLISHABLE_KEY = config('STRIPE_PUBLISHABLE_KEY', default='')
+SITE_ID = 2
+
+ACCOUNT_DEFAULT_HTTP_PROTOCOL = "http"
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+SOCIALACCOUNT_AUTO_SIGNUP = False
+DEBUG = True
+DEBUG_PROPAGATE_EXCEPTIONS = True
+SOCIALACCOUNT_STORE_TOKENS = True
+ALLOWED_HOSTS = ["*"]
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+        },
+    },
+    "loggers": {
+        "allauth": {
+            "handlers": ["console"],
+            "level": "DEBUG",
+        },
+    },
+}

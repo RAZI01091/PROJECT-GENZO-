@@ -388,31 +388,34 @@ def innerwear(request):
 
         })
 
+
+
 def forgot(request):
-    if request.method == "POST":
-        email = request.POST.get('email')
+    if request.method=="POST":
+        email=request.POST.get('email')
 
-        user = User.objects.filter(email=email).first()
-
-        if not user:
-            messages.error(request, "Email not registered")
+        try:
+            user=User.objects.filter(email=email).first()
+        except User.DoesNotExist:
+            messages.error(request,"Email not registered")
             return redirect('forgot')
 
-        otp = random.randint(100000, 999999)
+        otp=random.randint(100000,999999)
 
-        request.session['reset_email'] = email
-        request.session['otp'] = str(otp)
+        request.session['reset_email']=email
+        request.session['otp']=str(otp)
 
         send_mail(
-            subject="Password reset OTP",
-            message=f"Your OTP is {otp}",
-            from_email=settings.DEFAULT_FROM_EMAIL,
-            recipient_list=[email],
+           subject="Password reset OTP",
+           message=f"Your OTP is {otp}",
+           from_email=settings.DEFAULT_FROM_EMAIL,
+           recipient_list=[email],
         )
 
         return redirect('verify_otp')
+    
+    return render(request,'forgot.html')
 
-    return render(request, 'forgot.html')
 
 
 
@@ -430,12 +433,12 @@ def verify_otp(request):
             request.session['otp'] = str(otp)
 
             send_mail(
-    subject="Password Reset OTP",
-    message=f"Your OTP for password reset is {otp}",
-    from_email=settings.DEFAULT_FROM_EMAIL,
-    recipient_list=[email],
-    fail_silently=False,
-)
+                subject="Password Reset OTP",
+                message=f"Your OTP for password reset is {otp}",
+                from_email=None,
+                recipient_list=[email],
+                fail_silently=False,
+            )
 
             messages.success(request, "New OTP has been sent to your email")
             return redirect('verify_otp')
