@@ -404,7 +404,10 @@ def forgot(request):
 
         request.session['reset_email']=email
         request.session['otp']=str(otp)
-
+        print("EMAIL_HOST_USER =", settings.EMAIL_HOST_USER)
+        print("DEFAULT_FROM_EMAIL =", settings.DEFAULT_FROM_EMAIL)
+        print("PASSWORD EXISTS =", bool(settings.EMAIL_HOST_PASSWORD))
+        
         send_mail(
            subject="Password reset OTP",
            message=f"Your OTP is {otp}",
