@@ -136,19 +136,21 @@ AUTHENTICATION_BACKENDS = (
 # GOOGLE LOGIN
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
+        'APP': {
+            'client_id': config('GOOGLE_CLIENT_ID', default=''),
+            'secret': config('GOOGLE_CLIENT_SECRET', default=''),
+            'key': ''
+        },
         'SCOPE': [
             'profile',
             'email',
         ],
-
         'AUTH_PARAMS': {
             'access_type': 'online',
         },
-
         'FETCH_USERINFO': True,
     }
 }
-
 
 SOCIALACCOUNT_LOGIN_ON_GET = True
 
@@ -199,11 +201,13 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY', default='')
 STRIPE_PUBLISHABLE_KEY = config('STRIPE_PUBLISHABLE_KEY', default='')
-SITE_ID = 2
+SITE_ID = 1
 
-ACCOUNT_DEFAULT_HTTP_PROTOCOL = "http"
+ACCOUNT_DEFAULT_HTTP_PROTOCOL = "http" if DEBUG else "https"
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
-SOCIALACCOUNT_AUTO_SIGNUP = False
+SOCIALACCOUNT_AUTO_SIGNUP = True
+SOCIALACCOUNT_EMAIL_AUTHENTICATION = True
+SOCIALACCOUNT_EMAIL_AUTHENTICATION_AUTO_CONNECT = True
 DEBUG = True
 DEBUG_PROPAGATE_EXCEPTIONS = True
 SOCIALACCOUNT_STORE_TOKENS = True
