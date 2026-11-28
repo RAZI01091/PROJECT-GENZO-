@@ -20,7 +20,9 @@
     --radius: 18px;
 }
 
-*, *::before, *::after { box-sizing: border-box; }
+*, *::before, *::after {
+    box-sizing: border-box;
+}
 
 body {
     font-family: 'Poppins', sans-serif;
@@ -29,7 +31,7 @@ body {
     padding: 0;
 }
 
-/* ===== TOP BAR (replaces navbar) ===== */
+/* TOP BAR */
 .checkout-topbar {
     background: #fff;
     border-bottom: 1px solid var(--silver);
@@ -63,15 +65,32 @@ body {
     color: #bbb;
 }
 
-.step { display: flex; align-items: center; gap: 5px; }
-.step.active { color: var(--mocha); }
+.step {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.step.active {
+    color: var(--mocha);
+}
+
 .step-dot {
-    width: 8px; height: 8px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
     background: #ddd;
 }
-.step.active .step-dot { background: var(--mocha); }
-.step-divider { width: 24px; height: 1px; background: #ddd; }
+
+.step.active .step-dot {
+    background: var(--mocha);
+}
+
+.step-divider {
+    width: 24px;
+    height: 1px;
+    background: #ddd;
+}
 
 .topbar-back {
     font-size: 0.82rem;
@@ -84,9 +103,11 @@ body {
     transition: color 0.2s;
 }
 
-.topbar-back:hover { color: var(--charcoal); }
+.topbar-back:hover {
+    color: var(--charcoal);
+}
 
-/* ===== PAGE ===== */
+/* PAGE */
 .checkout-page {
     min-height: 100vh;
     padding: 40px 0 80px;
@@ -100,7 +121,7 @@ body {
     margin-bottom: 28px;
 }
 
-/* ===== CARDS ===== */
+/* CARDS */
 .checkout-card {
     background: #fff;
     border-radius: var(--radius);
@@ -110,7 +131,9 @@ body {
     margin-bottom: 20px;
 }
 
-.checkout-card:last-child { margin-bottom: 0; }
+.checkout-card:last-child {
+    margin-bottom: 0;
+}
 
 .card-title {
     font-size: 1rem;
@@ -121,7 +144,7 @@ body {
     border-bottom: 1px solid #f0ece5;
 }
 
-/* ===== ACCOUNT ===== */
+/* ACCOUNT */
 .profile-img {
     width: 56px;
     height: 56px;
@@ -131,10 +154,18 @@ body {
     flex-shrink: 0;
 }
 
-.account-name { font-size: 0.95rem; font-weight: 700; color: var(--charcoal); }
-.account-meta { font-size: 0.8rem; color: #aaa; }
+.account-name {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--charcoal);
+}
 
-/* ===== ADDRESS BOX ===== */
+.account-meta {
+    font-size: 0.8rem;
+    color: #aaa;
+}
+
+/* ADDRESS */
 .address-box {
     border: 2px solid #f0ece5;
     border-radius: 14px;
@@ -146,7 +177,9 @@ body {
     margin-bottom: 12px;
 }
 
-.address-box:last-of-type { margin-bottom: 0; }
+.address-box:last-of-type {
+    margin-bottom: 0;
+}
 
 .address-box:hover {
     border-color: var(--charcoal);
@@ -168,9 +201,23 @@ body {
     margin-bottom: 8px;
 }
 
-.address-name  { font-weight: 700; font-size: 0.92rem; color: var(--charcoal); }
-.address-phone { font-size: 0.8rem; color: #aaa; margin-bottom: 6px; }
-.address-text  { font-size: 0.85rem; color: #555; line-height: 1.55; }
+.address-name {
+    font-weight: 700;
+    font-size: 0.92rem;
+    color: var(--charcoal);
+}
+
+.address-phone {
+    font-size: 0.8rem;
+    color: #aaa;
+    margin-bottom: 6px;
+}
+
+.address-text {
+    font-size: 0.85rem;
+    color: #555;
+    line-height: 1.55;
+}
 
 .default-badge {
     position: absolute;
@@ -201,7 +248,10 @@ body {
     white-space: nowrap;
 }
 
-.add-address-btn:hover { background: var(--charcoal); color: #fff; }
+.add-address-btn:hover {
+    background: var(--charcoal);
+    color: #fff;
+}
 
 .delete-addr-btn {
     display: inline-block;
@@ -216,9 +266,13 @@ body {
     transition: all 0.2s;
 }
 
-.delete-addr-btn:hover { background: #e53e3e; color: #fff; border-color: #e53e3e; }
+.delete-addr-btn:hover {
+    background: #e53e3e;
+    color: #fff;
+    border-color: #e53e3e;
+}
 
-/* ===== ORDER SUMMARY ===== */
+/* ORDER SUMMARY */
 .summary-card {
     background: #fff;
     border-radius: var(--radius);
@@ -238,7 +292,9 @@ body {
     border-bottom: 1px solid #f5f2ee;
 }
 
-.order-item:last-of-type { border-bottom: none; }
+.order-item:last-of-type {
+    border-bottom: none;
+}
 
 .order-item-left {
     display: flex;
@@ -265,8 +321,17 @@ body {
     max-width: 160px;
 }
 
-.order-item-qty  { font-size: 0.75rem; color: #aaa; }
-.order-item-price { font-size: 0.92rem; font-weight: 700; color: var(--mocha); flex-shrink: 0; }
+.order-item-qty {
+    font-size: 0.75rem;
+    color: #aaa;
+}
+
+.order-item-price {
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--mocha);
+    flex-shrink: 0;
+}
 
 .total-box {
     background: #faf9f7;
@@ -278,8 +343,17 @@ body {
     margin: 16px 0;
 }
 
-.total-label { font-size: 0.9rem; font-weight: 600; color: #666; }
-.total-value  { font-size: 1.2rem; font-weight: 800; color: var(--charcoal); }
+.total-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #666;
+}
+
+.total-value {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--charcoal);
+}
 
 .pay-btn {
     display: block;
@@ -296,36 +370,66 @@ body {
     transition: opacity 0.2s, transform 0.15s;
 }
 
-.pay-btn:hover { opacity: 0.9; transform: translateY(-2px); }
+.pay-btn:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
 
-/* ============================================================
-   RESPONSIVE
-   ============================================================ */
-
+/* RESPONSIVE */
 @media (max-width: 991px) {
-    .summary-card { position: static; }
-    .topbar-steps { display: none; }
+    .summary-card {
+        position: static;
+    }
+
+    .topbar-steps {
+        display: none;
+    }
 }
 
 @media (max-width: 767px) {
-    .checkout-page { padding: 24px 0 60px; }
-    .checkout-card { padding: 18px 16px; }
-    .summary-card  { padding: 18px 16px; }
-    .order-item-name { max-width: 110px; }
-    .topbar-brand { font-size: 1.2rem; }
+    .checkout-page {
+        padding: 24px 0 60px;
+    }
+
+    .checkout-card {
+        padding: 18px 16px;
+    }
+
+    .summary-card {
+        padding: 18px 16px;
+    }
+
+    .order-item-name {
+        max-width: 110px;
+    }
+
+    .topbar-brand {
+        font-size: 1.2rem;
+    }
 }
 
 @media (max-width: 479px) {
-    .cart-img    { width: 42px; height: 42px; }
-    .profile-img { width: 46px; height: 46px; }
-    .add-address-btn { font-size: 0.75rem; padding: 6px 12px; }
+    .cart-img {
+        width: 42px;
+        height: 42px;
+    }
+
+    .profile-img {
+        width: 46px;
+        height: 46px;
+    }
+
+    .add-address-btn {
+        font-size: 0.75rem;
+        padding: 6px 12px;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<!-- MINIMAL TOP BAR (no full navbar) -->
+<!-- TOP BAR -->
 <div class="checkout-topbar">
     <div class="container">
         <div class="topbar-inner">
@@ -333,11 +437,21 @@ body {
             <a href="{% url 'home' %}" class="topbar-brand">GENZO</a>
 
             <div class="topbar-steps">
-                <span class="step"><span class="step-dot"></span>Cart</span>
+                <span class="step">
+                    <span class="step-dot"></span>Cart
+                </span>
+
                 <span class="step-divider"></span>
-                <span class="step active"><span class="step-dot"></span>Checkout</span>
+
+                <span class="step active">
+                    <span class="step-dot"></span>Checkout
+                </span>
+
                 <span class="step-divider"></span>
-                <span class="step"><span class="step-dot"></span>Payment</span>
+
+                <span class="step">
+                    <span class="step-dot"></span>Payment
+                </span>
             </div>
 
             <a href="{% url 'cart' %}" class="topbar-back">
@@ -362,106 +476,231 @@ body {
                 <!-- LEFT COLUMN -->
                 <div class="col-lg-7">
 
-                    <!-- ACCOUNT -->
+                    <!-- ACCOUNT DETAILS -->
                     <div class="checkout-card">
+
                         <p class="card-title">Account Details</p>
+
                         <div class="d-flex align-items-center gap-3">
-                            {% if profile.image %}
-                                <img src="{{ profile.image.url }}" class="profile-img" alt="Profile">
+
+                            {% if profile and profile.image %}
+                                <img src="{{ profile.image.url }}"
+                                     class="profile-img"
+                                     alt="Profile">
                             {% else %}
                                 <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
-                                     class="profile-img" alt="Profile">
+                                     class="profile-img"
+                                     alt="Profile">
                             {% endif %}
+
                             <div>
-                                <p class="account-name mb-1">{{ request.user.username }}</p>
-                                <p class="account-meta mb-1">{{ request.user.email }}</p>
-                                <p class="account-meta mb-0">📞 {{ profile.phone|default:"Not added" }}</p>
+                                <p class="account-name mb-1">
+                                    {{ request.user.username }}
+                                </p>
+
+                                <p class="account-meta mb-1">
+                                    {{ request.user.email }}
+                                </p>
+
+                                <p class="account-meta mb-0">
+                                    📞
+                                    {% if profile %}
+                                        {{ profile.phone|default:"Not added" }}
+                                    {% else %}
+                                        Not added
+                                    {% endif %}
+                                </p>
                             </div>
+
                         </div>
                     </div>
 
-                    <!-- ADDRESS -->
+                    <!-- DELIVERY ADDRESS -->
                     <div class="checkout-card">
-                        <div class="d-flex justify-content-between align-items-center" style="margin-bottom:16px;">
-                            <p class="card-title mb-0" style="border:none;padding:0;">Delivery Address</p>
-                            <a href="{% url 'addaddress' %}" class="add-address-btn">+ Add New</a>
-                        </div>
 
-                        {% for addr in address %}
-                        <label class="address-box">
-                            {% if addr.is_default %}
-                            <span class="default-badge">Default</span>
-                            {% endif %}
+                        <div class="d-flex justify-content-between align-items-center"
+                             style="margin-bottom:16px;">
 
-                            <div class="address-header">
-                                <input type="radio" name="address_id" value="{{ addr.id }}"
-                                       {% if addr.is_default %}checked{% endif %} required>
-                                <span class="address-name">{{ addr.name }}</span>
-                            </div>
-
-                            <p class="address-phone">📞 {{ addr.phone }}</p>
-                            <p class="address-text">
-                                {{ addr.address }}, {{ addr.locality }}<br>
-                                {{ addr.city }}, {{ addr.state }} – {{ addr.pincode }}
+                            <p class="card-title mb-0"
+                               style="border:none;padding:0;">
+                                Delivery Address
                             </p>
 
-                            <a href="{% url 'delete_address' addr.id %}" class="delete-addr-btn"
-                               onclick="return confirm('Delete this address?')">✕ Delete</a>
-                        </label>
+                            <a href="{% url 'addaddress' %}"
+                               class="add-address-btn">
+                                + Add New
+                            </a>
+
+                        </div>
+
+                        {% for addr in addresses %}
+
+                            <label class="address-box">
+
+                                {% if addr.is_default %}
+                                    <span class="default-badge">
+                                        Default
+                                    </span>
+                                {% endif %}
+
+                                <div class="address-header">
+
+                                    <input
+                                        type="radio"
+                                        name="address_id"
+                                        value="{{ addr.id }}"
+                                        {% if addr.is_default %}checked{% endif %}
+                                        required
+                                    >
+
+                                    <span class="address-name">
+                                        {{ addr.name }}
+                                    </span>
+
+                                </div>
+
+                                <p class="address-phone">
+                                    📞 {{ addr.phone }}
+                                </p>
+
+                                <p class="address-text">
+                                    {{ addr.address }},
+                                    {{ addr.locality }}<br>
+
+                                    {{ addr.city }},
+                                    {{ addr.state }}
+                                    – {{ addr.pincode }}
+                                </p>
+
+                                <a href="{% url 'delete_address' addr.id %}"
+                                   class="delete-addr-btn">
+                                    ✕ Delete
+                                </a>
+
+                            </label>
+
                         {% empty %}
-                        <p class="text-muted" style="font-size:0.9rem;">No address found. Please add one.</p>
+
+                            <div class="text-center py-4">
+
+                                <p class="text-muted">
+                                    No delivery address found.
+                                </p>
+
+                                <p class="text-muted small">
+                                    Please add a delivery address to continue.
+                                </p>
+
+                            </div>
+
                         {% endfor %}
+
                     </div>
 
                 </div>
 
                 <!-- RIGHT COLUMN -->
                 <div class="col-lg-5">
+
                     <div class="summary-card">
-                        <p class="card-title">Order Summary</p>
+
+                        <p class="card-title">
+                            Order Summary
+                        </p>
 
                         {% for item in cart_items %}
-                        <div class="order-item">
-                            <div class="order-item-left">
-                               {% load static %}
 
-{% if item.product.image %}
-<img src="{% static 'images/' %}{{ item.product.image }}"
-     class="cart-img"
-     alt="{{ item.product.name }}">
-{% else %}
-<img src="{% static 'images/default.jpg' %}"
-     class="cart-img"
-     alt="No image">
-{% endif %}
-                                <div>
-                                    <p class="order-item-name mb-0">{{ item.product.name }}</p>
-                                    <p class="order-item-qty mb-0">Qty: {{ item.quantity }}</p>
+                            <div class="order-item">
+
+                                <div class="order-item-left">
+
+                                    {% if item.product.image %}
+
+                                        <img
+                                            src="{% static 'images/' %}{{ item.product.image }}"
+                                            class="cart-img"
+                                            alt="{{ item.product.name }}"
+                                        >
+
+                                    {% else %}
+
+                                        <img
+                                            src="{% static 'images/default.jpg' %}"
+                                            class="cart-img"
+                                            alt="No image"
+                                        >
+
+                                    {% endif %}
+
+                                    <div>
+
+                                        <p class="order-item-name mb-0">
+                                            {{ item.product.name }}
+                                        </p>
+
+                                        <p class="order-item-qty mb-0">
+                                            Qty: {{ item.quantity }}
+                                        </p>
+
+                                    </div>
+
                                 </div>
+
+                                <span class="order-item-price">
+                                    ₹{{ item.product.discount_price|default:item.product.price }}
+                                </span>
+
                             </div>
-                            <span class="order-item-price">
-                                ₹{{ item.product.discount_price|default:item.product.price }}
-                            </span>
-                        </div>
+
                         {% empty %}
-                        <p class="text-muted" style="font-size:0.9rem;">Your cart is empty.</p>
+
+                            <p class="text-muted">
+                                Your cart is empty.
+                            </p>
+
                         {% endfor %}
 
+                        <!-- TOTAL -->
                         <div class="total-box">
-                            <span class="total-label">Total</span>
-                            <span class="total-value">₹{{ total_price }}</span>
+
+                            <span class="total-label">
+                                Total
+                            </span>
+
+                            <span class="total-value">
+                                ₹{{ total_price }}
+                            </span>
+
                         </div>
 
-                        <button type="submit" class="pay-btn">Proceed to Payment</button>
+                        <!-- PROCEED TO PAYMENT -->
+                        {% if addresses and cart_items %}
+
+                            <button type="submit" class="pay-btn">
+                                Proceed to Payment
+                            </button>
+
+                        {% else %}
+
+                            <button type="button"
+                                    class="pay-btn"
+                                    disabled
+                                    style="opacity:0.5;cursor:not-allowed;">
+                                Proceed to Payment
+                            </button>
+
+                        {% endif %}
+
                     </div>
+
                 </div>
 
             </div>
+
         </form>
 
     </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

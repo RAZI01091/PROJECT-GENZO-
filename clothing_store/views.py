@@ -626,6 +626,7 @@ def adminproducts(request):
 @staff_member_required
 def adminorders(request):
     orders=Order.objects.prefetch_related('items__product').order_by('-id')
+    
     return render(request,'adminorders.html',{'orders':orders})
 
 @staff_member_required
@@ -643,11 +644,22 @@ def update_order_status(request,order_id):
                 message=f"Your order #{order.id} status updated to {new_status}."
             )
     return redirect(adminorders)
+
 @staff_member_required
 def adminorderdetails(request, order_id):
-    order = Order.objects.prefetch_related("items__product").get(id=order_id)
 
-    return render(request, "adminorderdetails.html", {"order": order})
+    order = get_object_or_404(
+        Order.objects.select_related(
+            'user', 'address'
+        ).prefetch_related(
+            'items__product'
+        ),
+        id=order_id
+    )
+
+    return render(request, 'adminorderdetails.html', {
+        'order': order
+    })
 
 @staff_member_required
 def adminusers(request):
@@ -737,7 +749,6 @@ def addproducts(request):
     })   
 
 
-
 @login_required
 def checkout(request):
 
@@ -747,33 +758,35 @@ def checkout(request):
     addresses = Address.objects.filter(user=request.user)
     profile = Profile.objects.filter(user=request.user).first()
 
-    # ===== BUY NOW FLOW =====
+    # BUY NOW FLOW
     if buy_now_product_id:
-        product = get_object_or_404(Products, id=buy_now_product_id)
+
+        product = get_object_or_404(
+            Products,
+            id=buy_now_product_id
+        )
 
         price = product.discount_price or product.price
-        total_price = price
 
         cart_items = [{
             "product": product,
             "quantity": 1,
         }]
 
-
         return render(request, "checkout.html", {
             "cart_items": cart_items,
-            "total_price": total_price,
-            "address": addresses,
+            "total_price": price,
+            "addresses": addresses,
             "profile": profile,
             "buy_now": True,
         })
 
-
-
+    # CART FLOW
     if not cart_queryset.exists():
         return redirect("cart")
 
     total_price = 0
+
     for item in cart_queryset:
         price = item.product.discount_price or item.product.price
         total_price += price * item.quantity
@@ -781,13 +794,10 @@ def checkout(request):
     return render(request, "checkout.html", {
         "cart_items": cart_queryset,
         "total_price": total_price,
-        "address": addresses,
+        "addresses": addresses,
         "profile": profile,
         "buy_now": False,
     })
-
-
-
 
 def payment(request):
     return render(request,"payment.html")
@@ -1061,20 +1071,36 @@ def update_subcategory(request,id):
             subcategory.save()
     return redirect('add_subcategory')        
 
-
 @login_required
 def pay(request):
+
     address_id = request.POST.get('address_id')
+
     if not address_id:
-        messages.error(request, 'please select the address')
+        messages.error(request, 'Please select a delivery address.')
         return redirect('checkout')
 
+    # CHECK SELECTED ADDRESS
+    selected_address = get_object_or_404(
+        Address,
+        id=address_id,
+        user=request.user
+    )
+
+    # SAVE ADDRESS ID IN SESSION
+    request.session["address_id"] = selected_address.id
+
     discount = Decimal(str(request.session.get('discount', 0)))
+
     buy_now_product_id = request.session.get("buy_now_product_id")
 
-    # ================= BUY NOW =================
+    # BUY NOW
     if buy_now_product_id:
-        product = get_object_or_404(Products, id=buy_now_product_id)
+
+        product = get_object_or_404(
+            Products,
+            id=buy_now_product_id
+        )
 
         price = product.discount_price or product.price
         subtotal = price
@@ -1084,10 +1110,12 @@ def pay(request):
             'quantity': 1,
         }]
 
+    # CART
     else:
+
         cart_items = Cart.objects.filter(user=request.user)
 
-        if not cart_items.exists():  # ✅ FIXED
+        if not cart_items.exists():
             messages.error(request, 'Cart is empty')
             return redirect('cart')
 
@@ -1104,24 +1132,51 @@ def pay(request):
         "discount": discount,
         "total": total,
         "address_id": address_id,
+        "selected_address": selected_address,
     }
 
     return render(request, 'pay.html', context)
 
-
-
 @login_required
 def place_order(request):
+
     payment_method = request.POST.get("payment_method")
+
     address_id = request.session.get("address_id")
+
     discount = Decimal(str(request.session.get("discount", 0)))
+
     buy_now_product_id = request.session.get("buy_now_product_id")
 
-    # Calculate total
+    # CHECK ADDRESS
+    if not address_id:
+        messages.error(request, "Please select a delivery address.")
+        return redirect("checkout")
+
+    selected_address = get_object_or_404(
+        Address,
+        id=address_id,
+        user=request.user
+    )
+
+    # CHECK PAYMENT METHOD
+    if payment_method not in ["COD", "STRIPE"]:
+        messages.error(request, "Invalid payment method.")
+        return redirect("checkout")
+
+    # CALCULATE TOTAL
+
     if buy_now_product_id:
-        product = get_object_or_404(Products, id=buy_now_product_id)
+
+        product = get_object_or_404(
+            Products,
+            id=buy_now_product_id
+        )
+
         subtotal = product.discount_price or product.price
+
     else:
+
         cart_items = Cart.objects.filter(user=request.user)
 
         if not cart_items.exists():
@@ -1135,17 +1190,21 @@ def place_order(request):
 
     total = max(subtotal - discount, 0)
 
+    # CREATE ORDER WITH SELECTED ADDRESS
+
     order = Order.objects.create(
         user=request.user,
-        address_id=address_id,
+        address=selected_address,
         total=total,
         payment_method=payment_method,
         payment_status="PENDING",
         discount_amount=discount,
     )
 
-    # Create order items
+    # CREATE ORDER ITEMS
+
     if buy_now_product_id:
+
         price = product.discount_price or product.price
 
         OrderItem.objects.create(
@@ -1156,7 +1215,9 @@ def place_order(request):
         )
 
     else:
+
         for item in cart_items:
+
             price = item.product.discount_price or item.product.price
 
             OrderItem.objects.create(
@@ -1166,23 +1227,33 @@ def place_order(request):
                 price=price,
             )
 
-        Notification.objects.create(
-            user=request.user,
-            message=f"Your order #{order.id} has been placed successfully."
-        )
+    # ORDER NOTIFICATION
 
-    # COD
+    Notification.objects.create(
+        user=request.user,
+        message=f"Your order #{order.id} has been placed successfully."
+    )
+
+    # COD PAYMENT
+
     if payment_method == "COD":
+
         order.status = "confirmed"
         order.payment_status = "PENDING"
         order.save()
 
         Cart.objects.filter(user=request.user).delete()
+
         request.session.pop("buy_now_product_id", None)
+        request.session.pop("address_id", None)
+        request.session.pop("discount", None)
 
-        return render(request, "paymentsuccess.html")
+        return render(request, "paymentsuccess.html", {
+            "order": order
+        })
 
-    # STRIPE
+    # STRIPE PAYMENT
+
     elif payment_method == "STRIPE":
 
         success_url = (
@@ -1198,19 +1269,25 @@ def place_order(request):
 
         session = stripe.checkout.Session.create(
             payment_method_types=["card"],
+
             line_items=[
                 {
                     "price_data": {
                         "currency": "inr",
+
                         "product_data": {
                             "name": f"Order #{order.id}"
                         },
+
                         "unit_amount": int(total * 100),
                     },
+
                     "quantity": 1,
                 }
             ],
+
             mode="payment",
+
             success_url=success_url,
             cancel_url=cancel_url,
         )
@@ -1222,42 +1299,54 @@ def place_order(request):
 
     return redirect("checkout")
 
-
-
 @login_required
 def payment_success(request):
 
-    session_id= request.GET.get("session_id")
+    session_id = request.GET.get("session_id")
 
     if not session_id:
         return redirect('home')
-    
+
     try:
-        order = Order.objects.get(stripe_session_id=session_id,user=request.user)
+
+        order = Order.objects.get(
+            stripe_session_id=session_id,
+            user=request.user
+        )
 
     except Order.DoesNotExist:
         return redirect('home')
 
-    order.payment_status="PAID"
-    order.status="confirmed"
+    order.payment_status = "PAID"
+    order.status = "confirmed"
     order.save()
 
     Cart.objects.filter(user=request.user).delete()
-    request.session.pop("address_id",None)
 
-    return render(request,'paymentsuccess.html',{
-    'order':order})    
+    request.session.pop("address_id", None)
+    request.session.pop("buy_now_product_id", None)
+    request.session.pop("discount", None)
+
+    return render(request, 'paymentsuccess.html', {
+        'order': order
+    })
 
 @login_required
 def payment_failed(request):
     return render(request, "paymentfailed.html")    
 
-
 @login_required
-def orderdetails(request,order_id):
-    order=get_object_or_404(Order.objects.prefetch_related('items__product'),id=order_id, user=request.user)
-    return render(request,'orderdetails.html',{'order':order})
+def orderdetails(request, order_id):
 
+    order = get_object_or_404(
+        Order.objects.select_related('address').prefetch_related('items__product'),
+        id=order_id,
+        user=request.user
+    )
+
+    return render(request, 'orderdetails.html', {
+        'order': order
+    })
 
 def review_rating(request,order_id):
     order=get_object_or_404(Order,id=order_id,user=request.user)

@@ -1,146 +1,681 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Order Details</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Order Details | GENZO</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
 
 <style>
-body{
-    background: #f8f6f2;
-    font-family: Georgia, serif;
+
+/* ================= GLOBAL ================= */
+
+:root {
+    --mocha: #76220b;
+    --bronze: rgb(163,86,69);
+    --light-bg: #f8f6f2;
+    --border: #eeeeee;
 }
 
-.card-box{
-    background:#f5f5f5;
-    border-radius:14px;
-    padding:24px;
-    margin-bottom:20px;
-    box-shadow:0 8px 20px rgba(0,0,0,0.08);
+* {
+    box-sizing: border-box;
 }
 
-.status-badge{
-    background:#f3e6b3;
-    padding:6px 14px;
-    border-radius:20px;
-    font-weight:600;
-    font-size:13px;
+body {
+    background: var(--light-bg);
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #222;
 }
 
-.item-img{
-    width:80px;
-    height:80px;
-    object-fit:cover;
-    border-radius:8px;
+
+/* ================= MAIN CONTAINER ================= */
+
+.order-container {
+    max-width: 1050px;
+    margin: auto;
+    padding: 35px 20px;
 }
 
-.invoice-row{
-    display:flex;
-    justify-content:space-between;
-    padding:10px 0;
-    border-bottom:1px solid #e5e5e5;
+
+/* ================= BACK BUTTON ================= */
+
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #333;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    margin-bottom: 20px;
 }
 
-.total-row{
-    font-size:20px;
-    font-weight:700;
+.back-btn:hover {
+    color: var(--mocha);
 }
+
+
+/* ================= CARD ================= */
+
+.card-box {
+    background: #fff;
+    border-radius: 14px;
+    padding: 25px;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 20px rgba(0,0,0,.05);
+    border: 1px solid #f0f0f0;
+}
+
+
+/* ================= SECTION TITLE ================= */
+
+.section-title {
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 22px;
+    color: #222;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.section-title i {
+    color: var(--mocha);
+    font-size: 20px;
+}
+
+
+/* ================= ORDER HEADER ================= */
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.order-date {
+    font-size: 14px;
+    color: #555;
+    font-weight: 500;
+}
+
+.order-id {
+    font-size: 13px;
+    color: #888;
+    margin-top: 5px;
+}
+
+.status-badge {
+    background: #f3e6b3;
+    color: #735b10;
+    padding: 8px 17px;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+
+/* ================= PRODUCT ITEMS ================= */
+
+.product-item {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 15px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.product-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.item-img {
+    width: 85px;
+    height: 95px;
+    object-fit: cover;
+    border-radius: 9px;
+    background: #f5f5f5;
+    flex-shrink: 0;
+}
+
+.product-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.product-name {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 7px;
+    overflow-wrap: anywhere;
+}
+
+.product-quantity {
+    font-size: 12px;
+    color: #777;
+}
+
+.product-price {
+    font-size: 14px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+
+/* ================= ADDRESS ================= */
+
+.address-details {
+    background: #faf9f7;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.address-name {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.address-line {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.9;
+    overflow-wrap: anywhere;
+}
+
+.address-line i {
+    color: var(--mocha);
+    margin-right: 8px;
+}
+
+
+/* ================= PAYMENT DETAILS ================= */
+
+.payment-info {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    flex-wrap: wrap;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+}
+
+.payment-info:last-child {
+    border-bottom: none;
+}
+
+.payment-info span:first-child {
+    color: #777;
+}
+
+.payment-info span:last-child {
+    font-weight: 600;
+    text-align: right;
+}
+
+
+/* ================= INVOICE ================= */
+
+.invoice-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 13px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+}
+
+.invoice-row span:first-child {
+    color: #666;
+}
+
+.invoice-row span:last-child {
+    font-weight: 600;
+    text-align: right;
+    overflow-wrap: anywhere;
+}
+
+.total-row {
+    font-size: 19px;
+    font-weight: 800;
+    color: var(--mocha);
+    border-bottom: none;
+    padding-top: 20px;
+}
+
+.total-row span {
+    color: var(--mocha) !important;
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 767px) {
+
+    .order-container {
+        padding: 22px 14px;
+    }
+
+    .card-box {
+        padding: 18px;
+        border-radius: 12px;
+    }
+
+    .section-title {
+        font-size: 15px;
+        margin-bottom: 17px;
+    }
+
+    .order-date {
+        font-size: 12px;
+    }
+
+    .status-badge {
+        font-size: 11px;
+        padding: 7px 13px;
+    }
+
+    .item-img {
+        width: 70px;
+        height: 80px;
+    }
+
+    .product-item {
+        gap: 12px;
+    }
+
+    .product-name {
+        font-size: 12px;
+    }
+
+    .product-price {
+        font-size: 12px;
+    }
+
+    .product-quantity {
+        font-size: 11px;
+    }
+
+    .address-details {
+        padding: 15px;
+    }
+
+    .address-line {
+        font-size: 12px;
+    }
+
+    .invoice-row {
+        font-size: 12px;
+    }
+
+    .total-row {
+        font-size: 17px;
+    }
+
+}
+
+
+@media (max-width: 380px) {
+
+    .order-container {
+        padding: 15px 10px;
+    }
+
+    .card-box {
+        padding: 14px;
+    }
+
+    .item-img {
+        width: 60px;
+        height: 70px;
+    }
+
+    .product-item {
+        gap: 9px;
+    }
+
+    .product-name {
+        font-size: 11px;
+    }
+
+    .product-price {
+        font-size: 11px;
+    }
+
+}
+
 </style>
+
 </head>
+
 
 <body>
 
-<div class="container py-5">
 
-<a href="{% url 'order' %}" class="text-dark mb-3 d-inline-block">
-← Back to Orders
-</a>
+<div class="order-container">
 
-<!-- ================= ORDER HEADER ================= -->
-<div class="card-box d-flex justify-content-between align-items-center">
 
-<div>
-<strong>Placed on {{ order.created_at|date:"d M Y, h:i A" }}</strong>
+    <!-- BACK BUTTON -->
+
+    <a href="{% url 'order' %}" class="back-btn">
+
+        <i class="bi bi-arrow-left"></i>
+
+        Back to Orders
+
+    </a>
+
+
+
+    <!-- ================= ORDER HEADER ================= -->
+
+    <div class="card-box">
+
+        <div class="order-header">
+
+            <div>
+
+                <div class="order-date">
+
+                    <i class="bi bi-calendar3 me-2"></i>
+
+                    Placed on {{ order.created_at|date:"d M Y, h:i A" }}
+
+                </div>
+
+                <div class="order-id">
+
+                    Order #{{ order.id }}
+
+                </div>
+
+            </div>
+
+
+            <div class="status-badge">
+
+                {{ order.status|title }}
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ================= ITEMS ================= -->
+
+    <div class="card-box">
+
+        <h5 class="section-title">
+
+            <i class="bi bi-box-seam"></i>
+
+            ORDER ITEMS
+
+        </h5>
+
+
+        {% for item in order.items.all %}
+
+        <div class="product-item">
+
+
+            <!-- PRODUCT IMAGE -->
+
+            {% if item.product.image %}
+
+                <img
+                    src="{% static 'images/' %}{{ item.product.image }}"
+                    class="item-img"
+                    alt="{{ item.product.name }}"
+                >
+
+            {% else %}
+
+                <div class="item-img d-flex align-items-center justify-content-center">
+
+                    <i class="bi bi-image text-muted fs-3"></i>
+
+                </div>
+
+            {% endif %}
+
+
+
+            <!-- PRODUCT INFORMATION -->
+
+            <div class="product-info">
+
+                <div class="product-name">
+
+                    {{ item.product.name }}
+
+                </div>
+
+                <div class="product-quantity">
+
+                    Quantity: {{ item.quantity }}
+
+                </div>
+
+            </div>
+
+
+
+            <!-- PRICE -->
+
+            <div class="product-price">
+
+                ₹ {{ item.price }}
+
+            </div>
+
+
+        </div>
+
+        {% empty %}
+
+        <p class="text-muted text-center">
+
+            No products found in this order.
+
+        </p>
+
+        {% endfor %}
+
+    </div>
+
+
+
+    <!-- ================= DELIVERY ADDRESS ================= -->
+
+    <div class="card-box">
+
+        <h5 class="section-title">
+
+            <i class="bi bi-geo-alt"></i>
+
+            DELIVERY ADDRESS
+
+        </h5>
+
+
+        {% if order.address %}
+
+        <div class="address-details">
+
+
+            <div class="address-name">
+
+                {{ order.address.name }}
+
+            </div>
+
+
+            <div class="address-line">
+
+                <i class="bi bi-telephone"></i>
+
+                {{ order.address.phone }}
+
+            </div>
+
+
+            <div class="address-line">
+
+                <i class="bi bi-geo-alt"></i>
+
+                {{ order.address.address }},
+
+                {{ order.address.locality }}
+
+            </div>
+
+
+            <div class="address-line">
+
+                {{ order.address.city }},
+
+                {{ order.address.state }}
+
+                - {{ order.address.pincode }}
+
+            </div>
+
+
+        </div>
+
+        {% else %}
+
+        <p class="text-muted mb-0">
+
+            Delivery address not available.
+
+        </p>
+
+        {% endif %}
+
+    </div>
+
+
+
+    <!-- ================= PAYMENT DETAILS ================= -->
+
+    <div class="card-box">
+
+        <h5 class="section-title">
+
+            <i class="bi bi-credit-card"></i>
+
+            PAYMENT DETAILS
+
+        </h5>
+
+
+        <div class="payment-info">
+
+            <span>Payment Method</span>
+
+            <span>{{ order.payment_method|default:"Not available" }}</span>
+
+        </div>
+
+
+        <div class="payment-info">
+
+            <span>Order Status</span>
+
+            <span>{{ order.status|title }}</span>
+
+        </div>
+
+
+        <div class="payment-info">
+
+            <span>Order Date</span>
+
+            <span>{{ order.created_at|date:"d M Y, h:i A" }}</span>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ================= INVOICE SUMMARY ================= -->
+
+    <div class="card-box">
+
+        <h5 class="section-title">
+
+            <i class="bi bi-receipt"></i>
+
+            INVOICE SUMMARY
+
+        </h5>
+
+
+        {% for item in order.items.all %}
+
+        <div class="invoice-row">
+
+            <span>
+
+                {{ item.product.name }} × {{ item.quantity }}
+
+            </span>
+
+            <span>
+
+                ₹ {{ item.price }}
+
+            </span>
+
+        </div>
+
+        {% endfor %}
+
+
+        <div class="invoice-row total-row">
+
+            <span>Total Amount</span>
+
+            <span>₹ {{ order.total }}</span>
+
+        </div>
+
+
+    </div>
+
+
 </div>
 
-<div class="status-badge">
-{{ order.status|title }}
-</div>
 
-</div>
-
-<!-- ================= ITEMS ================= -->
-<div class="card-box">
-
-<h5 class="mb-4">📦 ITEMS</h5>
-
-{% for item in order.items.all %}
-<div class="d-flex gap-3 mb-3">
-
-{% load static %}
-
-{% if item.product.image %}
-<img src="{% static 'images/' %}{{ item.product.image }}" class="item-img">
-{% endif %}
-
-<div class="flex-grow-1">
-<div class="fw-semibold">{{ item.product.name }}</div>
-<small class="text-muted">Quantity: {{ item.quantity }}</small>
-</div>
-
-<div class="fw-bold">
-₹ {{ item.price }}
-</div>
-
-</div>
-{% endfor %}
-
-</div>
-
-<!-- ================= INVOICE ================= -->
-<div class="card-box">
-
-<h5 class="mb-4">🧾 INVOICE SUMMARY</h5>
-
-<div class="invoice-row">
-<span>Order Date</span>
-<span>{{ order.created_at|date:"d M Y, h:i A" }}</span>
-</div>
-
-<div class="invoice-row">
-<span>Payment Method</span>
-<span>{{ order.payment_method }}</span>
-</div>
-
-<div class="invoice-row">
-<span>Status</span>
-<span>{{ order.status|title }}</span>
-</div>
-
-<hr>
-
-{% for item in order.items.all %}
-<div class="invoice-row">
-<span>{{ item.product.name }} × {{ item.quantity }}</span>
-<span>₹ {{ item.price }}</span>
-</div>
-{% endfor %}
-
-<hr>
-
-<div class="invoice-row total-row">
-<span>Total</span>
-<span>₹ {{ order.total }}</span>
-</div>
-{% comment %} 
-<a href="#" class="btn btn-dark mt-3">
-⬇ Download Invoice
-</a> {% endcomment %}
-
-</div>
-
-</div>
 </body>
+
 </html>
